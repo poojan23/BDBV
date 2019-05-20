@@ -1,0 +1,56 @@
+<?php if($logged) : ?>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-content">
+            <span class="bigger-120">
+                <?php echo $text_footer; ?> &nbsp; &nbsp;
+                <?php echo $version; ?>
+            </span>
+
+            &nbsp; &nbsp;
+            <span class="action-buttons">
+                <a href="https://www.facebook.com/popaya.in" target="_blank">
+                    <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/company/popaya-technologies/" target="_blank">
+                    <i class="ace-icon fa fa-linkedin-square text-info bigger-150"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+</a>
+</div><!-- /.main-container -->
+<?php endif; ?>
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="view/dist/js/jquery-2.1.4.min.js"></script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="view/dist/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+if('ontouchstart' in document.documentElement) document.write("<script src='view/dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<script src="view/dist/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+<?php foreach($scripts as $script) : ?>
+<script src="<?php echo $script; ?>"></script>
+<?php endforeach; ?>
+
+<!-- ace scripts -->
+<script src="view/dist/js/ace-elements.min.js"></script>
+<script src="view/dist/js/ace.min.js"></script>
+
+<!-- custom script -->
+<script src="view/dist/js/main.js"></script>
+</body>
+</html>

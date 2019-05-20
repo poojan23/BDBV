@@ -1,0 +1,182 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                <?php if($i == 0) : ?>
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php else : ?>
+                <li>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php endif; ?>
+                <?php else : ?>
+                <li class="active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                <?php endif; ?>
+                <?php endfor; ?>               
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1 class="pull-left">
+                    <?php echo $heading_title; ?>
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_form; ?>
+                    </small>
+                </h1>
+                <div class="text-right">
+                    <button type="submit" form="form-banner" class="btn btn-white btn-info btn-bold" data-toggle="tooltip" title="<?php echo $button_save; ?>"><i class="ace-icon fa fa-floppy-o"></i></button>
+                    <a href="<?php echo $cancel; ?>" class="btn btn-white btn-light btn-bold" data-toggle="tooltip" title="<?php echo $button_cancel; ?>"><i class="ace-icon fa fa-reply"></i></a>
+                </div>
+            </div><!-- /.page-header -->
+            <?php if($warning_err) : ?>
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> <?php echo $warning_err; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form id="form-banner" class="form-horizontal" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="widget-box">
+                                <div class="widget-header">
+                                    <h4 class="widget-title"><?php echo $text_form; ?></h4>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <fieldset id="option-value">
+                                            <legend><?php echo $text_group; ?></legend>
+                                            <div class="form-group <?php echo (!empty($error_group)) ? 'has-error' : ''; ?>">
+                                                <label for="input-group" class="col-sm-2 control-label"><?php echo $entry_group; ?> <span class="text-red">*</span></label>
+
+                                                <div class="col-sm-10">
+                                                    <?php foreach($languages as $language) : ?>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="input-group-text"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>"</span>
+                                                        </div>
+                                                        <input type="text" name="filter_group_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($filter_group_description[$language['language_id']]) ? $filter_group_description[$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_group; ?>" class="form-control" >
+                                                        <?php if(isset($error_group[$language['language_id']])) : ?>
+                                                        <span class="help-block"><?php echo $error_group[$language['language_id']]; ?></span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                            
+                                            <hr>
+                                            
+                                            <div class="form-group">
+                                                <label for="input-sort-order" class="col-sm-2 control-label"><?php echo $entry_sort_order; ?> <span class="text-red">*</span></label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="sort_order" placeholder="<?php echo $entry_sort_order; ?>" value="<?php echo $sort_order; ?>" id="input-sort-order">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset id="option-value">
+                                            <legend><?php echo $text_value; ?></legend>
+                                            <table id="filter" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                      <td class="text-left required"><?php echo $entry_name; ?></td>
+                                                      <td class="text-right"><?php echo $entry_sort_order; ?></td>
+                                                      <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $filter_row = 0; ?>
+                                                    <?php foreach($filters as $filter) : ?>
+                                                    <tr id="filter-row<?php echo $filter_row; ?>">
+                                                        <td class="text-left" style="width: 70%;"><input type="hidden" name="filter[<?php echo $filter_row; ?>][filter_id]" value="<?php echo $filter['filter_id']; ?>"/>
+                                                          <?php foreach($languages as $language) : ?>
+                                                            <div class="input-group">
+                                                              <div class="input-group-addon">
+                                                                <span class="input-group-text"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>"/></span>
+                                                              </div>
+                                                              <input type="text" name="filter[<?php echo $filter_row; ?>][filter_description][<?php echo $language['language_id']; ?>][name]" value="<?php echo $filter['filter_description'][$language['language_id']] ? $filter['filter_description'][$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_name; ?>" class="form-control"/>
+                                                            </div>
+                                                            <?php if(isset($error_filter[$filter_row][$language['language_id']])) : ?>
+                                                            <span class="help-block"><?php echo $error_filter[$filter_row][$language['language_id']]; ?></span>
+                                                            <?php endif; ?>
+                                                          <?php endforeach; ?></td>
+                                                        <td class="text-right"><input type="text" name="filter[<?php echo $filter_row; ?>][sort_order]" value="<?php echo $filter['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="form-control"/></td>
+                                                        <td class="text-right"><button type="button" onclick="$('#filter-row<?php echo $filter_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                                                    </tr>
+                                                    <?php $filter_row = $filter_row + 1; ?>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="2"></td>
+                                                        <td class="text-right"><button type="button" onclick="addFilterRow();" data-toggle="tooltip" title="<?php echo $button_filter_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->
+<?php echo $footer; ?>
+<script type="text/javascript">
+    var filter_row = '<?php echo $filter_row; ?>';
+
+    function addFilterRow(language_id) {
+        html = '<tr id="filter-row' + filter_row + '">';
+        html += '<td class="text-left" style="vertical-align: middle;"><input type="text" name="filter[' + language_id + '][' + filter_row + '][name]" value="" placeholder="<?php echo $entry_name; ?>" class="form-control" /></td>';
+        html += '  <td class="text-right" style="width: 10%; vertical-align: middle;"><input type="text" name="filter[' + language_id + '][' + filter_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
+        html += '  <td class="text-left" style="vertical-align: middle;"><button type="button" onclick="$(\'#image-row' + filter_row + ', .tooltip\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+        html += '</tr>';
+
+        $('#images' + language_id + ' tbody').append(html);
+
+        filter_row++;
+    }
+    function addFilterRow() {
+        html = '<tr id="filter-row' + filter_row + '">';
+        html += '  <td class="text-left" style="width: 70%;"><input type="hidden" name="filter[' + filter_row + '][filter_id]" value=""/>';
+        html += '<?php foreach($languages as $language) : ?>';
+        html += '  <div class="input-group">';
+        html += '    <div class="input-group-addon">';
+        html += '      <span class="input-group-text"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /></span>';
+        html += '    </div>';
+        html += '    <input type="text" name="filter[' + filter_row + '][filter_description][<?php echo $language['language_id']; ?>][name]" value="" placeholder="<?php echo $entry_name; ?>" class="form-control" />';
+        html += '  </div>';
+        html += '<?php endforeach; ?>'
+        html += '  </td>';
+        html += '  <td class="text-right"><input type="text" name="filter[' + filter_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="form-control" /></td>';
+        html += '  <td class="text-right"><button type="button" onclick="$(\'#filter-row' + filter_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+        html += '</tr>';
+
+        $('#filter tbody').append(html);
+
+        filter_row++;
+    }
+</script>

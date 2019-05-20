@@ -1,0 +1,85 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                    <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                        <?php if($i == 0) : ?>
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                        </li>
+                        <?php else : ?>
+                        <li>
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                        </li>
+                        <?php endif; ?>
+                    <?php else : ?>
+                    <li class="active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                    <?php endif; ?>
+                <?php endfor; ?>               
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div id="content" class="page-content">
+            <div class="page-header">
+                <h1 class="pull-left">
+                    <?php echo $heading_title; ?>
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_list; ?>
+                    </small>
+                </h1>
+                <div class="text-right">
+                    <a href="<?php echo $download; ?>" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" title="<?php echo $button_download; ?>"><i class="ace-icon fa fa-download"></i></a>
+                    <button type="button" onclick="confirm('<?php echo $text_confirm; ?>') ? location.href='<?php echo $clear; ?>' : false;" class="btn btn-white btn-danger btn-bold" data-toggle="tooltip" title="<?php echo $button_clear; ?>"><i class="ace-icon fa fa-eraser"></i></button>
+                </div>
+            </div><!-- /.page-header -->
+            <?php if ($warning_err) : ?>
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> <?php echo $warning_err; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+            <?php if ($success) : ?>
+            <div class="alert alert-success alert-dismissible"><i class="fa fa-exclamation-circle"></i> <?php echo $success; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+
+            <div class="alert-box"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <div class="box-body">
+                        <div class="widget-box">
+                            <div class="widget-header">
+                                <h4 class="widget-title"><i class="ace-icon fa fa-exclamation-triangle"></i> <?php echo $text_list; ?></h4>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <textarea wrap="off" rows="15" class="form-control" readonly="readonly"><?php echo $log; ?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div>
+<?php echo $footer; ?>
+<script type="text/javascript">
+    $('textarea[data-toggle=\'ckeditor\']').ckeditor();
+</script>

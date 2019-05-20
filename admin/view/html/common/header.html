@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title><?php echo $title; ?></title>
+    <base href="<?php echo $base; ?>">
+    <?php if($description) : ?>
+    <meta name="description" content="<?php echo $description; ?>" />
+    <?php endif; ?>
+
+    <?php if($keywords) : ?>
+    <meta name="keywords" content="<?php echo $keywords; ?>" />
+    <?php endif; ?>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="view/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="view/dist/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="view/dist/css/popaya-font.css" />
+
+    <!-- page specific plugin styles -->
+    <?php foreach($styles as $style) : ?>
+    <link rel="<?php echo $style['rel']; ?>" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" type="text/css">
+    <?php endforeach; ?>
+
+    <?php foreach($scripts as $script) : ?>
+    <script src="<?php echo $script; ?>" type="text/javascript"></script>
+    <?php endforeach; ?>
+
+    <?php foreach($links as $link) : ?>
+    <link rel="<?php echo $link['rel']; ?>" href="<?php echo $link['href']; ?>">
+    <?php endforeach; ?>
+    <!-- text fonts -->
+    <link rel="stylesheet" href="view/dist/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="view/dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="view/dist/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <![endif]-->
+    <link rel="stylesheet" href="view/dist/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="view/dist/css/ace-rtl.min.css" />
+
+    <link rel="stylesheet" href="view/dist/css/style.css" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="view/dist/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script src="view/dist/js/ace-extra.min.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="view/dist/js/html5shiv.min.js"></script>
+    <script src="view/dist/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<?php if($logged) : ?>
+<body class="no-skin">
+    <div id="navbar" class="navbar navbar-default ace-save-state navbar-fixed-top">
+        <div class="navbar-container ace-save-state" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                <span class="sr-only">Toggle sidebar</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-header pull-left">
+                <a href="index.html" class="navbar-brand">
+                    <small><i class="fa fa-leaf"></i>Popaya Technologies</small>
+                </a>
+            </div>
+
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+                    <li class="grey dropdown-modal">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-tasks"></i>
+                            <span class="badge badge-grey">4</span>
+                        </a>
+                    </li>
+
+                    <li class="purple dropdown-modal">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                            <span class="badge badge-important">8</span>
+                        </a>
+                    </li>
+
+                    <li class="green dropdown-modal">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+                            <span class="badge badge-success">5</span>
+                        </a>
+                    </li>
+
+                    <li class="light-blue dropdown-modal">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="<?php echo $image; ?>" alt="Jason's Photo" />
+                            <span class="user-info">
+                                <small>Welcome,</small>
+                                <?php echo $firstname; ?>
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li><a href="<?php echo $setting; ?>"><i class="ace-icon fa fa-cog"></i>Settings</a></li>
+
+                            <li><a href="<?php echo $profile; ?>"><i class="ace-icon fa fa-user"></i>Profile</a></li>
+
+                            <li class="divider"></li>
+
+                            <li><a href="<?php echo $logout; ?>"><i class="ace-icon fa fa-power-off"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.navbar-container -->
+    </div>
+<?php endif; ?>

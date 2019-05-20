@@ -1,0 +1,427 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                <?php if($i == 0) : ?>
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php else : ?>
+                <li>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php endif; ?>
+                <?php else : ?>
+                <li class="active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                <?php endif; ?>
+                <?php endfor; ?>               
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1 class="pull-left">
+                    <?php echo $heading_title; ?>
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_title; ?>
+                    </small>
+                </h1>
+                <div class="text-right">
+                    <button type="submit" form="form-setting" class="btn btn-white btn-info btn-bold" data-toggle="tooltip" title="<?php echo $button_save; ?>"><i class="ace-icon fa fa-floppy-o"></i></button>
+                    <a href="<?php echo $cancel; ?>" class="btn btn-white btn-light btn-bold" data-toggle="tooltip" title="<?php echo $button_cancel; ?>"><i class="ace-icon fa fa-reply"></i></a>
+                </div>
+            </div><!-- /.page-header -->
+
+            <?php if ($warning_err) : ?>
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> <?php echo $warning_err; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+            <?php if ($success) : ?>
+            <div class="alert alert-success alert-dismissible"><i class="fa fa-exclamation-circle"></i> <?php echo $success; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data" class="form-horizontal" id="form-setting">
+                        <div class="box-body">
+                            <div class="widget-box">
+                                <div class="widget-header">
+                                    <h4 class="widget-title"><?php echo $text_form; ?></h4>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <fieldset>
+                                            <div class="box-body">
+                                                <div class="widget-box">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main">
+                                                            <div class="">
+                                                                <div id="user-profile-2" class="user-profile">
+                                                                    <div class="tabbable">
+                                                                        <ul class="nav nav-tabs padding-18">
+                                                                            <li class="active">
+                                                                                <a data-toggle="tab" href="#general">
+                                                                                    <i class="green ace-icon fa fa-globe bigger-120"></i>
+                                                                                    <?php echo $tab_general; ?>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a data-toggle="tab" href="#store">
+                                                                                    <i class="orange ace-icon fa fa-phone bigger-120"></i>
+                                                                                    <?php echo $tab_store; ?>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a data-toggle="tab" href="#image">
+                                                                                    <i class="blue ace-icon fa fa-picture-o bigger-120"></i>
+                                                                                    <?php echo $tab_image; ?>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a data-toggle="tab" href="#mail">
+                                                                                    <i class="pink ace-icon fa fa-envelope-o bigger-120"></i>
+                                                                                    <?php echo $tab_mail; ?>
+                                                                                </a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a data-toggle="tab" href="#server">
+                                                                                    <i class="red ace-icon fa fa-gear bigger-120"></i>
+                                                                                    <?php echo $tab_server; ?>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+
+                                                                        <div class="tab-content no-border padding-24">
+                                                                            <div id="general" class="tab-pane in active">
+
+                                                                                <div class="form-group <?php echo (!empty($config_url)) ? 'has-error' : ''; ?>">
+                                                                                    <label for="input-config-url" class="col-sm-2 control-label"><span data-toggle="tooltip" data-html="true" title="<?php echo $help_url; ?>"><?php echo $entry_url; ?></span> <span class="red">*</span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_url" placeholder="<?php echo $entry_url; ?>" value="<?php echo $config_url; ?>" id="input-config-url">
+                                                                                        <?php if(isset($config_url)) : ?>
+                                                                                        <span class="help-block"><?php echo $config_url; ?></span>
+                                                                                        <?php endif; ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group <?php echo (!empty($config_ssl)) ? 'has-error' : ''; ?>">
+                                                                                    <label for="input-config-ssl" class="col-sm-2 control-label"><?php echo $entry_ssl; ?> <span class="red">*</span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_ssl" placeholder="<?php echo $entry_ssl; ?>" value="<?php echo $config_ssl; ?>" id="input-config-ssl">
+                                                                                        <?php if(isset($config_ssl)) : ?>
+                                                                                        <span class="help-block"><?php echo $config_ssl; ?></span>
+                                                                                        <?php endif; ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div><!-- /#general -->
+
+                                                                            <div id="store" class="tab-pane">
+
+                                                                                <div class="form-group <?php echo (!empty($config_name)) ? 'has-error' : ''; ?>">
+                                                                                    <label for="input-config-name" class="col-sm-2 control-label"><?php echo $entry_name; ?> <span class="red">*</span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_name" placeholder="<?php echo $entry_name; ?>" value="<?php echo $config_name; ?>" id="input-config-name">
+                                                                                        <?php if(isset($config_name)) : ?>
+                                                                                        <span class="help-block"><?php echo $config_name; ?></span>
+                                                                                        <?php endif; ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group <?php echo (!empty($config_ssl)) ? 'has-error' : ''; ?>">
+                                                                                    <label for="input-config-ssl" class="col-sm-2 control-label"><?php echo $entry_owner; ?> <span class="red">*</span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_owner" placeholder="<?php echo $entry_owner; ?>" value="<?php echo $config_owner; ?>" id="input-config-ssl">
+                                                                                        <?php if(isset($config_owner)) : ?>
+                                                                                        <span class="help-block"><?php echo $config_owner; ?></span>
+                                                                                        <?php endif; ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group <?php echo (!empty($config_address)) ? 'has-error' : ''; ?>">
+                                                                                    <label for="input-config-address" class="col-sm-2 control-label"><?php echo $entry_address; ?> <span class="red">*</span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <textarea class="form-control" name="config_address" rows="5" placeholder="<?php echo $entry_address; ?>" id="input-config-address" cols="30" rows="10"><?php echo $config_address; ?></textarea>
+                                                                                        <?php if(isset($config_address)) : ?>
+                                                                                        <span class="help-block"><?php echo $config_address; ?></span>
+                                                                                        <?php endif; ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group <?php echo (!empty($config_telephone)) ? 'has-error' : ''; ?>">
+                                                                                    <label for="input-config-telephone" class="col-sm-2 control-label"><?php echo $entry_telephone; ?> <span class="red">*</span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_telephone" placeholder="<?php echo $entry_telephone; ?>" value="<?php echo $config_telephone; ?>" id="input-config-telephone">
+                                                                                        <?php if(isset($config_telephone)) : ?>
+                                                                                        <span class="help-block"><?php echo $config_telephone; ?></span>
+                                                                                        <?php endif; ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-fax" class="col-sm-2 control-label"><?php echo $entry_fax; ?></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_fax" placeholder="<?php echo $entry_fax; ?>" value="<?php echo $config_fax; ?>" id="input-config-fax">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div><!-- /#store -->
+
+                                                                            <div id="image" class="tab-pane">
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-logo" class="col-sm-2 control-label"><?php echo $entry_logo; ?></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <a href="" id="thumb-logo" data-toggle="image" class="img-thumbnail">
+                                                                                            <img src="<?php echo $logo; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>">
+                                                                                        </a>
+                                                                                        <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="input-config-logo">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-icon" class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_icon; ?>"><?php echo $entry_icon; ?></span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <a href="" id="thumb-icon" data-toggle="image" class="img-thumbnail">
+                                                                                            <img src="<?php echo $icon; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>">
+                                                                                        </a>
+                                                                                        <input type="hidden" name="config_icon" value="<?php echo $config_icon; ?>" id="input-config-icon">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div><!-- /#image -->
+
+                                                                            <div id="mail" class="tab-pane">
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-mail-engine" class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_mail_engine; ?>"><?php echo $entry_mail_engine; ?></span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <select name="config_mail_engine" id="input-config-mail-engine" class="form-control">
+                                                                                            <?php if($config_mail_engine == 'mail') : ?>
+                                                                                            <option value="mail" selected="selected"><?php echo $text_mail; ?></option>
+                                                                                            <?php else : ?>
+                                                                                            <option value="mail"><?php echo $text_mail; ?></option>
+                                                                                            <?php endif; ?>
+                                                                                            <?php if($config_mail_engine == 'smtp') : ?>
+                                                                                            <option value="smtp" selected="selected"><?php echo $text_smtp; ?></option>
+                                                                                            <?php else : ?>
+                                                                                            <option value="smtp"><?php echo $text_smtp; ?></option>
+                                                                                            <?php endif; ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-mail-parameter" class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_mail_parameter; ?>"><?php echo $entry_mail_parameter; ?></span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_mail_parameter" placeholder="<?php echo $entry_mail_parameter; ?>" value="<?php echo $config_mail_parameter; ?>" id="input-config-mail-parameter">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-mail-smtp-hostname" class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_mail_smtp_hostname; ?>"><?php echo $entry_mail_smtp_hostname; ?></span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_mail_smtp_hostname" placeholder="<?php echo $entry_mail_smtp_hostname; ?>" value="<?php echo $config_mail_smtp_hostname; ?>" id="input-config-mail-smtp-hostname">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-mail-smtp-username" class="col-sm-2 control-label"><?php echo $entry_mail_smtp_username; ?></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_mail_smtp_username" placeholder="<?php echo $entry_mail_smtp_username; ?>" value="<?php echo $config_mail_smtp_username; ?>" id="input-config-mail-smtp-username">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-mail-smtp-password" class="col-sm-2 control-label"><span data-toggle="tooltip" data-html="true" title="<?php echo $help_mail_smtp_password; ?>"><?php echo $entry_mail_smtp_password; ?></span></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_mail_smtp_password" placeholder="<?php echo $entry_mail_smtp_password; ?>" value="<?php echo $config_mail_smtp_password; ?>" id="input-config-mail-smtp-password">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-mail-smtp-port" class="col-sm-2 control-label"><?php echo $entry_mail_smtp_port; ?></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_mail_smtp_port" placeholder="<?php echo $entry_mail_smtp_port; ?>" value="<?php echo $config_mail_smtp_port; ?>" id="input-config-mail-smtp-port">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <hr>
+
+                                                                                <div class="form-group">
+                                                                                    <label for="input-config-mail-smtp-timeout" class="col-sm-2 control-label"><?php echo $entry_mail_smtp_timeout; ?></label>
+
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" class="form-control" name="config_mail_smtp_timeout" placeholder="<?php echo $entry_mail_smtp_timeout; ?>" value="<?php echo $config_mail_smtp_timeout; ?>" id="input-config-mail-smtp-timeout">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div><!-- /#mail -->
+
+                                                                            <div id="server" class="tab-pane">
+
+                                                                                <fieldset>
+                                                                                    <legend><?php echo $text_general; ?></legend>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="input-config-robots" class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_robots; ?>"><?php echo $entry_robots; ?></span></label>
+
+                                                                                        <div class="col-sm-10">
+                                                                                            <textarea name="config_robots" rows="5" placeholder="<?php echo $entry_robots; ?>" class="form-control" id="input-config-robots"><?php echo $config_robots; ?></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+
+                                                                                <fieldset>
+                                                                                    <legend><?php echo $text_upload; ?></legend>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="input-config-file-ext-allowed" class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_file_ext_allowed; ?>"><?php echo $entry_file_ext_allowed; ?></span></label>
+
+                                                                                        <div class="col-sm-10">
+                                                                                            <textarea name="config_file_ext_allowed" rows="5" placeholder="<?php echo $entry_file_ext_allowed; ?>" class="form-control" id="input-config-file-ext-allowed"><?php echo $config_file_ext_allowed; ?></textarea>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <hr>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="input-config-file-mime-allowed" class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_file_mime_allowed; ?>"><?php echo $entry_file_mime_allowed; ?></span></label>
+
+                                                                                        <div class="col-sm-10">
+                                                                                            <textarea name="config_file_mime_allowed" rows="5" placeholder="<?php echo $entry_file_mime_allowed; ?>" class="form-control" id="input-config-file-mime-allowed"><?php echo $config_file_mime_allowed; ?></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+
+                                                                                <fieldset>
+                                                                                    <legend><?php echo $text_error; ?></legend>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="input-config-error-display" class="col-sm-2 control-label"><?php echo $entry_error_display; ?></label>
+
+                                                                                        <div class="col-sm-10">
+                                                                                            <label>
+                                                                                                <?php if($config_error_display) : ?>
+                                                                                                <input id="input-config-error-display" name="config_error_display" value="1" checked="checked" type="checkbox" class="ace ace-switch ace-switch-5">
+                                                                                                <?php else : ?>
+                                                                                                <input id="input-config-error-display" name="config_error_display" value="1" type="checkbox" class="ace ace-switch ace-switch-5">
+                                                                                                <?php endif; ?>
+                                                                                                <span class="lbl middle"></span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <hr>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="input-config-error-log" class="col-sm-2 control-label"><?php echo $entry_error_log; ?></label>
+
+                                                                                        <div class="col-sm-10">
+                                                                                            <label>
+                                                                                                <?php if($config_error_log) : ?>
+                                                                                                <input id="input-config-error-log" name="config_error_log" value="1" checked="checked" type="checkbox" class="ace ace-switch ace-switch-5">
+                                                                                                <?php else : ?>
+                                                                                                <input id="input-config-error-log" name="config_error_log" value="1" type="checkbox" class="ace ace-switch ace-switch-5">
+                                                                                                <?php endif; ?>
+                                                                                                <span class="lbl middle"></span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <hr>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="input-config-error-filename" class="col-sm-2 control-label"><?php echo $entry_error_filename; ?></label>
+
+                                                                                        <div class="col-sm-10">
+                                                                                            <input type="text" class="form-control" name="config_error_filename" placeholder="<?php echo $entry_error_filename; ?>" value="<?php echo $config_error_filename; ?>" id="input-config-error-filename">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+
+                                                                            </div><!-- /#server -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->
+<?php echo $footer; ?>

@@ -1,0 +1,40 @@
+<div class="table-header">
+        <?php echo $text_title; ?>
+    </div>
+    <!-- PAGE CONTENT BEGINS -->
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="simple-table" class="table  table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 4%;"><?php echo $column_sr_no; ?></th>
+                        <th><?php echo $column_month; ?></th>
+                        <th><?php echo $column_total; ?></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php if($mails) : ?>
+                    <?php $srNo = 1; ?>
+                        <?php foreach($mails as $mail) : ?>
+                        <tr>
+                            <td class="center">
+                                <?php echo $srNo++; ?>
+                            </td>
+
+                            <td><?php echo $mail['month']; ?> <?php echo $mail['year']; ?></td>
+                            <td><?php echo $mail['total']; ?></td>
+                        </tr>
+                        
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td class="text-center" colspan="3"><?php echo $text_no_result; ?></td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div><!-- /.span -->
+    </div><!-- /.row -->
+
+    <!-- PAGE CONTENT ENDS -->

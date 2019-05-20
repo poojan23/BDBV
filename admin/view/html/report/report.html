@@ -1,0 +1,82 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                    <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                        <?php if($i == 0) : ?>
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                        </li>
+                        <?php else : ?>
+                        <li>
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                        </li>
+                        <?php endif; ?>
+                    <?php else : ?>
+                    <li class="active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                    <?php endif; ?>
+                <?php endfor; ?>               
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+        <div class="page-content">
+            <div class="page-header">
+                <h1>
+                    <?php echo $heading_title; ?>
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_title; ?>
+                    </small>
+                </h1>
+            </div><!-- /.page-header -->
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!--<div class="table-header">
+                        <?php echo $text_title; ?>
+                    </div>-->
+                    <!-- PAGE CONTENT BEGINS -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <select name="report" onchange="location = this.value;" class="form-control">
+                                    <?php foreach($reports as $value) : ?>
+                                        <?php if($code == $value['code']) : ?>
+                                        <option value="<?php echo $value['href']; ?>" selected="selected"><?php echo $value['text']; ?></option>
+                                        <?php else : ?>
+                                        <option value="<?php echo $value['href']; ?>"><?php echo $value['text']; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                                <span class="input-group-addon"><i class="ace-icon fa fa-filter"></i> <?php echo $text_filter; ?></span>
+                            </div>
+                        </div><!-- /.span -->
+                    </div><!-- /.row -->
+
+                    <div class="space-10"></div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div><?php echo $report; ?></div>
+                        </div>
+                    </div>
+
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div>
+<?php echo $footer; ?>

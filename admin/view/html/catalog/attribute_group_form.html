@@ -1,0 +1,110 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                <?php if($i == 0) : ?>
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php else : ?>
+                <li>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php endif; ?>
+                <?php else : ?>
+                <li class="active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                <?php endif; ?>
+                <?php endfor; ?>               
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1 class="pull-left">
+                    <?php echo $heading_title; ?>
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_form; ?>
+                    </small>
+                </h1>
+                <div class="text-right">
+                    <button type="submit" form="form-user-group" class="btn btn-white btn-info btn-bold" data-toggle="tooltip" title="<?php echo $button_save; ?>"><i class="ace-icon fa fa-floppy-o"></i></button>
+                    <a href="<?php echo $cancel; ?>" class="btn btn-white btn-light btn-bold" data-toggle="tooltip" title="<?php echo $button_cancel; ?>"><i class="ace-icon fa fa-reply"></i></a>
+                </div>
+            </div><!-- /.page-header -->
+            <?php if($warning_err) : ?>
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> <?php echo $warning_err; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form id="form-user-group" class="form-horizontal" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="widget-box">
+                                <div class="widget-header">
+                                    <h4 class="widget-title"><?php echo $text_form; ?></h4>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <fieldset>
+                                            <div class="box-body">
+                                                <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+                                                    <label for="input-name" class="col-sm-2 control-label"><?php echo $entry_name; ?> <span class="text-red">*</span></label>
+
+                                                    <div class="col-sm-10">
+                                                        <?php foreach($languages as $language) : ?>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <span class="input-group-text"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>"></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="attribute_group_description[<?php echo $language['language_id']; ?>][name]" placeholder="<?php echo $entry_name; ?>" value="<?php echo isset($attribute_group_description[$language['language_id']]) ? $attribute_group_description[$language['language_id']]['name'] : ''; ?>" id="input-name">
+                                                        </div>
+                                                        <?php if(isset($name_err[$language['language_id']])) : ?>
+                                                        <span class="help-block"><?php echo $name_err[$language['language_id']]; ?></span>
+                                                        <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+
+                                                <hr >
+                                                <div class="form-group">
+                                                    <label for="input-sort-order" class="col-sm-2 control-label"><?php echo $entry_sort_order; ?></label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="sort_order" placeholder="<?php echo $entry_sort_order; ?>" value="<?php echo $sort_order; ?>" id="input-sort-order">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->
+<?php echo $footer; ?>

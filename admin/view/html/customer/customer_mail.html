@@ -1,0 +1,42 @@
+<!-- div.table-responsive -->
+
+<!-- div.dataTables_borderWrap -->
+<div>
+    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th><?php echo $column_date; ?></th>
+                <th><?php echo $column_member; ?></th>
+                <th><?php echo $column_email; ?></th>
+                <th><?php echo $column_subject; ?></th>
+                <th><?php echo $column_status; ?></th>
+                <th><?php echo $column_viewed; ?></th>
+                <th><?php echo $column_date; ?></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php if($mails) : ?>
+                <?php foreach($mails as $mail) : ?>
+                <tr>
+                    <td><?php echo $mail['date_sent']; ?></td>
+                    <td><?php echo $mail['member']; ?></td>
+                    <td><?php echo $mail['email']; ?></td>
+                    <td><?php echo $mail['subject']; ?></td>
+                    <td><?php if($mail['status'] == 1): ?><span class="label label-sm label-success"><?php echo $text_read; ?></span><?php else : ?><span class="label label-sm label-danger"><?php echo $text_unread; ?></span><?php endif; ?></td>
+                    <td><?php echo $mail['viewed']; ?></td>
+                    <td><?php echo $mail['date_read']; ?></td>
+                </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td class="text-center" colspan="7"><?php echo $text_no_results; ?></td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col-sm-6 text-left"><?php echo $results; ?></div>
+    <div class="col-sm-6 text-right"><?php echo $pagination; ?></div>
+</div>

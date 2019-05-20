@@ -1,0 +1,131 @@
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    <div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed">
+        <script type="text/javascript">
+            try{ace.settings.loadState('sidebar')}catch(e){}
+        </script>
+
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="ace-icon fa fa-signal"></i>
+                </button>
+
+                <button class="btn btn-info">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
+
+                <button class="btn btn-warning">
+                    <i class="ace-icon fa fa-users"></i>
+                </button>
+
+                <button class="btn btn-danger">
+                    <i class="ace-icon fa fa-cogs"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+
+                <span class="btn btn-info"></span>
+
+                <span class="btn btn-warning"></span>
+
+                <span class="btn btn-danger"></span>
+            </div>
+        </div><!-- /.sidebar-shortcuts -->
+
+        <ul id="menu" class="nav nav-list">
+            
+            <?php foreach($menus as $menu) : ?>
+            <li id="<?php echo $menu['id']; ?>">
+                <?php if($menu['href']) : ?>
+                <a href="<?php echo $menu['href']; ?>">
+                    <i class="menu-icon fa <?php echo $menu['icon']; ?>"></i>
+                    <span class="menu-text"><?php echo $menu['name']; ?></span>
+                </a>
+
+                <b class="arrow"></b>
+                <?php else : ?>
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa <?php echo $menu['icon']; ?>"></i>
+                    <span class="menu-text"><?php echo $menu['name']; ?></span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+                <?php endif; ?>
+                <?php if($menu['children']) : ?>
+                <ul class="submenu">
+                    <?php foreach($menu['children'] as $child1) : ?>
+                    <li>
+                        <?php if($child1['href']) : ?>
+                        <a href="<?php echo $child1['href']; ?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            <?php echo $child1['name']; ?>
+                        </a>
+
+                        <b class="arrow"></b>
+                        <?php else : ?>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            <?php echo $child1['name']; ?>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+                        <?php endif; ?>
+                        <?php if($child1['children']) : ?>
+                        <ul class="submenu">
+                            <?php foreach($child1['children'] as $child2) : ?>
+                            <li>
+                                <?php if($child2['href']) : ?>
+                                <a href="<?php echo $child2['href']; ?>">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <?php echo $child2['name']; ?>
+                                </a>
+
+                                <b class="arrow"></b>
+                                <?php else : ?>
+                                <a href="#" class="dropdown-toggle">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    <?php echo $child2['name']; ?>
+
+                                    <b class="arrow fa fa-angle-down"></b>
+                                </a>
+
+                                <b class="arrow"></b>
+                                <?php endif; ?>
+                                <?php if($child2['children']) : ?>
+                                <ul class="submenu">
+                                    <?php foreach($child2['children'] as $child3) : ?>
+                                    <a href="<?php echo $child3['href']; ?>">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        <?php echo $child3['name']; ?>
+                                    </a>
+    
+                                    <b class="arrow"></b>
+                                    <?php endforeach; ?>
+                                </ul>
+                                <?php endif; ?>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php endif; ?>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+            </li>
+            <?php endforeach; ?>
+        </ul><!-- /.nav-list -->
+
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>

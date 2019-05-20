@@ -1,0 +1,39 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<!-- breadcrumb start -->
+<!-- ================ -->
+<div class="breadcrumb-container">
+    <div class="container">
+        <ol class="breadcrumb">
+            <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                <li class="breadcrumb-item"><i class="fa fa-home pr-2"></i><a class="link-dark" href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a></li>
+                <?php else: ?>
+                <li class="breadcrumb-item active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                <?php endif; ?>
+            <?php endfor; ?>
+        </ol>
+    </div>
+</div>
+<!-- breadcrumb end -->
+
+<!-- main-container start -->
+<!-- ================ -->
+<section class="main-container padding-bottom-clear">
+    <div class="container">
+        <div class="row">
+        <!-- main start -->
+        <!-- ================ -->
+        <div class="main col-12">
+            <h1 class="title"><?php echo $heading_title; ?></h1>
+            <div class="separator-2"></div>
+            <div class="row">
+                <?php echo $description; ?>
+            </div>
+        </div>
+        <!-- main end -->
+        </div>
+    </div>
+</section>
+<!-- main-container end -->
+<?php echo $footer; ?>
