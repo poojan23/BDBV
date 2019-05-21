@@ -60,7 +60,7 @@
                     <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>"
                         class="btn btn-danger btn-bold" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-seo_url-group').submit() :
                         false;"><i class="fa fa-trash-alt"></i></button>
-                    <div class="pull-right tableTools-container"></div>
+                    <div class="float-right tableTools-container"></div>
                 </div>
             </div>
             <div class="col-12">
@@ -87,9 +87,6 @@
                                             <th>
                                                 <?php echo $column_keyword; ?>
                                             </th>
-                                            <th>
-                                                <?php echo $column_language; ?>
-                                            </th>
                                             <th class="no-sort">
                                                 <?php echo $column_action; ?>
                                             </th>
@@ -115,12 +112,9 @@
                                             <td class="text-left">
                                                 <?php echo $seo_url['keyword']; ?>
                                             </td>
-                                            <td class="text-left">
-                                                <?php echo $seo_url['language']; ?>
-                                            </td>
                                             <td class="text-left"><a href="<?php echo $seo_url['edit']; ?>"
                                                     data-toggle="tooltip" title="<?php echo $button_edit; ?>"
-                                                    class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                                                    class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></td>
                                         </tr>
                                         <?php endforeach; ?>
                                         <?php else : ?>

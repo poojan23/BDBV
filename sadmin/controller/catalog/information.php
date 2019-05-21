@@ -221,7 +221,7 @@ class ControllerCatalogInformation extends PT_Controller
         if (isset($this->request->get['information_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $information_info = $this->model_catalog_information->getInformation($this->request->get['information_id']);
         }
-
+       
         $data['user_token'] = $this->session->data['user_token'];
 
         $this->load->model('localisation/language');
@@ -247,24 +247,24 @@ class ControllerCatalogInformation extends PT_Controller
         } else {
             $data['bottom'] = 0;
         }
-
-        if (isset($this->request->post['image'])) {
-            $data['image'] = $this->request->post['image'];
-        } elseif (!empty($information_info)) {
-            $data['image'] = $information_info['image'];
-        } else {
-            $data['image'] = '';
-        }
-
-        $this->load->model('tool/image');
-
-        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
-
-        if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
-            $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
-        } else {
-            $data['thumb'] = $data['placeholder'];
-        }
+//
+//        if (isset($this->request->post['image'])) {
+//            $data['image'] = $this->request->post['image'];
+//        } elseif (!empty($information_info)) {
+//            $data['image'] = $information_info['image'];
+//        } else {
+//            $data['image'] = '';
+//        }
+//
+//        $this->load->model('tool/image');
+//
+//        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+//
+//        if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
+//            $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
+//        } else {
+//            $data['thumb'] = $data['placeholder'];
+//        }
 
         if (isset($this->request->post['sort_order'])) {
             $data['sort_order'] = $this->request->post['sort_order'];

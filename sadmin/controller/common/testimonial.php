@@ -24,7 +24,7 @@ class ControllerCommonTestimonial extends PT_Controller
         $this->load->model('catalog/testimonial');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-           
+//            print_r($this->request->post);exit;
             $this->model_catalog_testimonial->addTestimonial($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -243,17 +243,18 @@ class ControllerCommonTestimonial extends PT_Controller
         } else {
             $data['sort_order'] = 0;
         }
-        
+  
+
+        $this->load->model('tool/image');
+             
         if (isset($this->request->post['image'])) {
             $data['image'] = $this->request->post['image'];
-        } elseif (!empty($user_info)) {
-            $data['image'] = $user_info['image'];
+        } elseif (!empty($testimonial_info)) {
+            $data['image'] = $testimonial_info['image'];
         } else {
             $data['image'] = '';
         }
-
-        $this->load->model('tool/image');
-
+        
         $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
 
         if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {

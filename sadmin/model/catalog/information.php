@@ -69,7 +69,7 @@ class ModelCatalogInformation extends PT_Model
 
     public function getInformation($information_id)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "information WHERE information_id = '" . (int)$information_id . "'");
+        $query = $this->db->query("SELECT i.*,id.* FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE i.information_id = '" . (int)$information_id . "'");
 
         return $query->row;
     }

@@ -79,7 +79,7 @@
                                     <?php echo $entry_query; ?></label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" name="query" value=""
+                                    <input type="text" name="query" value="<?php echo $query; ?>"
                                            placeholder="<?php echo $entry_query; ?>" class="form-control"
                                            id="input-query" />
                                     <?php if($error_query) : ?>
@@ -94,7 +94,7 @@
                                     <?php echo $entry_keyword; ?></label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" name="keyword" value=""
+                                    <input type="text" name="keyword" value="<?php echo $keyword; ?>"
                                            placeholder="<?php echo $entry_keyword; ?>" class="form-control"
                                            id="input-keyword" />
                                     <?php if($error_keyword) : ?>
@@ -109,12 +109,12 @@
                                        class="col-sm-2 col-form-label"><?php echo $entry_push; ?></label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" name="push" value=""
+                                    <input type="text" name="push" value="<?php echo $push; ?>"
                                            placeholder="<?php echo $entry_push; ?>" class="form-control"
                                            id="input-push" />
                                 </div>
                             </div>
-
+<!--
                             <div class="form-group row">
                                 <label for="input-store-id" class="col-sm-2 col-form-label">
                                     <?php echo $entry_store; ?></label>
@@ -134,14 +134,14 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="form-group row">
                                 <label for="input-language-id" class="col-sm-2 col-form-label">
                                     <?php echo $entry_language; ?></label>
 
                                 <div class="col-sm-10">
-                                    <select name="store_id" class="form-control" id="input-language-id">
+                                    <select name="language_id" class="form-control" id="input-language-id">
                                         <?php foreach($languages as $language) : ?>
                                         <?php if($language['language_id'] == $language_id) : ?>
                                         <option value="<?php echo $language['language_id']; ?>" selected="selected">

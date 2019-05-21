@@ -22,6 +22,7 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->load->model('design/seo_url');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+          
             $this->model_design_seo_url->addSeoUrl($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -108,13 +109,12 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $data['seo_urls'] = array();
 
         $results = $this->model_design_seo_url->getSeoUrls();
-
+        
         foreach ($results as $result) {
             $data['seo_urls'][] = array(
                 'seo_url_id' => $result['seo_url_id'],
                 'query' => $result['query'],
                 'keyword' => $result['keyword'],
-                'language' => $result['language'],
                 'edit' => $this->url->link('design/seo_url/edit', 'user_token=' . $this->session->data['user_token'] . '&seo_url_id=' . $result['seo_url_id']),
                 'delete' => $this->url->link('design/seo_url/delete', 'user_token=' . $this->session->data['user_token'] . '&seo_url_id=' . $result['seo_url_id'])
             );
@@ -210,7 +210,7 @@ class ControllerDesignSeoUrl extends PT_Controller {
         if (isset($this->request->get['seo_url_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $seo_url_info = $this->model_design_seo_url->getSeoUrl($this->request->get['seo_url_id']);
         }
-
+       
         $data['user_token'] = $this->session->data['user_token'];
 
         if (isset($this->request->post['query'])) {
@@ -248,7 +248,7 @@ class ControllerDesignSeoUrl extends PT_Controller {
         } else {
             $data['language_id'] = '';
         }
-
+       
         $data['header'] = $this->load->controller('common/header');
         $data['nav'] = $this->load->controller('common/nav');
         $data['footer'] = $this->load->controller('common/footer');

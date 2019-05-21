@@ -4,13 +4,7 @@ class ModelCatalogTestimonial extends PT_Model
 {
     public function addTestimonial($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "testimonial SET  name = '" . $this->db->escape((string)$data['name']) . "',designation = '" . $this->db->escape((string)$data['designation']) . "',description = '" . $this->db->escape((string)$data['description']) . "',sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()");
-
-        $testimonial_id = $this->db->lastInsertId();
-
-        if (isset($data['image'])) {
-            $this->db->query("UPDATE " . DB_PREFIX . "testimonial SET image = '" . $this->db->escape((string)$data['image']) . "' WHERE testimonial_id = '" . (int)$testimonial_id . "'");
-        }
+        $this->db->query("INSERT INTO " . DB_PREFIX . "testimonial SET  name = '" . $this->db->escape((string)$data['name']) . "',image = '" . $this->db->escape((string)$data['image']) . "',designation = '" . $this->db->escape((string)$data['designation']) . "',description = '" . $this->db->escape((string)$data['description']) . "',sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()");
 
         return $testimonial_id;
     }

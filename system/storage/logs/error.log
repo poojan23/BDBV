@@ -18035,3 +18035,66 @@
 2019-05-21 14:49:39 - PHP Notice: Undefined index: image in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\catalog\information.php on line 254
 2019-05-21 14:50:04 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
 2019-05-21 14:50:04 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:52:07 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:52:07 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:53:21 - PHP Notice: Undefined index: language_id in C:\ATDI\LMS\htdocs\bdbv\sadmin\model\design\seo_url.php on line 7
+2019-05-21 14:57:44 - PHP Notice: Undefined index: language_id in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\design\seo_url.php on line 243
+2019-05-21 14:57:49 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:57:49 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:57:57 - PHP Notice: Undefined index: language_id in C:\ATDI\LMS\htdocs\bdbv\sadmin\model\design\seo_url.php on line 7
+2019-05-21 14:58:26 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:58:26 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:59:07 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:59:07 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:59:08 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 14:59:08 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:02:18 - PHP Notice: Undefined index: image in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\catalog\information.php on line 254
+2019-05-21 15:02:28 - PHP Notice: Undefined index: image in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\catalog\information.php on line 254
+2019-05-21 15:04:16 - PHP Notice: Undefined index: image in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\catalog\information.php on line 254
+2019-05-21 15:06:47 - PHP Notice: Undefined index: image in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\catalog\information.php on line 254
+2019-05-21 15:07:00 - PHP Notice: Undefined variable: thumb in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 237
+2019-05-21 15:07:00 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 238
+2019-05-21 15:07:00 - PHP Notice: Undefined variable: image in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 241
+2019-05-21 15:08:48 - PHP Notice: Undefined variable: thumb in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 237
+2019-05-21 15:08:48 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 238
+2019-05-21 15:08:48 - PHP Notice: Undefined variable: image in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 241
+2019-05-21 15:09:01 - PHP Notice: Undefined variable: icon in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 297
+2019-05-21 15:09:01 - PHP Notice: Undefined variable: icons in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 319
+2019-05-21 15:09:01 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 319
+2019-05-21 15:09:40 - PHP Notice: Undefined index: service_id in C:\ATDI\LMS\htdocs\bdbv\sadmin\model\catalog\service.php on line 8
+2019-05-21 15:09:43 - PHP Notice: Undefined variable: icon in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 297
+2019-05-21 15:09:43 - PHP Notice: Undefined variable: icons in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 319
+2019-05-21 15:09:43 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 319
+2019-05-21 15:09:56 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:10:15 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:11:54 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:12:05 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:12:08 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:14:44 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:17:59 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:17:59 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:21:44 - PHP Notice: Undefined index: language in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\design\seo_url.php on line 118
+2019-05-21 15:21:44 - PHP Notice: Undefined index: language in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\design\seo_url.php on line 118
+2019-05-21 15:21:44 - PHP Notice: Undefined index: language in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\design\seo_url.php on line 118
+2019-05-21 15:21:44 - PHP Notice: Undefined index: language in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\design\seo_url.php on line 118
+2019-05-21 15:22:42 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:22:42 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:22:48 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:22:48 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:24:38 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:24:38 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:24:44 - PHP Notice: Undefined variable: stores in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:24:44 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 124
+2019-05-21 15:25:03 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:25:21 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:25:27 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:25:49 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:27:14 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:27:20 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:28:17 - PHP Notice: Undefined variable: testimonial_id in C:\ATDI\LMS\htdocs\bdbv\sadmin\model\catalog\testimonial.php on line 9
+2019-05-21 15:28:20 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:30:17 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:30:37 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:30:53 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:32:04 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
+2019-05-21 15:32:19 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
