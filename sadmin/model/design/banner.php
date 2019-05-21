@@ -44,9 +44,9 @@ class ModelDesignBanner extends PT_Model
     }
 
     public function getBanners() {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "banner WHERE  WHERE status = '1' ORDER BY sort_order");
+        $query = $this->db->query("SELECT  * FROM " . DB_PREFIX . "banner WHERE status = '1'");
 
-        return $query->row;
+        return $query->rows;
     }
 
 //    public function getBanners() {

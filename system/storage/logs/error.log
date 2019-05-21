@@ -18098,3 +18098,47 @@
 2019-05-21 15:30:53 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
 2019-05-21 15:32:04 - PHP Notice: Undefined variable: language in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 92
 2019-05-21 15:32:19 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:41:35 - PHP Notice: Undefined variable: warning_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 44
+2019-05-21 15:41:35 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:41:35 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 192
+2019-05-21 15:41:35 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 192
+2019-05-21 15:41:47 - PHP Notice: Undefined variable: warning_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 44
+2019-05-21 15:41:47 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:41:47 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 192
+2019-05-21 15:41:47 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 192
+2019-05-21 15:42:00 - PHP Notice: Undefined variable: warning_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 44
+2019-05-21 15:42:00 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:42:00 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 192
+2019-05-21 15:42:00 - PHP Notice: Undefined variable: placeholder in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 192
+2019-05-21 15:43:23 - PHP Notice: Undefined variable: warning_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 44
+2019-05-21 15:43:23 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:43:46 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:44:47 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:47:51 - PHP Notice: Undefined index: status in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 113
+2019-05-21 15:48:42 - PHP Notice: Undefined index: image in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\design\banner.php on line 250
+2019-05-21 15:48:42 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:50:16 - PHP Notice: Undefined index: image in C:\ATDI\LMS\htdocs\bdbv\sadmin\controller\design\banner.php on line 250
+2019-05-21 15:50:16 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 15:52:41 - PHP Notice: Undefined variable: email_err in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 86
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: breadcrumbs in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 12
+2019-05-21 16:01:19 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 12
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: product_total in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 30
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: unique_visitor in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 91
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_visitors in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 95
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_latest_enquiry in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 162
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_enquiry_id in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 181
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_name in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 184
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_phone in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 187
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_email in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 190
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_status in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 193
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: button_new_enquiry in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 218
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: button_view_enquiry in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 220
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_callback in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 231
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: button_view_all in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 268
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: text_add_product in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 280
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: products in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 291
+2019-05-21 16:01:19 - PHP Warning: Invalid argument supplied for foreach() in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 291
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: product_all in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 317
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: button_view_all in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 318
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: total_download in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 377
+2019-05-21 16:01:19 - PHP Notice: Undefined variable: download in C:\ATDI\LMS\htdocs\bdbv\system\library\template\html.php(25) : eval()'d code on line 380

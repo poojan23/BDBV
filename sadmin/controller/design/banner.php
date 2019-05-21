@@ -21,8 +21,8 @@ class ControllerDesignBanner extends PT_Controller {
 
         $this->load->model('design/banner');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-
+        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+            
             $this->model_design_banner->addBanner($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -72,8 +72,7 @@ class ControllerDesignBanner extends PT_Controller {
         $this->getList();
     }
 
-    protected function getList()
-    {
+    protected function getList() {
         $this->document->addStyle("view/dist/plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css");
         $this->document->addStyle("view/dist/plugins/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css");
         $this->document->addStyle("view/dist/plugins/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css");
@@ -96,13 +95,13 @@ class ControllerDesignBanner extends PT_Controller {
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
-            'text'  => $this->language->get('text_home'),
-            'href'  => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
         );
 
         $data['breadcrumbs'][] = array(
-            'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('design/banner', 'user_token=' . $this->session->data['user_token'])
+            'text' => $this->language->get('heading_title'),
+            'href' => $this->url->link('design/banner', 'user_token=' . $this->session->data['user_token'])
         );
 
         $data['add'] = $this->url->link('design/banner/add', 'user_token=' . $this->session->data['user_token']);
@@ -111,13 +110,14 @@ class ControllerDesignBanner extends PT_Controller {
         $data['banners'] = array();
 
         $results = $this->model_design_banner->getBanners();
-
+       
         foreach ($results as $result) {
             $data['banners'][] = array(
-                'banner_id'  => $result['banner_id'],
-                'name'                 => $result['name'],
-                'edit'                  => $this->url->link('design/banner/edit', 'user_token=' . $this->session->data['user_token'] . '&banner_id=' . $result['banner_id']),
-                'delete'                => $this->url->link('design/banner/delete', 'user_token=' . $this->session->data['user_token'] . '&banner_id=' . $result['banner_id'])
+                'banner_id' => $result['banner_id'],
+                'name' => $result['name'],
+                'status' => $result['status'],
+                'edit' => $this->url->link('design/banner/edit', 'user_token=' . $this->session->data['user_token'] . '&banner_id=' . $result['banner_id']),
+                'delete' => $this->url->link('design/banner/delete', 'user_token=' . $this->session->data['user_token'] . '&banner_id=' . $result['banner_id'])
             );
         }
 
@@ -136,7 +136,7 @@ class ControllerDesignBanner extends PT_Controller {
         }
 
         if (isset($this->request->post['selected'])) {
-            $data['selected'] = (array)$this->request->post['selected'];
+            $data['selected'] = (array) $this->request->post['selected'];
         } else {
             $data['selected'] = array();
         }
@@ -147,14 +147,14 @@ class ControllerDesignBanner extends PT_Controller {
 
         $this->response->setOutput($this->load->view('design/banner_list', $data));
     }
-protected function getForm()
-    {
+
+    protected function getForm() {
         $this->document->addStyle("view/dist/plugins/iCheck/all.css");
         $this->document->addScript("view/dist/plugins/ckeditor/ckeditor.js");
         $this->document->addScript("view/dist/plugins/ckeditor/adapters/jquery.js");
         $this->document->addScript("view/dist/plugins/iCheck/icheck.min.js");
 
-        $data['text_form'] = !isset($this->request->get['service_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
+        $data['text_form'] = !isset($this->request->get['banner_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
         if (isset($this->error['warning'])) {
             $data['warning_err'] = $this->error['warning'];
@@ -162,22 +162,16 @@ protected function getForm()
             $data['warning_err'] = '';
         }
 
-        if (isset($this->error['title'])) {
-            $data['title_err'] = $this->error['title'];
+        if (isset($this->error['name'])) {
+            $data['error_name'] = $this->error['name'];
         } else {
-            $data['title_err'] = array();
+            $data['error_name'] = '';
         }
 
-        if (isset($this->error['description'])) {
-            $data['description_err'] = $this->error['description'];
+        if (isset($this->error['banner_image'])) {
+            $data['error_banner_image'] = $this->error['banner_image'];
         } else {
-            $data['description_err'] = array();
-        }
-
-        if (isset($this->error['meta_title'])) {
-            $data['meta_title_err'] = $this->error['meta_title'];
-        } else {
-            $data['meta_title_err'] = array();
+            $data['error_banner_image'] = array();
         }
 
         if (isset($this->error['keyword'])) {
@@ -189,83 +183,90 @@ protected function getForm()
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
-            'text'  => $this->language->get('text_home'),
-            'href'  => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
         );
 
         $data['breadcrumbs'][] = array(
-            'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('design/service', 'user_token=' . $this->session->data['user_token'])
+            'text' => $this->language->get('heading_title'),
+            'href' => $this->url->link('design/banner', 'user_token=' . $this->session->data['user_token'])
         );
 
-        if (!isset($this->request->get['service_id'])) {
-            $data['action'] = $this->url->link('design/service/add', 'user_token=' . $this->session->data['user_token']);
+        if (!isset($this->request->get['banner_id'])) {
+            $data['action'] = $this->url->link('design/banner/add', 'user_token=' . $this->session->data['user_token']);
             $data['breadcrumbs'][] = array(
-                'text'  => $this->language->get('text_add'),
-                'href'  => $this->url->link('design/service/add', 'user_token=' . $this->session->data['user_token'])
+                'text' => $this->language->get('text_add'),
+                'href' => $this->url->link('design/banner/add', 'user_token=' . $this->session->data['user_token'])
             );
         } else {
-            $data['action'] = $this->url->link('design/service/edit', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $this->request->get['service_id']);
+            $data['action'] = $this->url->link('design/banner/edit', 'user_token=' . $this->session->data['user_token'] . '&banner_id=' . $this->request->get['banner_id']);
             $data['breadcrumbs'][] = array(
-                'text'  => $this->language->get('text_edit'),
-                'href'  => $this->url->link('design/service/edit', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $this->request->get['service_id'])
+                'text' => $this->language->get('text_edit'),
+                'href' => $this->url->link('design/banner/edit', 'user_token=' . $this->session->data['user_token'] . '&banner_id=' . $this->request->get['banner_id'])
             );
         }
 
-        $data['cancel'] = $this->url->link('design/service', 'user_token=' . $this->session->data['user_token']);
+        $data['cancel'] = $this->url->link('design/banner', 'user_token=' . $this->session->data['user_token']);
 
-        if (isset($this->request->get['service_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-            $service_info = $this->model_catalog_service->getInformation($this->request->get['service_id']);
+        if (isset($this->request->get['banner_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+           $banner_info = $this->model_design_banner->getBanner($this->request->get['banner_id']);
+        }
+        
+        $data['user_token'] = $this->session->data['user_token'];
+
+        if (isset($this->request->post['name'])) {
+            $data['name'] = $this->request->post['name'];
+        } elseif (!empty($banner_info)) {
+            $data['name'] = $banner_info['name'];
+        } else {
+            $data['name'] = '';
         }
 
-        $data['user_token'] = $this->session->data['user_token'];
+        if (isset($this->request->post['status'])) {
+            $data['status'] = $this->request->post['status'];
+        } elseif (!empty($banner_info)) {
+            $data['status'] = $banner_info['status'];
+        } else {
+            $data['status'] = true;
+        }
 
         $this->load->model('localisation/language');
 
         $data['languages'] = $this->model_localisation_language->getLanguages();
 
-
-        if (isset($this->request->post['image'])) {
-            $data['image'] = $this->request->post['image'];
-        } elseif (!empty($service_info)) {
-            $data['image'] = $service_info['image'];
-        } else {
-            $data['image'] = '';
-        }
-
         $this->load->model('tool/image');
 
+        if (isset($this->request->post['banner_image'])) {
+            $banner_images = $this->request->post['banner_image'];
+        } elseif (isset($this->request->get['banner_id'])) {
+            $banner_images = $this->model_design_banner->getBannerImages($this->request->get['banner_id']);
+        } else {
+            $banner_images = array();
+        }
+
+        $data['banner_images'] = array();
+
+        foreach ($banner_images as $key => $value) {
+            foreach ($value as $banner_image) {
+                if (is_file(DIR_IMAGE . $banner_image['image'])) {
+                    $image = $banner_image['image'];
+                    $thumb = $banner_image['image'];
+                } else {
+                    $image = '';
+                    $thumb = 'no-image.png';
+                }
+
+                $data['banner_images'][$key][] = array(
+                    'title' => $banner_image['title'],
+                    'link' => $banner_image['link'],
+                    'image' => $image,
+                    'thumb' => $this->model_tool_image->resize($thumb, 100, 100),
+                    'sort_order' => $banner_image['sort_order']
+                );
+            }
+        }
+
         $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
-
-        if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
-            $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
-        } else {
-            $data['thumb'] = $data['placeholder'];
-        }
-
-        if (isset($this->request->post['sort_order'])) {
-            $data['sort_order'] = $this->request->post['sort_order'];
-        } elseif (!empty($service_info)) {
-            $data['sort_order'] = $service_info['sort_order'];
-        } else {
-            $data['sort_order'] = 0;
-        }
-
-        if (isset($this->request->post['status'])) {
-            $data['status'] = $this->request->post['status'];
-        } elseif (!empty($service_info)) {
-            $data['status'] = $service_info['status'];
-        } else {
-            $data['status'] = true;
-        }
-
-        if (isset($this->request->post['service_seo_url'])) {
-            $data['service_seo_url'] = $this->request->post['service_seo_url'];
-        } elseif (!empty($service_info)) {
-            $data['service_seo_url'] = $this->model_catalog_service->getInformationSeoUrls($this->request->get['service_id']);
-        } else {
-            $data['service_seo_url'] = array();
-        }
 
         $data['header'] = $this->load->controller('common/header');
         $data['nav'] = $this->load->controller('common/nav');
