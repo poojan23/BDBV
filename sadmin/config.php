@@ -1,21 +1,21 @@
 <?php
- # HTTP
-define('HTTP_SERVER', 'http://localhost/popaya/sadmin/');
-define('HTTP_ADMIN', 'http://localhost/popaya/admin/');
-define('HTTP_CATALOG', 'http://localhost/popaya/');
+# HTTP
+define('HTTP_SERVER', 'http://localhost/bdbv/sadmin/');
+define('HTTP_ADMIN', 'http://localhost/bdbv/admin/');
+define('HTTP_CATALOG', 'http://localhost/bdbv/');
 
 # HTTPS
-define('HTTPS_SERVER', 'http://localhost/popaya/sadmin/');
-define('HTTPS_ADMIN', 'http://localhost/popaya/admin/');
-define('HTTPS_CATALOG', 'http://localhost/popaya/');
+define('HTTPS_SERVER', 'http://localhost/bdbv/sadmin/');
+define('HTTPS_ADMIN', 'http://localhost/bdbv/admin/');
+define('HTTPS_CATALOG', 'http://localhost/bdbv/');
 
 # DIR
-define('DIR_APPLICATION', 'C:/xampp/htdocs/popaya/sadmin/');
-define('DIR_SYSTEM', 'C:/xampp/htdocs/popaya/system/');
-define('DIR_IMAGE', 'C:/xampp/htdocs/popaya/image/');
+define('DIR_APPLICATION', 'C:/ATDI/LMS/htdocs/bdbv/sadmin/');
+define('DIR_SYSTEM', 'C:/ATDI/LMS/htdocs/bdbv/system/');
+define('DIR_IMAGE', 'C:/ATDI/LMS/htdocs/bdbv/image/');
 define('DIR_STORAGE', DIR_SYSTEM . 'storage/');
-define('DIR_CATALOG', 'C:/xampp/htdocs/popaya/template/');
-define('DIR_ADMIN', 'C:/xampp/htdocs/popaya/admin/');
+define('DIR_CATALOG', 'C:/ATDI/LMS/htdocs/bdbv/template/');
+define('DIR_ADMIN', 'C:/ATDI/LMS/htdocs/bdbv/admin/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/html/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');
@@ -30,8 +30,8 @@ define('DIR_UPLOAD', DIR_STORAGE . 'upload/');
 define('DB_DRIVER', 'pdo');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_DATABASE', 'pcart');
+define('DB_PASSWORD', 'root');
+define('DB_DATABASE', 'bdbv');
 define('DB_PORT', '3306');
 define('DB_PREFIX', 'pt_');
 

@@ -13,7 +13,7 @@ class ControllerCommonNav extends PT_Controller
             # Menu
             $data['menus'][] = array(
                 'id'        => 'menu-dashboard',
-                'icon'      => 'fa-tachometer',
+                'icon'      => 'fa-tachometer-alt',
                 'name'      => $this->language->get('text_dashboard'),
                 'href'      => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token']),
                 'children'  => array()
@@ -21,130 +21,28 @@ class ControllerCommonNav extends PT_Controller
 
             # Catalog
             $catalog = array();
-
-            if ($this->user->hasPermission('access', 'catalog/category')) {
+            
+            if ($this->user->hasPermission('access', 'catalog/service')) {
                 $catalog[] = array(
-                    'name'      => $this->language->get('text_category'),
-                    'href'      => $this->url->link('catalog/category', 'user_token=' . $this->session->data['user_token']),
+                    'name'      => $this->language->get('text_service'),
+                    'href'      => $this->url->link('catalog/service', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }
-
-            if ($this->user->hasPermission('access', 'catalog/product')) {
+            
+            if ($this->user->hasPermission('access', 'catalog/team')) {
                 $catalog[] = array(
-                    'name'      => $this->language->get('text_product'),
-                    'href'      => $this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token']),
+                    'name'      => $this->language->get('text_team'),
+                    'href'      => $this->url->link('catalog/team', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }
-
-            if ($this->user->hasPermission('access', 'catalog/recurring')) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_recurring'),
-                    'href'      => $this->url->link('catalog/recurring', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/filter')) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_filter'),
-                    'href'      => $this->url->link('catalog/filter', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            # Attributes
-            $attribute = array();
-
-            if ($this->user->hasPermission('access', 'catalog/attribute')) {
-                $attribute[] = array(
-                    'name'      => $this->language->get('text_attribute'),
-                    'href'      => $this->url->link('catalog/attribute', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/attribute_group')) {
-                $attribute[] = array(
-                    'name'      => $this->language->get('text_attribute_group'),
-                    'href'      => $this->url->link('catalog/attribute_group', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($attribute) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_attribute'),
-                    'href'      => '',
-                    'children'  => $attribute
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/option')) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_option'),
-                    'href'      => $this->url->link('catalog/option', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/manufacturer')) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_manufacturer'),
-                    'href'      => $this->url->link('catalog/manufacturer', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/download')) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_download'),
-                    'href'      => $this->url->link('catalog/download', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/review')) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_review'),
-                    'href'      => $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            # Information
-            $information = array();
-
+            
             if ($this->user->hasPermission('access', 'catalog/information')) {
-                $information[] = array(
+                $catalog[] = array(
                     'name'      => $this->language->get('text_information'),
                     'href'      => $this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/information_group')) {
-                $information[] = array(
-                    'name'      => $this->language->get('text_information_group'),
-                    'href'      => $this->url->link('catalog/information_group', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'catalog/legal')) {
-                $information[] = array(
-                    'name'      => $this->language->get('text_legal'),
-                    'href'      => $this->url->link('catalog/legal', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($information) {
-                $catalog[] = array(
-                    'name'      => $this->language->get('text_information'),
-                    'href'      => '',
-                    'children'  => $information
                 );
             }
 
@@ -160,19 +58,19 @@ class ControllerCommonNav extends PT_Controller
 
             # Design
             $design = array();
-
-            if ($this->user->hasPermission('access', 'design/translation')) {
-                $design[] = array(
-                    'name'      => $this->language->get('text_language_editor'),
-                    'href'      => $this->url->link('design/translation', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
+            
             if ($this->user->hasPermission('access', 'design/banner')) {
                 $design[] = array(
                     'name'      => $this->language->get('text_banner'),
                     'href'      => $this->url->link('design/banner', 'user_token=' . $this->session->data['user_token']),
+                    'children'  => array()
+                );
+            }
+            
+            if ($this->user->hasPermission('access', 'design/translation')) {
+                $design[] = array(
+                    'name'      => $this->language->get('text_language_editor'),
+                    'href'      => $this->url->link('design/translation', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }
@@ -214,157 +112,25 @@ class ControllerCommonNav extends PT_Controller
                 );
             }
 
-            # Sale
-            $sale = array();
-
-            if ($this->user->hasPermission('access', 'sale/order')) {
-                $sale[] = array(
-                    'name'      => $this->language->get('text_order'),
-                    'href'      => $this->url->link('sale/order', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'sale/recurring')) {
-                $sale[] = array(
-                    'name'      => $this->language->get('text_order_recurring'),
-                    'href'      => $this->url->link('sale/recurring', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'sale/return')) {
-                $sale[] = array(
-                    'name'      => $this->language->get('text_return'),
-                    'href'      => $this->url->link('sale/return', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            # Voucher
-            $voucher = array();
-
-            if ($this->user->hasPermission('access', 'sale/voucher')) {
-                $voucher[] = array(
-                    'name'      => $this->language->get('text_voucher'),
-                    'href'      => $this->url->link('sale/voucher', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'sale/voucher_theme')) {
-                $voucher[] = array(
-                    'name'      => $this->language->get('text_voucher_theme'),
-                    'href'      => $this->url->link('sale/voucher_theme', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($voucher) {
-                $sale[] = array(
-                    'name'      => $this->language->get('text_voucher'),
-                    'href'      => '',
-                    'children'  => $voucher
-                );
-            }
-
-            if ($sale) {
+            # Enquiry
+            if ($this->user->hasPermission('access', 'common/enquiry')) {
                 $data['menus'][] = array(
-                    'id'        => 'menu-sale',
-                    'icon'      => 'fa-shopping-cart',
-                    'name'      => $this->language->get('text_sale'),
-                    'href'      => '',
-                    'children'  => $sale
-                );
-            }
-
-            # Customer
-            $customer = array();
-
-            if ($this->user->hasPermission('access', 'customer/customer')) {
-                $customer[] = array(
-                    'name'      => $this->language->get('text_customer'),
-                    'href'      => $this->url->link('customer/customer', 'user_token=' . $this->session->data['user_token']),
+                    'id'        => 'menu-enquiry',
+                    'icon'      => 'fa-envelope',
+                    'name'      => $this->language->get('text_enquiry'),
+                    'href'      => $this->url->link('common/enquiry', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }
 
-            if ($this->user->hasPermission('access', 'customer/customer_group')) {
-                $customer[] = array(
-                    'name'      => $this->language->get('text_customer_group'),
-                    'href'      => $this->url->link('customer/customer_group', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'customer/customer_approval')) {
-                $customer[] = array(
-                    'name'      => $this->language->get('text_customer_approval'),
-                    'href'      => $this->url->link('customer/customer_approval', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'customer/gdpr')) {
-                $customer[] = array(
-                    'name'      => $this->language->get('text_gdpr'),
-                    'href'      => $this->url->link('customer/gdpr', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($customer) {
+            # Testimonial
+            if ($this->user->hasPermission('access', 'common/testimonial')) {
                 $data['menus'][] = array(
-                    'id'        => 'menu-customer',
-                    'icon'      => 'fa-user',
-                    'name'      => $this->language->get('text_customer'),
-                    'href'      => '',
-                    'children'  => $customer
-                );
-            }
-
-            # Marketing
-            $marketing = array();
-
-            if ($this->user->hasPermission('access', 'marketing/affiliate')) {
-                $marketing[] = array(
-                    'name'      => $this->language->get('text_affiliate'),
-                    'href'      => $this->url->link('marketing/affiliate', 'user_token=' . $this->session->data['user_token']),
+                    'id'        => 'menu-testimonial',
+                    'icon'      => 'fa-pen-alt',
+                    'name'      => $this->language->get('text_testimonial'),
+                    'href'      => $this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'marketing/marketing')) {
-                $marketing[] = array(
-                    'name'      => $this->language->get('text_marketing'),
-                    'href'      => $this->url->link('marketing/marketing', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'marketing/coupon')) {
-                $marketing[] = array(
-                    'name'      => $this->language->get('text_coupon'),
-                    'href'      => $this->url->link('marketing/coupon', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'marketing/contact')) {
-                $marketing[] = array(
-                    'name'      => $this->language->get('text_contact'),
-                    'href'      => $this->url->link('marketing/contact', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($marketing) {
-                $data['menus'][] = array(
-                    'id'        => 'menu-marketing',
-                    'icon'      => 'fa-share-alt',
-                    'name'      => $this->language->get('text_marketing'),
-                    'href'      => '',
-                    'children'  => $marketing
                 );
             }
 
@@ -410,78 +176,11 @@ class ControllerCommonNav extends PT_Controller
             # Localisation
             $localisation = array();
 
-            if ($this->user->hasPermission('access', 'localisation/location')) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_location'),
-                    'href'      => $this->url->link('localisation/location', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
             if ($this->user->hasPermission('access', 'localisation/language')) {
                 $localisation[] = array(
                     'name'      => $this->language->get('text_language'),
                     'href'      => $this->url->link('localisation/language', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/currency')) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_currency'),
-                    'href'      => $this->url->link('localisation/currency', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/stock_status')) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_stock_status'),
-                    'href'      => $this->url->link('localisation/stock_status', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/order_status')) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_order_status'),
-                    'href'      => $this->url->link('localisation/order_status', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            # Returns
-            $return = array();
-
-            if ($this->user->hasPermission('access', 'localisation/return_status')) {
-                $return[] = array(
-                    'name'      => $this->language->get('text_return_status'),
-                    'href'      => $this->url->link('localisation/return_status', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/return_action')) {
-                $return[] = array(
-                    'name'      => $this->language->get('text_return_action'),
-                    'href'      => $this->url->link('localisation/return_action', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/return_reason')) {
-                $return[] = array(
-                    'name'      => $this->language->get('text_return_reason'),
-                    'href'      => $this->url->link('localisation/return_reason', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($return) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_return'),
-                    'href'      => '',
-                    'children'  => $return
                 );
             }
 
@@ -497,57 +196,6 @@ class ControllerCommonNav extends PT_Controller
                 $localisation[] = array(
                     'name'      => $this->language->get('text_zone'),
                     'href'      => $this->url->link('localisation/zone', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/geo_zone')) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_geo_zone'),
-                    'href'      => $this->url->link('localisation/geo_zone', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            # Tax
-            $tax = array();
-
-            if ($this->user->hasPermission('access', 'localisation/tax_class')) {
-                $tax[] = array(
-                    'name'      => $this->language->get('text_tax_class'),
-                    'href'      => $this->url->link('localisation/tax_class', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/tax_rate')) {
-                $tax[] = array(
-                    'name'      => $this->language->get('text_tax_rate'),
-                    'href'      => $this->url->link('localisation/tax_rate', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($tax) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_tax'),
-                    'href'      => '',
-                    'children'  => $tax
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/length_class')) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_length_class'),
-                    'href'      => $this->url->link('localisation/length_class', 'user_token=' . $this->session->data['user_token']),
-                    'children'  => array()
-                );
-            }
-
-            if ($this->user->hasPermission('access', 'localisation/weight_class')) {
-                $localisation[] = array(
-                    'name'      => $this->language->get('text_weight_class'),
-                    'href'      => $this->url->link('localisation/weight_class', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }
@@ -643,7 +291,7 @@ class ControllerCommonNav extends PT_Controller
             if ($report) {
                 $data['settings'][] = array(
                     'id'        => 'menu-reports',
-                    'icon'      => 'fa-bar-chart',
+                    'icon'      => 'fa-chart-bar',
                     'name'      => $this->language->get('text_reports'),
                     'href'      => '',
                     'children'  => $report
@@ -652,7 +300,7 @@ class ControllerCommonNav extends PT_Controller
 
             $data['settings'][] = array(
                 'id'        => 'menu-logout',
-                'icon'      => 'fa-sign-out',
+                'icon'      => 'fa-sign-out-alt',
                 'name'      => $this->language->get('text_logout'),
                 'href'      => $this->url->link('user/logout', 'user_token=' . $this->session->data['user_token']),
                 'children'  => array()

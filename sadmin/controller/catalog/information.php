@@ -113,12 +113,11 @@ class ControllerCatalogInformation extends PT_Controller
         $data['informations'] = array();
 
         $results = $this->model_catalog_information->getInformations();
-
+      
         foreach ($results as $result) {
             $data['informations'][] = array(
                 'information_id'  => $result['information_id'],
                 'title'                 => $result['title'],
-                'information_group'          => $result['information_group'],
                 'sort_order'            => $result['sort_order'],
                 'edit'                  => $this->url->link('catalog/information/edit', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id']),
                 'delete'                => $this->url->link('catalog/information/delete', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id'])
@@ -237,14 +236,6 @@ class ControllerCatalogInformation extends PT_Controller
             $data['information_description'] = array();
         }
 
-        if (isset($this->request->post['information_group_id'])) {
-            $data['information_group_id'] = $this->request->post['information_group_id'];
-        } elseif (!empty($information_info)) {
-            $data['information_group_id'] = $information_info['information_group_id'];
-        } else {
-            $data['information_group_id'] = '';
-        }
-
         $this->load->model('catalog/information_group');
 
         $data['information_groups'] = $this->model_catalog_information_group->getInformationGroups();
@@ -256,33 +247,6 @@ class ControllerCatalogInformation extends PT_Controller
         } else {
             $data['bottom'] = 0;
         }
-
-        if (isset($this->request->post['icon'])) {
-            $data['icon'] = $this->request->post['icon'];
-        } elseif (!empty($information_info)) {
-            $data['icon'] = $information_info['icon'];
-        } else {
-            $data['icon'] = 'py py-popaya';
-        }
-
-        $data['icons'] = array();
-
-        $pattern = '/\.(fa-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
-        $subject = file_get_contents('view/dist/plugins/font-awesome/css/font-awesome.css');
-
-        preg_match_all($pattern, $subject, $matches, PREG_SET_ORDER);
-
-        sort($matches);
-
-        foreach ($matches as $match) {
-            $data['icons'][] = array(
-                'icon'  => 'fa ' . $match[1],
-                'name' => str_replace(array('fa-', '-'), ' ', $match[1])
-            );
-        }
-
-        //$icons = var_export($icons, TRUE);
-        //$icons = stripslashes($icons);
 
         if (isset($this->request->post['image'])) {
             $data['image'] = $this->request->post['image'];

@@ -65,3 +65,7 @@ $_['text_voucher']              = 'Gift Vouchers';
 $_['text_voucher_theme']        = 'Voucher Themes';
 $_['text_weight_class']         = 'Weight Classes';
 $_['text_zone']                 = 'States / Provinces';
+$_['text_service']              = 'Service';
+$_['text_team']                 = 'Team';
+$_['text_enquiry']              = 'Enquiry';
+$_['text_testimonial']          = 'Testimonial';

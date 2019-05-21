@@ -59,7 +59,7 @@
                         class="btn btn-primary btn-bold"><i class="fa fa-plus"></i></a>
                     <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>"
                         class="btn btn-danger btn-bold" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-information-group').submit() :
-                        false;"><i class="fa fa-trash-o"></i></button>
+                        false;"><i class="fa fa-trash-alt"></i></button>
                     <div class="pull-right tableTools-container"></div>
                 </div>
             </div>
@@ -83,9 +83,6 @@
                                                     onclick="$('input[name*=\'selected\']').trigger('click');" /></th>
                                             <th>
                                                 <?php echo $column_title; ?>
-                                            </th>
-                                            <th>
-                                                <?php echo $column_information_group; ?>
                                             </th>
                                             <th>
                                                 <?php echo $column_sort_order; ?>
@@ -112,13 +109,12 @@
                                             <td class="text-left">
                                                 <?php echo $information['title']; ?>
                                             </td>
-                                            <td class="text-left"><?php echo $information['information_group']; ?></td>
                                             <td class="text-left">
                                                 <?php echo $information['sort_order']; ?>
                                             </td>
                                             <td class="text-left"><a href="<?php echo $information['edit']; ?>"
                                                     data-toggle="tooltip" title="<?php echo $button_edit; ?>"
-                                                    class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                                                    class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></td>
                                         </tr>
                                         <?php endforeach; ?>
                                         <?php else : ?>

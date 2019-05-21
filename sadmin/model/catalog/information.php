@@ -4,7 +4,7 @@ class ModelCatalogInformation extends PT_Model
 {
     public function addInformation($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "information SET information_group_id = '" . (int)$data['information_group_id'] . "', icon = '" . $this->db->escape((string)$data['icon']) . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "information SET   bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()");
 
         $information_id = $this->db->lastInsertId();
 
@@ -32,7 +32,7 @@ class ModelCatalogInformation extends PT_Model
 
     public function editInformation($information_id, $data)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "information SET information_group_id = '" . (int)$data['information_group_id'] . "', icon = '" . $this->db->escape((string)$data['icon']) . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW() WHERE information_id = '" . (int)$information_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "information SET  bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW() WHERE information_id = '" . (int)$information_id . "'");
 
         if (isset($data['image'])) {
             $this->db->query("UPDATE " . DB_PREFIX . "information SET image = '" . $this->db->escape((string)$data['image']) . "' WHERE information_id = '" . (int)$information_id . "'");
@@ -74,56 +74,12 @@ class ModelCatalogInformation extends PT_Model
         return $query->row;
     }
 
-    public function getInformations($data = array())
+    public function getInformations()
     {
-        if ($data) {
-            $sql = "SELECT *, (SELECT igd.name FROM " . DB_PREFIX . "information_group_description igd WHERE igd.information_group_id = i.information_group_id AND igd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS information_group FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
-
-            $sort_data = array(
-                'id.title',
-                'i.sort_order'
-            );
-
-            if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-                $sql .= " ORDER BY " . $data['sort'];
-            } else {
-                $sql .= " ORDER BY id.title";
-            }
-
-            if (isset($data['order']) && ($data['order'] == 'DESC')) {
-                $sql .= " DESC";
-            } else {
-                $sql .= " ASC";
-            }
-
-            if (isset($data['start']) || isset($data['limit'])) {
-                if ($data['start'] < 0) {
-                    $data['start'] = 0;
-                }
-
-                if ($data['limit'] < 1) {
-                    $data['limit'] = 20;
-                }
-
-                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-            }
-
-            $query = $this->db->query($sql);
-
-            return $query->rows;
-        } else {
-            $information_data = $this->cache->get('information.' . (int)$this->config->get('config_language_id'));
-
-            if (!$information_data) {
-                $query = $this->db->query("SELECT *, (SELECT igd.title FROM " . DB_PREFIX . "information_group_description igd WHERE igd.information_group_id = i.information_group_id AND igd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS information_group FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY id.title");
-
-                $information_data = $query->rows;
-
-                $this->cache->set('information.' . (int)$this->config->get('config_language_id'), $information_data);
-            }
-
-            return $information_data;
-        }
+        $query = $this->db->query("SELECT i.*,id.* FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'");            
+        
+        return $query->rows;
+        
     }
 
     public function getInformationDescriptions($information_id)
