@@ -1,0 +1,77 @@
+<body>
+    <!--
+=================================
+            PRELOADER
+=================================
+-->
+
+    <div class="loading">
+        <div class="loading-text">
+            <span class="loading-text-words">L</span>
+            <span class="loading-text-words">O</span>
+            <span class="loading-text-words">A</span>
+            <span class="loading-text-words">D</span>
+            <span class="loading-text-words">I</span>
+            <span class="loading-text-words">N</span>
+            <span class="loading-text-words">G</span>
+        </div>
+    </div>
+
+    <!-- End Preloader -->
+
+    <div id="top"></div>
+    <!--=========================*
+            Header
+*===========================-->
+    <header id="rt_header">
+        <!-- Navigation Bar -->
+        <nav>
+            <div class="navbar-wrapper" id="navigation">
+                <div class="navbar navbar-default navbar-fixed-top reveal-menu-home" role="navigation">
+                    <div class="container nav-container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <div class="logo">
+                                        <a href="<?php echo $home; ?>">
+                                            <?php if(isset($logo) && isset($logo_colour)) : ?>
+
+                                            <img class="no_sticky_logo" src="<?php echo $logo; ?>" alt="Logo">
+                                            <img class="sticky_logo" src="<?php echo $logo_colour; ?>" alt="Logo">
+                                            <?php else : ?>
+                                            <?php echo $name; ?>
+                                            <?php endif; ?>
+                                        </a>
+                                    </div>
+                                </div> <!-- .navbar-header -->
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="active"><a href="index.html#top"><?php echo $text_home; ?></a></li>
+                                        <li><a href="index.html#rt_services"><?php echo $text_service; ?></a></li>
+                                        <li><a href="index.html#rt_features"><?php echo $text_about; ?></a></li>
+                                        <li><a href="index.html#rt_screenshots"><?php echo $text_project; ?></a></li>
+                                        <li><a href="index.html#rt_team"><?php echo $text_team; ?></a></li>
+                                        <li><a href="index.html#rt_testimonial"><?php echo $text_testimonial; ?></a>
+                                        </li>
+                                        <!-- <li><a href="index.html#rt_blog"><?php echo $text_blog; ?></a></li> -->
+                                        <li><a href="index.html#rt_contact"><?php echo $text_contact; ?></a></li>
+                                    </ul>
+                                </div>
+                            </div> <!-- .col-md-12 -->
+                        </div> <!-- .row -->
+                    </div> <!-- .container -->
+                </div> <!-- .navbar -->
+            </div> <!-- .navbar-wrapper -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!--=========================*
+           End Header
+*===========================-->

@@ -6,8 +6,8 @@ $_['site_url']             = '';
 $_['url_autostart']        = true;
 
 // Language
-$_['language_directory']   = 'en-gb';
-$_['language_autoload']    = array('en-gb');
+$_['language_directory']   = 'en-in';
+$_['language_autoload']    = array('en-in');
 
 // Date
 $_['date_timezone']        = 'Asia/Kolkata';
@@ -72,7 +72,7 @@ $_['model_autoload']       = array();
 $_['helper_autoload']      = array();
 
 // Actions
-$_['action_default']       = 'home/home';
+$_['action_default']       = 'common/home';
 $_['action_router']        = 'startup/router';
 $_['action_error']         = 'error/not_found';
 $_['action_pre_action']    = array();
