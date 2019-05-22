@@ -138,10 +138,10 @@ class ControllerCommonNav extends PT_Controller
             # System
             $system = array();
 
-            if ($this->user->hasPermission('access', 'setting/setting')) {
+            if ($this->user->hasPermission('access', 'setting/store')) {
                 $system[] = array(
-                    'name'      => $this->language->get('text_setting'),
-                    'href'      => $this->url->link('setting/setting', 'user_token=' . $this->session->data['user_token']),
+                    'name'      => $this->language->get('text_store'),
+                    'href'      => $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }

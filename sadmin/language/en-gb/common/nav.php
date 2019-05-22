@@ -69,3 +69,4 @@ $_['text_service']              = 'Service';
 $_['text_team']                 = 'Team';
 $_['text_enquiry']              = 'Enquiry';
 $_['text_testimonial']          = 'Testimonial';
+$_['text_store']                = 'Setting';
