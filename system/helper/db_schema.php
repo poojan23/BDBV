@@ -222,15 +222,9 @@ function db_schema()
 				'auto_increment' => true
 			),
 			array(
-				'name' => 'information_group_id',
-				'type' => 'int(11)',
-				'not_null' => true,
-			),
-			array(
-				'name' => 'bottom',
-				'type' => 'int(1)',
-				'not_null' => true,
-				'default' => '0'
+				'name' => 'image',
+				'type' => 'varchar(255)',
+				'not_null' => true
 			),
 			array(
 				'name' => 'sort_order',
@@ -243,6 +237,16 @@ function db_schema()
 				'type' => 'tinyint(1)',
 				'not_null' => true,
 				'default' => '1'
+			),
+                        array(
+				'name' => 'date_added',
+				'type' => 'datetime',
+				'not_null' => true
+			),
+			array(
+				'name' => 'date_modified',
+				'type' => 'datetime',
+				'not_null' => true
 			)
 		),
 		'primary' => array(

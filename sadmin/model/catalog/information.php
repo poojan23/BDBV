@@ -4,7 +4,7 @@ class ModelCatalogInformation extends PT_Model
 {
     public function addInformation($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "information SET   bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "information SET  sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()");
 
         $information_id = $this->db->lastInsertId();
 
@@ -32,7 +32,7 @@ class ModelCatalogInformation extends PT_Model
 
     public function editInformation($information_id, $data)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "information SET  bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW() WHERE information_id = '" . (int)$information_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "information SET sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW() WHERE information_id = '" . (int)$information_id . "'");
 
         if (isset($data['image'])) {
             $this->db->query("UPDATE " . DB_PREFIX . "information SET image = '" . $this->db->escape((string)$data['image']) . "' WHERE information_id = '" . (int)$information_id . "'");

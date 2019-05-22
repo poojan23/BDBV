@@ -236,35 +236,23 @@ class ControllerCatalogInformation extends PT_Controller
             $data['information_description'] = array();
         }
 
-        $this->load->model('catalog/information_group');
-
-        $data['information_groups'] = $this->model_catalog_information_group->getInformationGroups();
-
-        if (isset($this->request->post['bottom'])) {
-            $data['bottom'] = $this->request->post['bottom'];
+        if (isset($this->request->post['image'])) {
+            $data['image'] = $this->request->post['image'];
         } elseif (!empty($information_info)) {
-            $data['bottom'] = $information_info['bottom'];
+            $data['image'] = $information_info['image'];
         } else {
-            $data['bottom'] = 0;
+            $data['image'] = '';
         }
-//
-//        if (isset($this->request->post['image'])) {
-//            $data['image'] = $this->request->post['image'];
-//        } elseif (!empty($information_info)) {
-//            $data['image'] = $information_info['image'];
-//        } else {
-//            $data['image'] = '';
-//        }
-//
-//        $this->load->model('tool/image');
-//
-//        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
-//
-//        if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
-//            $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
-//        } else {
-//            $data['thumb'] = $data['placeholder'];
-//        }
+
+        $this->load->model('tool/image');
+
+        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+
+        if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
+            $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
+        } else {
+            $data['thumb'] = $data['placeholder'];
+        }
 
         if (isset($this->request->post['sort_order'])) {
             $data['sort_order'] = $this->request->post['sort_order'];
