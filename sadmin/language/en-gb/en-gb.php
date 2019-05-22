@@ -114,10 +114,49 @@ $_['button_developer']              = 'Developer Setting';
 $_['button_master']                 = 'Master Product';
 
 # Tab
+$_['tab_affiliate']                 = 'Affiliate';
+$_['tab_address']                   = 'Address';
+$_['tab_additional']                = 'Additional';
+$_['tab_admin']                     = 'Admin';
+$_['tab_attribute']                 = 'Attribute';
+$_['tab_customer']                  = 'Customer Details';
+$_['tab_comment']                   = 'Comment';
 $_['tab_data']                      = 'Data';
+$_['tab_description']               = 'Description';
+$_['tab_design']                    = 'Design';
+$_['tab_discount']                  = 'Discount';
+$_['tab_documentation']             = 'Documentation';
 $_['tab_general']                   = 'General';
-$_['tab_icon']                      = 'Icons';
+$_['tab_history']                   = 'History';
+$_['tab_ftp']                       = 'FTP';
+$_['tab_ip']                        = 'IP Addresses';
+$_['tab_links']                     = 'Links';
+$_['tab_log']                       = 'Log';
+$_['tab_image']                     = 'Image';
+$_['tab_option']                    = 'Option';
+$_['tab_server']                    = 'Server';
 $_['tab_seo']                       = 'SEO';
+$_['tab_store']                     = 'Store';
+$_['tab_special']                   = 'Special';
+$_['tab_session']                   = 'Session';
+$_['tab_local']                     = 'Local';
+$_['tab_mail']                      = 'Mail';
+$_['tab_module']                    = 'Module';
+$_['tab_payment']                   = 'Payment Details';
+$_['tab_product']                   = 'Products';
+$_['tab_reward']                    = 'Reward Points';
+$_['tab_shipping']                  = 'Shipping Details';
+$_['tab_total']                     = 'Totals';
+$_['tab_transaction']               = 'Transactions';
+$_['tab_voucher']                   = 'Vouchers';
+$_['tab_sale']                      = 'Sales';
+$_['tab_marketing']                 = 'Marketing';
+$_['tab_online']                    = 'People Online';
+$_['tab_activity']                  = 'Recent Activity';
+$_['tab_recurring']                 = 'Recurring';
+$_['tab_action']                    = 'Action';
+$_['tab_google']                    = 'Google';
+$_['tab_video']                     = 'Video';
 
 /* When doing translations only include the matching language code */
 
