@@ -24,7 +24,6 @@ $_['text_general']                   = 'General';
 $_['text_security']                  = 'Security';
 $_['text_upload']                    = 'Uploads';
 $_['text_error']                     = 'Error Handling';
-$_['text_form']                      = 'Settings';
 
 // Entry
 $_['entry_url']                      = 'Store URL';
@@ -97,6 +96,7 @@ $_['entry_return_status']            = 'Return Status';
 $_['entry_captcha']                  = 'Captcha';
 $_['entry_captcha_page']             = 'Captcha Page';
 $_['entry_logo']                     = 'Store Logo';
+$_['entry_mobile_logo']              = 'Store Logo Color';
 $_['entry_icon']                     = 'Icon';
 $_['entry_mail_engine']              = 'Mail Engine';
 $_['entry_mail_parameter']           = 'Mail Parameters';
@@ -121,7 +121,6 @@ $_['entry_error_display']            = 'Display Errors';
 $_['entry_error_log']                = 'Log Errors';
 $_['entry_error_filename']           = 'Error Log Filename';
 $_['entry_status']                   = 'Status';
-$_['entry_mobile_logo']              = 'Mobile Logo';
 
 // Tab
 $_['tab_product']                    = 'Products';
