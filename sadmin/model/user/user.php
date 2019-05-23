@@ -1,6 +1,6 @@
 <?php
 
-class ModelUserUser extends PT_Controller
+class ModelUserUser extends PT_Model
 {
     public function addUser($data)
     {
