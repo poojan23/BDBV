@@ -24,7 +24,13 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['warning_err'] = '';
         }
-
+        
+        if (isset($this->error['url'])) {
+            $data['url_err'] = $this->error['url'];
+        } else {
+            $data['url_err'] = '';
+        }
+        
         if (isset($this->error['name'])) {
             $data['error_name'] = $this->error['name'];
         } else {
@@ -169,7 +175,7 @@ class ControllerSettingSetting extends PT_Controller {
         $data['cancel'] = $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']);
 
         $data['user_token'] = $this->session->data['user_token'];
-        
+
         if (isset($this->request->post['config_url'])) {
             $data['config_url'] = $this->request->post['config_url'];
         } else {
@@ -181,7 +187,7 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['config_ssl'] = $this->config->get('config_ssl');
         }
-        
+
         if (isset($this->request->post['config_meta_title'])) {
             $data['config_meta_title'] = $this->request->post['config_meta_title'];
         } else {
@@ -771,6 +777,11 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['config_logo'] = $this->config->get('config_logo');
         }
+        if (isset($this->request->post['config_soicial_media_logo'])) {
+            $data['config_soicial_media_logo'] = $this->request->post['config_soicial_media_logo'];
+        } else {
+            $data['config_soicial_media_logo'] = $this->config->get('config_soicial_media_logo');
+        }
 
         if (isset($this->request->post['config_logo']) && is_file(DIR_IMAGE . $this->request->post['config_logo'])) {
             $data['logo'] = $this->model_tool_image->resize($this->request->post['config_logo'], 100, 100);
@@ -778,6 +789,13 @@ class ControllerSettingSetting extends PT_Controller {
             $data['logo'] = $this->model_tool_image->resize($this->config->get('config_logo'), 100, 100);
         } else {
             $data['logo'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+        }
+        if (isset($this->request->post['config_soicial_media_logo']) && is_file(DIR_IMAGE . $this->request->post['config_soicial_media_logo'])) {
+            $data['social_logo'] = $this->model_tool_image->resize($this->request->post['config_logo'], 100, 100);
+        } elseif ($this->config->get('config_soicial_media_logo') && is_file(DIR_IMAGE . $this->config->get('config_soicial_media_logo'))) {
+            $data['social_logo'] = $this->model_tool_image->resize($this->config->get('config_soicial_media_logo'), 100, 100);
+        } else {
+            $data['social_logo'] = $this->model_tool_image->resize('no-image.png', 100, 100);
         }
 
         if (isset($this->request->post['config_icon'])) {
@@ -932,6 +950,40 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['config_robots'] = $this->config->get('config_robots');
         }
+        if (isset($this->request->post['config_password'])) {
+            $data['config_password'] = $this->request->post['config_password'];
+        } else {
+            $data['config_password'] = $this->config->get('config_password');
+        }
+
+        if (isset($this->request->post['config_encryption'])) {
+            $data['config_encryption'] = $this->request->post['config_encryption'];
+        } else {
+            $data['config_encryption'] = $this->config->get('config_encryption');
+        }
+        if (isset($this->request->post['config_shared'])) {
+            $data['config_shared'] = $this->request->post['config_shared'];
+        } else {
+            $data['config_shared'] = $this->config->get('config_shared');
+        }
+        if (isset($this->request->post['config_error_display'])) {
+            $data['config_error_display'] = $this->request->post['config_error_display'];
+        } else {
+            $data['config_error_display'] = $this->config->get('config_error_display');
+        }
+
+        if (isset($this->request->post['config_error_log'])) {
+            $data['config_error_log'] = $this->request->post['config_error_log'];
+        } else {
+            $data['config_error_log'] = $this->config->get('config_error_log');
+        }
+
+        if (isset($this->request->post['config_error_filename'])) {
+            $data['config_error_filename'] = $this->request->post['config_error_filename'];
+        } else {
+            $data['config_error_filename'] = $this->config->get('config_error_filename');
+        }
+
         $data['header'] = $this->load->controller('common/header');
         $data['nav'] = $this->load->controller('common/nav');
         $data['footer'] = $this->load->controller('common/footer');
