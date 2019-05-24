@@ -122,6 +122,9 @@ $_['entry_error_log']                = 'Log Errors';
 $_['entry_error_filename']           = 'Error Log Filename';
 $_['entry_status']                   = 'Status';
 $_['entry_social_logo']              = 'Social Media Logo';
+$_['entry_website']                  = 'Websites';
+$_['entry_software']                 = 'Softwares';
+$_['entry_clients']                  = 'Clients';
 // Tab
 $_['tab_product']                    = 'Products';
 $_['tab_review']                     = 'Reviews';

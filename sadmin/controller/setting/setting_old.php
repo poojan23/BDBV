@@ -214,32 +214,11 @@ class ControllerSettingSetting extends PT_Controller {
 
         $data['store_url'] = HTTP_CATALOG;
 
-//		$data['themes'] = array();
-//
-//		$this->load->model('setting/extension');
-//
-//		$extensions = $this->model_setting_extension->getInstalled('theme');
-//
-//		foreach ($extensions as $code) {
-//			if ($this->config->get('theme_' . $code . '_status')) {
-//				$this->load->language('extension/theme/' . $code, 'extension');
-//
-//				$data['themes'][] = array(
-//					'text'  => $this->language->get('extension')->get('heading_title'),
-//					'value' => $code
-//				);
-//			}
-//		}
-//
         if (isset($this->request->post['config_layout_id'])) {
             $data['config_layout_id'] = $this->request->post['config_layout_id'];
         } else {
             $data['config_layout_id'] = $this->config->get('config_layout_id');
         }
-
-//		$this->load->model('design/layout');
-//
-//		$data['layouts'] = $this->model_design_layout->getLayouts();
 
         if (isset($this->request->post['config_name'])) {
             $data['config_name'] = $this->request->post['config_name'];
@@ -389,23 +368,6 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_currency'] = $this->config->get('config_currency');
         }
 
-//		$data['currency_engines'] = array();
-//
-//		$this->load->model('setting/extension');
-//
-//		$extensions = $this->model_setting_extension->getInstalled('currency');
-//
-//		foreach ($extensions as $code) {
-//			if ($this->config->get('currency_' . $code . '_status')) {
-//				$this->load->language('extension/currency/' . $code, 'extension');
-//
-//				$data['currency_engines'][] = array(
-//					'text'  => $this->language->get('extension')->get('heading_title'),
-//					'value' => $code
-//				);
-//			}
-//		}
-
         if (isset($this->request->post['config_currency_engine'])) {
             $data['config_currency_engine'] = $this->request->post['config_currency_engine'];
         } else {
@@ -417,36 +379,6 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['config_currency_auto'] = $this->config->get('config_currency_auto');
         }
-
-//		$this->load->model('localisation/currency');
-//
-//		$data['currencies'] = $this->model_localisation_currency->getCurrencies();
-//
-//		if (isset($this->request->post['config_length_class_id'])) {
-//			$data['config_length_class_id'] = $this->request->post['config_length_class_id'];
-//		} else {
-//			$data['config_length_class_id'] = $this->config->get('config_length_class_id');
-//		}
-//
-//		$this->load->model('localisation/length_class');
-//
-//		$data['length_classes'] = $this->model_localisation_length_class->getLengthClasses();
-//
-//		if (isset($this->request->post['config_weight_class_id'])) {
-//			$data['config_weight_class_id'] = $this->request->post['config_weight_class_id'];
-//		} else {
-//			$data['config_weight_class_id'] = $this->config->get('config_weight_class_id');
-//		}
-//
-//		$this->load->model('localisation/weight_class');
-//
-//		$data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
-//
-//		if (isset($this->request->post['config_limit_admin'])) {
-//			$data['config_limit_admin'] = $this->request->post['config_limit_admin'];
-//		} else {
-//			$data['config_limit_admin'] = $this->config->get('config_limit_admin');
-//		}
 
         if (isset($this->request->post['config_product_count'])) {
             $data['config_product_count'] = $this->request->post['config_product_count'];
@@ -538,24 +470,6 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_customer_group_id'] = $this->config->get('config_customer_group_id');
         }
 
-//		$this->load->model('customer/customer_group');
-//
-//		$data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
-//
-//		if (isset($this->request->post['config_customer_group_display'])) {
-//			$data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
-//		} elseif ($this->config->get('config_customer_group_display')) {
-//			$data['config_customer_group_display'] = $this->config->get('config_customer_group_display');
-//		} else {
-//			$data['config_customer_group_display'] = array();
-//		}
-//
-//		if (isset($this->request->post['config_customer_price'])) {
-//			$data['config_customer_price'] = $this->request->post['config_customer_price'];
-//		} else {
-//			$data['config_customer_price'] = $this->config->get('config_customer_price');
-//		}
-
         if (isset($this->request->post['config_login_attempts'])) {
             $data['config_login_attempts'] = $this->request->post['config_login_attempts'];
         } elseif ($this->config->has('config_login_attempts')) {
@@ -628,20 +542,6 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_fraud_status_id'] = $this->config->get('config_fraud_status_id');
         }
 
-//		$this->load->model('localisation/order_status');
-//
-//		$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
-//
-//		if (isset($this->request->post['config_api_id'])) {
-//			$data['config_api_id'] = $this->request->post['config_api_id'];
-//		} else {
-//			$data['config_api_id'] = $this->config->get('config_api_id');
-//		}
-//
-//		$this->load->model('user/api');
-//
-//		$data['apis'] = $this->model_user_api->getApis();
-
         if (isset($this->request->post['config_stock_display'])) {
             $data['config_stock_display'] = $this->request->post['config_stock_display'];
         } else {
@@ -708,34 +608,6 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_return_status_id'] = $this->config->get('config_return_status_id');
         }
 
-//		$this->load->model('localisation/return_status');
-//
-//		$data['return_statuses'] = $this->model_localisation_return_status->getReturnStatuses();
-//
-//		if (isset($this->request->post['config_captcha'])) {
-//			$data['config_captcha'] = $this->request->post['config_captcha'];
-//		} else {
-//			$data['config_captcha'] = $this->config->get('config_captcha');
-//		}
-//
-//		$this->load->model('setting/extension');
-//
-//		$data['captchas'] = array();
-//
-//		// Get a list of installed captchas
-//		$extensions = $this->model_setting_extension->getInstalled('captcha');
-//
-//		foreach ($extensions as $code) {
-//			$this->load->language('extension/captcha/' . $code, 'extension');
-//
-//			if ($this->config->get('captcha_' . $code . '_status')) {
-//				$data['captchas'][] = array(
-//					'text'  => $this->language->get('extension')->get('heading_title'),
-//					'value' => $code
-//				);
-//			}
-//		}
-
         if (isset($this->request->post['config_captcha_page'])) {
             $data['config_captcha_page'] = $this->request->post['config_captcha_page'];
         } elseif ($this->config->has('config_captcha_page')) {
@@ -770,6 +642,26 @@ class ControllerSettingSetting extends PT_Controller {
             'text' => $this->language->get('text_contact'),
             'value' => 'contact'
         );
+        
+        #option
+        
+        if (isset($this->request->post['config_website'])) {
+            $data['config_website'] = $this->request->post['config_website'];
+        } else {
+            $data['config_website'] = $this->config->get('config_website');
+        }
+        
+        if (isset($this->request->post['config_sofware'])) {
+            $data['config_sofware'] = $this->request->post['config_sofware'];
+        } else {
+            $data['config_sofware'] = $this->config->get('config_sofware');
+        }
+        
+        if (isset($this->request->post['config_clients'])) {
+            $data['config_clients'] = $this->request->post['config_clients'];
+        } else {
+            $data['config_clients'] = $this->config->get('config_clients');
+        }
 
         # Images
         if (isset($this->request->post['config_logo'])) {

@@ -93,6 +93,11 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#option" role="tab">
+                                                <?php echo $tab_option; ?>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#image" role="tab">
                                                 <?php echo $tab_image; ?>
                                             </a>
@@ -357,6 +362,36 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="option" role="tabpanel">
+                                            <div class="bs-callout bs-callout-danger" id="certifications" name="certifications">
+                                                <div class="form-group row">
+                                                    <label for="input-website" class="col-sm-2 col-form-label"><?php echo $entry_website; ?></label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="config_website" class="form-control" id="input-website" placeholder="<?php echo $entry_website; ?>" value="<?php echo $config_website; ?>">
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-group row">
+                                                    <label for="input-software" class="col-sm-2 col-form-label"><?php echo $entry_software; ?></label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="config_sofware" class="form-control" id="input-software" placeholder="<?php echo $entry_software; ?>" value="<?php echo $config_sofware; ?>">
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-group row">
+                                                    <label for="input-client" class="col-sm-2 col-form-label"><?php echo $entry_clients; ?></label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="config_clients" class="form-control" id="input-client" placeholder="<?php echo $entry_clients; ?>" value="<?php echo $config_clients; ?>">
+                                                    </div>
+                                                </div>
+                                               
+                                                
+                                            </div>
+
                                         </div>
                                         <div class="tab-pane fade" id="image" name="image" role="tabpanel">
                                             <div class="bs-callout bs-callout-danger">

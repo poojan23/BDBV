@@ -1,5 +1,6 @@
 <?php echo $header; ?>
 <?php echo $nav; ?>
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -39,453 +40,117 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-
-            <!-- right column -->
             <div class="col-12">
-                <div class="card card-info card-outline">
-                    <div class="">
-                        <div id="user-profile-3" class="user-profile row">
-                            <div class="col-xs-12 col-sm-3 center">
-                                <div>
-                                    <span class="profile-picture">
-                                        <img src="<?php echo $thumb; ?>" alt="<?php echo $name; ?> <?php echo $lastname; ?>" title="<?php echo $name; ?> <?php echo $lastname; ?>" class="img-responsive" />
-                                    </span>
+                <?php if ($warning_err) : ?>
+                <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i>
+                    <?php echo $warning_err; ?>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                <?php endif; ?>
 
-                                    <div class="space-4"></div>
+                <div class="clearfix">
+                    <div class="float-right tableTools-container">
+                        <button type="submit" form="form-team" data-toggle="tooltip"
+                                title="<?php echo $button_save; ?>" class="btn btn-primary btn-bold"><i
+                                class="fa fa-save"></i></button>
+                        <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>"
+                           class="btn btn-default btn-bold"><i class="fa fa-reply"></i></a>
 
-                                    <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                                        <div class="inline position-relative">
-                                            <span class="white"><?php echo $name; ?> <?php echo $lastname; ?></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="space-6"></div>
-
-                                    <div class="profile-contact-info">
-                                        <div class="profile-contact-links align-left">
-                                            <a href="#" class="btn btn-link">
-                                                <i class="ace-icon fa fa-venus-mars bigger-120 green"></i>
-                                                <?php echo ($gender == 'f') ? $text_female : $text_male; ?>
-                                            </a>
-
-                                            <a href="#" class="btn btn-link">
-                                                <i class="ace-icon fa fa-envelope bigger-120 pink"></i>
-                                                <?php echo $email; ?>
-                                            </a>
-                                            
-                                            <a href="#" class="btn btn-link">
-                                                <i class="ace-icon fa fa-phone bigger-125 blue"></i>
-                                                <?php echo $telephone; ?>
-                                            </a>
-                                        </div>
-
-                                        <div class="space-6"></div>
-
-                                        <div class="profile-social-links align-center">
-                                            <button class="btn btn-info btn-block" type="submit" form="form-profile">
-                                                <i class="ace-icon fa fa-floppy-o bigger-110"></i>
-                                                <?php echo $button_save; ?>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-9">
-                                <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data" class="form-horizontal" id="form-profile">
-                                    <div class="tabbable">
-                                        <ul class="nav nav-tabs">
-
-                                            <li class="nav-item active">
-                                                <a class="nav-link active" data-toggle="tab" href="#edit-basic" role="tab">
-                                                    <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
-                                                    <?php echo $tab_info; ?>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#edit-password" role="tab">
-                                                    <i class="blue ace-icon fa fa-key bigger-125"></i>
-                                                    <?php echo $tab_password; ?>
-                                                </a>
-                                            </li>
-                                        </ul>
-
-                                        <div class="tab-content profile-edit-tab-content">
-                                            <div id="edit-basic" class="tab-pane in active">
-                                                <h4 class="header blue bolder smaller"><?php echo $text_general; ?></h4>
-
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-3">
-                                                        <span class="profile-picture">
-                                                            <img src="<?php echo $thumb; ?>" alt="<?php echo $name; ?> <?php echo $lastname; ?>" title="<?php echo $name; ?> <?php echo $lastname; ?>" data-placeholder="<?php echo $placeholder; ?>" id="avatar" class="editable img-responsive" width="164" height="164" />
-                                                            <a href="#" id="button-clear"><i class="ace-icon fa fa-times"></i></a>
-                                                            <span id="img-loader">
-                                                                <i class="ace-icon fa fa-spinner fa-2x"></i>
-                                                            </span>
-                                                        </span>
-                                                        <input type="hidden" name="avatar" value="<?php echo $avatar; ?>" />
-                                                    </div>
-
-                                                    <div class="vspace-12-sm"></div>
-
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="form-group row <?php echo (!empty($firstname_err) || !empty($lastname_err)) ? 'has-error' : ''; ?>">
-                                                            <label class="col-sm-2 col-form-label" for="input-name"><?php echo $entry_name; ?> <span class="red">*</span></label>
-
-                                                            <div class="col-sm-10">
-                                                                <input type="text" name="name" value="<?php echo $name; ?>" placeholder="<?php echo $entry_firstname; ?>" class="input-medium" id="input-name" />
-                                                                <!--<input type="text" name="lastname" value="<?php echo $lastname; ?>" placeholder="<?php echo $entry_lastname; ?>" class="input-medium" />-->
-                                                                <?php if(isset($firstname_err)) : ?>
-                                                                <span class="help-block"><?php echo $firstname_err; ?></span>
-                                                                <?php endif; ?>
-<!--                                                                <?php if(isset($lastname_err)) : ?>
-                                                                <span class="help-block"><?php echo $lastname_err; ?></span>
-                                                                <?php endif; ?>-->
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="space-4"></div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label" for="input-designation"><?php echo $entry_designation; ?></label>
-
-                                                            <div class="col-sm-10">
-                                                                <input type="text" name="designation" value="<?php echo $designation; ?>" placeholder="<?php echo $entry_designation; ?>" class="col-xs-12 col-sm-12" id="input-designation" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!--<hr />-->
-<!--                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label"><?php echo $entry_gender; ?></label>
-
-                                                    <div class="col-sm-10">
-                                                        <div data-toggle="buttons" class="btn-group">
-                                                            <?php if($gender == 'f') : ?>
-                                                            <label class="btn btn-white btn-default btn-bold">
-                                                                <input type="radio" name="gender" value="m">
-                                                                <i class="icon-only ace-icon fa fa-male"></i>
-                                                            </label>
-
-                                                            <label class="btn btn-white btn-default btn-bold active">
-                                                                <input type="radio" name="gender" value="f">
-                                                                <i class="icon-only ace-icon fa fa-female"></i>
-                                                            </label>
-                                                            <?php else: ?>
-                                                            <label class="btn btn-white btn-default btn-bold active">
-                                                                <input type="radio" name="gender" value="m">
-                                                                <i class="icon-only ace-icon fa fa-male"></i>
-                                                            </label>
-
-                                                            <label class="btn btn-white btn-default btn-bold">
-                                                                <input type="radio" name="gender" value="f">
-                                                                <i class="icon-only ace-icon fa fa-female"></i>
-                                                            </label>
-                                                            <?php endif; ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="space-4"></div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label" for="input-dob"><?php echo $entry_dob; ?></label>
-
-                                                    <div class="col-sm-10">
-                                                        <div class="input-group">
-                                                            <input type="text" name="birthdate" value="<?php echo $birthdate; ?>" placeholder="<?php echo $entry_dob; ?>" class="col-xs-12 col-sm-12 date-picker" id="input-dob" data-date-format="yyyy-mm-dd" />
-                                                            <span class="input-group-addon">
-                                                                <i class="ace-icon fa fa-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="space-4"></div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label" for="input-ani"><?php echo $entry_ani; ?></label>
-
-                                                    <div class="col-sm-10">
-                                                        <div class="input-group">
-                                                            <input type="text" name="anniversary" value="<?php echo $anniversary; ?>" placeholder="<?php echo $entry_ani; ?>" class="col-xs-12 col-sm-12 date-picker" id="input-ani" data-date-format="yyyy-mm-dd" />
-                                                            <span class="input-group-addon">
-                                                                <i class="ace-icon fa fa-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
-
-<!--                                                <div class="space"></div>
-                                                <h4 class="header blue bolder smaller"><?php echo $text_contact; ?></h4>
-
-                                                <div class="form-group row <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-                                                    <label class="col-sm-2 col-form-label" for="input-email"><?php echo $entry_email; ?> <span class="red">*</span></label>
-
-                                                    <div class="col-sm-10">
-                                                        <span class="input-icon input-icon-right" style="width:100%;">
-                                                            <input type="email" name="email" value="<?php echo $email; ?>" placeholder="<?php echo $entry_email; ?>" class="col-xs-12 col-sm-12" id="form-field-email" />
-                                                            <i class="ace-icon fa fa-envelope"></i>
-                                                        </span>
-                                                        <?php if(isset($email_err)) : ?>
-                                                        <span class="help-block"><?php echo $email_err; ?></span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>-->
-<!--
-                                                <div class="space-4"></div>
-
-                                                <div class="form-group row <?php echo (!empty($telephone_err)) ? 'has-error' : ''; ?>">
-                                                    <label class="col-sm-2 col-form-label" for="input-telephone"><?php echo $entry_telephone; ?> <span class="red">*</span></label>
-
-                                                    <div class="col-sm-10">
-                                                        <span class="input-icon input-icon-right" style="width:100%;">
-                                                            <input type="text" name="telephone" value="<?php echo $telephone; ?>" placeholder="<?php echo $entry_telephone; ?>" class="col-xs-12 col-sm-12" id="input-telephone" />
-                                                            <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
-                                                        </span>
-                                                        <?php if(isset($telephone_err)) : ?>
-                                                        <span class="help-block"><?php echo $telephone_err; ?></span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-
-                                                <div class="space-4"></div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label" for="input-fax"><?php echo $entry_fax; ?></label>
-
-                                                    <div class="col-sm-10">
-                                                        <span class="input-icon input-icon-right" style="width:100%;">
-                                                            <input type="text" name="fax" value="<?php echo $fax; ?>" placeholder="<?php echo $entry_fax; ?>" class="col-xs-12 col-sm-12 input-mask-phone" id="input-fax" />
-                                                            <i class="ace-icon fa fa-mobile"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>-->
-                                            </div>
-
-                                            <div id="edit-password" class="tab-pane">
-                                                <div class="space-10"></div>
-
-                                                <div class="form-group row <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                                                    <label class="col-sm-2 col-form-label" for="input-password"><?php echo $entry_new_password; ?> <span class="red">*</span></label>
-
-                                                    <div class="col-sm-10">
-                                                        <input type="password" name="password" value="" placeholder="<?php echo $entry_new_password; ?>" class="form-control" id="input-password" />
-                                                        <?php if(isset($password_err)) : ?>
-                                                        <span class="help-block"><?php echo $password_err; ?></span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-
-                                                <div class="space-4"></div>
-
-                                                <div class="form-group row <?php echo (!empty($confirm_err)) ? 'has-error' : ''; ?>">
-                                                    <label class="col-sm-2 col-form-label" for="input-confirm"><?php echo $entry_confirm; ?> <span class="red">*</span></label>
-
-                                                    <div class="col-sm-10">
-                                                        <input type="password" name="confirm" value="" placeholder="<?php echo $entry_confirm; ?>" class="form-control" id="input-confirm" />
-                                                        <?php if(isset($confirm_err)) : ?>
-                                                        <span class="help-block"><?php echo $confirm_err; ?></span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- <div class="clearfix form-actions">
-                                        <div class="col-md-offset-3 col-md-9">
-                                            <button class="btn btn-info" type="button">
-                                                <i class="ace-icon fa fa-check bigger-110"></i>
-                                                Save
-                                            </button>
-
-                                            &nbsp; &nbsp;
-                                            <button class="btn" type="reset">
-                                                <i class="ace-icon fa fa-undo bigger-110"></i>
-                                                Reset
-                                            </button>
-                                        </div>
-                                    </div> -->
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+            <!-- right column -->
+            <div class="col-12">
+                <!-- Horizontal Form -->
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fa fa-pencil"></i>
+                            <?php echo $text_form; ?>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data"
+                          id="form-team" class="form-horizontal">
+                        <div class="card-body">
+                            <div class="form-group row required">
+                                <label for="input-firstname" class="col-sm-2 col-form-label">
+                                    <?php echo $entry_firstname; ?></label>
 
+                                <div class="col-sm-10">
+                                    <input type="text" name="firstname" value="<?php echo $firstname; ?>"
+                                           placeholder="<?php echo $entry_firstname; ?>" class="form-control"
+                                           id="input-name" />
+                                    <?php if($error_firstname) : ?>
+                                    <span class="help-block">
+                                        <?php echo $error_firstname; ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label for="input-name" class="col-sm-2 col-form-label">
+                                    <?php echo $entry_name; ?></label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" value="<?php echo $name; ?>"
+                                           placeholder="<?php echo $entry_name; ?>" class="form-control"
+                                           id="input-name" />
+                                    <?php if($name_err) : ?>
+                                    <span class="help-block">
+                                        <?php echo $name_err; ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label for="input-name" class="col-sm-2 col-form-label">
+                                    <?php echo $entry_name; ?></label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" value="<?php echo $name; ?>"
+                                           placeholder="<?php echo $entry_name; ?>" class="form-control"
+                                           id="input-name" />
+                                    <?php if($name_err) : ?>
+                                    <span class="help-block">
+                                        <?php echo $name_err; ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                          
+                            <div class="form-group row">
+                                <label for="input-image" class="col-sm-2 col-form-label">
+                                    <?php echo $entry_image; ?></label>
+
+                                <div class="col-sm-10">
+                                    <div class="card image">
+                                        <a href="" id="thumb-image" data-toggle="image">
+                                            <img src="<?php echo $thumb; ?>" alt="" title="" id="thumb-image"
+                                                 data-placeholder="<?php echo $placeholder; ?>" class="card-img-top" />
+                                        </a>
+                                        <input type="hidden" name="image" value="<?php echo $image; ?>"
+                                               id="input-image" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- /.box-body -->
+                    </form>
+                </div>
+                <!-- /.box -->
+            </div>
             <!--/.col (right) -->
         </div>
-
         <!-- /.row -->
     </section>
     <!-- /.content -->
 </div>
+<!-- /.content-wrapper -->
 <?php echo $footer; ?>
-<link rel="stylesheet" href="view/dist/css/jquery-ui.custom.min.css" />
-<link rel="stylesheet" href="view/dist/css/jquery.gritter.min.css" />
-<link rel="stylesheet" href="view/dist/css/bootstrap-datepicker3.min.css" />
-<link rel="stylesheet" href="view/dist/css/bootstrap-editable.min.css" />
-<script src="view/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="view/dist/js/jquery.gritter.min.js"></script>
-<script src="view/dist/js/bootstrap-editable.min.js"></script>
-<script src="view/dist/js/ace-editable.min.js"></script>
-
-<!-- inline scripts related to this page -->
 <script type="text/javascript">
-    jQuery(function ($) {
-        var html = $('.page-content .page-header h1').html();
-        var dir = html.split('<small>')[0];
+    $('textarea[data-toggle=\'ckeditor\']').ckeditor();
 
-        //datepicker plugin
-        //link
-        $('.date-picker').datepicker({
-            autoclose: true,
-            todayHighlight: true
-        })
-                //show datepicker when clicking on the icon
-                .next().on(ace.click_event, function () {
-            $(this).prev().focus();
-        });
-
-        //editables on first profile page
-        $.fn.editable.defaults.mode = 'inline';
-        $.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
-        $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>' +
-                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';
-
-        //editables
-
-        // *** editable avatar *** //
-        try {//ie8 throws some harmless exceptions, so let's catch'em
-
-            //first let's add a fake appendChild method for Image element for browsers that have a problem with this
-            //because editable plugin calls appendChild, and it causes errors on IE at unpredicted points
-            try {
-                document.createElement('IMG').appendChild(document.createElement('B'));
-            } catch (e) {
-                Image.prototype.appendChild = function (el) {}
-            }
-
-            var last_gritter
-            $('#avatar').editable({
-                type: 'image',
-                name: 'avatar',
-                value: null,
-                //onblur: 'ignore',  //don't reset or hide editable onblur?!
-                image: {
-                    //specify ace file input plugin's options here
-                    btn_choose: 'Change Avatar',
-                    droppable: true,
-                    maxSize: 110000, //~100Kb
-
-                    //and a few extra ones here
-                    name: 'avatar', //put the field name here as well, will be used inside the custom plugin
-                    on_error: function (error_type) {//on_error function will be called when the selected file has a problem
-                        if (last_gritter)
-                            $.gritter.remove(last_gritter);
-                        if (error_type == 1) {//file format error
-                            last_gritter = $.gritter.add({
-                                title: 'File is not an image!',
-                                text: 'Please choose a jpg|gif|png image!',
-                                class_name: 'gritter-error gritter-center'
-                            });
-                        } else if (error_type == 2) {//file size rror
-                            last_gritter = $.gritter.add({
-                                title: 'File too big!',
-                                text: 'Image size should not exceed 100Kb!',
-                                class_name: 'gritter-error gritter-center'
-                            });
-                        } else {//other error
-                        }
-                    },
-                    on_success: function () {
-                        $.gritter.removeAll();
-                    }
-                }
-            })
-        } catch (e) {
-        }
-
-        /**
-         //let's display edit mode by default?
-         var blank_image = true;//somehow you determine if image is initially blank or not, or you just want to display file input at first
-         if(blank_image) {
-         $('#avatar').editable('show').on('hidden', function(e, reason) {
-         if(reason == 'onblur') {
-         $('#avatar').editable('show');
-         return;
-         }
-         $('#avatar').off('hidden');
-         })
-         }*/
-
-        $('#img-loader').hide();
-
-        $('#avatar').on('click', function (e) {
-            var $element = $(this);
-
-            e.preventDefault();
-
-            if ($element.hasClass('editable-open')) {
-                $('#avatar').hide();
-                $element.parent().children('#button-clear').hide();
-
-                $('form.editableform .editable-buttons button[type=\'submit\']').on('click', function () {
-                    if ($('.editableform input[name=\'file\']').val() != '') {
-                        $.ajax({
-                            url: 'index.php?url=user/profile/upload&user_token=' + getURLVar('user_token') + '&dir=' + dir,
-                            type: 'POST',
-                            dataType: 'json',
-                            data: new FormData($('.editableform')[0]),
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            beforeSend: function () {
-                                $('#img-loader i').addClass('fa-spin');
-                                $('#img-loader').show();
-                            },
-                            complete: function () {
-                                $('#img-loader i').removeClass('fa-spin');
-                                $('#img-loader').hide();
-                            },
-                            success: function (json) {
-                                console.log(json);
-                                if (json['error']) {
-                                    alert(json['error']);
-                                }
-
-                                if (json['success']) {
-                                    alert(json['success']);
-
-                                    $('input[name=\'avatar\']').val(json['path']);
-                                    $('#avatar').attr('src', json['filename']);
-
-                                    $element.parent().children('#button-clear').show();
-                                }
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                console.warn(xhr);
-                            }
-                        });
-                    }
-                });
-
-                $('form.editableForm .editable-buttons button[type=\'button\']').on('click', function () {
-                    $element.parent().children('#button-clear').show();
-                });
-            }
-        });
-
-        $('a#button-clear').on('click', function (e) {
-            var $element = $(this).parent().addClass('added');
-
-            e.preventDefault();
-
-            $element.find('img').attr('src', $element.find('img').attr('data-placeholder'));
-
-            $element.parent().find('input').val('');
-        });
+    $('input[name=\'icon\']').iCheck({
+        radioClass: 'iradio_square-blue'
     });
 </script>
