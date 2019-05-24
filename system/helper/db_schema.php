@@ -676,6 +676,11 @@ function db_schema()
 				'not_null' => true
 			),
 			array(
+				'name' => 'username',
+				'type' => 'varchar(45)',
+				'not_null' => true
+			),
+			array(
 				'name' => 'designation',
 				'type' => 'varchar(255)',
 				'not_null' => true
