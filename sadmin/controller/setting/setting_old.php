@@ -704,18 +704,18 @@ class ControllerSettingSetting extends PT_Controller {
             $data['icon'] = $this->model_tool_image->resize('no-image.png', 100, 100);
         }
 
-        if (isset($this->request->post['config_store_color_logo'])) {
-            $data['config_store_color_logo'] = $this->request->post['config_store_color_logo'];
+        if (isset($this->request->post['config_logo_colour'])) {
+            $data['config_logo_colour'] = $this->request->post['config_logo_colour'];
         } else {
-            $data['config_store_color_logo'] = $this->config->get('config_store_color_logo');
+            $data['config_logo_colour'] = $this->config->get('config_logo_colour');
         }
 
-        if (isset($this->request->post['config_store_color_logo']) && is_file(DIR_IMAGE . $this->request->post['config_store_color_logo'])) {
-            $data['mobile_logo'] = $this->model_tool_image->resize($this->request->post['config_store_color_logo'], 100, 100);
-        } elseif ($this->config->get('config_store_color_logo') && is_file(DIR_IMAGE . $this->config->get('config_store_color_logo'))) {
-            $data['mobile_logo'] = $this->model_tool_image->resize($this->config->get('config_store_color_logo'), 100, 100);
+        if (isset($this->request->post['config_logo_colour']) && is_file(DIR_IMAGE . $this->request->post['config_logo_colour'])) {
+            $data['logo_colour'] = $this->model_tool_image->resize($this->request->post['config_logo_colour'], 100, 100);
+        } elseif ($this->config->get('config_logo_colour') && is_file(DIR_IMAGE . $this->config->get('config_logo_colour'))) {
+            $data['logo_colour'] = $this->model_tool_image->resize($this->config->get('config_logo_colour'), 100, 100);
         } else {
-            $data['mobile_logo'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+            $data['logo_colour'] = $this->model_tool_image->resize('no-image.png', 100, 100);
         }
 
         # Mail
