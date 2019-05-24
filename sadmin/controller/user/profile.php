@@ -11,9 +11,10 @@ class ControllerUserProfile extends PT_Controller
 
         $this->document->setTitle($this->language->get('heading_title'));
 
-        if(($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+        if(($this->request->server['REQUEST_METHOD'] == 'POST')) {
+//            print_r($this->request->post);exit;
             $member_data = array_merge($this->request->post, array(
-                'member_group_id'   => $this->user->getGroupId(),
+                'user_id'   => $this->user->getGroupId(),
                 'status'            => 1
             ));
             
@@ -38,8 +39,8 @@ class ControllerUserProfile extends PT_Controller
             $data['warning_err'] = '';
         }
 
-        if(isset($this->error['firstname'])) {
-            $data['firstname_err'] = $this->error['firstname'];
+        if(isset($this->error['name'])) {
+            $data['firstname_err'] = $this->error['name'];
         } else {
             $data['firstname_err'] = '';
         }
@@ -89,81 +90,81 @@ class ControllerUserProfile extends PT_Controller
         $data['action'] = $this->url->link('user/profile', 'user_token=' . $this->session->data['user_token'], true);
         
         if($this->request->server['REQUEST_METHOD'] != 'POST') {
-            $member_info = $this->model_user_user->getUser($this->user->getId());
+            $user_info = $this->model_user_user->getUser($this->user->getId());
         }
-       
-        if(!empty($member_info)) {
-            $data['update'] = sprintf($this->language->get('text_password'), date($this->language->get('date_format_short'), strtotime($member_info['date_modified'])));
+//        print_r($user_info);exit;
+        if(!empty($user_info)) {
+            $data['update'] = sprintf($this->language->get('text_password'), date($this->language->get('date_format_short'), strtotime($user_info['date_modified'])));
         }
         
-        if(isset($this->request->post['firstname'])) {
-            $data['firstname'] = $this->request->post['firstname'];
-        } elseif(!empty($member_info)) {
-            $data['firstname'] = $member_info['firstname'];
+        if(isset($this->request->post['name'])) {
+            $data['name'] = $this->request->post['name'];
+        } elseif(!empty($user_info)) {
+            $data['name'] = $user_info['name'];
         } else {
-            $data['firstname'] = '';
+            $data['name'] = '';
         }
 
         if(isset($this->request->post['lastname'])) {
             $data['lastname'] = $this->request->post['lastname'];
-        } elseif(!empty($member_info)) {
-            $data['lastname'] = $member_info['lastname'];
+        } elseif(!empty($user_info)) {
+            $data['lastname'] = $user_info['lastname'];
         } else {
             $data['lastname'] = '';
         }
 
         if(isset($this->request->post['designation'])) {
             $data['designation'] = $this->request->post['designation'];
-        } elseif(!empty($member_info)) {
-            $data['designation'] = $member_info['designation'];
+        } elseif(!empty($user_info)) {
+            $data['designation'] = $user_info['designation'];
         } else {
             $data['designation'] = '';
         }
 
         if(isset($this->request->post['gender'])) {
             $data['gender'] = $this->request->post['gender'];
-        } elseif(!empty($member_info)) {
-            $data['gender'] = $member_info['gender'];
+        } elseif(!empty($user_info)) {
+            $data['gender'] = $user_info['gender'];
         } else {
             $data['gender'] = 'm';
         }
 
         if(isset($this->request->post['birthdate'])) {
             $data['birthdate'] = $this->request->post['birthdate'];
-        } elseif(!empty($member_info)) {
-            $data['birthdate'] = ($member_info['birthdate'] != '0000-00-00') ? $member_info['birthdate'] : '';
+        } elseif(!empty($user_info)) {
+            $data['birthdate'] = ($user_info['birthdate'] != '0000-00-00') ? $user_info['birthdate'] : '';
         } else {
             $data['birthdate'] = '';
         }
 
         if(isset($this->request->post['anniversary'])) {
             $data['anniversary'] = $this->request->post['anniversary'];
-        } elseif(!empty($member_info)) {
-            $data['anniversary'] = ($member_info['anniversary'] != '0000-00-00') ? $member_info['anniversary'] : '';
+        } elseif(!empty($user_info)) {
+            $data['anniversary'] = ($user_info['anniversary'] != '0000-00-00') ? $user_info['anniversary'] : '';
         } else {
             $data['anniversary'] = '';
         }
 
         if(isset($this->request->post['email'])) {
             $data['email'] = $this->request->post['email'];
-        } elseif(!empty($member_info)) {
-            $data['email'] = $member_info['email'];
+        } elseif(!empty($user_info)) {
+            $data['email'] = $user_info['email'];
         } else {
             $data['email'] = '';
         }
 
         if(isset($this->request->post['telephone'])) {
             $data['telephone'] = $this->request->post['telephone'];
-        } elseif(!empty($member_info)) {
-            $data['telephone'] = $member_info['telephone'];
+        } elseif(!empty($user_info)) {
+            $data['telephone'] = $user_info['telephone'];
         } else {
             $data['telephone'] = '';
         }
 
         if(isset($this->request->post['fax'])) {
             $data['fax'] = $this->request->post['fax'];
-        } elseif(!empty($member_info)) {
-            $data['fax'] = $member_info['fax'];
+        } elseif(!empty($user_info)) {
+            $data['fax'] = $user_info['fax'];
         } else {
             $data['fax'] = '';
         }
@@ -182,12 +183,12 @@ class ControllerUserProfile extends PT_Controller
 
         if(isset($this->request->post['avatar'])) {
             $data['avatar'] = $this->request->post['avatar'];
-        } elseif(!empty($member_info['image'])) {
-            $data['avatar'] = $member_info['image'];
+        } elseif(!empty($user_info['image'])) {
+            $data['avatar'] = $user_info['image'];
         } else {
             $data['avatar'] = '';
         }
-
+       
         $this->load->model('tool/image');
 
         $data['placeholder'] = $this->model_tool_image->resize('profile.png', 164, 164);
@@ -210,8 +211,8 @@ class ControllerUserProfile extends PT_Controller
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
-        if((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
-            $this->error['firstname'] = $this->language->get('error_firstname');
+        if((utf8_strlen(trim($this->request->post['name'])) < 1) || (utf8_strlen(trim($this->request->post['name'])) > 32)) {
+            $this->error['name'] = $this->language->get('error_firstname');
         }
 
         if((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
@@ -222,9 +223,9 @@ class ControllerUserProfile extends PT_Controller
 			$this->error['email'] = $this->language->get('error_email');
         }
         
-        $member_info = $this->model_user_user->getUserByEmail($this->request->post['email']);
+        $user_info = $this->model_user_user->getUserByEmail($this->request->post['email']);
 
-        if($member_info && ($this->user->getId() != $member_info['member_id'])) {
+        if($user_info && ($this->user->getId() != $user_info['member_id'])) {
             $this->error['warning'] = $this->language->get('error_email_exists');
         }
 

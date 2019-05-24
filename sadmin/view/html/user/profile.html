@@ -48,14 +48,14 @@
                             <div class="col-xs-12 col-sm-3 center">
                                 <div>
                                     <span class="profile-picture">
-                                        <img src="<?php echo $thumb; ?>" alt="<?php echo $firstname; ?> <?php echo $lastname; ?>" title="<?php echo $firstname; ?> <?php echo $lastname; ?>" class="img-responsive" />
+                                        <img src="<?php echo $thumb; ?>" alt="<?php echo $name; ?> <?php echo $lastname; ?>" title="<?php echo $name; ?> <?php echo $lastname; ?>" class="img-responsive" />
                                     </span>
 
                                     <div class="space-4"></div>
 
                                     <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
                                         <div class="inline position-relative">
-                                            <span class="white"><?php echo $firstname; ?> <?php echo $lastname; ?></span>
+                                            <span class="white"><?php echo $name; ?> <?php echo $lastname; ?></span>
                                         </div>
                                     </div>
 
@@ -72,7 +72,7 @@
                                                 <i class="ace-icon fa fa-envelope bigger-120 pink"></i>
                                                 <?php echo $email; ?>
                                             </a>
-
+                                            
                                             <a href="#" class="btn btn-link">
                                                 <i class="ace-icon fa fa-phone bigger-125 blue"></i>
                                                 <?php echo $telephone; ?>
@@ -117,7 +117,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-3">
                                                         <span class="profile-picture">
-                                                            <img src="<?php echo $thumb; ?>" alt="<?php echo $firstname; ?> <?php echo $lastname; ?>" title="<?php echo $firstname; ?> <?php echo $lastname; ?>" data-placeholder="<?php echo $placeholder; ?>" id="avatar" class="editable img-responsive" width="164" height="164" />
+                                                            <img src="<?php echo $thumb; ?>" alt="<?php echo $name; ?> <?php echo $lastname; ?>" title="<?php echo $name; ?> <?php echo $lastname; ?>" data-placeholder="<?php echo $placeholder; ?>" id="avatar" class="editable img-responsive" width="164" height="164" />
                                                             <a href="#" id="button-clear"><i class="ace-icon fa fa-times"></i></a>
                                                             <span id="img-loader">
                                                                 <i class="ace-icon fa fa-spinner fa-2x"></i>
@@ -133,14 +133,14 @@
                                                             <label class="col-sm-2 col-form-label" for="input-name"><?php echo $entry_name; ?> <span class="red">*</span></label>
 
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="firstname" value="<?php echo $firstname; ?>" placeholder="<?php echo $entry_firstname; ?>" class="input-medium" id="input-name" />
-                                                                <input type="text" name="lastname" value="<?php echo $lastname; ?>" placeholder="<?php echo $entry_lastname; ?>" class="input-medium" />
+                                                                <input type="text" name="name" value="<?php echo $name; ?>" placeholder="<?php echo $entry_firstname; ?>" class="input-medium" id="input-name" />
+                                                                <!--<input type="text" name="lastname" value="<?php echo $lastname; ?>" placeholder="<?php echo $entry_lastname; ?>" class="input-medium" />-->
                                                                 <?php if(isset($firstname_err)) : ?>
                                                                 <span class="help-block"><?php echo $firstname_err; ?></span>
                                                                 <?php endif; ?>
-                                                                <?php if(isset($lastname_err)) : ?>
+<!--                                                                <?php if(isset($lastname_err)) : ?>
                                                                 <span class="help-block"><?php echo $lastname_err; ?></span>
-                                                                <?php endif; ?>
+                                                                <?php endif; ?>-->
                                                             </div>
                                                         </div>
 
@@ -156,8 +156,8 @@
                                                     </div>
                                                 </div>
 
-                                                <hr />
-                                                <div class="form-group row">
+                                                <!--<hr />-->
+<!--                                                <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label"><?php echo $entry_gender; ?></label>
 
                                                     <div class="col-sm-10">
@@ -215,9 +215,9 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>-->
 
-                                                <div class="space"></div>
+<!--                                                <div class="space"></div>
                                                 <h4 class="header blue bolder smaller"><?php echo $text_contact; ?></h4>
 
                                                 <div class="form-group row <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
@@ -232,8 +232,8 @@
                                                         <span class="help-block"><?php echo $email_err; ?></span>
                                                         <?php endif; ?>
                                                     </div>
-                                                </div>
-
+                                                </div>-->
+<!--
                                                 <div class="space-4"></div>
 
                                                 <div class="form-group row <?php echo (!empty($telephone_err)) ? 'has-error' : ''; ?>">
@@ -261,7 +261,7 @@
                                                             <i class="ace-icon fa fa-mobile"></i>
                                                         </span>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                             </div>
 
                                             <div id="edit-password" class="tab-pane">

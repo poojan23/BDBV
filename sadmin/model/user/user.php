@@ -11,7 +11,7 @@ class ModelUserUser extends PT_Model
 
     public function editUser($user_id, $data)
     {
-        $this->db->query("UPDATE `" . DB_PREFIX . "user` SET email = '" . $this->db->escape((string)$data['email']) . "', user_group_id = '" . (int)$data['user_group_id'] . "', name = '" . $this->db->escape((string)$data['name']) . "', image = '" . $this->db->escape((string)$data['image']) . "', status = '" . (int)$data['status'] . "' WHERE user_id = '" . (int)$user_id . "'");
+        $this->db->query("UPDATE `" . DB_PREFIX . "user` SET designation = '" . $this->db->escape((string)$data['designation']) . "', name = '" . $this->db->escape((string)$data['name']) . "', image = '" . $this->db->escape((string)$data['image']) . "', status = '" . (int)$data['status'] . "' WHERE user_id = '" . (int)$user_id . "'");
 
         if ($data['password']) {
             $this->db->query("UPDATE `" . DB_PREFIX . "user` SET salt = '', password = '" . $this->db->escape(password_hash(html_entity_decode($data['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT)) . "', date_modified = NOW() WHERE user_id = '" . (int)$user_id . "'");
