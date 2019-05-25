@@ -128,8 +128,8 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
-        $tables[] = array(
+
+	$tables[] = array(
 		'name' => 'enquiry',
 		'field' => array(
 			array(
@@ -166,7 +166,7 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
+
 	$tables[] = array(
 		'name' => 'event',
 		'field' => array(
@@ -238,7 +238,7 @@ function db_schema()
 				'not_null' => true,
 				'default' => '1'
 			),
-                        array(
+			array(
 				'name' => 'date_added',
 				'type' => 'datetime',
 				'not_null' => true
@@ -361,8 +361,8 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
-        $tables[] = array(
+
+	$tables[] = array(
 		'name' => 'service',
 		'field' => array(
 			array(
@@ -454,7 +454,7 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
+
 	$tables[] = array(
 		'name' => 'session',
 		'field' => array(
@@ -525,8 +525,8 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
-        $tables[] = array(
+
+	$tables[] = array(
 		'name' => 'team',
 		'field' => array(
 			array(
@@ -540,12 +540,12 @@ function db_schema()
 				'type' => 'varchar(32)',
 				'not_null' => true
 			),
-                        array(
+			array(
 				'name' => 'image',
 				'type' => 'varchar(255)',
 				'not_null' => true
 			),
-                        array(
+			array(
 				'name' => 'designation',
 				'type' => 'varchar(96)',
 				'not_null' => true
@@ -585,8 +585,8 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
-        $tables[] = array(
+
+	$tables[] = array(
 		'name' => 'testimonial',
 		'field' => array(
 			array(
@@ -600,12 +600,12 @@ function db_schema()
 				'type' => 'varchar(32)',
 				'not_null' => true
 			),
-                        array(
+			array(
 				'name' => 'image',
 				'type' => 'varchar(255)',
 				'not_null' => true
 			),
-                        array(
+			array(
 				'name' => 'designation',
 				'type' => 'varchar(96)',
 				'not_null' => true
@@ -645,7 +645,56 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
+
+	$tables[] = array(
+		'name' => 'unique_visitor',
+		'field' => array(
+			array(
+				'name' => 'unique_visitor_id',
+				'type' => 'int(11)',
+				'not_null' => true,
+				'auto_increment' => true
+			),
+			array(
+				'name' => 'date',
+				'type' => 'date',
+				'not_null' => true
+			),
+			array(
+				'name' => 'ip',
+				'type' => 'text',
+				'not_null' => true
+			),
+			array(
+				'name' => 'url',
+				'type' => 'text',
+				'not_null' => true
+			),
+			array(
+				'name' => 'referer',
+				'type' => 'text',
+				'not_null' => true
+			),
+			array(
+				'name' => 'view',
+				'type' => 'int(11)',
+				'not_null' => true,
+				'default' => '1'
+			),
+			array(
+				'name' => 'date_added',
+				'type' => 'datetime',
+				'not_null' => true
+			)
+		),
+		'primary' => array(
+			'unique_visitor_id'
+		),
+		'engine' => 'InnoDB',
+		'charset' => 'utf8',
+		'collate' => 'utf8_general_ci'
+	);
+
 	$tables[] = array(
 		'name' => 'user',
 		'field' => array(

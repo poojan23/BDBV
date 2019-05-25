@@ -1,17 +1,19 @@
 <?php
 
-class ControllerSettingSetting extends PT_Controller {
+class ControllerSettingSetting extends PT_Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('setting/setting');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
         $this->load->model('setting/setting');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
             $this->model_setting_setting->editSetting('config', $this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -24,13 +26,13 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['warning_err'] = '';
         }
-        
-        if (isset($this->error['url'])) {
+
+        /*if (isset($this->error['url'])) {
             $data['url_err'] = $this->error['url'];
         } else {
             $data['url_err'] = '';
-        }
-        
+        }*/
+
         if (isset($this->error['name'])) {
             $data['error_name'] = $this->error['name'];
         } else {
@@ -176,7 +178,7 @@ class ControllerSettingSetting extends PT_Controller {
 
         $data['user_token'] = $this->session->data['user_token'];
 
-        if (isset($this->request->post['config_url'])) {
+        /*if (isset($this->request->post['config_url'])) {
             $data['config_url'] = $this->request->post['config_url'];
         } else {
             $data['config_url'] = $this->config->get('config_url');
@@ -186,8 +188,9 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_ssl'] = $this->request->post['config_ssl'];
         } else {
             $data['config_ssl'] = $this->config->get('config_ssl');
-        }
+        }*/
 
+        # General
         if (isset($this->request->post['config_meta_title'])) {
             $data['config_meta_title'] = $this->request->post['config_meta_title'];
         } else {
@@ -206,20 +209,31 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_meta_keyword'] = $this->config->get('config_meta_keyword');
         }
 
-        if (isset($this->request->post['config_theme'])) {
-            $data['config_theme'] = $this->request->post['config_theme'];
+        if (isset($this->request->post['config_social_media_image'])) {
+            $data['config_social_media_image'] = $this->request->post['config_social_media_image'];
         } else {
-            $data['config_theme'] = $this->config->get('config_theme');
+            $data['config_social_media_image'] = $this->config->get('config_social_media_image');
+        }
+
+        $this->load->model('tool/image');
+
+        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+
+        if (is_file(DIR_IMAGE . html_entity_decode($data['config_social_media_image'], ENT_QUOTES, 'UTF-8'))) {
+            $data['social_image'] = $this->model_tool_image->resize(html_entity_decode($data['config_social_media_image'], ENT_QUOTES, 'UTF-8'), 100, 100);
+        } else {
+            $data['social_image'] = $data['placeholder'];
         }
 
         $data['store_url'] = HTTP_CATALOG;
 
-        if (isset($this->request->post['config_layout_id'])) {
+        /*if (isset($this->request->post['config_layout_id'])) {
             $data['config_layout_id'] = $this->request->post['config_layout_id'];
         } else {
             $data['config_layout_id'] = $this->config->get('config_layout_id');
-        }
+        }*/
 
+        # Stores
         if (isset($this->request->post['config_name'])) {
             $data['config_name'] = $this->request->post['config_name'];
         } else {
@@ -270,12 +284,12 @@ class ControllerSettingSetting extends PT_Controller {
 
         $this->load->model('tool/image');
 
-        if (isset($this->request->post['config_image']) && is_file(DIR_IMAGE . $this->request->post['config_image'])) {
-            $data['thumb'] = $this->model_tool_image->resize($this->request->post['config_image'], 100, 100);
-        } elseif ($this->config->get('config_image') && is_file(DIR_IMAGE . $this->config->get('config_image'))) {
-            $data['thumb'] = $this->model_tool_image->resize($this->config->get('config_image'), 100, 100);
+        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+
+        if (is_file(DIR_IMAGE . html_entity_decode($data['config_image'], ENT_QUOTES, 'UTF-8'))) {
+            $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['config_image'], ENT_QUOTES, 'UTF-8'), 100, 100);
         } else {
-            $data['thumb'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+            $data['thumb'] = $data['placeholder'];
         }
 
         if (isset($this->request->post['config_open'])) {
@@ -290,9 +304,9 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_comment'] = $this->config->get('config_comment');
         }
 
-//		$this->load->model('localisation/location');
-//
-//		$data['locations'] = $this->model_localisation_location->getLocations();
+        /*$this->load->model('localisation/location');
+
+        $data['locations'] = $this->model_localisation_location->getLocations();
 
         if (isset($this->request->post['config_location'])) {
             $data['config_location'] = $this->request->post['config_location'];
@@ -300,8 +314,9 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_location'] = $this->config->get('config_location');
         } else {
             $data['config_location'] = array();
-        }
+        }*/
 
+        # Locale
         if (isset($this->request->post['config_country_id'])) {
             $data['config_country_id'] = $this->request->post['config_country_id'];
         } else {
@@ -326,7 +341,7 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_timezone'] = 'UTC';
         }
 
-        // Set Time Zone
+        # Set Time Zone
         $data['timezones'] = array();
 
         $timestamp = time();
@@ -642,26 +657,75 @@ class ControllerSettingSetting extends PT_Controller {
             'text' => $this->language->get('text_contact'),
             'value' => 'contact'
         );
-        
-        #option
-        
+
+        # Options
+        $data['icons'] = array();
+
+        $pattern = '/\.(icon-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
+        $subject = file_get_contents('view/dist/css/et-line.css');
+
+        preg_match_all($pattern, $subject, $matches, PREG_SET_ORDER);
+
+        sort($matches);
+
+        $pattern1 = '/\.(py-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
+        $subject1 = file_get_contents('view/dist/css/popaya.css');
+
+        preg_match_all($pattern1, $subject1, $matches1, PREG_SET_ORDER);
+
+        $mergers = array_merge($matches1, $matches);
+
+        foreach ($mergers as $key => $match) {
+            $data['icons'][$key] = array(
+                'icon'  => $match[1],
+                'name' => str_replace(array('icon-', '-'), ' ', $match[1])
+            );
+        }
+
+        if (isset($this->request->post['config_website_icon'])) {
+            $data['config_website_icon'] = $this->request->post['config_website_icon'];
+        } else {
+            $data['config_website_icon'] = $this->config->get('config_website_icon');
+        }
+
         if (isset($this->request->post['config_website'])) {
             $data['config_website'] = $this->request->post['config_website'];
         } else {
             $data['config_website'] = $this->config->get('config_website');
         }
-        
-        if (isset($this->request->post['config_sofware'])) {
-            $data['config_sofware'] = $this->request->post['config_sofware'];
+
+        if (isset($this->request->post['config_software_icon'])) {
+            $data['config_software_icon'] = $this->request->post['config_software_icon'];
         } else {
-            $data['config_sofware'] = $this->config->get('config_sofware');
+            $data['config_software_icon'] = $this->config->get('config_software_icon');
         }
-        
-        if (isset($this->request->post['config_clients'])) {
-            $data['config_clients'] = $this->request->post['config_clients'];
+
+        if (isset($this->request->post['config_software'])) {
+            $data['config_software'] = $this->request->post['config_software'];
         } else {
-            $data['config_clients'] = $this->config->get('config_clients');
+            $data['config_software'] = $this->config->get('config_software');
         }
+
+        if (isset($this->request->post['config_client_icon'])) {
+            $data['config_client_icon'] = $this->request->post['config_client_icon'];
+        } else {
+            $data['config_client_icon'] = $this->config->get('config_client_icon');
+        }
+
+        if (isset($this->request->post['config_client'])) {
+            $data['config_client'] = $this->request->post['config_client'];
+        } else {
+            $data['config_client'] = $this->config->get('config_client');
+        }
+
+        if (isset($this->request->post['config_visitor_icon'])) {
+            $data['config_visitor_icon'] = $this->request->post['config_visitor_icon'];
+        } else {
+            $data['config_visitor_icon'] = $this->config->get('config_visitor_icon');
+        }
+
+        print_r($this->request->server['HTTP_USER_AGENT']);
+        exit;
 
         # Images
         if (isset($this->request->post['config_logo'])) {
@@ -669,25 +733,15 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['config_logo'] = $this->config->get('config_logo');
         }
-        if (isset($this->request->post['config_soicial_media_logo'])) {
-            $data['config_soicial_media_logo'] = $this->request->post['config_soicial_media_logo'];
-        } else {
-            $data['config_soicial_media_logo'] = $this->config->get('config_soicial_media_logo');
-        }
 
-        if (isset($this->request->post['config_logo']) && is_file(DIR_IMAGE . $this->request->post['config_logo'])) {
-            $data['logo'] = $this->model_tool_image->resize($this->request->post['config_logo'], 100, 100);
-        } elseif ($this->config->get('config_logo') && is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
-            $data['logo'] = $this->model_tool_image->resize($this->config->get('config_logo'), 100, 100);
+        $this->load->model('tool/image');
+
+        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+
+        if (is_file(DIR_IMAGE . html_entity_decode($data['config_logo'], ENT_QUOTES, 'UTF-8'))) {
+            $data['logo'] = $this->model_tool_image->resize(html_entity_decode($data['config_logo'], ENT_QUOTES, 'UTF-8'), 100, 100);
         } else {
-            $data['logo'] = $this->model_tool_image->resize('no-image.png', 100, 100);
-        }
-        if (isset($this->request->post['config_soicial_media_logo']) && is_file(DIR_IMAGE . $this->request->post['config_soicial_media_logo'])) {
-            $data['social_logo'] = $this->model_tool_image->resize($this->request->post['config_logo'], 100, 100);
-        } elseif ($this->config->get('config_soicial_media_logo') && is_file(DIR_IMAGE . $this->config->get('config_soicial_media_logo'))) {
-            $data['social_logo'] = $this->model_tool_image->resize($this->config->get('config_soicial_media_logo'), 100, 100);
-        } else {
-            $data['social_logo'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+            $data['logo'] = $data['placeholder'];
         }
 
         if (isset($this->request->post['config_icon'])) {
@@ -696,12 +750,10 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_icon'] = $this->config->get('config_icon');
         }
 
-        if (isset($this->request->post['config_icon']) && is_file(DIR_IMAGE . $this->request->post['config_icon'])) {
-            $data['icon'] = $this->model_tool_image->resize($this->request->post['config_icon'], 100, 100);
-        } elseif ($this->config->get('config_icon') && is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
-            $data['icon'] = $this->model_tool_image->resize($this->config->get('config_icon'), 100, 100);
+        if (is_file(DIR_IMAGE . html_entity_decode($data['config_icon'], ENT_QUOTES, 'UTF-8'))) {
+            $data['icon'] = $this->model_tool_image->resize(html_entity_decode($data['config_icon'], ENT_QUOTES, 'UTF-8'), 100, 100);
         } else {
-            $data['icon'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+            $data['icon'] = $data['placeholder'];
         }
 
         if (isset($this->request->post['config_logo_colour'])) {
@@ -710,12 +762,10 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_logo_colour'] = $this->config->get('config_logo_colour');
         }
 
-        if (isset($this->request->post['config_logo_colour']) && is_file(DIR_IMAGE . $this->request->post['config_logo_colour'])) {
-            $data['logo_colour'] = $this->model_tool_image->resize($this->request->post['config_logo_colour'], 100, 100);
-        } elseif ($this->config->get('config_logo_colour') && is_file(DIR_IMAGE . $this->config->get('config_logo_colour'))) {
-            $data['logo_colour'] = $this->model_tool_image->resize($this->config->get('config_logo_colour'), 100, 100);
+        if (is_file(DIR_IMAGE . html_entity_decode($data['config_logo_colour'], ENT_QUOTES, 'UTF-8'))) {
+            $data['logo_colour'] = $this->model_tool_image->resize(html_entity_decode($data['config_logo_colour'], ENT_QUOTES, 'UTF-8'), 100, 100);
         } else {
-            $data['logo_colour'] = $this->model_tool_image->resize('no-image.png', 100, 100);
+            $data['logo_colour'] = $data['placeholder'];
         }
 
         # Mail
@@ -801,6 +851,25 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_mail_alert_email'] = $this->config->get('config_mail_alert_email');
         }
 
+        # Server
+        if (isset($this->request->post['config_shared'])) {
+            $data['config_shared'] = $this->request->post['config_shared'];
+        } else {
+            $data['config_shared'] = $this->config->get('config_shared');
+        }
+
+        if (isset($this->request->post['config_robots'])) {
+            $data['config_robots'] = $this->request->post['config_robots'];
+        } else {
+            $data['config_robots'] = $this->config->get('config_robots');
+        }
+
+        if (isset($this->request->post['config_seo_url'])) {
+            $data['config_seo_url'] = $this->request->post['config_seo_url'];
+        } else {
+            $data['config_seo_url'] = $this->config->get('config_seo_url');
+        }
+
         if (isset($this->request->post['config_file_max_size'])) {
             $data['config_file_max_size'] = $this->request->post['config_file_max_size'];
         } elseif ($this->config->get('config_file_max_size')) {
@@ -821,27 +890,12 @@ class ControllerSettingSetting extends PT_Controller {
             $data['config_file_mime_allowed'] = $this->config->get('config_file_mime_allowed');
         }
 
-        $this->load->model('catalog/information');
-
-        $data['informations'] = $this->model_catalog_information->getInformations();
-        # Server
         if (isset($this->request->post['config_maintenance'])) {
             $data['config_maintenance'] = $this->request->post['config_maintenance'];
         } else {
             $data['config_maintenance'] = $this->config->get('config_maintenance');
         }
 
-        if (isset($this->request->post['config_seo_url'])) {
-            $data['config_seo_url'] = $this->request->post['config_seo_url'];
-        } else {
-            $data['config_seo_url'] = $this->config->get('config_seo_url');
-        }
-
-        if (isset($this->request->post['config_robots'])) {
-            $data['config_robots'] = $this->request->post['config_robots'];
-        } else {
-            $data['config_robots'] = $this->config->get('config_robots');
-        }
         if (isset($this->request->post['config_password'])) {
             $data['config_password'] = $this->request->post['config_password'];
         } else {
@@ -853,11 +907,13 @@ class ControllerSettingSetting extends PT_Controller {
         } else {
             $data['config_encryption'] = $this->config->get('config_encryption');
         }
-        if (isset($this->request->post['config_shared'])) {
-            $data['config_shared'] = $this->request->post['config_shared'];
+
+        if (isset($this->request->post['config_compression'])) {
+            $data['config_compression'] = $this->request->post['config_compression'];
         } else {
-            $data['config_shared'] = $this->config->get('config_shared');
+            $data['config_compression'] = $this->config->get('config_compression');
         }
+
         if (isset($this->request->post['config_error_display'])) {
             $data['config_error_display'] = $this->request->post['config_error_display'];
         } else {
@@ -883,7 +939,8 @@ class ControllerSettingSetting extends PT_Controller {
         $this->response->setOutput($this->load->view('setting/setting', $data));
     }
 
-    protected function validate() {
+    protected function validate()
+    {
         if (!$this->user->hasPermission('modify', 'setting/setting')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -912,7 +969,7 @@ class ControllerSettingSetting extends PT_Controller {
             $this->error['telephone'] = $this->language->get('error_telephone');
         }
 
-        if (!empty($this->request->post['config_customer_group_display']) && !in_array($this->request->post['config_customer_group_id'], $this->request->post['config_customer_group_display'])) {
+        /*if (!empty($this->request->post['config_customer_group_display']) && !in_array($this->request->post['config_customer_group_id'], $this->request->post['config_customer_group_display'])) {
             $this->error['customer_group_display'] = $this->language->get('error_customer_group_display');
         }
 
@@ -938,7 +995,7 @@ class ControllerSettingSetting extends PT_Controller {
 
         if (!isset($this->request->post['config_complete_status'])) {
             $this->error['complete_status'] = $this->language->get('error_complete_status');
-        }
+        }*/
 
         $disallowed = array(
             'php',
@@ -990,20 +1047,4 @@ class ControllerSettingSetting extends PT_Controller {
 
         return !$this->error;
     }
-
-    public function theme() {
-        // This is only here for compatibility with old themes.
-        if ($this->request->get['theme'] == 'theme_default') {
-            $theme = $this->config->get('theme_default_directory');
-        } else {
-            $theme = basename($this->request->get['theme']);
-        }
-
-        if (is_file(DIR_CATALOG . 'view/theme/' . $theme . '/image/' . $theme . '.png')) {
-            $this->response->setOutput(HTTP_CATALOG . 'catalog/view/theme/' . $theme . '/image/' . $theme . '.png');
-        } else {
-            $this->response->setOutput(HTTP_CATALOG . 'image/no_image.png');
-        }
-    }
-
 }

@@ -24,6 +24,14 @@ label.control-label span[data-toggle="tooltip"]:after {
   margin-bottom: 20px;
 }
 
+fieldset legend {
+  padding-bottom: 5px;
+}
+
+legend {
+  border-bottom: 1px solid #e5e5e5;
+}
+
 .col-form-label {
   font-weight: bold;
 }
@@ -48,6 +56,16 @@ td.required::after {
 
 .card.image {
   width: 12rem;
+}
+
+.table-icons {
+  height: 500px;
+  overflow: auto;
+  padding: 5px;
+}
+
+.table-icons .table td {
+  padding: 0.25rem;
 }
 
 /* Switch */
@@ -212,6 +230,7 @@ input[type="checkbox"].pop.pop-switch:checked+.lbl::after {
     background-size: 240px 24px;
   }
 }
+
 .tab-content {
-    padding: 16px 12px;
+  padding: 16px 12px;
 }
