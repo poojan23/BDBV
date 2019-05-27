@@ -16,10 +16,10 @@ class ControllerCommonDashboard extends PT_Controller
         
         foreach ($result_enquiries as $result) {
             $data['enquiries'][] = array(
-                'enquiry_id' => $result['enquiry_id'],
-                'name' => $result['name'],
-                'email' => $result['email'],
-                'date_added' => date("d-m-Y", strtotime($result['date_added']) )
+                'enquiry_id'    => $result['enquiry_id'],
+                'name'          => $result['name'],
+                'email'         => $result['email'],
+                'date_added'    => date("d-m-Y", strtotime($result['date_added']) )
             );
         }
         
@@ -32,20 +32,18 @@ class ControllerCommonDashboard extends PT_Controller
         foreach ($result_services as $result) {
             $data['services'][] = array(
                 'service_id'  => $result['service_id'],
-                'name'                  => $result['name'],
-                'sort_order'            => $result['sort_order'],
-                'edit'                  => $this->url->link('catalog/service/edit', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $result['service_id']),
-                'delete'                => $this->url->link('catalog/service/delete', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $result['service_id'])
+                'name'        => $result['name'],
+                'sort_order'  => $result['sort_order']
             );
         }
         
-        $data['website'] = $this->config->get('config_website');
-        $data['software'] = $this->config->get('config_software');
-        $data['client'] = $this->config->get('config_client');
+        $data['website']    = $this->config->get('config_website');
+        $data['software']   = $this->config->get('config_software');
+        $data['client']     = $this->config->get('config_client');
         
-        $data['header'] = $this->load->controller('common/header');
-        $data['nav'] = $this->load->controller('common/nav');
-        $data['footer'] = $this->load->controller('common/footer');
+        $data['header']     = $this->load->controller('common/header');
+        $data['nav']        = $this->load->controller('common/nav');
+        $data['footer']     = $this->load->controller('common/footer');
 
         $this->response->setOutput($this->load->view('common/dashboard', $data));
     }
