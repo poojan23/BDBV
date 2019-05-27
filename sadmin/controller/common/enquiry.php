@@ -15,11 +15,11 @@ class ControllerCommonEnquiry extends PT_Controller {
     }
 
     public function edit() {
-        $this->load->language('common/enquiry');
+        $this->load->language('catalog/enquiry');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('common/enquiry');
+        $this->load->model('catalog/enquiry');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
             $this->model_catalog_enquiry->editInformation($this->request->get['information_id'], $this->request->post);
@@ -33,11 +33,11 @@ class ControllerCommonEnquiry extends PT_Controller {
     }
 
     public function delete() {
-        $this->load->language('common/enquiry');
+        $this->load->language('catalog/enquiry');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('common/enquiry');
+        $this->load->model('catalog/enquiry');
 
         if (isset($this->request->post['selected'])) {
             foreach ($this->request->post['selected'] as $information_id) {
