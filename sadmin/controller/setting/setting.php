@@ -724,8 +724,9 @@ class ControllerSettingSetting extends PT_Controller
             $data['config_visitor_icon'] = $this->config->get('config_visitor_icon');
         }
 
-        print_r($this->request->server['HTTP_USER_AGENT']);
-        exit;
+        $this->load->model('tool/online');
+
+        $data['config_visitor'] = $this->model_tool_online->getTotalOnlines();
 
         # Images
         if (isset($this->request->post['config_logo'])) {

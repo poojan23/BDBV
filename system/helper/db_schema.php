@@ -130,6 +130,44 @@ function db_schema()
 	);
 
 	$tables[] = array(
+		'name' => 'crawler',
+		'field' => array(
+			array(
+				'name' => 'crawler_id',
+				'type' => 'int(11)',
+				'not_null' => true,
+				'auto_increment' => true
+			),
+			array(
+				'name' => 'ip',
+				'type' => 'text',
+				'not_null' => true
+			),
+			array(
+				'name' => 'url',
+				'type' => 'text',
+				'not_null' => true
+			),
+			array(
+				'name' => 'referer',
+				'type' => 'text',
+				'not_null' => true
+			),
+			array(
+				'name' => 'date_added',
+				'type' => 'datetime',
+				'not_null' => true
+			)
+		),
+		'primary' => array(
+			'crawler_id'
+		),
+		'engine' => 'InnoDB',
+		'charset' => 'utf8',
+		'collate' => 'utf8_general_ci'
+	);
+
+	$tables[] = array(
 		'name' => 'enquiry',
 		'field' => array(
 			array(
@@ -649,12 +687,6 @@ function db_schema()
 	$tables[] = array(
 		'name' => 'unique_visitor',
 		'field' => array(
-			array(
-				'name' => 'unique_visitor_id',
-				'type' => 'int(11)',
-				'not_null' => true,
-				'auto_increment' => true
-			),
 			array(
 				'name' => 'date',
 				'type' => 'date',
