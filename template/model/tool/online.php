@@ -16,4 +16,11 @@ class ModelToolOnline extends PT_Model
             $this->db->query("INSERT INTO `" . DB_PREFIX . "unique_visitor` SET `date` = '" . $this->db->escape(date('Y-m-d')) . "', `ip` = '" . $this->db->escape($ip) . "', `url` = '" . $this->db->escape($url) . "', `referer` = '" . $this->db->escape($referer) . "', date_added = NOW()");
         }
     }
+
+    public function getTotalOnlines()
+    {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "unique_visitor");
+
+        return $query->row['total'];
+    }
 }
