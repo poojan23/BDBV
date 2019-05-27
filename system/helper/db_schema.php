@@ -645,6 +645,55 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
+        
+	$tables[] = array(
+		'name' => 'translation',
+		'field' => array(
+			array(
+				'name' => 'translation_id',
+				'type' => 'int(11)',
+				'not_null' => true,
+				'auto_increment' => true
+			),
+                        array(
+				'name' => 'store_id',
+				'type' => 'int(11)',
+				'not_null' => true,
+				'default' => '0'
+			),
+                        array(
+				'name' => 'language_id',
+				'type' => 'int(11)',
+				'not_null' => true
+			),
+			array(
+				'name' => 'route',
+				'type' => 'varchar(64)',
+				'not_null' => true
+			),
+			array(
+				'name' => 'key',
+				'type' => 'varchar(64)',
+				'not_null' => true
+			),
+			array(
+				'name' => 'value',
+				'type' => 'text',
+				'not_null' => true
+			),
+			array(
+				'name' => 'date_added',
+				'type' => 'datetime',
+				'not_null' => true
+			),
+		),
+		'primary' => array(
+			'translation_id'
+		),
+		'engine' => 'InnoDB',
+		'charset' => 'utf8',
+		'collate' => 'utf8_general_ci'
+	);
 
 	$tables[] = array(
 		'name' => 'unique_visitor',
