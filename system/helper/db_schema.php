@@ -683,7 +683,7 @@ function db_schema()
 		'charset' => 'utf8',
 		'collate' => 'utf8_general_ci'
 	);
-        
+
 	$tables[] = array(
 		'name' => 'translation',
 		'field' => array(
@@ -693,13 +693,13 @@ function db_schema()
 				'not_null' => true,
 				'auto_increment' => true
 			),
-                        array(
+			array(
 				'name' => 'store_id',
 				'type' => 'int(11)',
 				'not_null' => true,
 				'default' => '0'
 			),
-                        array(
+			array(
 				'name' => 'language_id',
 				'type' => 'int(11)',
 				'not_null' => true

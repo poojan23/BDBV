@@ -1,6 +1,6 @@
 <?php
 # Heading Title
-$_['heading_title']         = 'Crawlers - Welcome';
+$_['heading_title']     = 'Crawlers - Welcome';
 
 # Text
 $_['text_title']        = 'Welcome';

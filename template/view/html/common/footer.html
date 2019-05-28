@@ -6,32 +6,40 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="footer_logo text-left">
-                    <a href="#">
-                        <img src="image/template/logo-color.png" alt="Footer Logo">
+                    <a href="<?php echo $home; ?>">
+                        <?php if($logo_colour) : ?>
+                        <img src="image/template/logo-color.png" alt="<?php echo $name; ?>">
+                        <?php else : ?>
+                        <?php echo $name; ?>
+                        <?php endif; ?>
                     </a>
                 </div>
             </div>
             <div class="col-md-3 text-left">
                 <div class="footer_address">
-                    <p>Mumbai, INDIA</p>
-                    <a href="tel:02019853591">+91 93227 29922</a>
+                    <p><?php echo $address; ?></p>
+                    <a href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a>
                     <span>
-                        <a href="mailto:Hello@support.co">info@popaya.co.in</a>
+                        <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
                     </span>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="social_icons mb-110 mb-xs-60">
-                    <a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                    <a href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                    <a href="#" title="Behance" target="_blank"><i class="fa fa-instagram"></i></a>
-                    <a href="#" title="LinkedIn+" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/popaya.in/" title="Facebook" target="_blank"><i
+                            class="fa fa-facebook"></i></a>
+                    <a href="https://www.twitter.com/popayain/" title="Twitter" target="_blank"><i
+                            class="fa fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/popayain/" title="Instagram" target="_blank"><i
+                            class="fa fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/popaya/" title="LinkedIn" target="_blank"><i
+                            class="fa fa-linkedin"></i></a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="copyright text-left">
-                    <p>&copy; Popaya™ 2019 </p>
-                    <p>All Rights Reserved</p>
+                    <p><?php echo $text_powered; ?></p>
+                    <p><?php echo $text_reserved; ?></p>
                 </div>
             </div>
         </div>

@@ -10,7 +10,19 @@ class ControllerCommonFooter extends PT_Controller
 
         $this->load->model('tool/crawler');
 
-        if ($this->bots($this->request->server['HTTP_USER_AGENT']) === FALSE) {
+        $data['name'] = $this->config->get('config_name');
+
+        if (is_file(DIR_IMAGE . $this->config->get('config_logo_colour'))) {
+            $data['logo_colour'] = $this->config->get('config_url') . 'image/' . $this->config->get('config_logo_colour');
+        } else {
+            $data['logo_colour'] = '';
+        }
+
+        $data['address'] = html_entity_decode($this->config->get('config_address'), ENT_QUOTES, 'UTF-8');
+        $data['telephone'] = $this->config->get('config_telephone');
+        $data['email'] = $this->config->get('config_email');
+
+        if ($this->bots($this->request->server['HTTP_USER_AGENT'], $this->request->server['REMOTE_ADDR']) === FALSE) {
             if (isset($this->request->server['HTTP_X_REAL_IP'])) {
                 $ip = $this->request->server['HTTP_X_REAL_IP'];
             } else if (isset($this->request->server['REMOTE_ADDR'])) {
@@ -34,50 +46,26 @@ class ControllerCommonFooter extends PT_Controller
             $this->model_tool_online->addOnline($ip, $url, $referer);
         }
 
-        $data['crawler'] = $this->url->link('common/crawler');
+        $data['home'] = $this->url->link('common/home', 'language=' . $this->config->get('config_language'));
+        $data['crawler'] = $this->url->link('common/crawler', 'language=' . $this->config->get('config_language'));
 
         return $this->load->view('common/footer', $data);
     }
 
-    protected function bots($user_agent)
+    protected function bots($user_agent, $user_ip)
     {
-        /*$bots = array(
-            'crawler',
-            'spider',
-            'robot',
-            'slurp',
-            'Atomz',
-            'googlebot',
-            'VoilaBot',
-            'msnbot',
-            'Gaisbot',
-            'Gigabot',
-            'SBIder',
-            'Zyborg',
-            'FunWebProducts',
-            'findlinks',
-            'ia_archiver',
-            'MJ12bot',
-            'Ask Jeeves',
-            'NG/2.0',
-            'voyager',
-            'Exabot',
-            'Nutch',
-            'Hercules',
-            'psbot',
-            'LocalcomBot'
-        );
-
-        foreach ($bots as $key => $bot) {
-            $bot = '/\b' . $bot . '\b/i';
-
-            if (preg_match($bot, $this->request->server['HTTP_USER_AGENT']) > 0) {
-                return $key;
-            }
-        }*/
-
-        if (!empty($user_agent) && preg_match('~(bot|crawl)~i', $user_agent)) {
+        if (!empty($user_agent) && preg_match('/bot|crawl|curl|dataprovider|search|get|spider|find|java|majesticsEO|google|yahoo|teoma|contaxe|yandex|libwww-perl|facebookexternalhit/i', $user_agent)) {
             return true;
+        }
+
+        $this->load->model('tool/crawler');
+
+        $results = $this->model_tool_crawler->getCrawlers();
+
+        foreach ($results as $result) {
+            if ($user_ip == $result['ip']) {
+                return true;
+            }
         }
 
         return false;

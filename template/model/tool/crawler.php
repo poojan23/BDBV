@@ -11,7 +11,7 @@ class ModelToolCrawler extends PT_Model
 
     public function getCrawlers()
     {
-        $query = $this->db->query("SELECT `ip` FROM `" . DB_PREFIX . "crawler`");
+        $query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "crawler`");
 
         return $query->rows;
     }

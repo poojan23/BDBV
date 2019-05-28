@@ -1,17 +1,19 @@
 <?php
 
-class ControllerUserProfile extends PT_Controller {
+class ControllerUserProfile extends PT_Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('setting/profile');
 
         $this->load->model('user/user');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $member_data = array_merge($this->request->post, array(
                 'user_id' => $this->user->getGroupId(),
                 'status' => 1
@@ -91,7 +93,7 @@ class ControllerUserProfile extends PT_Controller {
         if ($this->request->server['REQUEST_METHOD'] != 'POST') {
             $user_info = $this->model_user_user->getUser($this->user->getId());
         }
-//        print_r($user_info);exit;
+
         if (!empty($user_info)) {
             $data['update'] = sprintf($this->language->get('text_password'), date($this->language->get('date_format_short'), strtotime($user_info['date_modified'])));
         }
@@ -150,7 +152,7 @@ class ControllerUserProfile extends PT_Controller {
 
         $this->load->model('tool/image');
 
-        $data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
 
         if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
             $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
@@ -165,7 +167,8 @@ class ControllerUserProfile extends PT_Controller {
         $this->response->setOutput($this->load->view('user/profile', $data));
     }
 
-    protected function validateForm() {
+    protected function validateForm()
+    {
         if (!$this->user->hasPermission('modify', 'common/profile')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }

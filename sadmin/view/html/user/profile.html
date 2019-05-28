@@ -49,7 +49,7 @@
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                     </div>
                     <?php endif; ?>
-<!--
+                    <!--
                     <div class="clearfix">
                         <div class="float-right tableTools-container">
                                                         <button type="submit" form="form-team" data-toggle="tooltip"
@@ -60,7 +60,8 @@
 
                         </div>
                     </div>-->
-                </div><div class="col-md-3">
+                </div>
+                <div class="col-md-3">
 
                     <!-- Profile Image -->
                     <div class="card card-primary card-outline">
@@ -69,12 +70,12 @@
                                 <img class="profile-user-img img-fluid img-circle" src="<?php echo $thumb; ?>" alt="">
                             </div>
 
-                            <h3 class="profile-username text-center"> <?php echo $name; ?></h3>
+                            <h3 class="profile-username text-center"><?php echo $name; ?></h3>
 
                             <p class="text-muted text-center"><?php echo $designation; ?></p>
 
                             <button type="submit" form="form-team" data-toggle="tooltip"
-                                    title="<?php echo $button_save; ?>" class="btn btn-primary btn-block">Save</button>
+                                title="<?php echo $button_save; ?>" class="btn btn-primary btn-block">Save</button>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -93,8 +94,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data"
-                              id="form-team" class="form-horizontal">
+                        <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data" id="form-team"
+                            class="form-horizontal">
                             <div class="card-body">
                                 <div class="form-group row required">
                                     <label for="input-username" class="col-sm-2 col-form-label">
@@ -102,8 +103,8 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" name="username" value="<?php echo $username; ?>"
-                                               placeholder="<?php echo $entry_username; ?>" class="form-control"
-                                               id="input-username" />
+                                            placeholder="<?php echo $entry_username; ?>" class="form-control"
+                                            id="input-username" />
                                         <?php if($error_username) : ?>
                                         <span class="help-block">
                                             <?php echo $error_username; ?></span>
@@ -116,22 +117,22 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" name="name" value="<?php echo $name; ?>"
-                                               placeholder="<?php echo $entry_name; ?>" class="form-control"
-                                               id="input-name" />
+                                            placeholder="<?php echo $entry_name; ?>" class="form-control"
+                                            id="input-name" />
                                         <?php if($error_firstname) : ?>
                                         <span class="help-block">
                                             <?php echo $error_firstname; ?></span>
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group row required">
+                                <div class="form-group row">
                                     <label for="input-designation" class="col-sm-2 col-form-label">
                                         <?php echo $entry_designation; ?></label>
 
                                     <div class="col-sm-10">
                                         <input type="text" name="designation" value="<?php echo $designation; ?>"
-                                               placeholder="<?php echo $entry_designation; ?>" class="form-control"
-                                               id="input-designation" />
+                                            placeholder="<?php echo $entry_designation; ?>" class="form-control"
+                                            id="input-designation" />
                                         <?php if($error_designation) : ?>
                                         <span class="help-block">
                                             <?php echo $error_designation; ?></span>
@@ -158,8 +159,8 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" name="email" value="<?php echo $email; ?>"
-                                               placeholder="<?php echo $entry_email; ?>" class="form-control"
-                                               id="input-email" />
+                                            placeholder="<?php echo $entry_email; ?>" class="form-control"
+                                            id="input-email" />
                                         <?php if($error_email) : ?>
                                         <span class="help-block">
                                             <?php echo $error_email; ?></span>
@@ -175,10 +176,11 @@
                                         <div class="card image">
                                             <a href="" id="thumb-image" data-toggle="image">
                                                 <img src="<?php echo $thumb; ?>" alt="" title="" id="thumb-image"
-                                                     data-placeholder="<?php echo $placeholder; ?>" class="card-img-top" />
+                                                    data-placeholder="<?php echo $placeholder; ?>"
+                                                    class="card-img-top" />
                                             </a>
                                             <input type="hidden" name="image" value="<?php echo $image; ?>"
-                                                   id="input-image" />
+                                                id="input-image" />
                                         </div>
                                     </div>
                                 </div>
@@ -189,8 +191,8 @@
 
                                     <div class="col-sm-10">
                                         <input type="password" name="password" value="<?php echo $password; ?>"
-                                               placeholder="<?php echo $entry_password; ?>" class="form-control"
-                                               id="input-password" />
+                                            placeholder="<?php echo $entry_password; ?>" class="form-control"
+                                            id="input-password" />
                                         <?php if($error_password) : ?>
                                         <span class="help-block">
                                             <?php echo $error_password; ?></span>
@@ -203,8 +205,8 @@
 
                                     <div class="col-sm-10">
                                         <input type="password" name="confirm" value="<?php echo $confirm; ?>"
-                                               placeholder="<?php echo $entry_confirm; ?>" class="form-control"
-                                               id="input-confirm" />
+                                            placeholder="<?php echo $entry_confirm; ?>" class="form-control"
+                                            id="input-confirm" />
                                         <?php if($error_confirm) : ?>
                                         <span class="help-block">
                                             <?php echo $error_confirm; ?></span>

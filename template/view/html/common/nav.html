@@ -42,9 +42,10 @@
                                     <div class="logo">
                                         <a href="<?php echo $home; ?>">
                                             <?php if(isset($logo) && isset($logo_colour)) : ?>
-
-                                            <img class="no_sticky_logo" src="<?php echo $logo; ?>" alt="Logo">
-                                            <img class="sticky_logo" src="<?php echo $logo_colour; ?>" alt="Logo">
+                                            <img class="no_sticky_logo" src="<?php echo $logo; ?>"
+                                                alt="<?php echo $name; ?>">
+                                            <img class="sticky_logo" src="<?php echo $logo_colour; ?>"
+                                                alt="<?php echo $name; ?>">
                                             <?php else : ?>
                                             <?php echo $name; ?>
                                             <?php endif; ?>
