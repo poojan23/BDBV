@@ -24,7 +24,7 @@ jQuery(document).ready(function () {
     /*======= jQuery navbar on scroll =========*/
 
 
-    $window.on('scroll' , function () {
+    $window.on('scroll', function () {
 
         if ($(".navbar-default").add(".navbar-inverse").offset().top > 50) {
             $(".reveal-menu-home").addClass("sticky-nav");
@@ -74,31 +74,52 @@ jQuery(document).ready(function () {
 
     /*======== Contact Form ========*/
 
-    $('#submit-btn').on('click',function (event){
+    $('#submit-btn').on('click', function (event) {
         event.preventDefault();
         $.ajax({
             dataType: 'JSON',
-            url: 'sendmail.php',
+            url: 'index.php?url=common/home/send',
             type: 'POST',
             data: $('#contact_form').serialize(),
             beforeSend: function (xhr) {
                 $('.mt_load').show();
             },
             success: function (response) {
-                if (response) {
-                    console.log(response);
-                    if (response['signal'] == 'ok') {
-                        toastr.success(response['msg']);
-                        $('#msg').hide();
-                        $('input, textarea').val(function () {
-                            return this.defaultValue;
-                        });
+                if (response['error']) {
+                    if (response['error']['name']) {
+                        $('input[name=\'name\']').after('<div class="mt_error">' + response['error']['name'] + '</div>');
                     }
-                    else {
-                        $('#msg').show();
-                        $('#msg').html('<div class="mt_error">'+ response['msg'] +'</div>');
+
+                    if (response['error']['email']) {
+                        $('input[name=\'email\']').after('<div class="mt_error">' + response['error']['email'] + '</div>');
+                    }
+
+                    if (response['error']['message']) {
+                        $('textarea[name=\'message\']').after('<div class="mt_error">' + response['error']['message'] + '</div>');
                     }
                 }
+
+                if (response['success']) {
+                    toastr.success(response['success']);
+                    $('#msg').hide();
+                    $('input, textarea').val(function () {
+                        return this.defaultValue;
+                    });
+                }
+                // if (response) {
+                //     console.log(response);
+                //     if (response['signal'] == 'ok') {
+                //         toastr.success(response['msg']);
+                //         $('#msg').hide();
+                //         $('input, textarea').val(function () {
+                //             return this.defaultValue;
+                //         });
+                //     }
+                //     else {
+                //         $('#msg').show();
+                //         $('#msg').html('<div class="mt_error">'+ response['msg'] +'</div>');
+                //     }
+                // }
             },
             error: function () {
                 $('#msg').show();
@@ -122,7 +143,7 @@ jQuery(document).ready(function () {
 
     /*========== End Masonry Grid ==========*/
 
-    
+
     /*======== ScreenShot Section =========*/
 
     $("#rt_screenshots .owl-carousel").owlCarousel({
@@ -230,7 +251,7 @@ jQuery(document).ready(function () {
         autoplay: true,
         autoplayHoverPause: true,
         autoplaySpeed: 1000,
-        smartSpeed:850,
+        smartSpeed: 850,
         responsive: {
             0: {
                 items: 1,
@@ -263,14 +284,14 @@ jQuery(document).ready(function () {
 
 
     /*======== Youtube Background Init =========*/
-    
+
     $("#bgndVideo").YTPlayer();
 
     /*======== End Youtube Background Init =========*/
 
 
     /*======== Fancy Box Init ========*/
-    
+
     $(".various").fancybox({
         maxWidth: 800,
         maxHeight: 600,
@@ -290,19 +311,19 @@ jQuery(document).ready(function () {
 
 /*======== On Load Function =========*/
 
-    //CACHE JQUERY OBJECTS
-    var $window = $(window);
-    
-    $window.on( 'load', function () {
+//CACHE JQUERY OBJECTS
+var $window = $(window);
 
-        /*======== Preloader =========*/
-        $(".loading-text").fadeOut();
-        $(".loading").delay(350).fadeOut("slow");
-        /* END of Preloader */
+$window.on('load', function () {
 
-        /*========== Init Wow ==========*/
-        new WOW().init();
-        /*========== End Init Wow ==========*/
-    });
+    /*======== Preloader =========*/
+    $(".loading-text").fadeOut();
+    $(".loading").delay(350).fadeOut("slow");
+    /* END of Preloader */
+
+    /*========== Init Wow ==========*/
+    new WOW().init();
+    /*========== End Init Wow ==========*/
+});
 
 /*======== End On Load Function =========*/

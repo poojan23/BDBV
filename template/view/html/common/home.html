@@ -180,30 +180,13 @@
             ullamco laboris nisi </p>
     </div>
     <div class="owl-carousel">
+        <?php if($projects) : ?>
+        <?php foreach($projects as $project) : ?>
         <div class="item">
-            <img src="image/template/screenshot/05.jpg" alt="">
+            <img src="<?php echo $project['image']; ?>" alt="<?php echo $project['title']; ?>">
         </div>
-        <div class="item">
-            <img src="image/template/screenshot/01.jpg" alt="">
-        </div>
-        <div class="item">
-            <img src="image/template/screenshot/02.jpg" alt="">
-        </div>
-        <div class="item">
-            <img src="image/template/screenshot/03.jpg" alt="">
-        </div>
-        <div class="item">
-            <img src="image/template/screenshot/04.jpg" alt="">
-        </div>
-        <div class="item">
-            <img src="image/template/screenshot/06.jpg" alt="">
-        </div>
-        <div class="item">
-            <img src="image/template/screenshot/07.jpg" alt="">
-        </div>
-        <div class="item">
-            <img src="image/template/screenshot/08.jpg" alt="">
-        </div>
+        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </section>
 <!--=========================*
@@ -223,63 +206,24 @@
                     nostrud exercitation ullamco laboris nisi </p>
             </div>
             <div class="owl-carousel">
+                <?php if($teams) : ?>
+                <?php foreach($teams as $team) : ?>
                 <!--Team Member-->
                 <div class="item">
                     <div class="col-md-12">
                         <div class="team_member">
                             <figure class="member_item">
-                                <img src="image/template/team/team1.jpg" alt="sample110" />
+                                <img src="<?php echo $team['thumb']; ?>" alt="<?php echo $team['name']; ?>" />
                                 <figcaption>
-                                    <h3>Poojan</h3>
-                                    <p>Ceo / Founder</p>
+                                    <h3><?php echo $team['name']; ?></h3>
+                                    <p><?php echo $team['designation']; ?></p>
                                 </figcaption>
                             </figure>
                         </div>
                     </div>
                 </div>
-                <!--Team Member-->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="team_member">
-                            <figure class="member_item">
-                                <img src="image/template/team/team3.jpg" alt="sample110" />
-                                <figcaption>
-                                    <h3>Vishal</h3>
-                                    <p>Project Manager</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-                <!--Team Member-->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="team_member">
-                            <figure class="member_item">
-                                <img src="image/template/team/team4.jpg" alt="sample110" />
-                                <figcaption>
-                                    <h3>Ketan</h3>
-                                    <p>Development Lead</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-                <!--Team Member-->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="team_member">
-                            <figure class="member_item">
-                                <img src="image/template/team/team5.jpg" alt="sample110" />
-                                <figcaption>
-                                    <h3>Dileep</h3>
-                                    <p>Design Lead</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-
+                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -301,7 +245,7 @@
                 <a class="various fancybox" data-fancybox-type="iframe"
                     href="https://www.youtube.com/embed/jid2A7ldc_8?autoplay=0"><img
                         src="image/template/videobutton.png" alt="Play Button"></a>
-                <h1>See Our App Demo</h1>
+                <h1>See Our Work Showcase</h1>
                 <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita impedit
                     laudantium nulla porro quidem suscipit voluptate? Accusamus alias, commodi consequatur deserunt
                     dolorem enim laborum nesciunt quia sed veniam? Amet, eveniet?</p>
@@ -328,114 +272,27 @@
                         nostrud exercitation ullamco laboris nisi </p>
                 </div>
                 <div class="owl-carousel">
-                    <!-- Slide 1 -->
+                    <?php if($testimonials) : ?>
+                    <?php $testimonial_count = 1; ?>
+                    <?php foreach($testimonials as $testimonial) : ?>
+                    <!-- Slide <?php echo $testimonial_count; ?> -->
                     <div class="item">
                         <div class="testimonial_main">
                             <div class="col-xs-12">
-                                <p>lIt is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that
-                                    it has a more-or-less normal.</p>
+                                <p><?php echo $testimonial['description']; ?></p>
                                 <div class="mt_testimonial_img">
-                                    <img src="image/template/testimonial/testimonial.jpg" alt="">
+                                    <img src="<?php echo $testimonial['thumb']; ?>" alt="">
                                 </div>
                                 <div class="client_name">
-                                    <em>Alex Hale</em>
-                                    <span>CEO of Revo</span>
+                                    <em><?php echo $testimonial['name']; ?></em>
+                                    <span><?php echo $testimonial['designation']; ?></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="item">
-                        <div class="testimonial_main">
-                            <div class="col-xs-12">
-                                <p>lIt is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that
-                                    it has a more-or-less normal.</p>
-                                <div class="mt_testimonial_img">
-                                    <img src="image/template/testimonial/testimonial2.jpg" alt="">
-                                </div>
-                                <div class="client_name">
-                                    <em>Jessica Roy</em>
-                                    <span>CEO of Fashion</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="item">
-                        <div class="testimonial_main">
-                            <div class="col-xs-12">
-                                <p>lIt is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that
-                                    it has a more-or-less normal.</p>
-                                <div class="mt_testimonial_img">
-                                    <img src="image/template/testimonial/testimonial3.jpg" alt="">
-                                </div>
-                                <div class="client_name">
-                                    <em>Jack</em>
-                                    <span>CEO of Design Studio</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="item">
-                        <div class="testimonial_main">
-                            <div class="col-xs-12">
-                                <p>lIt is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that
-                                    it has a more-or-less normal.</p>
-                                <div class="mt_testimonial_img">
-                                    <img src="image/template/testimonial/testimonial4.jpg" alt="">
-                                </div>
-                                <div class="client_name">
-                                    <em>Alexa Jhon</em>
-                                    <span>CEO of Mobile Studio</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 5 -->
-                    <div class="item">
-                        <div class="testimonial_main">
-                            <div class="col-xs-12">
-                                <p>lIt is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that
-                                    it has a more-or-less normal.</p>
-                                <div class="mt_testimonial_img">
-                                    <img src="image/template/testimonial/testimonial5.jpg" alt="">
-                                </div>
-                                <div class="client_name">
-                                    <em>Davidson</em>
-                                    <span>CEO of VIOS</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 6 -->
-                    <div class="item">
-                        <div class="testimonial_main">
-                            <div class="col-xs-12">
-                                <p>lIt is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that
-                                    it has a more-or-less normal.</p>
-                                <div class="mt_testimonial_img">
-                                    <img src="image/template/testimonial/testimonial6.jpg" alt="">
-                                </div>
-                                <div class="client_name">
-                                    <em>Jessica Stone</em>
-                                    <span>CEO of Tesla</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $testimonial_count = $testimonial_count + 1; ?>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
 
             </div>
@@ -463,14 +320,14 @@
                 <div class="fun-facts_wrapper">
                     <div class="fun-facts_contain">
                         <p>
-                            <i class="icon-tools"></i>
+                            <i class="<?php echo $website_icon; ?>"></i>
                         </p>
                         <div class="fun-facts_item">
                         </div>
                     </div>
-                    <p class="fun-facts_figure timer" data-to="874" data-speed="3000"></p>
+                    <p class="fun-facts_figure timer" data-to="<?php echo $website; ?>" data-speed="3000"></p>
                     <p class="fun-facts_title">
-                        Websites
+                        <?php echo $text_website; ?>
                     </p>
                 </div>
             </div>
@@ -478,14 +335,14 @@
                 <div class="fun-facts_wrapper">
                     <div class="fun-facts_contain">
                         <p>
-                            <i class="icon-toolbox"></i>
+                            <i class="<?php echo $software_icon; ?>"></i>
                         </p>
                         <div class="fun-facts_item">
                         </div>
                     </div>
-                    <p class="fun-facts_figure timer" data-to="980" data-speed="3000"></p>
+                    <p class="fun-facts_figure timer" data-to="<?php echo $software; ?>" data-speed="3000"></p>
                     <p class="fun-facts_title">
-                        Softwares
+                        <?php echo $text_software; ?>
                     </p>
                 </div>
             </div>
@@ -493,14 +350,14 @@
                 <div class="fun-facts_wrapper">
                     <div class="fun-facts_contain">
                         <p>
-                            <i class="icon-heart"></i>
+                            <i class="<?php echo $client_icon; ?>"></i>
                         </p>
                         <div class="fun-facts_item">
                         </div>
                     </div>
-                    <p class="fun-facts_figure timer" data-to="760" data-speed="3000"></p>
+                    <p class="fun-facts_figure timer" data-to="<?php echo $client; ?>" data-speed="3000"></p>
                     <p class="fun-facts_title">
-                        Happy Clients
+                        <?php echo $text_customer; ?>
                     </p>
                 </div>
             </div>
@@ -508,14 +365,14 @@
                 <div class="fun-facts_wrapper">
                     <div class="fun-facts_contain">
                         <p>
-                            <i class="icon-globe"></i>
+                            <i class="<?php echo $visitor_icon; ?>"></i>
                         </p>
                         <div class="fun-facts_item">
                         </div>
                     </div>
-                    <p class="fun-facts_figure timer" data-to="610" data-speed="3000"></p>
+                    <p class="fun-facts_figure timer" data-to="<?php echo $visitor; ?>" data-speed="3000"></p>
                     <p class="fun-facts_title">
-                        Visitors
+                        <?php echo $text_visitor; ?>
                     </p>
                 </div>
             </div>
@@ -619,16 +476,15 @@
                             <div class="col-sm-6">
                                 <div class="location">
                                     <i class="icon-map"></i>
-                                    <h5>Location</h5>
-                                    <p>204, Malwa, Patanwala Estate, LBS Marg, Ghatkopar (W), Mumbai - 400 086</p>
+                                    <h5><?php echo $text_location; ?></h5>
+                                    <p><?php echo $address; ?></p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="time">
                                     <i class="icon-alarmclock"></i>
-                                    <h5>Available Time</h5>
-                                    <p>Monday - Saturday</p>
-                                    <p>10:00am - 7:00pm</p>
+                                    <h5><?php echo $text_open; ?></h5>
+                                    <?php echo $open; ?>
                                 </div>
                             </div>
                         </div>
@@ -637,16 +493,16 @@
                                 <div class="location">
                                     <i class="icon-phone"></i>
                                     <div class="phone">
-                                        <h5>Phone</h5>
-                                        <p>+91 93227 29922</p>
+                                        <h5><?php echo $text_phone; ?></h5>
+                                        <p><a href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="email">
                                     <i class="icon-envelope"></i>
-                                    <h5>Email</h5>
-                                    <p><a href="mailto:example@example.co">support@popaya.in</a></p>
+                                    <h5><?php echo $text_email; ?></h5>
+                                    <p><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
                                 </div>
                             </div>
                         </div>
@@ -656,9 +512,9 @@
             <div class="col-md-6">
                 <div class="contact_form">
                     <h3>Stay in Touch</h3>
-                    <form id="contact_form">
-                        <input type="text" name="name" id="name" placeholder="Your name" required>
-                        <input type="email" name="email" id="email" placeholder="Your email" required>
+                    <form id="contact_form" onload="$(this).reset()">
+                        <input type="text" name="name" id="name" placeholder="Your name" required />
+                        <input type="email" name="email" id="email" placeholder="Your email" required />
                         <textarea cols="30" rows="5" name="message" id="message" placeholder="Your message"
                             required></textarea>
                         <button class="rt_btn_color" id="submit-btn">Send<span

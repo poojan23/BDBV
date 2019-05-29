@@ -18,7 +18,7 @@ class ControllerCommonFooter extends PT_Controller
             $data['logo_colour'] = '';
         }
 
-        $data['address'] = html_entity_decode($this->config->get('config_address'), ENT_QUOTES, 'UTF-8');
+        $data['address'] = $this->config->get('config_address');
         $data['telephone'] = $this->config->get('config_telephone');
         $data['email'] = $this->config->get('config_email');
 

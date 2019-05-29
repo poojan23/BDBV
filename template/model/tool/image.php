@@ -41,6 +41,6 @@ class ModelToolImage extends PT_Model
             }
         }
 
-        return HTTP_CATALOG . 'image/' . $image_new;
+        return HTTP_SERVER . 'image/' . $image_new;
     }
 }
