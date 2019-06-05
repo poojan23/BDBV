@@ -401,6 +401,63 @@ function db_schema()
 	);
 
 	$tables[] = array(
+		'name' => 'seo_url',
+		'field' => array(
+			array(
+				'name' => 'seo_url_id',
+				'type' => 'int(11)',
+				'not_null' => true,
+				'auto_increment' => true
+			),
+			array(
+				'name' => 'store_id',
+				'type' => 'int(11)',
+				'not_null' => true
+			),
+			array(
+				'name' => 'language_id',
+				'type' => 'int(11)',
+				'not_null' => true
+			),
+			array(
+				'name' => 'query',
+				'type' => 'varchar(255)',
+				'not_null' => true
+			),
+			array(
+				'name' => 'keyword',
+				'type' => 'varchar(255)',
+				'not_null' => true
+			),
+			array(
+				'name' => 'push',
+				'type' => 'varchar(255)',
+				'not_null' => true
+			)
+		),
+		'primary' => array(
+			'seo_url_id'
+		),
+		'index' => array(
+			array(
+				'name' => 'query',
+				'key' => array(
+					'query'
+				)
+			),
+			array(
+				'name' => 'keyword',
+				'key' => array(
+					'keyword'
+				)
+			)
+		),
+		'engine' => 'InnoDB',
+		'charset' => 'utf8',
+		'collate' => 'utf8_general_ci'
+	);
+
+	$tables[] = array(
 		'name' => 'service',
 		'field' => array(
 			array(
@@ -408,6 +465,11 @@ function db_schema()
 				'type' => 'int(11)',
 				'not_null' => true,
 				'auto_increment' => true
+			),
+			array(
+				'name' => 'icon',
+				'type' => 'varchar(32)',
+				'not_null' => true
 			),
 			array(
 				'name' => 'image',

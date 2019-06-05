@@ -183,7 +183,8 @@
         <?php if($projects) : ?>
         <?php foreach($projects as $project) : ?>
         <div class="item">
-            <img src="<?php echo $project['image']; ?>" alt="<?php echo $project['title']; ?>">
+            <img src="<?php echo $project['image']; ?>" alt="<?php echo $project['title']; ?>"
+                title="<?php echo $project['title']; ?>">
         </div>
         <?php endforeach; ?>
         <?php endif; ?>

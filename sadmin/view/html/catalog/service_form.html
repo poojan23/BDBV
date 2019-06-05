@@ -77,12 +77,9 @@
 
                             <ul class="nav nav-tabs mb-3">
                                 <li class="nav-item"><a href="#tab-general" data-toggle="tab"
-                                        class="nav-link active"><?php echo $tab_general; ?></a>
-                                </li>
+                                        class="nav-link active"><?php echo $tab_general; ?></a></li>
                                 <li class="nav-item"><a href="#tab-data" data-toggle="tab"
                                         class="nav-link"><?php echo $tab_data; ?></a></li>
-<!--                                <li class="nav-item"><a href="#tab-icon" data-toggle="tab"
-                                        class="nav-link"><?php echo $tab_icon; ?></a></li>-->
                                 <li class="nav-item"><a href="#tab-seo" data-toggle="tab"
                                         class="nav-link"><?php echo $tab_seo; ?></a></li>
                             </ul>
@@ -134,9 +131,9 @@
                                                         data-toggle="ckeditor" data-lang="<?php echo $ckeditor; ?>"><?php echo isset($service_description[$language['language_id']]) ?
                                                             $service_description[$language['language_id']]['description']
                                                             : null; ?></textarea>
-                                                    <?php if(isset($title_footer_err[$language['language_id']])) : ?>
+                                                    <?php if(isset($description_err[$language['language_id']])) : ?>
                                                     <div class="invalid-tooltip">
-                                                        <?php echo $title_footer_err[$language['language_id']]; ?></div>
+                                                        <?php echo $description_err[$language['language_id']]; ?></div>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -198,6 +195,57 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tab-data">
+                                    <div class="form-group row">
+                                        <label for="input-icon" class="col-sm-2 col-form-label"></label>
+
+                                        <div class="col-sm-10">
+                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                id="button-icon">
+                                                <i class="<?php echo $icon; ?>"></i>
+                                            </button>
+                                            <div class="dropdown-menu table-icons">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                            <?php if($icons) : ?>
+                                                            <?php for($i = 0; $i < count($icons); $i++) : ?>
+                                                            <?php if($i % 4 == 1 && $i == 0) : ?>
+                                                            <tr>
+                                                                <?php endif; ?>
+                                                                <?php if($i == 0) : ?>
+                                                                <td>
+                                                                    <a class="dropdown-item dropdown-icon">
+                                                                        <i
+                                                                            class="py <?php echo $icons[$i]['icon']; ?>"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <?php else : ?>
+                                                                <td>
+                                                                    <a class="dropdown-item dropdown-icon">
+                                                                        <i
+                                                                            class="<?php echo $icons[$i]['icon']; ?>"></i>
+                                                                    </a>
+                                                                </td>
+                                                                <?php endif; ?>
+                                                                <?php if($i % 4 == 0 && $i != 0) : ?>
+                                                            </tr>
+                                                            <?php endif; ?>
+                                                            <?php endfor; ?>
+                                                            <?php else : ?>
+                                                            <tr>
+                                                                <td class="text-center" colspan="3">
+                                                                    <?php echo $text_no_icons; ?>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endif; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="icon" value="<?php echo $icon; ?>" />
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label"><?php echo $entry_image; ?></label>
 
@@ -288,7 +336,7 @@
                                         </table>
                                     </div>
                                 </div>
-<!--                                <div class="tab-pane" id="tab-icon">
+                                <!--                                <div class="tab-pane" id="tab-icon">
                                     <fieldset>
                                         <legend><?php echo $text_icon; ?></legend>
                                         <div class="row">
@@ -361,6 +409,17 @@
 <!-- <link rel="stylesheet" href="view/dist/plugins/iCheck/all.css"> -->
 <!-- iCheck 1.0.1 -->
 <!-- <script src="view/dist/plugins/iCheck/icheck.min.js"></script> -->
+<script type="text/javascript">
+    $('.dropdown-icon').on('click', function (e) {
+        var element = $(this);
+
+        e.preventDefault();
+
+        element.parents('.dropdown-menu').prev().find('i').attr('class', element.find('i').attr('class'));
+
+        element.parents('.dropdown-menu').next().val(element.find('i').attr('class'));
+    });
+</script>
 <script type="text/javascript">
     $('textarea[data-toggle=\'ckeditor\']').ckeditor();
 

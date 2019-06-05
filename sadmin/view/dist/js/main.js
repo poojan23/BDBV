@@ -125,7 +125,7 @@ $(document).on('click', 'a[data-toggle=\'image\']', function (e) {
 		placement: 'right',
 		trigger: 'manual',
 		content: function () {
-			return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
+			return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>';
 		}
 	});
 
@@ -138,7 +138,7 @@ $(document).on('click', 'a[data-toggle=\'image\']', function (e) {
 		$('#modal-image').remove();
 
 		$.ajax({
-			url: 'index.php?url=common/filemanager&user_token=' + getURLVar('user_token') + '&target=' + $element.parent().find('input').attr('id') + '&thumb=' + $element.attr('id'),
+			url: 'index.php?url=common/filemanager&user_token=' + getURLVar('user_token') + '&target=' + $element.parents('td').find('input').attr('id') + '&thumb=' + $element.attr('id'),
 			//url: 'index.php?url=common/filemanager&user_token=' + getURLVar('user_token') + '&target=' + encodeURIComponent($(this).attr('data-target')) + '&thumb=' + encodeURIComponent($(this).attr('data-thumb')),
 			dataType: 'html',
 			beforeSend: function () {

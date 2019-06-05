@@ -21,7 +21,7 @@ class ControllerCommonNav extends PT_Controller
 
             # Catalog
             $catalog = array();
-            
+
             if ($this->user->hasPermission('access', 'catalog/service')) {
                 $catalog[] = array(
                     'name'      => $this->language->get('text_service'),
@@ -29,7 +29,7 @@ class ControllerCommonNav extends PT_Controller
                     'children'  => array()
                 );
             }
-            
+
             if ($this->user->hasPermission('access', 'catalog/team')) {
                 $catalog[] = array(
                     'name'      => $this->language->get('text_team'),
@@ -37,7 +37,7 @@ class ControllerCommonNav extends PT_Controller
                     'children'  => array()
                 );
             }
-            
+
             if ($this->user->hasPermission('access', 'catalog/information')) {
                 $catalog[] = array(
                     'name'      => $this->language->get('text_information'),
@@ -58,7 +58,7 @@ class ControllerCommonNav extends PT_Controller
 
             # Design
             $design = array();
-            
+
             if ($this->user->hasPermission('access', 'design/banner')) {
                 $design[] = array(
                     'name'      => $this->language->get('text_banner'),
@@ -66,7 +66,7 @@ class ControllerCommonNav extends PT_Controller
                     'children'  => array()
                 );
             }
-            
+
             if ($this->user->hasPermission('access', 'design/translation')) {
                 $design[] = array(
                     'name'      => $this->language->get('text_language_editor'),
@@ -124,12 +124,12 @@ class ControllerCommonNav extends PT_Controller
             }
 
             # Testimonial
-            if ($this->user->hasPermission('access', 'common/testimonial')) {
+            if ($this->user->hasPermission('access', 'catalog/testimonial')) {
                 $data['menus'][] = array(
                     'id'        => 'menu-testimonial',
                     'icon'      => 'fa-pen-alt',
                     'name'      => $this->language->get('text_testimonial'),
-                    'href'      => $this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token']),
+                    'href'      => $this->url->link('catalog/testimonial', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }

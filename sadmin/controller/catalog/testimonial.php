@@ -1,12 +1,12 @@
 <?php
 
-class ControllerCommonTestimonial extends PT_Controller
+class ControllerCatalogTestimonial extends PT_Controller
 {
     private $error = array();
 
     public function index()
     {
-        $this->load->language('common/testimonial');
+        $this->load->language('catalog/testimonial');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
@@ -17,19 +17,19 @@ class ControllerCommonTestimonial extends PT_Controller
 
     public function add()
     {
-        $this->load->language('common/testimonial');
+        $this->load->language('catalog/testimonial');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
         $this->load->model('catalog/testimonial');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-//            print_r($this->request->post);exit;
+            //            print_r($this->request->post);exit;
             $this->model_catalog_testimonial->addTestimonial($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('catalog/testimonial', 'user_token=' . $this->session->data['user_token']));
         }
 
         $this->getForm();
@@ -37,7 +37,7 @@ class ControllerCommonTestimonial extends PT_Controller
 
     public function edit()
     {
-        $this->load->language('common/testimonial');
+        $this->load->language('catalog/testimonial');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
@@ -48,7 +48,7 @@ class ControllerCommonTestimonial extends PT_Controller
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('catalog/testimonial', 'user_token=' . $this->session->data['user_token']));
         }
 
         $this->getForm();
@@ -56,7 +56,7 @@ class ControllerCommonTestimonial extends PT_Controller
 
     public function delete()
     {
-        $this->load->language('common/testimonial');
+        $this->load->language('catalog/testimonial');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
@@ -69,7 +69,7 @@ class ControllerCommonTestimonial extends PT_Controller
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('catalog/testimonial', 'user_token=' . $this->session->data['user_token']));
         }
 
         $this->getList();
@@ -105,11 +105,11 @@ class ControllerCommonTestimonial extends PT_Controller
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('catalog/testimonial', 'user_token=' . $this->session->data['user_token'])
         );
 
-        $data['add'] = $this->url->link('common/testimonial/add', 'user_token=' . $this->session->data['user_token']);
-        $data['delete'] = $this->url->link('common/testimonial/delete', 'user_token=' . $this->session->data['user_token']);
+        $data['add'] = $this->url->link('catalog/testimonial/add', 'user_token=' . $this->session->data['user_token']);
+        $data['delete'] = $this->url->link('catalog/testimonial/delete', 'user_token=' . $this->session->data['user_token']);
 
         $data['testimonials'] = array();
 
@@ -122,7 +122,7 @@ class ControllerCommonTestimonial extends PT_Controller
                 'designation'   => $result['designation'],
                 'sort_order'    => $result['sort_order'],
                 'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-                'edit'          => $this->url->link('common/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $result['testimonial_id'])
+                'edit'          => $this->url->link('catalog/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $result['testimonial_id'])
             );
         }
 
@@ -150,7 +150,7 @@ class ControllerCommonTestimonial extends PT_Controller
         $data['nav'] = $this->load->controller('common/nav');
         $data['footer'] = $this->load->controller('common/footer');
 
-        $this->response->setOutput($this->load->view('common/testimonial_list', $data));
+        $this->response->setOutput($this->load->view('catalog/testimonial_list', $data));
     }
 
     protected function getForm()
@@ -159,7 +159,7 @@ class ControllerCommonTestimonial extends PT_Controller
         $this->document->addScript("view/dist/plugins/ckeditor/ckeditor.js");
         $this->document->addScript("view/dist/plugins/ckeditor/adapters/jquery.js");
         $this->document->addScript("view/dist/plugins/iCheck/icheck.min.js");
-        
+
         $data['text_form'] = !isset($this->request->get['testimonial_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
         if (isset($this->error['warning'])) {
@@ -189,29 +189,29 @@ class ControllerCommonTestimonial extends PT_Controller
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('catalog/testimonial', 'user_token=' . $this->session->data['user_token'])
         );
 
         if (!isset($this->request->get['testimonial_id'])) {
-            $data['action'] = $this->url->link('common/testimonial/add', 'user_token=' . $this->session->data['user_token']);
+            $data['action'] = $this->url->link('catalog/testimonial/add', 'user_token=' . $this->session->data['user_token']);
             $data['breadcrumbs'][] = array(
                 'text'  => $this->language->get('text_add'),
-                'href'  => $this->url->link('common/testimonial/add', 'user_token=' . $this->session->data['user_token'])
+                'href'  => $this->url->link('catalog/testimonial/add', 'user_token=' . $this->session->data['user_token'])
             );
         } else {
-            $data['action'] = $this->url->link('common/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $this->request->get['testimonial_id']);
+            $data['action'] = $this->url->link('catalog/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $this->request->get['testimonial_id']);
             $data['breadcrumbs'][] = array(
                 'text'  => $this->language->get('text_edit'),
-                'href'  => $this->url->link('common/testimonial/edit', 'user_token=' . $this->session->data['user_token'])
+                'href'  => $this->url->link('catalog/testimonial/edit', 'user_token=' . $this->session->data['user_token'])
             );
         }
 
-        $data['cancel'] = $this->url->link('common/testimonial', 'user_token=' . $this->session->data['user_token']);
+        $data['cancel'] = $this->url->link('catalog/testimonial', 'user_token=' . $this->session->data['user_token']);
 
         if (isset($this->request->get['testimonial_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $testimonial_info = $this->model_catalog_testimonial->getTestimonial($this->request->get['testimonial_id']);
         }
-        
+
         if (isset($this->request->post['name'])) {
             $data['name'] = $this->request->post['name'];
         } elseif (!empty($testimonial_info)) {
@@ -219,7 +219,7 @@ class ControllerCommonTestimonial extends PT_Controller
         } else {
             $data['name'] = '';
         }
-        
+
         if (isset($this->request->post['designation'])) {
             $data['designation'] = $this->request->post['designation'];
         } elseif (!empty($testimonial_info)) {
@@ -227,7 +227,7 @@ class ControllerCommonTestimonial extends PT_Controller
         } else {
             $data['designation'] = '';
         }
-        
+
         if (isset($this->request->post['description'])) {
             $data['description'] = $this->request->post['description'];
         } elseif (!empty($testimonial_info)) {
@@ -243,10 +243,10 @@ class ControllerCommonTestimonial extends PT_Controller
         } else {
             $data['sort_order'] = 0;
         }
-  
+
 
         $this->load->model('tool/image');
-             
+
         if (isset($this->request->post['image'])) {
             $data['image'] = $this->request->post['image'];
         } elseif (!empty($testimonial_info)) {
@@ -254,7 +254,7 @@ class ControllerCommonTestimonial extends PT_Controller
         } else {
             $data['image'] = '';
         }
-        
+
         $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
 
         if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
@@ -275,12 +275,12 @@ class ControllerCommonTestimonial extends PT_Controller
         $data['nav'] = $this->load->controller('common/nav');
         $data['footer'] = $this->load->controller('common/footer');
 
-        $this->response->setOutput($this->load->view('common/testimonial_form', $data));
+        $this->response->setOutput($this->load->view('catalog/testimonial_form', $data));
     }
 
     protected function validateForm()
     {
-        if (!$this->user->hasPermission('modify', 'common/testimonial')) {
+        if (!$this->user->hasPermission('modify', 'catalog/testimonial')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
@@ -319,7 +319,7 @@ class ControllerCommonTestimonial extends PT_Controller
 
     protected function validateDelete()
     {
-        if (!$this->user->hasPermission('delete', 'common/testimonial')) {
+        if (!$this->user->hasPermission('delete', 'catalog/testimonial')) {
             $this->error['warning'] = $this->language->get('error_delete');
         }
 

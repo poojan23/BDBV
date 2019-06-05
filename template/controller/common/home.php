@@ -15,7 +15,7 @@ class ControllerCommonHome extends PT_Controller
 
         $data['projects'] = array();
 
-        $results = $this->model_design_banner->getBanner(3, 0, 8);
+        $results = $this->model_design_banner->getBanner(3, 0, 10);
 
         foreach ($results as $result) {
             if (is_file(DIR_IMAGE . html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'))) {

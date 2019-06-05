@@ -22,8 +22,8 @@ class ControllerCatalogService extends PT_Controller
         $this->document->setTitle($this->language->get('heading_title'));
 
         $this->load->model('catalog/service');
-       
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 
             $this->model_catalog_service->addService($this->request->post);
 
@@ -43,7 +43,7 @@ class ControllerCatalogService extends PT_Controller
 
         $this->load->model('catalog/service');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_catalog_service->editService($this->request->get['service_id'], $this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -62,7 +62,7 @@ class ControllerCatalogService extends PT_Controller
 
         $this->load->model('catalog/service');
 
-        if (isset($this->request->post['selected'])) {
+        if (isset($this->request->post['selected']) && $this->validateDelete()) {
             foreach ($this->request->post['selected'] as $service_id) {
                 $this->model_catalog_service->deleteService($service_id);
             }
@@ -167,8 +167,8 @@ class ControllerCatalogService extends PT_Controller
             $data['warning_err'] = '';
         }
 
-        if (isset($this->error['title'])) {
-            $data['name_err'] = $this->error['title'];
+        if (isset($this->error['name'])) {
+            $data['name_err'] = $this->error['name'];
         } else {
             $data['name_err'] = array();
         }
@@ -222,7 +222,7 @@ class ControllerCatalogService extends PT_Controller
         if (isset($this->request->get['service_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $service_info = $this->model_catalog_service->getService($this->request->get['service_id']);
         }
-        
+
         $data['user_token'] = $this->session->data['user_token'];
 
         $this->load->model('localisation/language');
@@ -236,13 +236,44 @@ class ControllerCatalogService extends PT_Controller
         } else {
             $data['service_description'] = array();
         }
-        
-        if (isset($this->request->post['name'])) {
-            $data['name'] = $this->request->post['name'];
+
+        // if (isset($this->request->post['name'])) {
+        //     $data['name'] = $this->request->post['name'];
+        // } elseif (!empty($service_info)) {
+        //     $data['name'] = $this->model_catalog_service->getServiceDescriptions($this->request->get['service_id']);
+        // } else {
+        //     $data['name'] = array();
+        // }
+
+        $data['icons'] = array();
+
+        $pattern = '/\.(icon-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
+        $subject = file_get_contents('view/dist/css/et-line.css');
+
+        preg_match_all($pattern, $subject, $matches, PREG_SET_ORDER);
+
+        sort($matches);
+
+        $pattern1 = '/\.(py-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
+        $subject1 = file_get_contents('view/dist/css/popaya.css');
+
+        preg_match_all($pattern1, $subject1, $matches1, PREG_SET_ORDER);
+
+        $mergers = array_merge($matches1, $matches);
+
+        foreach ($mergers as $key => $match) {
+            $data['icons'][$key] = array(
+                'icon'  => $match[1],
+                'name' => str_replace(array('icon-', '-'), ' ', $match[1])
+            );
+        }
+
+        if (isset($this->request->post['icon'])) {
+            $data['icon'] = $this->request->post['icon'];
         } elseif (!empty($service_info)) {
-            $data['name'] = $this->model_catalog_service->getServiceDescriptions($this->request->get['service_id']);
+            $data['icon'] = $service_info['icon'];
         } else {
-            $data['name'] = array();
+            $data['icon'] = 'py py-popaya';
         }
 
         if (isset($this->request->post['image'])) {
@@ -305,7 +336,7 @@ class ControllerCatalogService extends PT_Controller
                 $this->error['name'][$language_id] = $this->language->get('error_name');
             }
 
-            if ((utf8_strlen($value['description']) < 1) || (utf8_strlen($value['description']) > 64)) {
+            if ((utf8_strlen($value['description']) < 1) || (utf8_strlen($value['description']) > 1000)) {
                 $this->error['description'][$language_id] = $this->language->get('error_description');
             }
 
@@ -348,41 +379,6 @@ class ControllerCatalogService extends PT_Controller
         }
 
         return !$this->error;
-    }
-
-    public function icons()
-    {
-        $json = array();
-
-        if (!$json) {
-            $pattern = '/\.(fa-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
-            $subject = file_get_contents('view/dist/plugins/font-awesome/css/font-awesome.css');
-
-            preg_match_all($pattern, $subject, $matches, PREG_SET_ORDER);
-
-            foreach ($matches as $match) {
-                $json[] = array(
-                    'icon'  => $match[1],
-                    'css'  => implode(array(str_replace('\\', '&#x', $match[2]), ';'))
-                );
-            }
-
-            // $json = var_export($json, TRUE);
-            // $json = stripslashes($json);
-        }
-
-        $sort_order = array();
-
-        foreach ($json as $key => $value) {
-            $sort_order[$key] = $value;
-        }
-
-        array_multisort($sort_order, SORT_ASC, $json);
-
-        //print_r($json);
-
-        $this->response->addHeader('Content-Type: application/json');
-        $this->response->setOutput(json_encode($json));
     }
 
     public function autocomplete()
