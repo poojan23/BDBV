@@ -87,6 +87,9 @@
                                             <th>
                                                 <?php echo $column_sort_order; ?>
                                             </th>
+                                            <th>
+                                                <?php echo $column_status; ?>
+                                            </th>
                                             <th class="no-sort">
                                                 <?php echo $column_action; ?>
                                             </th>
@@ -111,6 +114,9 @@
                                             </td>
                                             <td class="text-left">
                                                 <?php echo $information['sort_order']; ?>
+                                            </td>
+                                            <td class="text-left">
+                                                <?php echo $information['status']; ?>
                                             </td>
                                             <td class="text-left"><a href="<?php echo $information['edit']; ?>"
                                                     data-toggle="tooltip" title="<?php echo $button_edit; ?>"
@@ -164,52 +170,52 @@
 
         new $.fn.dataTable.Buttons(table, {
             buttons: [{
-                "extend": "colvis",
-                "text": "<i class='fa fa-search'></i> <span hidden><?php echo $text_dt_column; ?></span>",
-                "className": "dt-button btn-primary",
-                "init": function (api, node, config) {
-                    $(node).removeClass('btn-default');
-                },
-                columns: ':not(:first):not(:last)'
-            },
-            {
-                "extend": "copy",
-                "text": "<i class='fa fa-copy'></i> <span hidden><?php echo $text_dt_copy; ?></span>",
-                "className": "dt-button btn-info",
-                "init": function (api, node, config) {
-                    $(node).removeClass('btn-default');
-                },
-            },
-            {
-                "extend": "collection",
-                "text": "<i class='fa fa-download'></i> <span hidden><?php echo $text_dt_file_export; ?></span>",
-                "className": "dt-button btn-success",
-                "init": function (api, node, config) {
-                    $(node).removeClass('btn-default');
-                },
-                "buttons": [{
-                    "extend": "csv",
-                    "text": "<i class='fa fa-database'></i> <span><?php echo $text_dt_export_csv; ?></span>"
+                    "extend": "colvis",
+                    "text": "<i class='fa fa-search'></i> <span hidden><?php echo $text_dt_column; ?></span>",
+                    "className": "dt-button btn-primary",
+                    "init": function (api, node, config) {
+                        $(node).removeClass('btn-default');
+                    },
+                    columns: ':not(:first):not(:last)'
                 },
                 {
-                    "extend": "excel",
-                    "text": "<i class='fa fa-file-excel-o'></i> <span><?php echo $text_dt_export_excel; ?></span>"
+                    "extend": "copy",
+                    "text": "<i class='fa fa-copy'></i> <span hidden><?php echo $text_dt_copy; ?></span>",
+                    "className": "dt-button btn-info",
+                    "init": function (api, node, config) {
+                        $(node).removeClass('btn-default');
+                    },
                 },
                 {
-                    "extend": "pdf",
-                    "text": "<i class='fa fa-file-pdf-o'></i> <span><?php echo $text_dt_export_pdf; ?></span>"
-                }
-                ]
-            },
-            {
-                "extend": "print",
-                "text": "<i class='fa fa-print'></i> <span hidden><?php echo $text_dt_print; ?></span>",
-                "className": 'dt-button',
-                autoPrint: false,
-                exportOptions: {
-                    columns: ':not(:last)',
-                }
-            },
+                    "extend": "collection",
+                    "text": "<i class='fa fa-download'></i> <span hidden><?php echo $text_dt_file_export; ?></span>",
+                    "className": "dt-button btn-success",
+                    "init": function (api, node, config) {
+                        $(node).removeClass('btn-default');
+                    },
+                    "buttons": [{
+                            "extend": "csv",
+                            "text": "<i class='fa fa-database'></i> <span><?php echo $text_dt_export_csv; ?></span>"
+                        },
+                        {
+                            "extend": "excel",
+                            "text": "<i class='fa fa-file-excel-o'></i> <span><?php echo $text_dt_export_excel; ?></span>"
+                        },
+                        {
+                            "extend": "pdf",
+                            "text": "<i class='fa fa-file-pdf-o'></i> <span><?php echo $text_dt_export_pdf; ?></span>"
+                        }
+                    ]
+                },
+                {
+                    "extend": "print",
+                    "text": "<i class='fa fa-print'></i> <span hidden><?php echo $text_dt_print; ?></span>",
+                    "className": 'dt-button',
+                    autoPrint: false,
+                    exportOptions: {
+                        columns: ':not(:last)',
+                    }
+                },
             ]
         });
         table.buttons().container().appendTo($('.tableTools-container'));

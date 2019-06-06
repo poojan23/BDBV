@@ -117,11 +117,12 @@ class ControllerCatalogService extends PT_Controller
 
         foreach ($results as $result) {
             $data['services'][] = array(
-                'service_id'  => $result['service_id'],
-                'name'                  => $result['name'],
-                'sort_order'            => $result['sort_order'],
-                'edit'                  => $this->url->link('catalog/service/edit', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $result['service_id']),
-                'delete'                => $this->url->link('catalog/service/delete', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $result['service_id'])
+                'service_id'    => $result['service_id'],
+                'name'          => $result['name'],
+                'sort_order'    => $result['sort_order'],
+                'status'        => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+                'edit'          => $this->url->link('catalog/service/edit', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $result['service_id']),
+                'delete'        => $this->url->link('catalog/service/delete', 'user_token=' . $this->session->data['user_token'] . '&service_id=' . $result['service_id'])
             );
         }
 
@@ -237,14 +238,6 @@ class ControllerCatalogService extends PT_Controller
             $data['service_description'] = array();
         }
 
-        // if (isset($this->request->post['name'])) {
-        //     $data['name'] = $this->request->post['name'];
-        // } elseif (!empty($service_info)) {
-        //     $data['name'] = $this->model_catalog_service->getServiceDescriptions($this->request->get['service_id']);
-        // } else {
-        //     $data['name'] = array();
-        // }
-
         $data['icons'] = array();
 
         $pattern = '/\.(icon-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
@@ -336,7 +329,7 @@ class ControllerCatalogService extends PT_Controller
                 $this->error['name'][$language_id] = $this->language->get('error_name');
             }
 
-            if ((utf8_strlen($value['description']) < 1) || (utf8_strlen($value['description']) > 1000)) {
+            if ((utf8_strlen($value['description']) < 10)) {
                 $this->error['description'][$language_id] = $this->language->get('error_description');
             }
 

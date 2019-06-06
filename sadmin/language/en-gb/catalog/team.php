@@ -16,6 +16,7 @@ $_['text_icon_list']            = 'Icons List';
 $_['column_name']               = 'Name';
 $_['column_designation']        = 'Designation';
 $_['column_sort_order']         = 'Sort Order';
+$_['column_status']             = 'Status';
 $_['column_action']             = 'Action';
 
 # Entry

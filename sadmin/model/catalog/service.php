@@ -4,7 +4,6 @@ class ModelCatalogService extends PT_Model
 {
     public function addService($data)
     {
-        //        echo "INSERT INTO " . DB_PREFIX . "service SET sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()";exit;
         $this->db->query("INSERT INTO " . DB_PREFIX . "service SET icon = '" . $this->db->escape($data['icon']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (isset($data['status']) ? (int)$data['status'] : 0) . "', date_modified = NOW(), date_added = NOW()");
 
         $service_id = $this->db->lastInsertId();
@@ -74,64 +73,44 @@ class ModelCatalogService extends PT_Model
 
         return $query->row;
     }
-    public function getServices()
+
+    public function getServices($data = array())
     {
-        $query = $this->db->query("SELECT  s.*,sd.* FROM " . DB_PREFIX . "service s LEFT JOIN " . DB_PREFIX . "service_description sd ON s.service_id = sd.service_id WHERE s.status = '1' ORDER BY s.sort_order");
+        $sql = "SELECT * FROM " . DB_PREFIX . "service s LEFT JOIN " . DB_PREFIX . "service_description sd ON (s.service_id = sd.service_id) WHERE sd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+        $sort_data = array(
+            'sd.name',
+            's.sort_order'
+        );
+
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY " . $data['sort'];
+        } else {
+            $sql .= " ORDER BY sd.name";
+        }
+
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
+
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
+
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
+
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
+
+        $query = $this->db->query($sql);
 
         return $query->rows;
     }
-
-    //    public function getServices($data = array())
-    //    {
-    //        if ($data) {
-    //            $sql = "SELECT *, (SELECT igd.name FROM " . DB_PREFIX . "service_group_description igd WHERE igd.service_group_id = i.service_group_id AND igd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS service_group FROM " . DB_PREFIX . "service i LEFT JOIN " . DB_PREFIX . "service_description id ON (i.service_id = id.service_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
-    //
-    //            $sort_data = array(
-    //                'id.title',
-    //                'i.sort_order'
-    //            );
-    //
-    //            if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-    //                $sql .= " ORDER BY " . $data['sort'];
-    //            } else {
-    //                $sql .= " ORDER BY id.title";
-    //            }
-    //
-    //            if (isset($data['order']) && ($data['order'] == 'DESC')) {
-    //                $sql .= " DESC";
-    //            } else {
-    //                $sql .= " ASC";
-    //            }
-    //
-    //            if (isset($data['start']) || isset($data['limit'])) {
-    //                if ($data['start'] < 0) {
-    //                    $data['start'] = 0;
-    //                }
-    //
-    //                if ($data['limit'] < 1) {
-    //                    $data['limit'] = 20;
-    //                }
-    //
-    //                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-    //            }
-    //
-    //            $query = $this->db->query($sql);
-    //
-    //            return $query->rows;
-    //        } else {
-    //            $service_data = $this->cache->get('service.' . (int)$this->config->get('config_language_id'));
-    //
-    //            if (!$service_data) {
-    //                $query = $this->db->query("SELECT *, (SELECT igd.title FROM " . DB_PREFIX . "service_group_description igd WHERE igd.service_group_id = i.service_group_id AND igd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS service_group FROM " . DB_PREFIX . "service i LEFT JOIN " . DB_PREFIX . "service_description id ON (i.service_id = id.service_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY id.title");
-    //
-    //                $service_data = $query->rows;
-    //
-    //                $this->cache->set('service.' . (int)$this->config->get('config_language_id'), $service_data);
-    //            }
-    //
-    //            return $service_data;
-    //        }
-    //    }
 
     public function getServiceDescriptions($service_id)
     {

@@ -196,7 +196,8 @@
                                 </div>
                                 <div class="tab-pane" id="tab-data">
                                     <div class="form-group row">
-                                        <label for="input-icon" class="col-sm-2 col-form-label"></label>
+                                        <label for="input-icon"
+                                            class="col-sm-2 col-form-label"><?php echo $entry_icon; ?></label>
 
                                         <div class="col-sm-10">
                                             <button type="button" class="btn btn-outline-secondary dropdown-toggle"
@@ -336,60 +337,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                <!--                                <div class="tab-pane" id="tab-icon">
-                                    <fieldset>
-                                        <legend><?php echo $text_icon; ?></legend>
-                                        <div class="row">
-                                            <div class="col-sm-1 col-md-1 mb-3">
-                                                <div class="card p-2">
-                                                    <?php if($icon) : ?>
-                                                    <i class="<?php echo $icon; ?> fa-fw fa-5x"></i>
-                                                    <?php else : ?>
-                                                    <i class="py py-popaya"
-                                                        style="font-size: 5em; width: 1.28571429em; text-align: center;"></i>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <fieldset>
-                                        <legend><?php echo $text_icon_list; ?></legend>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-control">
-                                                    <label class="form-check form-check-inline col-sm-2 mb-3">
-                                                        <input type="radio" name="icon" value="py py-popaya"
-                                                            class="form-check-input" checked="checked" />
-                                                        <i class="py py-popaya"
-                                                            style="margin: 0 5px; font-size: 1.25rem;"></i>
-                                                        <small>Popaya</small>
-                                                    </label>
-                                                    <?php foreach($icons as $value) : ?>
-                                                    <?php if($value['icon'] == $icon) : ?>
-                                                    <label class="form-check form-check-inline col-sm-2 mb-3">
-                                                        <input type="radio" name="icon"
-                                                            value="<?php echo $value['icon']; ?>"
-                                                            class="form-check-input" checked="checked" />
-                                                        <i class="fa <?php echo $value['icon']; ?> fa-fw fa-2x"
-                                                            style="margin: 0 5px; font-size: 1.25rem;"></i>
-                                                        <small><?php echo $value['name']; ?></small>
-                                                    </label>
-                                                    <?php else : ?>
-                                                    <label class="form-check form-check-inline col-sm-2 mb-3">
-                                                        <input type="radio" name="icon"
-                                                            value="<?php echo $value['icon']; ?>"
-                                                            class="form-check-input" />
-                                                        <i class="fa <?php echo $value['icon']; ?> fa-fw"
-                                                            style="margin: 0 5px; font-size: 1.25rem;"></i>
-                                                        <small><?php echo $value['name']; ?></small>
-                                                    </label>
-                                                    <?php endif; ?>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>-->
                             </div>
                         </form>
                     </div>

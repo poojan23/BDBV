@@ -43,41 +43,22 @@
     <div class="container">
         <div class="row">
             <div class="mt_heading">
-                <h2 class="section_heading text-center"><span>Our Services</span></h2>
-                <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi </p>
+                <h2 class="section_heading text-center"><span><?php echo $service_title; ?></span></h2>
+                <p class="heading_txt text-center"><?php echo $service_meta_description; ?></p>
             </div>
+            <?php if($services) : ?>
+            <?php foreach($services as $service) : ?>
             <div class="col-md-4">
                 <div class="box text-center">
                     <div class="icon">
-                        <i class="icon-tools"></i>
+                        <i class="<?php echo $service['icon']; ?>"></i>
                     </div>
-                    <h3>Websites</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatipn.</p>
+                    <h3><?php echo $service['name']; ?></h3>
+                    <p><?php echo $service['description']; ?></p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="box text-center">
-                    <div class="icon">
-                        <i class="icon-wallet"></i>
-                    </div>
-                    <h3>E-Commerce Websites</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatipn.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box text-center">
-                    <div class="icon">
-                        <i class="icon-toolbox"></i>
-                    </div>
-                    <h3>Customized Software</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatipn.</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>

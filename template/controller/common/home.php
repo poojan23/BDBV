@@ -8,7 +8,36 @@ class ControllerCommonHome extends PT_Controller
 
         $this->document->setTitle($this->language->get('heading_title'));
 
+        $this->load->model('catalog/information');
+
         $this->load->model('tool/image');
+
+        # Services
+        $service_info = $this->model_catalog_information->getInformation(1);
+
+        if ($service_info) {
+            $data['service_title'] = $service_info['title'];
+            $data['service_description'] = trim(strip_tags(html_entity_decode($service_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['service_meta_description'] = $service_info['meta_description'];
+        }
+
+        $this->load->model('catalog/service');
+
+        $data['services'] = array();
+
+        $results = $this->model_catalog_service->getServices(0, 3);
+
+        foreach ($results as $result) {
+            $data['services'][] = array(
+                'icon'          => $result['icon'],
+                'name'          => $result['name'],
+                'description'   => trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')))
+            );
+        }
+
+        # How It Works
+
+        # About Popaya™
 
         # Projects
         $this->load->model('design/banner');

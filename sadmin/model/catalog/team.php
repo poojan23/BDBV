@@ -38,64 +38,44 @@ class ModelCatalogTeam extends PT_Model
 
         return $query->row;
     }
-    public function getTeams()
+
+    public function getTeams($data = array())
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "team WHERE status = '1' ORDER BY sort_order");
+        $sql = "SELECT * FROM " . DB_PREFIX . "team";
+
+        $sort_data = array(
+            'name',
+            'sort_order'
+        );
+
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY " . $data['sort'];
+        } else {
+            $sql .= " ORDER BY name";
+        }
+
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
+
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
+
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
+
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
+
+        $query = $this->db->query($sql);
 
         return $query->rows;
     }
-
-//    public function getServices($data = array())
-//    {
-//        if ($data) {
-//            $sql = "SELECT *, (SELECT igd.name FROM " . DB_PREFIX . "team_group_description igd WHERE igd.team_group_id = i.team_group_id AND igd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS team_group FROM " . DB_PREFIX . "team i LEFT JOIN " . DB_PREFIX . "team_description id ON (i.team_id = id.team_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
-//
-//            $sort_data = array(
-//                'id.title',
-//                'i.sort_order'
-//            );
-//
-//            if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-//                $sql .= " ORDER BY " . $data['sort'];
-//            } else {
-//                $sql .= " ORDER BY id.title";
-//            }
-//
-//            if (isset($data['order']) && ($data['order'] == 'DESC')) {
-//                $sql .= " DESC";
-//            } else {
-//                $sql .= " ASC";
-//            }
-//
-//            if (isset($data['start']) || isset($data['limit'])) {
-//                if ($data['start'] < 0) {
-//                    $data['start'] = 0;
-//                }
-//
-//                if ($data['limit'] < 1) {
-//                    $data['limit'] = 20;
-//                }
-//
-//                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-//            }
-//
-//            $query = $this->db->query($sql);
-//
-//            return $query->rows;
-//        } else {
-//            $team_data = $this->cache->get('team.' . (int)$this->config->get('config_language_id'));
-//
-//            if (!$team_data) {
-//                $query = $this->db->query("SELECT *, (SELECT igd.title FROM " . DB_PREFIX . "team_group_description igd WHERE igd.team_group_id = i.team_group_id AND igd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS team_group FROM " . DB_PREFIX . "team i LEFT JOIN " . DB_PREFIX . "team_description id ON (i.team_id = id.team_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY id.title");
-//
-//                $team_data = $query->rows;
-//
-//                $this->cache->set('team.' . (int)$this->config->get('config_language_id'), $team_data);
-//            }
-//
-//            return $team_data;
-//        }
-//    }
 
     public function getTeamDescriptions($team_id)
     {

@@ -23,7 +23,7 @@ class ControllerCatalogInformation extends PT_Controller
 
         $this->load->model('catalog/information');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_catalog_information->addInformation($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -42,7 +42,7 @@ class ControllerCatalogInformation extends PT_Controller
 
         $this->load->model('catalog/information');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_catalog_information->editInformation($this->request->get['information_id'], $this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -61,7 +61,7 @@ class ControllerCatalogInformation extends PT_Controller
 
         $this->load->model('catalog/information');
 
-        if (isset($this->request->post['selected'])) {
+        if (isset($this->request->post['selected']) && $this->validateDelete()) {
             foreach ($this->request->post['selected'] as $information_id) {
                 $this->model_catalog_information->deleteInformation($information_id);
             }
@@ -113,14 +113,15 @@ class ControllerCatalogInformation extends PT_Controller
         $data['informations'] = array();
 
         $results = $this->model_catalog_information->getInformations();
-      
+
         foreach ($results as $result) {
             $data['informations'][] = array(
-                'information_id'  => $result['information_id'],
-                'title'                 => $result['title'],
-                'sort_order'            => $result['sort_order'],
-                'edit'                  => $this->url->link('catalog/information/edit', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id']),
-                'delete'                => $this->url->link('catalog/information/delete', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id'])
+                'information_id'    => $result['information_id'],
+                'title'             => $result['title'],
+                'sort_order'        => $result['sort_order'],
+                'status'            => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+                'edit'              => $this->url->link('catalog/information/edit', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id']),
+                'delete'            => $this->url->link('catalog/information/delete', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id'])
             );
         }
 
@@ -221,7 +222,7 @@ class ControllerCatalogInformation extends PT_Controller
         if (isset($this->request->get['information_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $information_info = $this->model_catalog_information->getInformation($this->request->get['information_id']);
         }
-       
+
         $data['user_token'] = $this->session->data['user_token'];
 
         $this->load->model('localisation/language');
@@ -294,10 +295,6 @@ class ControllerCatalogInformation extends PT_Controller
         foreach ($this->request->post['information_description'] as $language_id => $value) {
             if ((utf8_strlen($value['title']) < 1) || (utf8_strlen($value['title']) > 64)) {
                 $this->error['title'][$language_id] = $this->language->get('error_title');
-            }
-
-            if ((utf8_strlen($value['description']) < 1) || (utf8_strlen($value['description']) > 64)) {
-                $this->error['description'][$language_id] = $this->language->get('error_description');
             }
 
             if ((utf8_strlen($value['meta_title']) < 1) || (utf8_strlen($value['meta_title']) > 255)) {
