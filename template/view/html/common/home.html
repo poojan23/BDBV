@@ -39,6 +39,7 @@
 <!--=========================*
             Services
 *===========================-->
+<?php if($service_status) : ?>
 <section id="rt_services">
     <div class="container">
         <div class="row">
@@ -62,6 +63,7 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
           End Services
 *===========================-->
@@ -69,14 +71,13 @@
 <!--=========================*
             Work
 *===========================-->
+<?php if($work_status) : ?>
 <section id="rt_how_it_works">
     <div class="container">
         <div class="row">
             <div class="mt_heading">
-                <h2 class="section_heading text-center"><span>How it Works</span></h2>
-                <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi </p>
+                <h2 class="section_heading text-center"><span><?php echo $work_title; ?></span></h2>
+                <p class="heading_txt text-center"><?php echo $work_meta_description; ?></p>
             </div>
             <div class="col-md-7 work_description">
                 <h3>What you get in this landing page!</h3>
@@ -94,11 +95,19 @@
                 </ul>
             </div>
             <div class="col-md-5 text-center wow fadeInRight">
+                <?php if($works) : ?>
+                <?php foreach($works as $work) : ?>
+                <img src="<?php echo $work['image']; ?>" alt="<?php echo $work['title']; ?>"
+                    title="<?php echo $work['title']; ?>">
+                <?php endforeach; ?>
+                <?php else : ?>
                 <img src="image/template/work/work-mobile.png" alt="">
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
             End	Work
 *===========================-->
@@ -106,46 +115,34 @@
 <!--=========================*
             Features
 *===========================-->
+<?php if($about_status) : ?>
 <section id="rt_features">
     <div class="container">
         <div class="row">
             <div class="mt_heading">
-                <h2 class="section_heading text-center"><span>About Popaya™</span></h2>
-                <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi </p>
+                <h2 class="section_heading text-center"><span><?php echo $about_title; ?></span></h2>
+                <p class="heading_txt text-center"><?php echo $about_meta_description; ?></p>
             </div>
+            <?php foreach(array_slice($about_description, floor(count($about_description)/2)) as $key => $description) : ?>
             <div class="col-sm-6 col-md-6">
                 <div class="colum_left">
                     <div class="block text-justify">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis
-                            nostrud exercitation ullamco laboris nisi </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis
-                            nostrud exercitation ullamco laboris nisi </p>
+                        <p><?php echo $description; ?></p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-md-6">
                 <div class="colum_right">
                     <div class="block text-justify">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis
-                            nostrud exercitation ullamco laboris nisi </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis
-                            nostrud exercitation ullamco laboris nisi </p>
+                        <p><?php echo $description; ?></p>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
            End Features
 *===========================-->
@@ -153,12 +150,11 @@
 <!--=========================*
           ScreenShots
 *===========================-->
+<?php if($project_status) : ?>
 <section id="rt_screenshots">
     <div class="mt_heading_white">
-        <h2 class="section_heading text-center"><span>Our Projects</span></h2>
-        <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco laboris nisi </p>
+        <h2 class="section_heading text-center"><span><?php echo $project_title; ?></span></h2>
+        <p class="heading_txt text-center"><?php echo $project_meta_description; ?></p>
     </div>
     <div class="owl-carousel">
         <?php if($projects) : ?>
@@ -171,6 +167,7 @@
         <?php endif; ?>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
         End	ScreenShots
 *===========================-->
@@ -178,14 +175,13 @@
 <!--=========================*
             Team
 *===========================-->
+<?php if($team_status) : ?>
 <section id="rt_team">
     <div class="container">
         <div class="row">
             <div class="mt_heading">
-                <h2 class="section_heading text-center"><span>Team Members</span></h2>
-                <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi </p>
+                <h2 class="section_heading text-center"><span><?php echo $team_title; ?></span></h2>
+                <p class="heading_txt text-center"><?php echo $team_meta_description; ?></p>
             </div>
             <div class="owl-carousel">
                 <?php if($teams) : ?>
@@ -210,6 +206,7 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
           End Team
 *===========================-->
@@ -217,25 +214,24 @@
 <!--=========================*
           Watch Section
 *===========================-->
-
+<?php if($watch_status) : ?>
+<?php foreach($watches as $watch) : ?>
 <section id="rt_watch"
-    style="background: url(image/template/work_bg_1.jpg); background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+    style="background: url(<?php echo $watch['image']; ?>); background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="watch_content">
-                <a class="various fancybox" data-fancybox-type="iframe"
-                    href="https://www.youtube.com/embed/jid2A7ldc_8?autoplay=0"><img
+                <a class="various fancybox" data-fancybox-type="iframe" href="<?php echo $watch['link']; ?>"><img
                         src="image/template/videobutton.png" alt="Play Button"></a>
-                <h1>See Our Work Showcase</h1>
-                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita impedit
-                    laudantium nulla porro quidem suscipit voluptate? Accusamus alias, commodi consequatur deserunt
-                    dolorem enim laborum nesciunt quia sed veniam? Amet, eveniet?</p>
+                <h1><?php echo $watch_title; ?></h1>
+                <p class="text-center"><?php echo $watch_meta_description; ?></p>
             </div>
         </div>
     </div>
 </section>
-
+<?php endforeach; ?>
+<?php endif; ?>
 <!--=========================*
         End Watch
 *===========================-->
@@ -243,15 +239,14 @@
 <!--=========================*
           Testimonial
 *===========================-->
+<?php if($testimonial_status) : ?>
 <section id="rt_testimonial">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="mt_heading">
-                    <h2 class="section_heading text-center"><span>What our Client Says</span></h2>
-                    <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi </p>
+                    <h2 class="section_heading text-center"><span><?php echo $testimonial_title; ?></span></h2>
+                    <p class="heading_txt text-center"><?php echo $testimonial_meta_description; ?></p>
                 </div>
                 <div class="owl-carousel">
                     <?php if($testimonials) : ?>
@@ -276,11 +271,11 @@
                     <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
         End	Testimonial
 *===========================-->
@@ -288,15 +283,13 @@
 <!--=========================*
           Fun And Facts
 *===========================-->
-
+<?php if($fact_status) : ?>
 <section id="mt_fun">
     <div class="container">
         <div class="row facts_row">
             <div class="mt_heading_white">
-                <h2 class="section_heading text-center"><span>Fun And Facts</span></h2>
-                <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi </p>
+                <h2 class="section_heading text-center"><span><?php echo $fact_title; ?></span></h2>
+                <p class="heading_txt text-center"><?php echo $fact_meta_description; ?></p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 facts_col">
                 <div class="fun-facts_wrapper">
@@ -361,7 +354,7 @@
         </div>
     </div>
 </section>
-
+<?php endif; ?>
 <!--=========================*
         End Fun And Facts
 *===========================-->
@@ -369,16 +362,15 @@
 <!--=========================*
             Blog
 *===========================-->
+<?php if($blog_status) : ?>
 <section id="rt_blog">
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="mt_heading">
-                    <h2 class="section_heading text-center"><span>Our Blog</span></h2>
-                    <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi </p>
+                    <h2 class="section_heading text-center"><span><?php echo $blog_title; ?></span></h2>
+                    <p class="heading_txt text-center"><?php echo $blog_meta_description; ?></p>
                 </div>
             </div>
             <!--=== Post Item ===-->
@@ -431,6 +423,7 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
             End	Blog
 *===========================-->
@@ -438,12 +431,11 @@
 <!--=========================*
             Contact
 *===========================-->
+<?php if($contact_status) : ?>
 <section id="rt_contact">
     <div class="mt_heading">
-        <h2 class="section_heading text-center"><span>Contact Us</span></h2>
-        <p class="heading_txt text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco laboris nisi </p>
+        <h2 class="section_heading text-center"><span><?php echo $contact_title; ?></span></h2>
+        <p class="heading_txt text-center"><?php echo $contact_meta_description; ?></p>
     </div>
     <div class="container">
         <div class="row">
@@ -508,6 +500,7 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!--=========================*
           End Contact
 *===========================-->

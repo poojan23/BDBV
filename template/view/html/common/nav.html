@@ -55,14 +55,20 @@
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="active"><a href="index.html#top"><?php echo $text_home; ?></a></li>
+                                        <?php foreach($menus as $menu) : ?>
+                                        <li><a
+                                                href="index.html#<?php echo $menu['href']; ?>"><?php echo $menu['title']; ?></a>
+                                        </li>
+                                        <?php endforeach; ?>
+                                        <!-- <li class="active"><a href="index.html#top"><?php echo $text_home; ?></a></li>
                                         <li><a href="index.html#rt_services"><?php echo $text_service; ?></a></li>
                                         <li><a href="index.html#rt_features"><?php echo $text_about; ?></a></li>
                                         <li><a href="index.html#rt_screenshots"><?php echo $text_project; ?></a></li>
                                         <li><a href="index.html#rt_team"><?php echo $text_team; ?></a></li>
                                         <li><a href="index.html#rt_testimonial"><?php echo $text_testimonial; ?></a>
                                         </li>
-                                        <!-- <li><a href="index.html#rt_blog"><?php echo $text_blog; ?></a></li> -->
-                                        <li><a href="index.html#rt_contact"><?php echo $text_contact; ?></a></li>
+                                        <li><a href="index.html#rt_blog"><?php echo $text_blog; ?></a></li>
+                                        <li><a href="index.html#rt_contact"><?php echo $text_contact; ?></a></li> -->
                                     </ul>
                                 </div>
                             </div> <!-- .col-md-12 -->

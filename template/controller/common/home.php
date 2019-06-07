@@ -10,6 +10,8 @@ class ControllerCommonHome extends PT_Controller
 
         $this->load->model('catalog/information');
 
+        $this->load->model('design/banner');
+
         $this->load->model('tool/image');
 
         # Services
@@ -19,6 +21,7 @@ class ControllerCommonHome extends PT_Controller
             $data['service_title'] = $service_info['title'];
             $data['service_description'] = trim(strip_tags(html_entity_decode($service_info['description'], ENT_QUOTES, 'UTF-8')));
             $data['service_meta_description'] = $service_info['meta_description'];
+            $data['service_status'] = $service_info['status'];
         }
 
         $this->load->model('catalog/service');
@@ -36,11 +39,52 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # How It Works
+        $work_info = $this->model_catalog_information->getInformation(2);
+
+        if ($work_info) {
+            $data['work_title'] = $work_info['title'];
+            $data['work_description'] = trim(strip_tags(html_entity_decode($work_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['work_meta_description'] = $work_info['meta_description'];
+            $data['work_status'] = $work_info['status'];
+        }
+
+        $data['works'] = array();
+
+        $results = $this->model_design_banner->getBanner(2, 0, 1);
+
+        foreach ($results as $result) {
+            if (is_file(DIR_IMAGE . html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'))) {
+                list($width, $height) = getimagesize(DIR_IMAGE . html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'));
+
+                $data['works'][] = array(
+                    'title' => $result['title'],
+                    'image' => $this->model_tool_image->resize(html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'), $width, $height)
+                );
+            }
+        }
 
         # About Popaya™
+        $about_info = $this->model_catalog_information->getInformation(3);
+
+        if ($about_info) {
+            $data['about_title'] = $about_info['title'];
+
+            $string = explode('<p>', str_replace('</p>', '', html_entity_decode($about_info['description'], ENT_COMPAT, 'UTF-8')));
+            $data['about_description'] = array_splice($string, 1);
+
+            $data['about_meta_description'] = $about_info['meta_description'];
+            $data['about_status'] = $about_info['status'];
+        }
 
         # Projects
-        $this->load->model('design/banner');
+        $project_info = $this->model_catalog_information->getInformation(4);
+
+        if ($project_info) {
+            $data['project_title'] = $project_info['title'];
+            $data['project_description'] = trim(strip_tags(html_entity_decode($project_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['project_meta_description'] = $project_info['meta_description'];
+            $data['project_status'] = $project_info['status'];
+        }
 
         $data['projects'] = array();
 
@@ -56,6 +100,15 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Team
+        $team_info = $this->model_catalog_information->getInformation(5);
+
+        if ($team_info) {
+            $data['team_title'] = $team_info['title'];
+            $data['team_description'] = trim(strip_tags(html_entity_decode($team_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['team_meta_description'] = $team_info['meta_description'];
+            $data['team_status'] = $team_info['status'];
+        }
+
         $this->load->model('catalog/team');
 
         $data['teams'] = array();
@@ -64,9 +117,9 @@ class ControllerCommonHome extends PT_Controller
 
         foreach ($results as $result) {
             if ($result['image']) {
-                $thumb = $this->model_tool_image->resize($result['image'], 400, 500);
+                $thumb = $this->model_tool_image->resize(html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'), 400, 500);
             } else {
-                $thumb = $this->model_tool_image->resize('default-image.png', 400, 500);
+                $thumb = $this->model_tool_image->resize(html_entity_decode('default-image.png', ENT_QUOTES, 'UTF-8'), 400, 500);
             }
 
             $data['teams'][] = array(
@@ -77,8 +130,41 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Watch (See Our Work Showcase)
+        $watch_info = $this->model_catalog_information->getInformation(6);
+
+        if ($watch_info) {
+            $data['watch_title'] = $watch_info['title'];
+            $data['watch_description'] = trim(strip_tags(html_entity_decode($watch_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['watch_meta_description'] = $watch_info['meta_description'];
+            $data['watch_status'] = $watch_info['status'];
+        }
+
+        $data['watches'] = array();
+
+        $results = $this->model_design_banner->getBanner(4, 0, 1);
+
+        foreach ($results as $result) {
+            if (DIR_IMAGE . html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8')) {
+                list($width, $height) = getimagesize(DIR_IMAGE . html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'));
+
+                $data['watches'][] = array(
+                    'title' => $result['title'],
+                    'link'  => preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", "//www.youtube.com/embed/$1?rel=0&autoplay=0", $result['link']),
+                    'image' => $this->model_tool_image->resize(html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'), $width, $height)
+                );
+            }
+        }
 
         # Testimonials
+        $testimonial_info = $this->model_catalog_information->getInformation(7);
+
+        if ($testimonial_info) {
+            $data['testimonial_title'] = $testimonial_info['title'];
+            $data['testimonial_description'] = trim(strip_tags(html_entity_decode($testimonial_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['testimonial_meta_description'] = $testimonial_info['meta_description'];
+            $data['testimonial_status'] = $testimonial_info['status'];
+        }
+
         $this->load->model('catalog/testimonial');
 
         $data['testimonials'] = array();
@@ -87,9 +173,9 @@ class ControllerCommonHome extends PT_Controller
 
         foreach ($results as $result) {
             if ($result['image']) {
-                $thumb = $this->model_tool_image->resize($result['image'], 150, 150);
+                $thumb = $this->model_tool_image->resize(html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'), 150, 150);
             } else {
-                $thumb = $this->model_tool_image->resize('default-image.png', 150, 150);
+                $thumb = $this->model_tool_image->resize(html_entity_decode('default-image.png', ENT_QUOTES, 'UTF-8'), 150, 150);
             }
 
             $data['testimonials'][] = array(
@@ -101,6 +187,15 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Facts
+        $fact_info = $this->model_catalog_information->getInformation(8);
+
+        if ($fact_info) {
+            $data['fact_title'] = $fact_info['title'];
+            $data['fact_description'] = trim(strip_tags(html_entity_decode($fact_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['fact_meta_description'] = $fact_info['meta_description'];
+            $data['fact_status'] = $fact_info['status'];
+        }
+
         $this->load->model('tool/online');
 
         $data['website_icon'] = $this->config->get('config_website_icon');
@@ -116,8 +211,25 @@ class ControllerCommonHome extends PT_Controller
         $data['visitor'] = ($this->model_tool_online->getTotalOnlines() > 9999) ? '9999' : $this->model_tool_online->getTotalOnlines();
 
         # Blog
+        $blog_info = $this->model_catalog_information->getInformation(9);
+
+        if ($blog_info) {
+            $data['blog_title'] = $blog_info['title'];
+            $data['blog_description'] = trim(strip_tags(html_entity_decode($blog_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['blog_meta_description'] = $blog_info['meta_description'];
+            $data['blog_status'] = $blog_info['status'];
+        }
 
         # Contact
+        $contact_info = $this->model_catalog_information->getInformation(10);
+
+        if ($contact_info) {
+            $data['contact_title'] = $contact_info['title'];
+            $data['contact_description'] = trim(strip_tags(html_entity_decode($contact_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['contact_meta_description'] = $contact_info['meta_description'];
+            $data['contact_status'] = $contact_info['status'];
+        }
+
         $data['address'] = nl2br($this->config->get('config_address'));
         $data['telephone'] = $this->config->get('config_telephone');
         $data['email'] = $this->config->get('config_email');

@@ -4,18 +4,37 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Dashboard
-            <small>Control panel</small>
-        </h1>
-        <!--        <ol class="breadcrumb">
-                    <?php foreach($breadcrumbs as $breadcrumb) : ?>
-                    <li>
-                        <a href="<?php echo $breadcrumb['href']; ?>">
-                            <?php echo $breadcrumb['text']; ?></a>
-                    </li>
-                    <?php endforeach; ?>
-                </ol>-->
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><?php echo $heading_title; ?></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                        <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                        <?php if($i == 0) : ?>
+                        <li class="breadcrumb-item">
+                            <i class="nav-icon fa fa-home"></i>
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>">
+                                <?php echo $breadcrumbs[$i]['text']; ?>
+                            </a>
+                        </li>
+                        <?php else : ?>
+                        <li class="breadcrumb-item">
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>">
+                                <?php echo $breadcrumbs[$i]['text']; ?>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        <?php else : ?>
+                        <li class="breadcrumb-item active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
@@ -45,8 +64,20 @@
                         </div>
                         <!-- /.d-flex -->
 
-                        <div class="position-relative mb-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                            <canvas id="visitors-chart" height="200" width="764" class="chartjs-render-monitor" style="display: block; width: 764px; height: 200px;"></canvas>
+                        <div class="position-relative mb-4">
+                            <div class="chartjs-size-monitor"
+                                style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                <div class="chartjs-size-monitor-expand"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                </div>
+                            </div>
+                            <canvas id="visitors-chart" height="200" width="764" class="chartjs-render-monitor"
+                                style="display: block; width: 764px; height: 200px;"></canvas>
                         </div>
 
                         <div class="d-flex flex-row justify-content-end">
@@ -207,3 +238,116 @@
 </div>
 <!-- /.content-wrapper -->
 <?php echo $footer; ?>
+<script type="text/javascript">
+    var now = new Date(),
+        start = now.getDate() - now.getDay(),
+        end = start + 6,
+        current = new Date(now.setDate(start)),
+        last = new Date(now.setDate(end)),
+        range = [];
+
+    while (current <= last) {
+        range.push(new Date(current).getDate());
+        current.setDate(current.getDate() + 1);
+    }
+
+    var dateRange = [];
+    var suffix = '';
+
+    for (var i = 0; i < range.length; i++) {
+        switch (range[i]) {
+            case 1:
+            case 21:
+            case 31:
+                suffix = 'st';
+                break;
+            case 2:
+            case 22:
+                suffix = 'nd';
+                break;
+            case 3:
+            case 23:
+                suffix = 'rd';
+                break;
+            default:
+                suffix = 'th';
+        }
+
+        dateRange.push(range[i] + suffix);
+    }
+
+    var ticksStyle = {
+        fontColor: '#495057',
+        fontStyle: 'bold'
+    }
+
+    var mode = 'index'
+    var intersect = true
+
+    var $visitorsChart = $('#visitors-chart')
+    var visitorsChart = new Chart($visitorsChart, {
+        data: {
+            //labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
+            labels: dateRange,
+            datasets: [{
+                    type: 'line',
+                    data: [100, 120, 170, 167, 180, 177, 160],
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    pointBorderColor: '#007bff',
+                    pointBackgroundColor: '#007bff',
+                    fill: false
+                    // pointHoverBackgroundColor: '#007bff',
+                    // pointHoverBorderColor : '#007bff'
+                },
+                {
+                    type: 'line',
+                    data: [60, 80, 70, 67, 80, 77, 100],
+                    backgroundColor: 'tansparent',
+                    borderColor: '#ced4da',
+                    pointBorderColor: '#ced4da',
+                    pointBackgroundColor: '#ced4da',
+                    fill: false
+                    // pointHoverBackgroundColor: '#ced4da',
+                    // pointHoverBorderColor : '#ced4da'
+                }
+            ]
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                mode: mode,
+                intersect: intersect
+            },
+            hover: {
+                mode: mode,
+                intersect: intersect
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    // display: false,
+                    gridLines: {
+                        display: true,
+                        lineWidth: '4px',
+                        color: 'rgba(0, 0, 0, .2)',
+                        zeroLineColor: 'transparent'
+                    },
+                    ticks: $.extend({
+                        beginAtZero: true,
+                        suggestedMax: 200
+                    }, ticksStyle)
+                }],
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: ticksStyle
+                }]
+            }
+        }
+    })
+</script>

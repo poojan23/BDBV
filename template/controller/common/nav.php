@@ -16,6 +16,61 @@ class ControllerCommonNav extends PT_Controller
             $data['logo_colour'] = '';
         }
 
+        $this->load->model('catalog/information');
+
+        $results = $this->model_catalog_information->getInformations();
+
+        $data['menus'] = array();
+
+        if ($results[0]['status']) {
+            $data['menus'][] = array(
+                'title' => $this->language->get('text_service'),
+                'href'  => 'rt_services'
+            );
+        }
+
+        if ($results[2]['status']) {
+            $data['menus'][] = array(
+                'title' => $this->language->get('text_about'),
+                'href'  => 'rt_features'
+            );
+        }
+
+        if ($results[3]['status']) {
+            $data['menus'][] = array(
+                'title' => $this->language->get('text_project'),
+                'href'  => 'rt_screenshots'
+            );
+        }
+
+        if ($results[4]['status']) {
+            $data['menus'][] = array(
+                'title' => $this->language->get('text_team'),
+                'href'  => 'rt_team'
+            );
+        }
+
+        if ($results[6]['status']) {
+            $data['menus'][] = array(
+                'title' => $this->language->get('text_testimonial'),
+                'href'  => 'rt_testimonial'
+            );
+        }
+
+        if ($results[8]['status']) {
+            $data['menus'][] = array(
+                'title' => $this->language->get('text_blog'),
+                'href'  => 'rt_blog'
+            );
+        }
+
+        if ($results[9]['status']) {
+            $data['menus'][] = array(
+                'title' => $this->language->get('text_contact'),
+                'href'  => 'rt_contact'
+            );
+        }
+
         $data['home'] = $this->url->link('common/home', 'language=' . $this->config->get('config_language'));
 
         return $this->load->view('common/nav', $data);
