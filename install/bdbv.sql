@@ -15,9 +15,10 @@ SET sql_mode = '';
 --
 
 INSERT INTO `pt_banner` (`banner_id`, `name`, `status`) VALUES
-(6, 'HP Products', 1),
-(7, 'Home Page Slideshow', 1),
-(8, 'Manufacturers', 1);
+(1, 'Top', 1),
+(2, 'How It Works', 1),
+(3, 'Projects', 1),
+(4, 'Work Showcase', 1);
 
 -----------------------------------------------------------
 
@@ -26,20 +27,19 @@ INSERT INTO `pt_banner` (`banner_id`, `name`, `status`) VALUES
 --
 
 INSERT INTO `pt_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
-(79, 7, 1, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
-(87, 6, 1, 'HP Banner', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
-(94, 8, 1, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
-(95, 8, 1, 'RedBull', '', 'catalog/demo/manufacturer/redbull.png', 0),
-(96, 8, 1, 'Sony', '', 'catalog/demo/manufacturer/sony.png', 0),
-(91, 8, 1, 'Coca Cola', '', 'catalog/demo/manufacturer/cocacola.png', 0),
-(92, 8, 1, 'Burger King', '', 'catalog/demo/manufacturer/burgerking.png', 0),
-(93, 8, 1, 'Canon', '', 'catalog/demo/manufacturer/canon.png', 0),
-(88, 8, 1, 'Harley Davidson', '', 'catalog/demo/manufacturer/harley.png', 0),
-(89, 8, 1, 'Dell', '', 'catalog/demo/manufacturer/dell.png', 0),
-(90, 8, 1, 'Disney', '', 'catalog/demo/manufacturer/disney.png', 0),
-(80, 7, 1, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
-(97, 8, 1, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
-(98, 8, 1, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0);
+(35, 3, 1, 'Aalap Dipesh Desai', '', 'template/screenshot/aalap.png', 1),
+(36, 3, 1, 'Gemstar Group', '', 'template/screenshot/gemstar.png', 2),
+(37, 3, 1, 'Cyatone Global', '', 'template/screenshot/cyatone.png', 3),
+(38, 3, 1, 'Rotary District 3141', '', 'template/screenshot/rotary.png', 4),
+(39, 3, 1, 'Patsons Export', '', 'template/screenshot/patsons-exports.png', 5),
+(40, 3, 1, 'KKPS Group', '', 'template/screenshot/KKPS.png', 6),
+(41, 3, 1, 'Adhesive Specialities', '', 'template/screenshot/adhesivespecialities.png', 7),
+(42, 3, 1, 'Pratish Impex', '', 'template/screenshot/pratishimpex.png', 8),
+(43, 3, 1, 'Atithi Devo Bhava Holidays', '', 'template/screenshot/adbholidays.png', 9),
+(44, 3, 1, 'Kinder Universe P. Ltd.', '', 'template/screenshot/kinder.png', 10),
+(45, 2, 1, 'How It Works', '', 'template/work/work-mobile.png', 1),
+(47, 4, 1, 'Showcase', 'https://www.youtube.com/watch?v=jid2A7ldc_8', 'template/work_bg_1.jpg', 1),
+(48, 1, 1, 'Popaya.in', 'https://www.popaya.in/', 'template/mobile-mockup.png', 1);
 
 -----------------------------------------------------------
 
@@ -308,84 +308,46 @@ INSERT INTO `pt_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 -- Dumping data for table `pt_event`
 --
 
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(1, 'activity_customer_add', 'catalog/model/account/customer/addCustomer/after', 'event/activity/addCustomer', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(2, 'activity_customer_edit', 'catalog/model/account/customer/editCustomer/after', 'event/activity/editCustomer', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(3, 'activity_customer_password', 'catalog/model/account/customer/editPassword/after', 'event/activity/editPassword', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(4, 'activity_customer_forgotten', 'catalog/model/account/customer/editCode/after', 'event/activity/forgotten', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(5, 'activity_transaction', 'catalog/model/account/customer/addTransaction/after', 'event/activity/addTransaction', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(6, 'activity_customer_login', 'catalog/model/account/customer/deleteLoginAttempts/after', 'event/activity/login', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(7, 'activity_address_add', 'catalog/model/account/address/addAddress/after', 'event/activity/addAddress', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(8, 'activity_address_edit', 'catalog/model/account/address/editAddress/after', 'event/activity/editAddress', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(9, 'activity_address_delete', 'catalog/model/account/address/deleteAddress/after', 'event/activity/deleteAddress', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(10, 'activity_affiliate_add', 'catalog/model/account/affiliate/addAffiliate/after', 'event/activity/addAffiliate', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(11, 'activity_affiliate_edit', 'catalog/model/account/affiliate/editAffiliate/after', 'event/activity/editAffiliate', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(12, 'activity_order_add', 'catalog/model/checkout/order/addOrderHistory/before', 'event/activity/addOrderHistory', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(13, 'activity_return_add', 'catalog/model/account/return/addReturn/after', 'event/activity/addReturn', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(14, 'mail_transaction', 'catalog/model/account/customer/addTransaction/after', 'mail/transaction', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(15, 'mail_forgotten', 'catalog/model/account/customer/editCode/after', 'mail/forgotten', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(16, 'mail_customer_add', 'catalog/model/account/customer/addCustomer/after', 'mail/register', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(17, 'mail_customer_alert', 'catalog/model/account/customer/addCustomer/after', 'mail/register/alert', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(18, 'mail_affiliate_add', 'catalog/model/account/affiliate/addAffiliate/after', 'mail/affiliate', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(19, 'mail_affiliate_alert', 'catalog/model/account/affiliate/addAffiliate/after', 'mail/affiliate/alert', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(20, 'mail_voucher', 'catalog/model/checkout/order/addOrderHistory/after', 'extension/total/voucher/send', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(21, 'mail_order_add', 'catalog/model/checkout/order/addOrderHistory/before', 'mail/order', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(22, 'mail_order_alert', 'catalog/model/checkout/order/addOrderHistory/before', 'mail/order/alert', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(23, 'mail_gdpr', 'catalog/model/account/gdpr/addGdpr/after', 'mail/gdpr', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(24, 'mail_review', 'catalog/model/catalog/review/addReview/after', 'mail/review', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(25, 'statistics_review_add', 'catalog/model/catalog/review/addReview/after', 'event/statistics/addReview', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(26, 'statistics_return_add', 'catalog/model/account/return/addReturn/after', 'event/statistics/addReturn', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(27, 'statistics_order_history', 'catalog/model/checkout/order/addOrderHistory/after', 'event/statistics/addOrderHistory', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(28, 'admin_mail_affiliate_approve', 'admin/model/customer/customer_approval/approveAffiliate/after', 'mail/affiliate/approve', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(29, 'admin_mail_affiliate_deny', 'admin/model/customer/customer_approval/denyAffiliate/after', 'mail/affiliate/deny', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(30, 'admin_mail_customer_approve', 'admin/model/customer/customer_approval/approveCustomer/after', 'mail/customer/approve', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(31, 'admin_mail_customer_deny', 'admin/model/customer/customer_approval/denyCustomer/after', 'mail/customer/deny', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(32, 'admin_mail_reward', 'admin/model/customer/customer/addReward/after', 'mail/reward', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(33, 'admin_mail_transaction', 'admin/model/customer/customer/addTransaction/after', 'mail/transaction', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(34, 'admin_mail_return', 'admin/model/sale/return/addReturnHistory/after', 'mail/return', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(35, 'admin_mail_forgotten', 'admin/model/user/user/editCode/after', 'mail/forgotten', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(36, 'admin_currency_add', 'admin/model/localisation/currency/addCurrency/after', 'event/currency', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(37, 'admin_currency_edit', 'admin/model/localisation/currency/editCurrency/after', 'event/currency', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(38, 'admin_setting', 'admin/model/setting/setting/editSetting/after', 'event/currency', 1);
-INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUES
-(39, 'admin_mail_gdpr', 'admin/model/customer/gdpr/editStatus/after', 'mail/gdpr', 1);
+INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`, `sort_order`) VALUES
+(1, 'activity_customer_add', 'catalog/model/account/customer/addCustomer/after', 'event/activity/addCustomer', 1, 0),
+(2, 'activity_customer_edit', 'catalog/model/account/customer/editCustomer/after', 'event/activity/editCustomer', 1, 0),
+(3, 'activity_customer_password', 'catalog/model/account/customer/editPassword/after', 'event/activity/editPassword', 1, 0),
+(4, 'activity_customer_forgotten', 'catalog/model/account/customer/editCode/after', 'event/activity/forgotten', 1, 0),
+(5, 'activity_transaction', 'catalog/model/account/customer/addTransaction/after', 'event/activity/addTransaction', 1, 0),
+(6, 'activity_customer_login', 'catalog/model/account/customer/deleteLoginAttempts/after', 'event/activity/login', 1, 0),
+(7, 'activity_address_add', 'catalog/model/account/address/addAddress/after', 'event/activity/addAddress', 1, 0),
+(8, 'activity_address_edit', 'catalog/model/account/address/editAddress/after', 'event/activity/editAddress', 1, 0),
+(9, 'activity_address_delete', 'catalog/model/account/address/deleteAddress/after', 'event/activity/deleteAddress', 1, 0),
+(10, 'activity_affiliate_add', 'catalog/model/account/affiliate/addAffiliate/after', 'event/activity/addAffiliate', 1, 0),
+(11, 'activity_affiliate_edit', 'catalog/model/account/affiliate/editAffiliate/after', 'event/activity/editAffiliate', 1, 0),
+(12, 'activity_order_add', 'catalog/model/checkout/order/addOrderHistory/before', 'event/activity/addOrderHistory', 1, 0),
+(13, 'activity_return_add', 'catalog/model/account/return/addReturn/after', 'event/activity/addReturn', 1, 0),
+(14, 'mail_transaction', 'catalog/model/account/customer/addTransaction/after', 'mail/transaction', 1, 0),
+(15, 'mail_forgotten', 'catalog/model/account/customer/editCode/after', 'mail/forgotten', 1, 0),
+(16, 'mail_customer_add', 'catalog/model/account/customer/addCustomer/after', 'mail/register', 1, 0),
+(17, 'mail_customer_alert', 'catalog/model/account/customer/addCustomer/after', 'mail/register/alert', 1, 0),
+(18, 'mail_affiliate_add', 'catalog/model/account/affiliate/addAffiliate/after', 'mail/affiliate', 1, 0),
+(19, 'mail_affiliate_alert', 'catalog/model/account/affiliate/addAffiliate/after', 'mail/affiliate/alert', 1, 0),
+(20, 'mail_voucher', 'catalog/model/checkout/order/addOrderHistory/after', 'extension/total/voucher/send', 1, 0),
+(21, 'mail_order_add', 'catalog/model/checkout/order/addOrderHistory/before', 'mail/order', 1, 0),
+(22, 'mail_order_alert', 'catalog/model/checkout/order/addOrderHistory/before', 'mail/order/alert', 1, 0),
+(23, 'mail_gdpr', 'catalog/model/account/gdpr/addGdpr/after', 'mail/gdpr', 1, 0),
+(24, 'mail_review', 'catalog/model/catalog/review/addReview/after', 'mail/review', 1, 0),
+(25, 'statistics_review_add', 'catalog/model/catalog/review/addReview/after', 'event/statistics/addReview', 1, 0),
+(26, 'statistics_return_add', 'catalog/model/account/return/addReturn/after', 'event/statistics/addReturn', 1, 0),
+(27, 'statistics_order_history', 'catalog/model/checkout/order/addOrderHistory/after', 'event/statistics/addOrderHistory', 1, 0),
+(28, 'admin_mail_affiliate_approve', 'admin/model/customer/customer_approval/approveAffiliate/after', 'mail/affiliate/approve', 1, 0),
+(29, 'admin_mail_affiliate_deny', 'admin/model/customer/customer_approval/denyAffiliate/after', 'mail/affiliate/deny', 1, 0),
+(30, 'admin_mail_customer_approve', 'admin/model/customer/customer_approval/approveCustomer/after', 'mail/customer/approve', 1, 0),
+(31, 'admin_mail_customer_deny', 'admin/model/customer/customer_approval/denyCustomer/after', 'mail/customer/deny', 1, 0),
+(32, 'admin_mail_reward', 'admin/model/customer/customer/addReward/after', 'mail/reward', 1, 0),
+(33, 'admin_mail_transaction', 'admin/model/customer/customer/addTransaction/after', 'mail/transaction', 1, 0),
+(34, 'admin_mail_return', 'admin/model/sale/return/addReturnHistory/after', 'mail/return', 1, 0),
+(35, 'admin_mail_forgotten', 'admin/model/user/user/editCode/after', 'mail/forgotten', 1, 0),
+(36, 'admin_currency_add', 'admin/model/localisation/currency/addCurrency/after', 'event/currency', 1, 0),
+(37, 'admin_currency_edit', 'admin/model/localisation/currency/editCurrency/after', 'event/currency', 1, 0),
+(38, 'admin_setting', 'admin/model/setting/setting/editSetting/after', 'event/currency', 1, 0),
+(39, 'admin_mail_gdpr', 'admin/model/customer/gdpr/editStatus/after', 'mail/gdpr', 1, 0);
 
 -----------------------------------------------------------
 
@@ -393,11 +355,18 @@ INSERT INTO `pt_event` (`event_id`, `code`, `trigger`, `action`, `status`) VALUE
 -- Dumping data for table `pt_information`
 --
 
-INSERT INTO `pt_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
-(1, 1, 3, 1),
-(2, 1, 1, 1),
-(3, 1, 4, 1),
-(4, 1, 2, 1);
+INSERT INTO `pt_information` (`information_id`, `image`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
+(1, '', 1, 1, '0000-00-00 00:00:00', '2019-06-08 18:42:08'),
+(2, '', 2, 1, '2019-06-06 13:28:33', '2019-06-07 12:09:19'),
+(3, '', 3, 1, '2019-06-06 13:30:11', '2019-06-06 13:30:11'),
+(4, '', 4, 1, '2019-06-06 13:30:44', '2019-06-06 13:41:20'),
+(5, '', 5, 1, '2019-06-06 13:32:16', '2019-06-06 13:32:16'),
+(6, '', 6, 1, '2019-06-06 13:32:45', '2019-06-06 13:32:45'),
+(7, '', 7, 1, '2019-06-06 13:37:06', '2019-06-06 13:37:06'),
+(8, '', 8, 1, '2019-06-06 13:37:59', '2019-06-06 13:37:59'),
+(9, '', 9, 1, '2019-06-06 13:38:49', '2019-06-06 13:38:49'),
+(10, '', 10, 0, '2019-06-06 13:39:33', '2019-06-07 15:24:24'),
+(11, '', 11, 1, '2019-06-06 13:40:04', '2019-06-06 13:40:04');
 
 -----------------------------------------------------------
 
@@ -406,10 +375,17 @@ INSERT INTO `pt_information` (`information_id`, `bottom`, `sort_order`, `status`
 --
 
 INSERT INTO `pt_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(1, 1, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
-(2, 1, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
-(3, 1, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
-(4, 1, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', '');
+(1, 1, 'Be Digital Be Visible', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore&lt;/p&gt;\r\n', 'Be Digital Be Visible', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore', '                                                        '),
+(2, 1, 'Our Services', '', 'Our Services', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                                                                                                                                                                                                                               '),
+(3, 1, 'How It Works', '', 'How It Works', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                        '),
+(4, 1, 'About Popaya™', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi&lt;/p&gt;\r\n\r\n&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi&lt;/p&gt;\r\n\r\n&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi&lt;/p&gt;\r\n\r\n&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi&lt;/p&gt;\r\n', 'About Popaya™', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                                                                                '),
+(5, 1, 'Projects', '', 'Projects', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                        '),
+(6, 1, 'Team Members', '', 'Team Members', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                        '),
+(7, 1, 'See Our Work Showcase', '', 'See Our Work Showcase', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                        '),
+(8, 1, 'What Our Client Says', '', 'What Our Client Says', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                        '),
+(9, 1, 'Fun and Facts', '', 'Fun and Facts', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                        '),
+(10, 1, 'Our Blog', '', 'Our Blog', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                                                                                                                                                                                                '),
+(11, 1, 'Contact Us', '', 'Contact Us', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi', '                                                        ');
 
 -----------------------------------------------------------
 
@@ -423,318 +399,127 @@ INSERT INTO `pt_language` (`language_id`, `name`, `code`, `locale`, `image`, `so
 -----------------------------------------------------------
 
 --
--- Dumping data for table `pt_setting`
---
-
-INSERT INTO `pt_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALUES
-(0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(0, 'config', 'config_shared', '0', 0),
-(0, 'config', 'config_fraud_detection', '0', 0),
-(0, 'config', 'config_ftp_status', '0', 0),
-(0, 'config', 'config_ftp_root', '', 0),
-(0, 'config', 'config_ftp_password', '', 0),
-(0, 'config', 'config_ftp_username', '', 0),
-(0, 'config', 'config_ftp_port', '21', 0),
-(0, 'config', 'config_ftp_hostname', '', 0),
-(0, 'config', 'config_meta_title', 'Your Store', 0),
-(0, 'config', 'config_meta_description', 'My Store', 0),
-(0, 'config', 'config_meta_keyword', '', 0),
-(0, 'config', 'config_theme', 'default', 0),
-(0, 'config', 'config_layout_id', '4', 0),
-(0, 'config', 'config_country_id', '222', 0),
-(0, 'config', 'config_zone_id', '3563', 0),
-(0, 'config', 'config_timezone', 'Asia/Kolkata', 0),
-(0, 'config', 'config_language', 'en-gb', 0),
-(0, 'config', 'config_admin_language', 'en-gb', 0),
-(0, 'config', 'config_currency', 'USD', 0),
-(0, 'config', 'config_currency_auto', '1', 0),
-(0, 'config', 'config_currency_engine', 'fixer', 0),
-(0, 'config', 'config_length_class_id', '1', 0),
-(0, 'config', 'config_weight_class_id', '1', 0),
-(0, 'config', 'config_product_count', '1', 0),
-(0, 'config', 'config_limit_admin', '10', 0),
-(0, 'config', 'config_review_status', '1', 0),
-(0, 'config', 'config_review_guest', '1', 0),
-(0, 'config', 'config_voucher_min', '1', 0),
-(0, 'config', 'config_voucher_max', '1000', 0),
-(0, 'config', 'config_tax', '1', 0),
-(0, 'config', 'config_cookie_id', '0', 0),
-(0, 'config', 'config_gdpr_id', '0', 0),
-(0, 'config', 'config_gdpr_limit', '180', 0),
-(0, 'config', 'config_tax', '1', 0),
-(0, 'config', 'config_tax_default', 'shipping', 0),
-(0, 'config', 'config_tax_customer', 'shipping', 0),
-(0, 'config', 'config_customer_online', '0', 0),
-(0, 'config', 'config_customer_activity', '0', 0),
-(0, 'config', 'config_customer_search', '0', 0),
-(0, 'config', 'config_customer_group_id', '1', 0),
-(0, 'config', 'config_customer_group_display', '["1"]', 1),
-(0, 'config', 'config_customer_price', '0', 0),
-(0, 'config', 'config_account_id', '3', 0),
-(0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
-(0, 'config', 'config_api_id', '1', 0),
-(0, 'config', 'config_cart_weight', '1', 0),
-(0, 'config', 'config_checkout_guest', '1', 0),
-(0, 'config', 'config_checkout_id', '5', 0),
-(0, 'config', 'config_order_status_id', '1', 0),
-(0, 'config', 'config_processing_status', '["5","1","2","12","3"]', 1),
-(0, 'config', 'config_complete_status', '["5","3"]', 1),
-(0, 'config', 'config_fraud_status_id', '8', 0),
-(0, 'config', 'config_stock_display', '0', 0),
-(0, 'config', 'config_stock_warning', '0', 0),
-(0, 'config', 'config_stock_checkout', '0', 0),
-(0, 'config', 'config_affiliate_approval', '0', 0),
-(0, 'config', 'config_affiliate_auto', '0', 0),
-(0, 'config', 'config_affiliate_commission', '5', 0),
-(0, 'config', 'config_affiliate_id', '4', 0),
-(0, 'config', 'config_return_id', '0', 0),
-(0, 'config', 'config_return_status_id', '2', 0),
-(0, 'config', 'config_logo', 'catalog/logo.png', 0),
-(0, 'config', 'config_icon', 'catalog/cart.png', 0),
-(0, 'config', 'config_comment', '', 0),
-(0, 'config', 'config_open', '', 0),
-(0, 'config', 'config_image', '', 0),
-(0, 'config', 'config_fax', '', 0),
-(0, 'config', 'config_telephone', '123456789', 0),
-(0, 'config', 'config_email', 'demo@opencart.com', 0),
-(0, 'config', 'config_geocode', '', 0),
-(0, 'config', 'config_owner', 'Your Name', 0),
-(0, 'config', 'config_address', 'Address 1', 0),
-(0, 'config', 'config_name', 'Your Store', 0),
-(0, 'config', 'config_seo_url', '0', 0),
-(0, 'config', 'config_file_max_size', '300000', 0),
-(0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(0, 'config', 'config_maintenance', '0', 0),
-(0, 'config', 'config_password', '1', 0),
-(0, 'config', 'config_encryption', '', 0),
-(0, 'config', 'config_compression', '0', 0),
-(0, 'config', 'config_error_display', '1', 0),
-(0, 'config', 'config_error_log', '1', 0),
-(0, 'config', 'config_error_filename', 'error.log', 0),
-(0, 'config', 'config_google_analytics', '', 0),
-(0, 'config', 'config_mail_engine', 'mail', 0),
-(0, 'config', 'config_mail_parameter', '', 0),
-(0, 'config', 'config_mail_smtp_hostname', '', 0),
-(0, 'config', 'config_mail_smtp_username', '', 0),
-(0, 'config', 'config_mail_smtp_password', '', 0),
-(0, 'config', 'config_mail_smtp_port', '25', 0),
-(0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(0, 'config', 'config_mail_alert_email', '', 0),
-(0, 'config', 'config_mail_alert', '["order"]', 1),
-(0, 'config', 'config_captcha', 'basic', 0),
-(0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
-(0, 'config', 'config_login_attempts', '5', 0),
-(0, 'currency_fixer', 'currency_fixer_status', '1', 0),
-(0, 'payment_free_checkout', 'payment_free_checkout_status', '1', 0),
-(0, 'payment_free_checkout', 'payment_free_checkout_order_status_id', '1', 0),
-(0, 'payment_free_checkout', 'payment_free_checkout_sort_order', '1', 0),
-(0, 'payment_cod', 'payment_cod_sort_order', '5', 0),
-(0, 'payment_cod', 'payment_cod_total', '0.01', 0),
-(0, 'payment_cod', 'payment_cod_order_status_id', '1', 0),
-(0, 'payment_cod', 'payment_cod_geo_zone_id', '0', 0),
-(0, 'payment_cod', 'payment_cod_status', '1', 0),
-(0, 'shipping_flat', 'shipping_flat_sort_order', '1', 0),
-(0, 'shipping_flat', 'shipping_flat_status', '1', 0),
-(0, 'shipping_flat', 'shipping_flat_geo_zone_id', '0', 0),
-(0, 'shipping_flat', 'shipping_flat_tax_class_id', '9', 0),
-(0, 'shipping_flat', 'shipping_flat_cost', '5.00', 0),
-(0, 'total_shipping', 'total_shipping_sort_order', '3', 0),
-(0, 'total_sub_total', 'total_sub_total_sort_order', '1', 0),
-(0, 'total_sub_total', 'total_sub_total_status', '1', 0),
-(0, 'total_tax', 'total_tax_status', '1', 0),
-(0, 'total_total', 'total_total_sort_order', '9', 0),
-(0, 'total_total', 'total_total_status', '1', 0),
-(0, 'total_tax', 'total_tax_sort_order', '5', 0),
-(0, 'total_credit', 'total_credit_sort_order', '7', 0),
-(0, 'total_credit', 'total_credit_status', '1', 0),
-(0, 'total_reward', 'total_reward_sort_order', '2', 0),
-(0, 'total_reward', 'total_reward_status', '1', 0),
-(0, 'total_shipping', 'total_shipping_status', '1', 0),
-(0, 'total_shipping', 'total_shipping_estimator', '1', 0),
-(0, 'total_coupon', 'total_coupon_sort_order', '4', 0),
-(0, 'total_coupon', 'total_coupon_status', '1', 0),
-(0, 'total_voucher', 'total_voucher_sort_order', '8', 0),
-(0, 'total_voucher', 'total_voucher_status', '1', 0),
-(0, 'module_category', 'module_category_status', '1', 0),
-(0, 'module_account', 'module_account_status', '1', 0),
-(0, 'theme_default', 'theme_default_product_limit', '15', 0),
-(0, 'theme_default', 'theme_default_product_description_length', '100', 0),
-(0, 'theme_default', 'theme_default_image_thumb_width', '228', 0),
-(0, 'theme_default', 'theme_default_image_thumb_height', '228', 0),
-(0, 'theme_default', 'theme_default_image_popup_width', '500', 0),
-(0, 'theme_default', 'theme_default_image_popup_height', '500', 0),
-(0, 'theme_default', 'theme_default_image_category_width', '80', 0),
-(0, 'theme_default', 'theme_default_image_category_height', '80', 0),
-(0, 'theme_default', 'theme_default_image_product_width', '228', 0),
-(0, 'theme_default', 'theme_default_image_product_height', '228', 0),
-(0, 'theme_default', 'theme_default_image_additional_width', '74', 0),
-(0, 'theme_default', 'theme_default_image_additional_height', '74', 0),
-(0, 'theme_default', 'theme_default_image_related_width', '200', 0),
-(0, 'theme_default', 'theme_default_image_related_height', '200', 0),
-(0, 'theme_default', 'theme_default_image_compare_width', '90', 0),
-(0, 'theme_default', 'theme_default_image_compare_height', '90', 0),
-(0, 'theme_default', 'theme_default_image_wishlist_width', '47', 0),
-(0, 'theme_default', 'theme_default_image_wishlist_height', '47', 0),
-(0, 'theme_default', 'theme_default_image_cart_height', '47', 0),
-(0, 'theme_default', 'theme_default_image_cart_width', '47', 0),
-(0, 'theme_default', 'theme_default_image_location_height', '50', 0),
-(0, 'theme_default', 'theme_default_image_location_width', '268', 0),
-(0, 'theme_default', 'theme_default_directory', 'default', 0),
-(0, 'theme_default', 'theme_default_status', '1', 0),
-(0, 'dashboard_activity', 'dashboard_activity_status', '1', 0),
-(0, 'dashboard_activity', 'dashboard_activity_sort_order', '7', 0),
-(0, 'dashboard_sale', 'dashboard_sale_status', '1', 0),
-(0, 'dashboard_sale', 'dashboard_sale_width', '3', 0),
-(0, 'dashboard_chart', 'dashboard_chart_status', '1', 0),
-(0, 'dashboard_chart', 'dashboard_chart_width', '6', 0),
-(0, 'dashboard_customer', 'dashboard_customer_status', '1', 0),
-(0, 'dashboard_customer', 'dashboard_customer_width', '3', 0),
-(0, 'dashboard_map', 'dashboard_map_status', '1', 0),
-(0, 'dashboard_map', 'dashboard_map_width', '6', 0),
-(0, 'dashboard_online', 'dashboard_online_status', '1', 0),
-(0, 'dashboard_online', 'dashboard_online_width', '3', 0),
-(0, 'dashboard_order', 'dashboard_order_sort_order', '1', 0),
-(0, 'dashboard_order', 'dashboard_order_status', '1', 0),
-(0, 'dashboard_order', 'dashboard_order_width', '3', 0),
-(0, 'dashboard_sale', 'dashboard_sale_sort_order', '2', 0),
-(0, 'dashboard_customer', 'dashboard_customer_sort_order', '3', 0),
-(0, 'dashboard_online', 'dashboard_online_sort_order', '4', 0),
-(0, 'dashboard_map', 'dashboard_map_sort_order', '5', 0),
-(0, 'dashboard_chart', 'dashboard_chart_sort_order', '6', 0),
-(0, 'dashboard_recent', 'dashboard_recent_status', '1', 0),
-(0, 'dashboard_recent', 'dashboard_recent_sort_order', '8', 0),
-(0, 'dashboard_activity', 'dashboard_activity_width', '4', 0),
-(0, 'dashboard_recent', 'dashboard_recent_width', '8', 0),
-(0, 'report_customer_activity', 'report_customer_activity_status', '1', 0),
-(0, 'report_customer_activity', 'report_customer_activity_sort_order', '1', 0),
-(0, 'report_customer_order', 'report_customer_order_status', '1', 0),
-(0, 'report_customer_order', 'report_customer_order_sort_order', '2', 0),
-(0, 'report_customer_reward', 'report_customer_reward_status', '1', 0),
-(0, 'report_customer_reward', 'report_customer_reward_sort_order', '3', 0),
-(0, 'report_customer_search', 'report_customer_search_sort_order', '3', 0),
-(0, 'report_customer_search', 'report_customer_search_status', '1', 0),
-(0, 'report_customer_transaction', 'report_customer_transaction_status', '1', 0),
-(0, 'report_customer_transaction', 'report_customer_transaction_status_sort_order', '4', 0),
-(0, 'report_sale_tax', 'report_sale_tax_status', '1', 0),
-(0, 'report_sale_tax', 'report_sale_tax_sort_order', '5', 0),
-(0, 'report_sale_shipping', 'report_sale_shipping_status', '1', 0),
-(0, 'report_sale_shipping', 'report_sale_shipping_sort_order', '6', 0),
-(0, 'report_sale_return', 'report_sale_return_status', '1', 0),
-(0, 'report_sale_return', 'report_sale_return_sort_order', '7', 0),
-(0, 'report_sale_order', 'report_sale_order_status', '1', 0),
-(0, 'report_sale_order', 'report_sale_order_sort_order', '8', 0),
-(0, 'report_sale_coupon', 'report_sale_coupon_status', '1', 0),
-(0, 'report_sale_coupon', 'report_sale_coupon_sort_order', '9', 0),
-(0, 'report_product_viewed', 'report_product_viewed_status', '1', 0),
-(0, 'report_product_viewed', 'report_product_viewed_sort_order', '10', 0),
-(0, 'report_product_purchased', 'report_product_purchased_status', '1', 0),
-(0, 'report_product_purchased', 'report_product_purchased_sort_order', '11', 0),
-(0, 'report_marketing', 'report_marketing_status', '1', 0),
-(0, 'report_marketing', 'report_marketing_sort_order', '12', 0),
-(0, 'developer', 'developer_theme', '1', 0),
-(0, 'developer', 'developer_sass', '1', 0);
-
------------------------------------------------------------
-
---
--- Dumping data for table `pt_seo_regex`
---
-
-INSERT INTO `pt_seo_regex` (`name`, `regex`, `sort_order`) VALUES
-('Product', '(product_id=\\d+)(?:[&]|$)', 100),
-('Category Level 1', '(path=\\d+)(?:[_&]|$)', 1),
-('Category Level 2', '(path=\\d+_\\d+)(?:[_&]|$)', 2),
-('Category Level 3', '(path=\\d+_\\d+_\\d+)(?:[_&]|$)', 3),
-('Information', '(information_id=\\d+)(?:[&]|$)', 1),
-('Manufacturer', '(manufacturer_id=\\d+)(?:[&]|$)', 2),
-('Language', '(language=[a-z-]+)(?:[&]|$)', -1),
-('Route', '(route=[a-zA-Z0-9\\/]+)(?:[&]|$)', 0),
-('Category Level 4', '(path=\\d+_\\d+_\\d+_\\d+)(?:[_&]|$)', 4),
-('Category Level 5', '(path=\\d+_\\d+_\\d+_\\d+_\\d+)(?:[_&]|$)', 5),
-('Manufacturer', '(manufacturer_id=)', 1),
-('Information', '(information_id=)', 1),
-('Category', '(path=)', 1),
-('Product', '(product_id=)', 99);
-
------------------------------------------------------------
-
---
 -- Dumping data for table `pt_seo_url`
 --
 
-INSERT INTO `pt_seo_url` (`store_id`, `language_id`, `query`, `keyword`, `push`) VALUES
-(0, 1, 'product_id=48', 'ipod-classic', 'route=product/product&product_id=48'),
-(0, 1, 'path=20', 'desktops', 'route=product/category&path=20'),
-(0, 1, 'path=20_26', 'pc', 'route=product/category&path=20_26'),
-(0, 1, 'path=20_27', 'mac', 'route=product/category&path=20_27'),
-(0, 1, 'manufacturer_id=8', 'apple', 'route=product/manufacturer/info&manufacturer_id=8'),
-(0, 1, 'information_id=4', 'about-us', 'route=information/information&information_id=4'),
-(0, 1, 'path=34', 'mp3-players', 'route=product/category&path=34'),
-(0, 1, 'path=18', 'laptop-notebook', 'route=product/category&path=18'),
-(0, 1, 'path=18_46', 'macs', 'route=product/category&path=18_46'),
-(0, 1, 'path=18_45', 'windows', 'route=product/category&path=18_45'),
-(0, 1, 'path=25', 'component', 'route=product/category&path=25'),
-(0, 1, 'path=25_29', 'mouse', 'route=product/category&path=25_29'),
-(0, 1, 'path=25_28', 'monitor', 'route=product/category&path=25_28'),
-(0, 1, 'path=25_30', 'printer', 'route=product/category&path=25_30'),
-(0, 1, 'path=25_31', 'scanner', 'route=product/category&path=25_31'),
-(0, 1, 'path=25_32', 'web-camera', 'route=product/category&path=25_32'),
-(0, 1, 'path=57', 'tablet', 'route=product/category&path=57'),
-(0, 1, 'path=17', 'software', 'route=product/category&path=17'),
-(0, 1, 'path=24', 'smartphone', 'route=product/category&path=24'),
-(0, 1, 'path=33', 'camera', 'route=product/category&path=33'),
-(0, 1, 'path=34_43', 'test-11', 'route=product/category&path=34_43'),
-(0, 1, 'path=34_44', 'test-12', 'route=product/category&path=34_44'),
-(0, 1, 'path=34_47', 'test-15', 'route=product/category&path=34_47'),
-(0, 1, 'path=34_48', 'test-16', 'route=product/category&path=34_48'),
-(0, 1, 'path=34_49', 'test-17', 'route=product/category&path=34_49'),
-(0, 1, 'path=34_50', 'test-18', 'route=product/category&path=34_50'),
-(0, 1, 'path=34_51', 'test-19', 'route=product/category&path=34_51'),
-(0, 1, 'path=34_52', 'test-20', 'route=product/category&path=34_52'),
-(0, 1, 'path=34_58', 'test-25', 'route=product/category&path=34_58'),
-(0, 1, 'path=34_53', 'test-21', 'route=product/category&path=34_53'),
-(0, 1, 'path=34_54', 'test-22', 'route=product/category&path=34_54'),
-(0, 1, 'path=34_55', 'test-23', 'route=product/category&path=34_55'),
-(0, 1, 'path=34_56', 'test-24', 'route=product/category&path=34_56'),
-(0, 1, 'path=34_38', 'test-4', 'route=product/category&path=34_38'),
-(0, 1, 'path=34_37', 'test-5', 'route=product/category&path=34_37'),
-(0, 1, 'path=34_39', 'test-6', 'route=product/category&path=34_39'),
-(0, 1, 'path=34_40', 'test-7', 'route=product/category&path=34_40'),
-(0, 1, 'path=34_41', 'test-8', 'route=product/category&path=34_41'),
-(0, 1, 'path=34_42', 'test-9', 'route=product/category&path=34_42'),
-(0, 1, 'product_id=30', 'canon-eos-5d', 'route=product/product&product_id=30'),
-(0, 1, 'product_id=47', 'hp-lp3065', 'route=product/product&product_id=47'),
-(0, 1, 'product_id=28', 'htc-touch-hd', 'route=product/product&product_id=28'),
-(0, 1, 'product_id=43', 'macbook', 'route=product/product&product_id=43'),
-(0, 1, 'product_id=44', 'macbook-air', 'route=product/product&product_id=44'),
-(0, 1, 'product_id=45', 'macbook-pro', 'route=product/product&product_id=45'),
-(0, 1, 'product_id=31', 'nikon-d300', 'route=product/product&product_id=31'),
-(0, 1, 'product_id=29', 'palm-treo-pro', 'route=product/product&product_id=29'),
-(0, 1, 'product_id=35', 'product-8', 'route=product/product&product_id=35'),
-(0, 1, 'product_id=49', 'samsung-galaxy-tab-10-1', 'route=product/product&product_id=49'),
-(0, 1, 'product_id=33', 'samsung-syncmaster-941bw', 'route=product/product&product_id=33'),
-(0, 1, 'product_id=46', 'sony-vaio', 'route=product/product&product_id=46'),
-(0, 1, 'product_id=41', 'imac', 'route=product/product&product_id=41'),
-(0, 1, 'product_id=40', 'iphone', 'route=product/product&product_id=40'),
-(0, 1, 'product_id=36', 'ipod-nano', 'route=product/product&product_id=36'),
-(0, 1, 'product_id=34', 'ipod-shuffle', 'route=product/product&product_id=34'),
-(0, 1, 'product_id=32', 'ipod-touch', 'route=product/product&product_id=32'),
-(0, 1, 'manufacturer_id=9', 'canon', 'route=product/manufacturer/info&manufacturer_id=9'),
-(0, 1, 'manufacturer_id=5', 'htc', 'route=product/manufacturer/info&manufacturer_id=5'),
-(0, 1, 'manufacturer_id=7', 'hewlett-packard', 'route=product/manufacturer/info&manufacturer_id=7'),
-(0, 1, 'manufacturer_id=6', 'palm', 'route=product/manufacturer/info&manufacturer_id=6'),
-(0, 1, 'manufacturer_id=10', 'sony', 'route=product/manufacturer/info&manufacturer_id=10'),
-(0, 1, 'information_id=6', 'delivery', 'route=information/information&information_id=6'),
-(0, 1, 'information_id=3', 'privacy', 'route=information/information&information_id=3'),
-(0, 1, 'information_id=5', 'terms', 'route=information/information&information_id=5'),
-(0, 1, 'language=en-gb', 'en-gb', 'language=en-gb'),
-(0, 1, 'route=information/information', '', ''),
-(0, 1, 'route=product/category', '', ''),
-(0, 1, 'route=product/product', '', ''),
-(0, 1, 'route=product/manufacturer', 'brands', 'route=product/manufacturer'),
-(0, 1, 'route=product/manufacturer/info', '', ''),
-(0, 1, 'manufacturer_id=', 'brands', '');
+INSERT INTO `pt_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`, `push`) VALUES
+(6, 0, 1, 'service_id=2', 'e-commerce-websites', 'url=service/service&service_id=2'),
+(10, 0, 1, 'service_id=3', 'customised-software', 'url=service/service&service_id=3'),
+(11, 0, 1, 'service_id=1', 'websites', 'url=service/service&service_id=1'),
+(15, 0, 1, 'information_id=2', 'how-it-works', 'url=information/information&information_id=2'),
+(17, 0, 1, 'information_id=4', 'projects', 'url=information/information&information_id=4'),
+(18, 0, 1, 'information_id=5', 'team-members', 'url=information/information&information_id=5'),
+(19, 0, 1, 'information_id=6', 'see-our-work-showcase', 'url=information/information&information_id=6'),
+(20, 0, 1, 'information_id=7', 'testimonials', 'url=information/information&information_id=7'),
+(21, 0, 1, 'information_id=8', 'fun-and-facts', 'url=information/information&information_id=8'),
+(23, 0, 1, 'information_id=10', 'contact-popaya', 'url=information/information&information_id=10'),
+(25, 0, 1, 'information_id=3', 'about-popaya', 'url=information/information&information_id=3'),
+(34, 0, 1, 'information_id=9', 'our-blog', 'url=information/information&information_id=9'),
+(35, 0, 1, 'information_id=1', 'services', 'url=information/information&information_id=1');
+
+-----------------------------------------------------------
+
+--
+-- Dumping data for table `pt_service`
+--
+
+INSERT INTO `pt_service` (`service_id`, `icon`, `image`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
+(1, 'icon-tools', '', 1, 1, '2019-06-05 14:55:34', '2019-06-06 13:06:40'),
+(2, 'icon-wallet', '', 2, 1, '2019-06-06 12:53:15', '2019-06-06 12:59:16'),
+(3, 'icon-toolbox', '', 3, 1, '2019-06-06 13:05:56', '2019-06-06 13:06:34');
+
+-----------------------------------------------------------
+
+--
+-- Dumping data for table `pt_service_description`
+--
+
+INSERT INTO `pt_service_description` (`service_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+(1, 1, 'Websites', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatipn.&lt;/p&gt;\r\n', 'Websites', '', '                                                                                                                                                                                                                                                               '),
+(2, 1, 'E-Commerce Websites', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatipn.&lt;/p&gt;\r\n', 'E-Commerce Websites', '', '                                                                                                                                                                        '),
+(3, 1, 'Customised Software', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatipn.&lt;/p&gt;\r\n', 'Customised Software', '', '                                                                                                                                                                                                                                                               ');
+
+-----------------------------------------------------------
+
+--
+-- Dumping data for table `pt_setting`
+--
+
+INSERT INTO `pt_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
+(889, 0, 'config', 'config_meta_title', 'Your Store', 0),
+(890, 0, 'config', 'config_meta_description', 'My Store', 0),
+(891, 0, 'config', 'config_meta_keyword', '', 0),
+(892, 0, 'config', 'config_social_media_image', '', 0),
+(893, 0, 'config', 'config_name', 'Your Store', 0),
+(894, 0, 'config', 'config_owner', 'Your Name', 0),
+(895, 0, 'config', 'config_address', '204, Malwa, Patanwala Estate, LBS Marg, Ghatkopar (W), Mumbai - 400 086', 0),
+(896, 0, 'config', 'config_geocode', '', 0),
+(897, 0, 'config', 'config_email', 'enquiry@popaya.in', 0),
+(898, 0, 'config', 'config_telephone', '+91 93227 29922', 0),
+(899, 0, 'config', 'config_fax', '', 0),
+(900, 0, 'config', 'config_image', '', 0),
+(901, 0, 'config', 'config_open', 'Monday - Saturday\r\n10:00am - 07:00pm', 0),
+(902, 0, 'config', 'config_comment', '', 0),
+(903, 0, 'config', 'config_country_id', '99', 0),
+(904, 0, 'config', 'config_zone_id', '1493', 0),
+(905, 0, 'config', 'config_timezone', 'Asia/Kolkata', 0),
+(906, 0, 'config', 'config_language', 'en-gb', 0),
+(907, 0, 'config', 'config_admin_language', 'en-gb', 0),
+(908, 0, 'config', 'config_website_icon', 'icon-tools', 0),
+(909, 0, 'config', 'config_website', '34', 0),
+(910, 0, 'config', 'config_ecommerce_icon', 'icon-wallet', 0),
+(911, 0, 'config', 'config_ecommerce', '11', 0),
+(912, 0, 'config', 'config_software_icon', 'icon-toolbox', 0),
+(913, 0, 'config', 'config_software', '6', 0),
+(914, 0, 'config', 'config_client_icon', 'icon-heart', 0),
+(915, 0, 'config', 'config_client', '40', 0),
+(916, 0, 'config', 'config_visitor_icon', 'icon-globe', 0),
+(917, 0, 'config', 'config_logo', 'template/logo.png', 0),
+(918, 0, 'config', 'config_icon', 'template/favicon.png', 0),
+(919, 0, 'config', 'config_logo_colour', 'template/logo-color.png', 0),
+(920, 0, 'config', 'config_mail_engine', 'mail', 0),
+(921, 0, 'config', 'config_mail_parameter', '', 0),
+(922, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(923, 0, 'config', 'config_mail_smtp_username', '', 0),
+(924, 0, 'config', 'config_mail_smtp_password', '', 0),
+(925, 0, 'config', 'config_mail_smtp_port', '25', 0),
+(926, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(927, 0, 'config', 'config_mail_alert_email', '', 0),
+(928, 0, 'config', 'config_maintenance', '1', 0),
+(929, 0, 'config', 'config_seo_url', '0', 0),
+(930, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(931, 0, 'config', 'config_compression', '0', 0),
+(932, 0, 'config', 'config_password', '1', 0),
+(933, 0, 'config', 'config_shared', '1', 0),
+(934, 0, 'config', 'config_encryption', '9abd85650fa3fe02731a09fde48886e0edbd792be2fa9595a63dd9215c141f74dc8edf5c51d2290c58bc54ee1eef6eead9e72f19a4348508c580dc52d76f6596c5a3c1ed267c911dbf8c6aa5ccfd6303d7b45f439e4dbff3b0c2fd1ebfa3e7b084338cc27b1f1b953b549ea22af089a9fbcfb878692ff86eecb90da8c6cac2e7aa82c8d038a3b30819a8088af543a130db2acdcfc74393505b927e80d184092dc96535f7ef18a3e4de8ba87ad9bab75e18db8cc651224e2e64d45377cca1a82fa10be44dd99c760e713a62452f0e42f294a60b3748b39716272f842551959c87aeca9c843d11de1b1e925fee88274c69ec944defe105655593dd6b9dad577e0917548a0e875f6212f28f442062f0718f0a638774c5e93ed6ed11ad34507533398e5b01db5bf23bc7641c1c3260524de04541c405f3215da27500f8c6d28c92d6f6db6313f605bc6a4b6601f13885f0d2b19713919538d905a3137669f0d62fed7ef888faad3b999c3ebf1ee5a8bbd0930b2c23cb7526b1aa19fa7b1e822e4d7c684db28ec4cf25b4596f9229b120e972349655dfcfd624910c586ff684e895a7aab38001828fd919f72d6d3faba06d9438a3a20568fda50db87a2b75a7f1bb6b5993058f9f0a7bc6d6f86e2370458c613e7414da3f6bcf79eaf0a57b7793652b70b984b8030d84410fe608f3559aa0b63b4c0cf77ba3e509e0bbedea6ef59de7', 0),
+(935, 0, 'config', 'config_file_max_size', '300000', 0),
+(936, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(937, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(938, 0, 'config', 'config_error_display', '1', 0),
+(939, 0, 'config', 'config_error_log', '1', 0),
+(940, 0, 'config', 'config_error_filename', 'error.log', 0);
+
+-----------------------------------------------------------
+
+--
+-- Dumping data for table `pt_team`
+--
+
+INSERT INTO `pt_team` (`team_id`, `name`, `image`, `designation`, `description`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
+(1, 'Poojan Shah', '', 'CEO / Founder', '', 1, 1, '2019-05-29 15:44:56', '2019-05-29 15:44:56'),
+(2, 'Vishal Pawar', '', 'Web Developer', '', 2, 1, '2019-05-29 15:45:12', '2019-05-29 15:45:58'),
+(3, 'Ketan Sadigale', '', 'Web Developer', '', 3, 1, '2019-05-29 15:45:29', '2019-05-29 15:45:29'),
+(4, 'Dileep Kumar', '', 'Web Developer/Designer', '', 4, 1, '2019-05-29 15:45:50', '2019-05-29 15:45:50');
+
+-----------------------------------------------------------
+
+--
+-- Dumping data for table `pt_testimonial`
+--
+
+INSERT INTO `pt_testimonial` (`testimonial_id`, `name`, `image`, `designation`, `description`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
+(1, 'Aalap Dipesh Desai', '', 'Music Composer', '&lt;p&gt;&lt;span style=&quot;color:null&quot;&gt;lIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.&lt;/span&gt;&lt;/p&gt;\r\n', 2, 1, '2019-05-29 15:15:51', '2019-06-08 16:01:01'),
+(2, 'Khel Khajana', '', 'Toys &amp; Book Library', '&lt;p&gt;lIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.&lt;/p&gt;\r\n', 1, 1, '2019-05-29 15:31:48', '2019-05-29 15:33:42');
 
 -----------------------------------------------------------
 
@@ -743,7 +528,7 @@ INSERT INTO `pt_seo_url` (`store_id`, `language_id`, `query`, `keyword`, `push`)
 --
 
 INSERT INTO `pt_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrator', '{"access":["catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/product_option","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/developer","common\\/filemanager","common\\/profile","common\\/security","customer\\/custom_field","customer\\/customer","customer\\/customer_approval","customer\\/customer_group","customer\\/gdpr","design\\/banner","design\\/layout","design\\/theme","design\\/translation","design\\/seo_url","event\\/statistics","event\\/theme","extension\\/analytics\\/google","extension\\/captcha\\/basic","extension\\/currency\\/fixer","extension\\/captcha\\/google","extension\\/dashboard\\/activity","extension\\/dashboard\\/chart","extension\\/dashboard\\/customer","extension\\/dashboard\\/map","extension\\/dashboard\\/online","extension\\/dashboard\\/order","extension\\/dashboard\\/recent","extension\\/dashboard\\/sale","extension\\/extension\\/analytics","extension\\/extension\\/captcha","extension\\/extension\\/currency","extension\\/extension\\/dashboard","extension\\/extension\\/feed","extension\\/extension\\/fraud","extension\\/extension\\/menu","extension\\/extension\\/module","extension\\/extension\\/payment","extension\\/extension\\/report","extension\\/extension\\/shipping","extension\\/extension\\/theme","extension\\/extension\\/total","extension\\/feed\\/google_base","extension\\/feed\\/google_sitemap","extension\\/feed\\/openbaypro","extension\\/fraud\\/fraudlabspro","extension\\/fraud\\/ip","extension\\/fraud\\/maxmind","extension\\/marketing\\/remarketing","extension\\/module\\/account","extension\\/module\\/amazon_login","extension\\/module\\/amazon_pay","extension\\/module\\/banner","extension\\/module\\/bestseller","extension\\/module\\/carousel","extension\\/module\\/category","extension\\/module\\/divido_calculator","extension\\/module\\/ebay_listing","extension\\/module\\/featured","extension\\/module\\/filter","extension\\/module\\/google_hangouts","extension\\/module\\/html","extension\\/module\\/information","extension\\/module\\/klarna_checkout_module","extension\\/module\\/latest","extension\\/module\\/laybuy_layout","extension\\/module\\/pilibaba_button","extension\\/module\\/pp_button","extension\\/module\\/pp_login","extension\\/module\\/sagepay_direct_cards","extension\\/module\\/sagepay_server_cards","extension\\/module\\/slideshow","extension\\/module\\/special","extension\\/module\\/store","extension\\/openbay\\/amazon","extension\\/openbay\\/amazon_listing","extension\\/openbay\\/amazon_product","extension\\/openbay\\/amazonus","extension\\/openbay\\/amazonus_listing","extension\\/openbay\\/amazonus_product","extension\\/openbay\\/ebay","extension\\/openbay\\/ebay_profile","extension\\/openbay\\/ebay_template","extension\\/openbay\\/etsy","extension\\/openbay\\/etsy_product","extension\\/openbay\\/etsy_shipping","extension\\/openbay\\/etsy_shop","extension\\/openbay\\/fba","extension\\/payment\\/amazon_login_pay","extension\\/payment\\/authorizenet_aim","extension\\/payment\\/authorizenet_sim","extension\\/payment\\/bank_transfer","extension\\/payment\\/bluepay_hosted","extension\\/payment\\/bluepay_redirect","extension\\/payment\\/cardconnect","extension\\/payment\\/cardinity","extension\\/payment\\/cheque","extension\\/payment\\/cod","extension\\/payment\\/divido","extension\\/payment\\/eway","extension\\/payment\\/firstdata","extension\\/payment\\/firstdata_remote","extension\\/payment\\/free_checkout","extension\\/payment\\/g2apay","extension\\/payment\\/globalpay","extension\\/payment\\/globalpay_remote","extension\\/payment\\/klarna_account","extension\\/payment\\/klarna_checkout","extension\\/payment\\/klarna_invoice","extension\\/payment\\/laybuy","extension\\/payment\\/liqpay","extension\\/payment\\/nochex","extension\\/payment\\/paymate","extension\\/payment\\/paypoint","extension\\/payment\\/payza","extension\\/payment\\/perpetual_payments","extension\\/payment\\/pilibaba","extension\\/payment\\/pp_express","extension\\/payment\\/pp_payflow","extension\\/payment\\/pp_payflow_iframe","extension\\/payment\\/pp_pro","extension\\/payment\\/pp_pro_iframe","extension\\/payment\\/pp_standard","extension\\/payment\\/realex","extension\\/payment\\/realex_remote","extension\\/payment\\/sagepay_direct","extension\\/payment\\/sagepay_server","extension\\/payment\\/sagepay_us","extension\\/payment\\/securetrading_pp","extension\\/payment\\/securetrading_ws","extension\\/payment\\/skrill","extension\\/payment\\/twocheckout","extension\\/payment\\/web_payment_software","extension\\/payment\\/worldpay","extension\\/module\\/pp_braintree_button","extension\\/payment\\/pp_braintree","extension\\/report\\/customer_activity","extension\\/report\\/customer_order","extension\\/report\\/customer_reward","extension\\/report\\/customer_search","extension\\/report\\/customer_transaction","extension\\/report\\/marketing","extension\\/report\\/product_purchased","extension\\/report\\/product_viewed","extension\\/report\\/sale_coupon","extension\\/report\\/sale_order","extension\\/report\\/sale_return","extension\\/report\\/sale_shipping","extension\\/report\\/sale_tax","extension\\/shipping\\/auspost","extension\\/shipping\\/ec_ship","extension\\/shipping\\/fedex","extension\\/shipping\\/flat","extension\\/shipping\\/free","extension\\/shipping\\/item","extension\\/shipping\\/parcelforce_48","extension\\/shipping\\/pickup","extension\\/shipping\\/royal_mail","extension\\/shipping\\/ups","extension\\/shipping\\/usps","extension\\/shipping\\/weight","extension\\/theme\\/default","extension\\/total\\/coupon","extension\\/total\\/credit","extension\\/total\\/handling","extension\\/total\\/klarna_fee","extension\\/total\\/low_order_fee","extension\\/total\\/reward","extension\\/total\\/shipping","extension\\/total\\/sub_total","extension\\/total\\/tax","extension\\/total\\/total","extension\\/total\\/voucher","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","mail\\/affiliate","mail\\/customer","mail\\/forgotten","mail\\/return","mail\\/reward","mail\\/transaction","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","marketplace\\/api","marketplace\\/event","marketplace\\/cron","marketplace\\/extension","marketplace\\/install","marketplace\\/installer","marketplace\\/marketplace","marketplace\\/modification","marketplace\\/openbay","report\\/online","report\\/report","report\\/statistics","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","startup\\/error","startup\\/event","startup\\/login","startup\\/permission","startup\\/router","startup\\/sass","startup\\/startup","tool\\/backup","tool\\/log","tool\\/upgrade","tool\\/upload","user\\/api","user\\/user","user\\/user_permission"],"modify":["catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/product_option","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/developer","common\\/filemanager","common\\/profile","common\\/security","customer\\/custom_field","customer\\/customer","customer\\/customer_approval","customer\\/customer_group","customer\\/gdpr","design\\/banner","design\\/layout","design\\/theme","design\\/translation","design\\/seo_url","event\\/statistics","event\\/theme","extension\\/analytics\\/google","extension\\/captcha\\/basic","extension\\/captcha\\/google","extension\\/currency\\/fixer","extension\\/dashboard\\/activity","extension\\/dashboard\\/chart","extension\\/dashboard\\/customer","extension\\/dashboard\\/map","extension\\/dashboard\\/online","extension\\/dashboard\\/order","extension\\/dashboard\\/recent","extension\\/dashboard\\/sale","extension\\/extension\\/analytics","extension\\/extension\\/captcha","extension\\/extension\\/currency","extension\\/extension\\/dashboard","extension\\/extension\\/feed","extension\\/extension\\/fraud","extension\\/extension\\/menu","extension\\/extension\\/module","extension\\/extension\\/payment","extension\\/extension\\/report","extension\\/extension\\/shipping","extension\\/extension\\/theme","extension\\/extension\\/total","extension\\/feed\\/google_base","extension\\/feed\\/google_sitemap","extension\\/feed\\/openbaypro","extension\\/fraud\\/fraudlabspro","extension\\/fraud\\/ip","extension\\/fraud\\/maxmind","extension\\/marketing\\/remarketing","extension\\/module\\/account","extension\\/module\\/amazon_login","extension\\/module\\/amazon_pay","extension\\/module\\/banner","extension\\/module\\/bestseller","extension\\/module\\/carousel","extension\\/module\\/category","extension\\/module\\/divido_calculator","extension\\/module\\/ebay_listing","extension\\/module\\/featured","extension\\/module\\/filter","extension\\/module\\/google_hangouts","extension\\/module\\/html","extension\\/module\\/information","extension\\/module\\/klarna_checkout_module","extension\\/module\\/latest","extension\\/module\\/laybuy_layout","extension\\/module\\/pilibaba_button","extension\\/module\\/pp_button","extension\\/module\\/pp_login","extension\\/module\\/sagepay_direct_cards","extension\\/module\\/sagepay_server_cards","extension\\/module\\/slideshow","extension\\/module\\/special","extension\\/module\\/store","extension\\/openbay\\/amazon","extension\\/openbay\\/amazon_listing","extension\\/openbay\\/amazon_product","extension\\/openbay\\/amazonus","extension\\/openbay\\/amazonus_listing","extension\\/openbay\\/amazonus_product","extension\\/openbay\\/ebay","extension\\/openbay\\/ebay_profile","extension\\/openbay\\/ebay_template","extension\\/openbay\\/etsy","extension\\/openbay\\/etsy_product","extension\\/openbay\\/etsy_shipping","extension\\/openbay\\/etsy_shop","extension\\/openbay\\/fba","extension\\/payment\\/amazon_login_pay","extension\\/payment\\/authorizenet_aim","extension\\/payment\\/authorizenet_sim","extension\\/payment\\/bank_transfer","extension\\/payment\\/bluepay_hosted","extension\\/payment\\/bluepay_redirect","extension\\/payment\\/cardconnect","extension\\/payment\\/cardinity","extension\\/payment\\/cheque","extension\\/payment\\/cod","extension\\/payment\\/divido","extension\\/payment\\/eway","extension\\/payment\\/firstdata","extension\\/payment\\/firstdata_remote","extension\\/payment\\/free_checkout","extension\\/payment\\/g2apay","extension\\/payment\\/globalpay","extension\\/payment\\/globalpay_remote","extension\\/payment\\/klarna_account","extension\\/payment\\/klarna_checkout","extension\\/payment\\/klarna_invoice","extension\\/payment\\/laybuy","extension\\/payment\\/liqpay","extension\\/payment\\/nochex","extension\\/payment\\/paymate","extension\\/payment\\/paypoint","extension\\/payment\\/payza","extension\\/payment\\/perpetual_payments","extension\\/payment\\/pilibaba","extension\\/payment\\/pp_express","extension\\/payment\\/pp_payflow","extension\\/payment\\/pp_payflow_iframe","extension\\/payment\\/pp_pro","extension\\/payment\\/pp_pro_iframe","extension\\/payment\\/pp_standard","extension\\/payment\\/realex","extension\\/payment\\/realex_remote","extension\\/payment\\/sagepay_direct","extension\\/payment\\/sagepay_server","extension\\/payment\\/sagepay_us","extension\\/payment\\/securetrading_pp","extension\\/payment\\/securetrading_ws","extension\\/payment\\/skrill","extension\\/payment\\/twocheckout","extension\\/payment\\/web_payment_software","extension\\/payment\\/worldpay","extension\\/module\\/pp_braintree_button","extension\\/payment\\/pp_braintree","extension\\/report\\/customer_activity","extension\\/report\\/customer_order","extension\\/report\\/customer_reward","extension\\/report\\/customer_search","extension\\/report\\/customer_transaction","extension\\/report\\/marketing","extension\\/report\\/product_purchased","extension\\/report\\/product_viewed","extension\\/report\\/sale_coupon","extension\\/report\\/sale_order","extension\\/report\\/sale_return","extension\\/report\\/sale_shipping","extension\\/report\\/sale_tax","extension\\/shipping\\/auspost","extension\\/shipping\\/ec_ship","extension\\/shipping\\/fedex","extension\\/shipping\\/flat","extension\\/shipping\\/free","extension\\/shipping\\/item","extension\\/shipping\\/parcelforce_48","extension\\/shipping\\/pickup","extension\\/shipping\\/royal_mail","extension\\/shipping\\/ups","extension\\/shipping\\/usps","extension\\/shipping\\/weight","extension\\/theme\\/default","extension\\/total\\/coupon","extension\\/total\\/credit","extension\\/total\\/handling","extension\\/total\\/klarna_fee","extension\\/total\\/low_order_fee","extension\\/total\\/reward","extension\\/total\\/shipping","extension\\/total\\/sub_total","extension\\/total\\/tax","extension\\/total\\/total","extension\\/total\\/voucher","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","mail\\/affiliate","mail\\/customer","mail\\/forgotten","mail\\/return","mail\\/reward","mail\\/transaction","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","marketplace\\/event","marketplace\\/cron","marketplace\\/api","marketplace\\/extension","marketplace\\/install","marketplace\\/installer","marketplace\\/marketplace","marketplace\\/modification","marketplace\\/openbay","report\\/online","report\\/report","report\\/statistics","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","startup\\/error","startup\\/event","startup\\/login","startup\\/permission","startup\\/router","startup\\/sass","startup\\/startup","tool\\/backup","tool\\/log","tool\\/upgrade","tool\\/upload","user\\/api","user\\/user","user\\/user_permission"]}');
+(1, 'Administrator', '{\"access\":[\"catalog\\/enquiry\",\"catalog\\/information\",\"catalog\\/service\",\"catalog\\/team\",\"catalog\\/testimonial\",\"common\\/filemanager\",\"common\\/nav\",\"common\\/pagination\",\"design\\/banner\",\"design\\/seo_url\",\"design\\/translation\",\"event\\/language\",\"localisation\\/country\",\"localisation\\/language\",\"localisation\\/zone\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"catalog\\/enquiry\",\"catalog\\/information\",\"catalog\\/service\",\"catalog\\/team\",\"catalog\\/testimonial\",\"common\\/filemanager\",\"common\\/nav\",\"common\\/pagination\",\"design\\/banner\",\"design\\/seo_url\",\"design\\/translation\",\"event\\/language\",\"localisation\\/country\",\"localisation\\/language\",\"localisation\\/zone\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\"],\"delete\":[\"catalog\\/enquiry\",\"catalog\\/information\",\"catalog\\/service\",\"catalog\\/team\",\"catalog\\/testimonial\",\"common\\/filemanager\",\"common\\/nav\",\"common\\/pagination\",\"design\\/banner\",\"design\\/seo_url\",\"design\\/translation\",\"event\\/language\",\"localisation\\/country\",\"localisation\\/language\",\"localisation\\/zone\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\"]}');
 
 -----------------------------------------------------------
 
@@ -934,11 +719,11 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (180, 11, 'Aragatsotn', 'AGT', 1),
 (181, 11, 'Ararat', 'ARR', 1),
 (182, 11, 'Armavir', 'ARM', 1),
-(183, 11, 'Geghark''unik''', 'GEG', 1),
-(184, 11, 'Kotayk''', 'KOT', 1),
+(183, 11, 'Geghark''unik', 'GEG', 1),
+(184, 11, 'Kotayk', 'KOT', 1),
 (185, 11, 'Lorri', 'LOR', 1),
 (186, 11, 'Shirak', 'SHI', 1),
-(187, 11, 'Syunik''', 'SYU', 1),
+(187, 11, 'Syunik', 'SYU', 1),
 (188, 11, 'Tavush', 'TAV', 1),
 (189, 11, 'Vayots'' Dzor', 'VAY', 1),
 (190, 11, 'Yerevan', 'YER', 1),
@@ -2245,8 +2030,7 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1553, 101, 'Chahar Mahaal and Bakhtiari', 'CMB', 1),
 (1554, 101, 'Kohkiluyeh and Buyer Ahmad', 'KBA', 1),
 (1555, 101, 'Bushehr', 'BSH', 1),
-(1556, 101, 'Fars', 'FAR', 1);
-INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+(1556, 101, 'Fars', 'FAR', 1),
 (1557, 101, 'Hormozgan', 'HRM', 1),
 (1558, 101, 'Sistan and Baluchistan', 'SBL', 1),
 (1559, 101, 'Kerman', 'KRB', 1),
@@ -2287,7 +2071,8 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1594, 103, 'Kildare', 'KI', 1),
 (1595, 103, 'Kilkenny', 'KL', 1),
 (1596, 103, 'Laois', 'LA', 1),
-(1597, 103, 'Leitrim', 'LE', 1),
+(1597, 103, 'Leitrim', 'LE', 1);
+INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1598, 103, 'Limerick', 'LI', 1),
 (1599, 103, 'Longford', 'LO', 1),
 (1600, 103, 'Louth', 'LU', 1),
@@ -2313,25 +2098,6 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1620, 104, 'Semaria', 'SE', 1),
 (1621, 104, 'Sharon', 'SH', 1),
 (1622, 104, 'Tel Aviv (Gosh Dan)', 'TA', 1),
-(3860, 105, 'Caltanissetta', 'CL', 1),
-(3842, 105, 'Agrigento', 'AG', 1),
-(3843, 105, 'Alessandria', 'AL', 1),
-(3844, 105, 'Ancona', 'AN', 1),
-(3845, 105, 'Aosta', 'AO', 1),
-(3846, 105, 'Arezzo', 'AR', 1),
-(3847, 105, 'Ascoli Piceno', 'AP', 1),
-(3848, 105, 'Asti', 'AT', 1),
-(3849, 105, 'Avellino', 'AV', 1),
-(3850, 105, 'Bari', 'BA', 1),
-(3851, 105, 'Belluno', 'BL', 1),
-(3852, 105, 'Benevento', 'BN', 1),
-(3853, 105, 'Bergamo', 'BG', 1),
-(3854, 105, 'Biella', 'BI', 1),
-(3855, 105, 'Bologna', 'BO', 1),
-(3856, 105, 'Bolzano', 'BZ', 1),
-(3857, 105, 'Brescia', 'BS', 1),
-(3858, 105, 'Brindisi', 'BR', 1),
-(3859, 105, 'Cagliari', 'CA', 1),
 (1643, 106, 'Clarendon Parish', 'CLA', 1),
 (1644, 106, 'Hanover Parish', 'HAN', 1),
 (1645, 106, 'Kingston Parish', 'KIN', 1),
@@ -2642,7 +2408,6 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1983, 129, 'Selangor', 'MY-10', 1),
 (1984, 129, 'Terengganu', 'MY-11', 1),
 (1985, 129, 'Kuala Lumpur', 'MY-14', 1),
-(4035, 129, 'Putrajaya', 'MY-16', 1),
 (1986, 130, 'Thiladhunmathi Uthuru', 'THU', 1),
 (1987, 130, 'Thiladhunmathi Dhekunu', 'THD', 1),
 (1988, 130, 'Miladhunmadulu Uthuru', 'MLU', 1),
@@ -3746,8 +3511,7 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3089, 203, 'Uppsala', 'C', 1),
 (3090, 203, 'Värmland', 'S', 1),
 (3091, 203, 'Västerbotten', 'AC', 1),
-(3092, 203, 'Västernorrland', 'Y', 1);
-INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+(3092, 203, 'Västernorrland', 'Y', 1),
 (3093, 203, 'Västmanland', 'U', 1),
 (3094, 203, 'Västra Götaland', 'O', 1),
 (3095, 204, 'Aargau', 'AG', 1),
@@ -3810,7 +3574,8 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3152, 206, 'Yun-lin', 'YL', 1),
 (3153, 206, 'Chia-i city', 'CC', 1),
 (3154, 206, 'Chi-lung', 'CL', 1),
-(3155, 206, 'Hsin-chu', 'HC', 1),
+(3155, 206, 'Hsin-chu', 'HC', 1);
+INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3156, 206, 'T''ai-chung', 'TH', 1),
 (3157, 206, 'T''ai-nan', 'TN', 1),
 (3158, 206, 'Kao-hsiung city', 'KC', 1),
@@ -4493,6 +4258,25 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3839, 239, 'Matabeleland North', 'MN', 1),
 (3840, 239, 'Matabeleland South', 'MS', 1),
 (3841, 239, 'Midlands', 'MD', 1),
+(3842, 105, 'Agrigento', 'AG', 1),
+(3843, 105, 'Alessandria', 'AL', 1),
+(3844, 105, 'Ancona', 'AN', 1),
+(3845, 105, 'Aosta', 'AO', 1),
+(3846, 105, 'Arezzo', 'AR', 1),
+(3847, 105, 'Ascoli Piceno', 'AP', 1),
+(3848, 105, 'Asti', 'AT', 1),
+(3849, 105, 'Avellino', 'AV', 1),
+(3850, 105, 'Bari', 'BA', 1),
+(3851, 105, 'Belluno', 'BL', 1),
+(3852, 105, 'Benevento', 'BN', 1),
+(3853, 105, 'Bergamo', 'BG', 1),
+(3854, 105, 'Biella', 'BI', 1),
+(3855, 105, 'Bologna', 'BO', 1),
+(3856, 105, 'Bolzano', 'BZ', 1),
+(3857, 105, 'Brescia', 'BS', 1),
+(3858, 105, 'Brindisi', 'BR', 1),
+(3859, 105, 'Cagliari', 'CA', 1),
+(3860, 105, 'Caltanissetta', 'CL', 1),
 (3861, 105, 'Campobasso', 'CB', 1),
 (3863, 105, 'Caserta', 'CE', 1),
 (3864, 105, 'Catania', 'CT', 1),
@@ -4659,6 +4443,7 @@ INSERT INTO `pt_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (4030, 248, 'Warrap', 'WR', 1),
 (4031, 248, 'Western Bahr el-Ghazal', 'BW', 1),
 (4032, 248, 'Western Equatoria', 'EW', 1),
+(4035, 129, 'Putrajaya', 'MY-16', 1),
 (4036, 117, 'Ainaži, Salacgrīvas novads', '0661405', 1),
 (4037, 117, 'Aizkraukle, Aizkraukles novads', '0320201', 1),
 (4038, 117, 'Aizkraukles novads', '0320200', 1),

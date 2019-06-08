@@ -6,21 +6,29 @@
 <section id="rt_banner">
     <div class="container">
         <div class="row">
+
             <div class="col-md-6">
                 <div class="banner_caption_text">
-                    <h1>Be Digital Be Visible</h1>
-                    <p>We at Popaya™ Technologies, would like to help customers to be visible online to get digital
-                        presence. </p>
-                    <a href="#" class="btn btn-app-store">
+                    <h1><?php echo $top_title; ?></h1>
+                    <p><?php echo $top_description; ?></p>
+                    <?php if($tops) : ?>
+                    <?php foreach($tops as $top) : ?>
+                    <a href="<?php echo $top['link']; ?>" class="btn btn-app-store" target="_blank">
                         <i class="py py-popaya"></i> <span class="small">Go to Website</span> <span
-                            class="big">Popaya.in</span>
+                            class="big"><?php echo $top['title']; ?></span>
                     </a>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-md-5 col-md-offset-1">
+                <?php if($tops) : ?>
+                <?php foreach($tops as $top) : ?>
                 <div class="banner_caption_img">
-                    <img class="wow fadeInUp" data-wow-delay="0.3" src="image/template/mobile-mockup.png" alt="">
+                    <img class="wow fadeInUp" data-wow-delay="0.3" src="<?php echo $top['image']; ?>" alt="">
                 </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

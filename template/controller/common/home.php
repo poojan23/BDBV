@@ -14,8 +14,32 @@ class ControllerCommonHome extends PT_Controller
 
         $this->load->model('tool/image');
 
+        # Top
+        $top_info = $this->model_catalog_information->getInformation(1);
+
+        if ($top_info) {
+            $data['top_title'] = $top_info['title'];
+            $data['top_description'] = trim(strip_tags(html_entity_decode($top_info['description'], ENT_QUOTES, 'UTF-8')));
+            $data['top_meta_description'] = $top_info['meta_description'];
+            $data['top_status'] = $top_info['status'];
+        }
+
+        $data['tops'] = array();
+
+        $results = $this->model_design_banner->getBanner(1, 0, 1);
+
+        foreach ($results as $result) {
+            if (is_file(DIR_IMAGE . html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'))) {
+                $data['tops'][] = array(
+                    'title' => $result['title'],
+                    'link'  => $result['link'],
+                    'image' => $this->model_tool_image->resize(html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'), 733, 1315)
+                );
+            }
+        }
+
         # Services
-        $service_info = $this->model_catalog_information->getInformation(1);
+        $service_info = $this->model_catalog_information->getInformation(2);
 
         if ($service_info) {
             $data['service_title'] = $service_info['title'];
@@ -39,7 +63,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # How It Works
-        $work_info = $this->model_catalog_information->getInformation(2);
+        $work_info = $this->model_catalog_information->getInformation(3);
 
         if ($work_info) {
             $data['work_title'] = $work_info['title'];
@@ -64,7 +88,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # About Popaya™
-        $about_info = $this->model_catalog_information->getInformation(3);
+        $about_info = $this->model_catalog_information->getInformation(4);
 
         if ($about_info) {
             $data['about_title'] = $about_info['title'];
@@ -77,7 +101,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Projects
-        $project_info = $this->model_catalog_information->getInformation(4);
+        $project_info = $this->model_catalog_information->getInformation(5);
 
         if ($project_info) {
             $data['project_title'] = $project_info['title'];
@@ -100,7 +124,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Team
-        $team_info = $this->model_catalog_information->getInformation(5);
+        $team_info = $this->model_catalog_information->getInformation(6);
 
         if ($team_info) {
             $data['team_title'] = $team_info['title'];
@@ -130,7 +154,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Watch (See Our Work Showcase)
-        $watch_info = $this->model_catalog_information->getInformation(6);
+        $watch_info = $this->model_catalog_information->getInformation(7);
 
         if ($watch_info) {
             $data['watch_title'] = $watch_info['title'];
@@ -156,7 +180,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Testimonials
-        $testimonial_info = $this->model_catalog_information->getInformation(7);
+        $testimonial_info = $this->model_catalog_information->getInformation(8);
 
         if ($testimonial_info) {
             $data['testimonial_title'] = $testimonial_info['title'];
@@ -187,7 +211,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Facts
-        $fact_info = $this->model_catalog_information->getInformation(8);
+        $fact_info = $this->model_catalog_information->getInformation(9);
 
         if ($fact_info) {
             $data['fact_title'] = $fact_info['title'];
@@ -214,7 +238,7 @@ class ControllerCommonHome extends PT_Controller
         $data['visitor'] = ($this->model_tool_online->getTotalOnlines() > 9999) ? '9999' : $this->model_tool_online->getTotalOnlines();
 
         # Blog
-        $blog_info = $this->model_catalog_information->getInformation(9);
+        $blog_info = $this->model_catalog_information->getInformation(10);
 
         if ($blog_info) {
             $data['blog_title'] = $blog_info['title'];
@@ -224,7 +248,7 @@ class ControllerCommonHome extends PT_Controller
         }
 
         # Contact
-        $contact_info = $this->model_catalog_information->getInformation(10);
+        $contact_info = $this->model_catalog_information->getInformation(11);
 
         if ($contact_info) {
             $data['contact_title'] = $contact_info['title'];

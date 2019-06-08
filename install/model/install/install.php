@@ -53,7 +53,7 @@ class ModelInstallInstall extends PT_Model
         }
 
         # Data
-        $lines = file(DIR_APPLICATION . 'popaya.sql', FILE_IGNORE_NEW_LINES);
+        $lines = file(DIR_APPLICATION . 'bdbv.sql', FILE_IGNORE_NEW_LINES);
 
         if ($lines) {
             $sql = '';
