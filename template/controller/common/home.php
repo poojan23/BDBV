@@ -201,6 +201,9 @@ class ControllerCommonHome extends PT_Controller
         $data['website_icon'] = $this->config->get('config_website_icon');
         $data['website'] = $this->config->get('config_website');
 
+        $data['ecommerce_icon'] = $this->config->get('config_ecommerce_icon');
+        $data['ecommerce'] = $this->config->get('config_ecommerce');
+
         $data['software_icon'] = $this->config->get('config_software_icon');
         $data['software'] = $this->config->get('config_software');
 
@@ -281,6 +284,28 @@ class ControllerCommonHome extends PT_Controller
                     $mail->setText($this->request->post['message']);
                     $mail->send();
                 }
+
+                if (isset($this->request->post['name'])) {
+                    $data['name'] = $this->request->post['name'];
+                } else {
+                    $data['name'] = '';
+                }
+
+                if (isset($this->request->post['email'])) {
+                    $data['email'] = $this->request->post['email'];
+                } else {
+                    $data['email'] = '';
+                }
+
+                if (isset($this->request->post['message'])) {
+                    $data['message'] = $this->request->post['message'];
+                } else {
+                    $data['message'] = '';
+                }
+
+                $this->load->model('catalog/enquiry');
+
+                $this->model_catalog_enquiry->addEnquiry($this->request->post);
             }
         }
 

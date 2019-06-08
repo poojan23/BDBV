@@ -1,10 +1,12 @@
 <?php
 
-class ControllerCommonEnquiry extends PT_Controller {
+class ControllerCatalogEnquiry extends PT_Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('catalog/enquiry');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -14,7 +16,8 @@ class ControllerCommonEnquiry extends PT_Controller {
         $this->getList();
     }
 
-    public function edit() {
+    public function edit()
+    {
         $this->load->language('catalog/enquiry');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -32,7 +35,8 @@ class ControllerCommonEnquiry extends PT_Controller {
         $this->getForm();
     }
 
-    public function delete() {
+    public function delete()
+    {
         $this->load->language('catalog/enquiry');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -52,7 +56,8 @@ class ControllerCommonEnquiry extends PT_Controller {
         $this->getList();
     }
 
-    protected function getList() {
+    protected function getList()
+    {
         $this->document->addStyle("view/dist/plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css");
         $this->document->addStyle("view/dist/plugins/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css");
         $this->document->addStyle("view/dist/plugins/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css");
@@ -112,7 +117,7 @@ class ControllerCommonEnquiry extends PT_Controller {
         }
 
         if (isset($this->request->post['selected'])) {
-            $data['selected'] = (array) $this->request->post['selected'];
+            $data['selected'] = (array)$this->request->post['selected'];
         } else {
             $data['selected'] = array();
         }
@@ -123,5 +128,4 @@ class ControllerCommonEnquiry extends PT_Controller {
 
         $this->response->setOutput($this->load->view('catalog/enquiry_list', $data));
     }
-
 }

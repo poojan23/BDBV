@@ -113,12 +113,12 @@ class ControllerCommonNav extends PT_Controller
             }
 
             # Enquiry
-            if ($this->user->hasPermission('access', 'common/enquiry')) {
+            if ($this->user->hasPermission('access', 'catalog/enquiry')) {
                 $data['menus'][] = array(
                     'id'        => 'menu-enquiry',
                     'icon'      => 'fa-envelope',
                     'name'      => $this->language->get('text_enquiry'),
-                    'href'      => $this->url->link('common/enquiry', 'user_token=' . $this->session->data['user_token']),
+                    'href'      => $this->url->link('catalog/enquiry', 'user_token=' . $this->session->data['user_token']),
                     'children'  => array()
                 );
             }

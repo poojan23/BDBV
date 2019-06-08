@@ -5,6 +5,7 @@ $_['heading_title']         = 'Be Digital Be Visible - a tagline of Popaya™ Te
 # Text
 $_['text_success']          = 'Your message has been successfully sent!';
 $_['text_website']          = 'Websites';
+$_['text_ecommerce']        = 'E-Commerce';
 $_['text_software']         = 'Softwares';
 $_['text_customer']         = 'Happy Clients';
 $_['text_visitor']          = 'Visitors';

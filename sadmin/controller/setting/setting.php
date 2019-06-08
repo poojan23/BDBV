@@ -694,6 +694,18 @@ class ControllerSettingSetting extends PT_Controller
             $data['config_website'] = $this->config->get('config_website');
         }
 
+        if (isset($this->request->post['config_ecommerce_icon'])) {
+            $data['config_ecommerce_icon'] = $this->request->post['config_ecommerce_icon'];
+        } else {
+            $data['config_ecommerce_icon'] = $this->config->get('config_ecommerce_icon');
+        }
+
+        if (isset($this->request->post['config_ecommerce'])) {
+            $data['config_ecommerce'] = $this->request->post['config_ecommerce'];
+        } else {
+            $data['config_ecommerce'] = $this->config->get('config_ecommerce');
+        }
+
         if (isset($this->request->post['config_software_icon'])) {
             $data['config_software_icon'] = $this->request->post['config_software_icon'];
         } else {

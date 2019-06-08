@@ -23,8 +23,7 @@ class ControllerCatalogTestimonial extends PT_Controller
 
         $this->load->model('catalog/testimonial');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-            //            print_r($this->request->post);exit;
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_catalog_testimonial->addTestimonial($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -43,7 +42,7 @@ class ControllerCatalogTestimonial extends PT_Controller
 
         $this->load->model('catalog/testimonial');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_catalog_testimonial->editTestimonial($this->request->get['testimonial_id'], $this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -62,7 +61,7 @@ class ControllerCatalogTestimonial extends PT_Controller
 
         $this->load->model('catalog/testimonial');
 
-        if (isset($this->request->post['selected'])) {
+        if (isset($this->request->post['selected']) && $this->validateDelete()) {
             foreach ($this->request->post['selected'] as $testimonial_id) {
                 $this->model_catalog_testimonial->deleteTestimonial($testimonial_id);
             }
@@ -121,6 +120,7 @@ class ControllerCatalogTestimonial extends PT_Controller
                 'name'      => $result['name'],
                 'designation'   => $result['designation'],
                 'sort_order'    => $result['sort_order'],
+                'status'        => $result['status'],
                 'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
                 'edit'          => $this->url->link('catalog/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $result['testimonial_id'])
             );
@@ -172,6 +172,12 @@ class ControllerCatalogTestimonial extends PT_Controller
             $data['designation_err'] = $this->error['designation'];
         } else {
             $data['designation_err'] = '';
+        }
+
+        if (isset($this->error['description'])) {
+            $data['description_err'] = $this->error['description'];
+        } else {
+            $data['description_err'] = '';
         }
 
         if (isset($this->error['name'])) {
@@ -284,34 +290,16 @@ class ControllerCatalogTestimonial extends PT_Controller
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
-        if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-            $this->error['email'] = $this->language->get('error_email');
-        }
-
-        $testimonial_info = $this->model_catalog_testimonial->getTestimonialByEmail($this->request->post['email']);
-
-        if (!isset($this->request->get['testimonial_id'])) {
-            if ($testimonial_info) {
-                $this->error['warning'] = $this->language->get('error_exists_email');
-            }
-        } else {
-            if ($testimonial_info && ($this->request->get['testimonial_id'] != $testimonial_info['testimonial_id'])) {
-                $this->error['warning'] = $this->language->get('error_exists_email');
-            }
-        }
-
         if ((utf8_strlen(trim($this->request->post['name'])) < 1) || (utf8_strlen(trim($this->request->post['name'])) > 32)) {
             $this->error['name'] = $this->language->get('error_name');
         }
 
-        if ($this->request->post['password'] || (!isset($this->request->get['testimonial_id']))) {
-            if ((utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) < 4) || (utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) > 40)) {
-                $this->error['password'] = $this->language->get('error_password');
-            }
+        if ((utf8_strlen(trim($this->request->post['description'])) < 10) || (utf8_strlen(trim($this->request->post['description'])) > 1000)) {
+            $this->error['description'] = $this->language->get('error_description');
+        }
 
-            if ($this->request->post['password'] != $this->request->post['confirm']) {
-                $this->error['confirm'] = $this->language->get('error_confirm');
-            }
+        if ((utf8_strlen(trim($this->request->post['designation'])) < 1) || (utf8_strlen(trim($this->request->post['designation'])) > 96)) {
+            $this->error['designation'] = $this->language->get('error_designation');
         }
 
         return !$this->error;
@@ -321,12 +309,6 @@ class ControllerCatalogTestimonial extends PT_Controller
     {
         if (!$this->user->hasPermission('delete', 'catalog/testimonial')) {
             $this->error['warning'] = $this->language->get('error_delete');
-        }
-
-        foreach ($this->request->post['selected'] as $testimonial_id) {
-            if ($this->user->getId() == $testimonial_id) {
-                $this->error['warning'] = $this->language->get('error_account');
-            }
         }
 
         return !$this->error;

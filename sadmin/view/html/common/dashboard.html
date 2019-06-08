@@ -52,13 +52,23 @@
                     <div class="card-body">
                         <div class="d-flex">
                             <p class="d-flex flex-column">
-                                <span class="text-bold text-lg">820</span>
+                                <span class="text-bold text-lg"><?php echo $total_visitors; ?></span>
                                 <span>Visitors Over Time</span>
                             </p>
                             <p class="ml-auto d-flex flex-column text-right">
+                                <?php if($percentage > 0) : ?>
                                 <span class="text-success">
-                                    <i class="fa fa-arrow-up"></i> 12.5%
+                                    <i class="fa fa-arrow-up"></i> <?php echo number_format(abs($percentage), 2); ?>%
                                 </span>
+                                <?php elseif($percentage < 0) : ?>
+                                <span class="text-danger">
+                                    <i class="fa fa-arrow-down"></i> <?php echo number_format(abs($percentage), 2); ?>%
+                                </span>
+                                <?php else : ?>
+                                <span class="text-info">
+                                    <i class="far fa-dot-circle"></i> <?php echo number_format(abs($percentage), 2); ?>%
+                                </span>
+                                <?php endif; ?>
                                 <span class="text-muted">Since last week</span>
                             </p>
                         </div>
@@ -101,7 +111,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
                             <p class="text-success text-xl">
-                                <i class="icon-tools"></i>
+                                <i class="<?php echo $website_icon; ?>"></i>
                             </p>
                             <p class="d-flex flex-column text-right">
                                 <span class="font-weight-bold">
@@ -113,7 +123,7 @@
                         <!-- /.d-flex -->
                         <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
                             <p class="text-warning text-xl">
-                                <i class="icon-wallet"></i>
+                                <i class="<?php echo $software_icon; ?>"></i>
                             </p>
                             <p class="d-flex flex-column text-right">
                                 <span class="font-weight-bold">
@@ -125,7 +135,7 @@
                         <!-- /.d-flex -->
                         <div class="d-flex justify-content-between align-items-center mb-0">
                             <p class="text-danger text-xl">
-                                <i class="icon-toolbox"></i>
+                                <i class="<?php echo $client_icon; ?>"></i>
                             </p>
                             <p class="d-flex flex-column text-right">
                                 <span class="font-weight-bold">
@@ -276,6 +286,12 @@
         dateRange.push(range[i] + suffix);
     }
 
+    var current_week = JSON.parse('<?php echo $current_week; ?>');
+    var last_week = JSON.parse('<?php echo $last_week; ?>');
+
+    var current_week_total = Math.max.apply(Math, current_week);
+    var last_week_total = Math.max.apply(Math, last_week);
+
     var ticksStyle = {
         fontColor: '#495057',
         fontStyle: 'bold'
@@ -291,7 +307,8 @@
             labels: dateRange,
             datasets: [{
                     type: 'line',
-                    data: [100, 120, 170, 167, 180, 177, 160],
+                    //data: [100, 120, 170, 167, 180, 177, 160],
+                    data: current_week,
                     backgroundColor: 'transparent',
                     borderColor: '#007bff',
                     pointBorderColor: '#007bff',
@@ -302,7 +319,8 @@
                 },
                 {
                     type: 'line',
-                    data: [60, 80, 70, 67, 80, 77, 100],
+                    //data: [60, 80, 70, 67, 80, 77, 100],
+                    data: last_week,
                     backgroundColor: 'tansparent',
                     borderColor: '#ced4da',
                     pointBorderColor: '#ced4da',
@@ -337,7 +355,8 @@
                     },
                     ticks: $.extend({
                         beginAtZero: true,
-                        suggestedMax: 200
+                        suggestedMax: (current_week_total < last_week_total) ? last_week_total :
+                            current_week_total
                     }, ticksStyle)
                 }],
                 xAxes: [{

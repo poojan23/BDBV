@@ -22,6 +22,9 @@ class ControllerCommonFooter extends PT_Controller
         $data['telephone'] = $this->config->get('config_telephone');
         $data['email'] = $this->config->get('config_email');
 
+        $data['visitor_icon'] = $this->config->get('config_visitor_icon');
+        $data['visitor'] = ($this->model_tool_online->getTotalOnlines() > 9999) ? '9999' : $this->model_tool_online->getTotalOnlines();
+
         if ($this->bots($this->request->server['HTTP_USER_AGENT'], $this->request->server['REMOTE_ADDR']) === FALSE) {
             if (isset($this->request->server['HTTP_X_REAL_IP'])) {
                 $ip = $this->request->server['HTTP_X_REAL_IP'];

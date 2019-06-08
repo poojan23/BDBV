@@ -124,6 +124,7 @@ $_['entry_error_filename']           = 'Error Log Filename';
 $_['entry_status']                   = 'Status';
 $_['entry_social_image']             = 'Social Media Image';
 $_['entry_website']                  = 'Websites';
+$_['entry_ecommerce']                = 'E-Commerce';
 $_['entry_software']                 = 'Softwares';
 $_['entry_clients']                  = 'Clients';
 $_['entry_visitors']                 = 'Visitors';
