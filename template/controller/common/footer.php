@@ -46,7 +46,9 @@ class ControllerCommonFooter extends PT_Controller
                 $referer = '';
             }
 
-            $this->model_tool_online->addOnline($ip, $url, $referer);
+            $date = date("Y-m-d");
+
+            $this->model_tool_online->addOnline($date, $ip, $url, $referer);
         }
 
         $data['home'] = $this->url->link('common/home', 'language=' . $this->config->get('config_language'));

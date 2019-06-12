@@ -799,12 +799,6 @@ function db_schema()
 		'name' => 'unique_visitor',
 		'field' => array(
 			array(
-				'name' => 'unique_visitor_id',
-				'type' => 'int(11)',
-				'not_null' => true,
-				'auto_increment' => true
-			),
-			array(
 				'name' => 'date',
 				'type' => 'date',
 				'not_null' => true
@@ -837,7 +831,7 @@ function db_schema()
 			)
 		),
 		'primary' => array(
-			'unique_visitor_id'
+			'date'
 		),
 		'engine' => 'InnoDB',
 		'charset' => 'utf8',
