@@ -1,0 +1,211 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<!--=========================*
+     Banner
+*===========================-->
+<section id="general_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <div class="bread_crumbs">
+                    <h1><?php echo $heading_title; ?></h1>
+                    <!-- <ul class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Blog Post</li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-svg">
+        <svg viewBox="0 0 1440.002 238.478" xml:space="preserve">
+            <path clip-rule="evenodd"
+                d="M1440.002,189.252C591.624,304.273,597.079,58.018,0,0
+                c0,91.006,0,216.847,0,238.478c148.21-0.137,1440.002,0,1440.002,0S1440.002,208.484,1440.002,189.252L1440.002,189.252z"></path>
+        </svg>
+    </div>
+    <!--white-svg-->
+</section>
+<!--=========================*
+          End Banner
+*===========================-->
+
+<!--=========================*
+         Blog Main Sec
+*===========================-->
+<section id="blog_main_sec">
+    <div class="container">
+        <div class="row">
+            <!--=========================*
+                    Blog Content Sec
+            *===========================-->
+            <div class="col-md-8 col-xs-offset-2">
+                <div class="author_box">
+                    <div class="author_img">
+                        <img src="image/template/blog/author.png" alt="Author">
+                        <!-- <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul> -->
+                    </div>
+                    <div class="author_bio">
+                        <h5>Angela Jane</h5>
+                        <p>Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper an neque
+                            auctor. Aenean ligula mi, auctor sed tempus.Duis a enim vel mauris ultrices. Nullam
+                            aliquet
+                            velit ac velit tempus in semper an neque auctor. Aenean ligula mi, auctor sed
+                            tempus.</p>
+                    </div>
+                </div>
+                <!--=========================*
+                          Comment Sec
+                *===========================-->
+                <div id="comments">
+                    <div class="comments-wrap">
+
+                        <div class="leave_comment">
+                            <h4>
+                                Leave a Comment
+                            </h4>
+                            <form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input placeholder="Name" class="form-control" type="text" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input placeholder="Company" class="form-control" type="text" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input placeholder="Designation" class="form-control" type="text"
+                                                required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <textarea placeholder="Message" class="form-control" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="panel panel-default" style="width: 130px; height: 120px;">
+                                            <div class="panel-heading">
+                                                <a href="" id="testimonial-image" data-toggle="image">
+                                                    <img src="image/default-image.png" alt="" width="100"
+                                                        height="100" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="rt_btn_color">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!--=========================*
+                        End Comment Sec
+                *===========================-->
+            </div>
+            <!--=========================*
+                  End Blog Content Sec
+            *===========================-->
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-image" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===========================*
+        End Blog Main Sec
+*=============================-->
+<?php echo $footer; ?>
+<script type="text/javascript">
+    $(document).tooltip({
+        selector: '[data-toggle=\'tooltip\']',
+        container: 'body',
+        html: true
+    });
+
+    $(document).on('click', 'a[data-toggle=\'image\']', function (e) {
+        var $element = $(this);
+        var $popover = $element.data('bs.popover');
+
+        e.preventDefault();
+
+        // Destroy all image popovers
+        $('a[data-toggle="image"]').popover('destroy');
+
+        // Remove flickering (do not re-add the popover when clicking for removal)
+        if ($popover) {
+            return;
+        }
+
+        $element.popover({
+            html: true,
+            placement: 'right',
+            trigger: 'manual',
+            content: function () {
+                return '<button type="button" id="button-image" class="btn btn-primary" data-toggle="tooltip" title="Upload"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger" data-toggle="tooltip" title="Clear"><i class="fa fa-trash-o"></i></button>';
+            }
+        });
+
+        $element.popover('show');
+
+        $('#button-image').on('click', function () {
+            var $button = $(this);
+            var $icon = $button.find('> i');
+
+            $('#modal-image').on('hidden.bs.modal', function () {
+                $button.prop('disabled', false);
+                if ($icon.length) {
+                    $icon.attr('class', 'fa fa-pencil');
+                }
+            });
+
+            $('#modal-image').modal('show');
+
+            if (($('#modal-image').data('bs.modal') || {}).isShown) {
+                $button.prop('disabled', true);
+                if ($icon.length) {
+                    $icon.attr('class', 'fa fa-circle-o-notch fa-spin');
+                }
+            }
+        })
+    });
+</script>
