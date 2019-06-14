@@ -99,21 +99,38 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="panel panel-default" style="width: 130px; height: 120px;">
-                                            <div class="panel-heading">
+                                        <div class="panel panel-default" style="display: flex;">
+                                            <div class="panel-heading" style="align-items:center; min-width: 130px;">
                                                 <a href="" id="testimonial-image" data-toggle="image">
-                                                    <img src="image/default-image.png" alt="" width="100"
-                                                        height="100" />
+                                                    <img src="image/default-image.png" alt=""
+                                                        data-placeholder="image/default-image.png"
+                                                        style="max-height: 100px; max-width: 100px; display: block; margin: 0 auto;" />
                                                 </a>
+                                                <input type="hidden" name="file" value="" />
+                                            </div>
+                                            <div class="panel-body" style="flex: 1;">
+                                                <p> Please Note:
+                                                    <ol>
+                                                        <li>Accepts only jpg, jpeg, png or gif image</li>
+                                                        <li>Image size should be less than 2 mb</li>
+                                                        <li>Request you to upload your company logo, if not, please
+                                                            upload
+                                                            your image</li>
+                                                    </ol>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-3">
                                         <button type="submit" class="rt_btn_color">
                                             Submit
                                         </button>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>By pressing submit button, we have the permission to display the testimonial
+                                            on our website and also on other social media platforms, if appropriate!</p>
                                     </div>
                                 </div>
                             </form>
@@ -142,11 +159,17 @@
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body">
-                ...
+                <div class="input-group">
+                    <input type="text" value="" class="form-control" id="input-filename" readonly="readonly" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="button-browse">Browse</button>
+                    </span>
+                </div>
+                <small id="filepath"></small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="button-upload">Upload</button>
             </div>
         </div>
     </div>
@@ -161,6 +184,18 @@
         container: 'body',
         html: true
     });
+
+    // Tooltip remove
+    $('[data-toggle=\'tooltip\']').on('remove', function () {
+        $(this).tooltip('destroy');
+    });
+
+    // Tooltip remove fixed
+    $(document).on('click', '[data-toggle=\'tooltip\']', function (e) {
+        $('body > .tooltip').remove();
+    });
+
+    $('#form-upload').remove();
 
     $(document).on('click', 'a[data-toggle=\'image\']', function (e) {
         var $element = $(this);
@@ -196,6 +231,11 @@
                 if ($icon.length) {
                     $icon.attr('class', 'fa fa-pencil');
                 }
+
+                $('#form-upload').remove();
+
+                $('#input-filename').val('');
+                $('#filepath').html('');
             });
 
             $('#modal-image').modal('show');
@@ -205,7 +245,76 @@
                 if ($icon.length) {
                     $icon.attr('class', 'fa fa-circle-o-notch fa-spin');
                 }
+
+                $('#button-browse').unbind().on('click', function () {
+                    $('#form-upload').remove();
+
+                    $('body').prepend(
+                        '<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>'
+                    );
+
+                    $('#form-upload input[name=\'file\']').trigger('click');
+
+                    $('#form-upload input[name=\'file\']').on('change', function (e) {
+                        var filename = e.target.files[0].name;
+                        var filepath = $(this).val();
+                        $('#input-filename').val(filename);
+                        $('#filepath').html(filepath);
+                    });
+                });
+
+                $(document).on('click', '#button-upload', function () {
+                    if (typeof timer != 'undefined') {
+                        clearInterval(timer);
+                    }
+
+                    timer = setInterval(function () {
+                        if ($('#form-upload input[name=\'file\']').val() != '') {
+                            clearInterval(timer);
+
+                            $.ajax({
+                                url: 'index.php?url=common/testimonial/upload',
+                                type: 'POST',
+                                dataType: 'json',
+                                data: new FormData($('#form-upload')[0]),
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                beforeSend: function () {
+                                    $('#button-upload').button('Uploading');
+                                },
+                                complete: function () {
+                                    $('#button-upload').button('reset');
+                                },
+                                success: function (json) {
+                                    if (json['error']) {
+                                        alert(json['error']);
+                                    }
+
+                                    if (json['success']) {
+                                        alert(json['success']);
+
+                                        $element.find('img').attr('src',
+                                            json['thumb']);
+                                    }
+                                },
+                                error: function (xhr, ajaxOptions,
+                                    thrownError) {
+                                    alert(thrownError + "\r\n" + xhr
+                                        .statusText + "\r\n" + xhr
+                                        .responseText);
+                                }
+                            });
+
+                            $('#modal-image').modal('hide');
+                        }
+                    }, 500);
+                });
             }
+
+            $element.popover('destroy');
+
+            $('[data-toggle=\'tooltip\']').tooltip('destroy');
         })
     });
 </script>
