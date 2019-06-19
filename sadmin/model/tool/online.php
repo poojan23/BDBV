@@ -4,29 +4,45 @@ class ModelToolOnline extends PT_Model
 {
     public function getTotalOnlines()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "unique_visitor");
+        $query = $this->db->query("SELECT SUM(`view`) AS total FROM " . DB_PREFIX . "unique_visitor");
 
-        return $query->row['total'];
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return '0';
+        }
     }
 
     public function getTotalOnlineByDate($date)
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "unique_visitor WHERE date = '" . $this->db->escape($date) . "'");
+        $query = $this->db->query("SELECT `view` AS total FROM " . DB_PREFIX . "unique_visitor WHERE date = '" . $this->db->escape($date) . "'");
 
-        return $query->row['total'];
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return '0';
+        }
     }
 
     public function getTotalOnlineByCurrentWeek()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "unique_visitor WHERE date > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
+        $query = $this->db->query("SELECT SUM(`view`) AS total FROM " . DB_PREFIX . "unique_visitor WHERE YEARWEEK(date) = YEARWEEK(NOW())");
 
-        return $query->row['total'];
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return '0';
+        }
     }
 
     public function getTotalOnlineByLastWeek()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "unique_visitor WHERE YEARWEEK(date) = YEARWEEK(NOW() - INTERVAL 1 WEEK)");
+        $query = $this->db->query("SELECT SUM(`view`) AS total FROM " . DB_PREFIX . "unique_visitor WHERE YEARWEEK(date) = YEARWEEK(NOW() - INTERVAL 1 WEEK)");
 
-        return $query->row['total'];
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return '0';
+        }
     }
 }
