@@ -149,4 +149,27 @@ class ControllerCommonDashboard extends PT_Controller
 
         $this->response->setOutput($this->load->view('common/dashboard', $data));
     }
+
+    public function enquiries()
+    {
+        $this->load->model('tool/notification');
+
+        $json = array();
+
+        $total = $this->model_tool_notification->getTotalEnquiries();
+
+        $results = $this->model_tool_notification->getEnquiries();
+
+        foreach ($results as $result) {
+            $json = array(
+                'name'      => $result['name'],
+                'message'   => $result['message'],
+                'status'    => $result['status'],
+                'count'     => $total
+            );
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
 }

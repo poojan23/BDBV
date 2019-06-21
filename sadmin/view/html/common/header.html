@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="view/dist/css/popaya.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="view/dist/css/adminlte.min.css">
-    <!-- jQuery -->
-    <script src="view/dist/plugins/jquery/jquery.min.js"></script>
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <!-- <link rel="stylesheet" href="view/dist/css/skins/_all-skins.min.css"> -->
@@ -215,13 +213,3 @@
         </nav>
         <!-- /.navbar -->
         <?php endif; ?>
-        <script type="text/javascript">
-            $.ajax({
-                url: 'index.php?url=common/header/enquiry&user_token=' + getURLVar('user_token'),
-                dataType: 'json',
-                type: 'POST',
-                success: function (json) {
-                    console.log(json);
-                }
-            });
-        </script>
