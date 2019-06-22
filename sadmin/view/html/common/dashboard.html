@@ -249,24 +249,63 @@
 <!-- /.content-wrapper -->
 <?php echo $footer; ?>
 <script type="text/javascript">
-    $(function () {
-        if (typeof timer != 'undefined') {
-            clearInterval(timer);
+    var count = 0;
+    var source = new EventSource('index.php?url=common/dashboard/enquiries&user_token=' + getURLVar(
+        'user_token'));
+
+    source.onmessage = function (event) {
+        var json = JSON.parse(event.data);
+        //console.log(json.status);
+
+        if (json.count > count) {
+            html = '<a href="#" class="dropdown-item">';
+            html += '   <!-- Message Start -->';
+            html += '   <div class="media">';
+            html +=
+                '       <img src="../image/profile.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">';
+            html += '       <div class="media-body">';
+            html += '           <h3 class="dropdown-item-title">';
+            html += '             ' + json.name;
+            html +=
+                '               <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>';
+            html += '           </h3>';
+            html += '           <p class="text-sm">Call me whenever you can...</p>';
+            html +=
+                '           <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>';
+            html += '       </div>';
+            html += '   </div>';
+            html += '</a>';
+            html += '<div class="dropdown-divider"></div>';
+
+            $('#enquiries > .dropdown-menu').prepend(html);
+
+            if (json.status == 'unread') {
+                console.log(json.name);
+                count = json.count;
+            } else {
+                console.log('NO DATA');
+            }
         }
+    }
 
-        timer = setInterval(function () {
-            clearInterval(timer);
+    $(function () {
+        // if (typeof timer !== 'undefined') {
+        //     clearInterval(timer);
+        // }
 
-            $.ajax({
-                url: 'index.php?url=common/dashboard/enquiries&user_token=' + getURLVar(
-                    'user_token'),
-                type: 'GET',
-                dataType: 'json',
-                success: function (json) {
-                    console.log(json);
-                }
-            });
-        }, 500);
+        // timer = setInterval(function () {
+        //     clearInterval(timer);
+
+        //     $.ajax({
+        //         url: 'index.php?url=common/dashboard/enquiries&user_token=' + getURLVar(
+        //             'user_token'),
+        //         type: 'GET',
+        //         dataType: 'json',
+        //         success: function (json) {
+        //             console.log(json);
+        //         }
+        //     });
+        // }, 500);
     });
 </script>
 <script type="text/javascript">

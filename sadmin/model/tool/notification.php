@@ -13,6 +13,7 @@ class ModelToolNotification extends PT_Model
         }
 
         $sort_data = array(
+            'enquiry_id',
             'name',
             'status'
         );
@@ -20,7 +21,7 @@ class ModelToolNotification extends PT_Model
         if (isset($data['sort']) && (in_array($data['sort'], $sort_data))) {
             $sql .= " ORDER BY " . $data['sort'];
         } else {
-            $sql .= " ORDER BY name";
+            $sql .= " ORDER BY enquiry_id";
         }
 
         if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -51,5 +52,12 @@ class ModelToolNotification extends PT_Model
         $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "enquiry WHERE status = 'unread'");
 
         return $query->row['total'];
+    }
+
+    public function getMaxEnquiry()
+    {
+        $query = $this->db->query("SELECT MAX(`enquiry_id`) AS enquiry_id FROM " . DB_PREFIX . "enquiry WHERE status = 'unread'");
+
+        return $query->row['enquiry_id'];
     }
 }

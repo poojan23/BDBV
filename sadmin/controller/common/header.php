@@ -53,6 +53,20 @@ class ControllerCommonHeader extends PT_Controller
                     $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($user_info['image'], ENT_QUOTES, 'UTF-8'), 128, 128);
                 }
             }
+
+            # Enquiries
+            $this->load->model('tool/notification');
+
+            $data['enquiries'] = array();
+
+            $results = $this->model_tool_notification->getEnquiries();
+
+            foreach ($results as $result) {
+                $data['enquiries'][] = array(
+                    'name'      => $result['name'],
+                    'message'   => $result['message']
+                );
+            }
         }
 
         return $this->load->view('common/header', $data);

@@ -152,24 +152,38 @@ class ControllerCommonDashboard extends PT_Controller
 
     public function enquiries()
     {
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+
         $this->load->model('tool/notification');
 
         $json = array();
 
         $total = $this->model_tool_notification->getTotalEnquiries();
 
+        $last_record = $this->model_tool_notification->getMaxEnquiry();
+
         $results = $this->model_tool_notification->getEnquiries();
 
         foreach ($results as $result) {
-            $json = array(
-                'name'      => $result['name'],
-                'message'   => $result['message'],
-                'status'    => $result['status'],
-                'count'     => $total
+            $json[] = array(
+                'enquiry_id'    => $result['enquiry_id'],
+                'name'          => $result['name'],
+                'message'       => $result['message'],
+                'status'        => $result['status'],
+                'count'         => $total
             );
         }
 
-        $this->response->addHeader('Content-Type: application/json');
-        $this->response->setOutput(json_encode($json));
+        $end = end($json);
+
+        if ($last_record != $end) {
+            $data = json_encode($end);
+
+            echo "data: {$data}\n\n";
+        }
+
+        ob_flush();
+        flush();
     }
 }
