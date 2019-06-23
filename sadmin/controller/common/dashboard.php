@@ -155,15 +155,24 @@ class ControllerCommonDashboard extends PT_Controller
         header('Content-Type: text/event-stream');
         header('Cache-Control: no-cache');
 
+        $start = 0;
+        $limit = 1;
+
         $this->load->model('tool/notification');
 
         $json = array();
+
+        $filter_data = array(
+            'order' => 'DESC',
+            'start' => $start,
+            'limit' => $limit
+        );
 
         $total = $this->model_tool_notification->getTotalEnquiries();
 
         $last_record = $this->model_tool_notification->getMaxEnquiry();
 
-        $results = $this->model_tool_notification->getEnquiries();
+        $results = $this->model_tool_notification->getEnquiries($filter_data);
 
         foreach ($results as $result) {
             $json[] = array(
@@ -171,14 +180,15 @@ class ControllerCommonDashboard extends PT_Controller
                 'name'          => $result['name'],
                 'message'       => $result['message'],
                 'status'        => $result['status'],
-                'count'         => $total
+                'count'         => $total,
+                'limit'         => $limit
             );
         }
 
         $end = end($json);
 
         if ($last_record != $end) {
-            $data = json_encode($end);
+            $data = json_encode($json);
 
             echo "data: {$data}\n\n";
         }

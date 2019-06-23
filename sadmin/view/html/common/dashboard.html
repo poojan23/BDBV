@@ -255,7 +255,20 @@
 
     source.onmessage = function (event) {
         var json = JSON.parse(event.data);
-        //console.log(json.status);
+
+        for (var i = 0; i < json.length; i++) {
+            if (json.length > count) {
+                if (json[i].limit >= json[i].count) {
+                    console.log(json[i]);
+                    count = json.length;
+                } else {
+                    console.log(json[i].name);
+                    count = json.length - 1;
+                }
+
+                console.log(count);
+            }
+        }
 
         if (json.count > count) {
             html = '<a href="#" class="dropdown-item">';
@@ -366,29 +379,29 @@
             //labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
             labels: dateRange,
             datasets: [{
-                    type: 'line',
-                    //data: [100, 120, 170, 167, 180, 177, 160],
-                    data: current_week,
-                    backgroundColor: 'transparent',
-                    borderColor: '#007bff',
-                    pointBorderColor: '#007bff',
-                    pointBackgroundColor: '#007bff',
-                    fill: false
-                    // pointHoverBackgroundColor: '#007bff',
-                    // pointHoverBorderColor : '#007bff'
-                },
-                {
-                    type: 'line',
-                    //data: [60, 80, 70, 67, 80, 77, 100],
-                    data: last_week,
-                    backgroundColor: 'tansparent',
-                    borderColor: '#ced4da',
-                    pointBorderColor: '#ced4da',
-                    pointBackgroundColor: '#ced4da',
-                    fill: false
-                    // pointHoverBackgroundColor: '#ced4da',
-                    // pointHoverBorderColor : '#ced4da'
-                }
+                type: 'line',
+                //data: [100, 120, 170, 167, 180, 177, 160],
+                data: current_week,
+                backgroundColor: 'transparent',
+                borderColor: '#007bff',
+                pointBorderColor: '#007bff',
+                pointBackgroundColor: '#007bff',
+                fill: false
+                // pointHoverBackgroundColor: '#007bff',
+                // pointHoverBorderColor : '#007bff'
+            },
+            {
+                type: 'line',
+                //data: [60, 80, 70, 67, 80, 77, 100],
+                data: last_week,
+                backgroundColor: 'tansparent',
+                borderColor: '#ced4da',
+                pointBorderColor: '#ced4da',
+                pointBackgroundColor: '#ced4da',
+                fill: false
+                // pointHoverBackgroundColor: '#ced4da',
+                // pointHoverBorderColor : '#ced4da'
+            }
             ]
         },
         options: {
