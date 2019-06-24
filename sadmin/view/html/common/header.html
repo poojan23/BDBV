@@ -86,9 +86,21 @@
                 <li id="enquiries" class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
+                        <span class="badge badge-danger navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <?php foreach($enquiries as $enquiry) : ?>
+                        <a href="#" class="dropdown-item enquiry">
+                            <?php if($enquiry['status'] == 'unread') : ?>
+                            <i class="fa fa-envelope mr-2"></i> <b><?php echo $enquiry['name']; ?></b>
+                            <span
+                                class="float-right text-muted text-sm"><b><?php echo $enquiry['date_added']; ?></b></span>
+                            <?php else : ?>
+                            <i class="fa fa-envelope mr-2"></i> <?php echo $enquiry['name']; ?>
+                            <span class="float-right text-muted text-sm"><?php echo $enquiry['date_added']; ?></span>
+                            <?php endif; ?>
+                        </a>
+                        <?php endforeach; ?>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                     </div>

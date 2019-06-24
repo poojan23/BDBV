@@ -4,12 +4,10 @@ class ModelToolNotification extends PT_Model
 {
     public function getEnquiries($data = array())
     {
-        $sql = "SELECT * FROM " . DB_PREFIX . "enquiry WHERE";
+        $sql = "SELECT * FROM " . DB_PREFIX . "enquiry";
 
         if (isset($data['status']) && ($data['status'] != 'unread')) {
-            $sql .= " status = '" . $data['status'] . "'";
-        } else {
-            $sql .= " status = 'unread'";
+            $sql .= " WHERE status = '" . $data['status'] . "'";
         }
 
         $sort_data = array(
@@ -49,15 +47,15 @@ class ModelToolNotification extends PT_Model
 
     public function getTotalEnquiries()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "enquiry WHERE status = 'unread'");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "enquiry");
 
         return $query->row['total'];
     }
 
-    public function getMaxEnquiry()
+    public function getTotalUnreadEnquiries()
     {
-        $query = $this->db->query("SELECT MAX(`enquiry_id`) AS enquiry_id FROM " . DB_PREFIX . "enquiry WHERE status = 'unread'");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "enquiry WHERE status = 'unread'");
 
-        return $query->row['enquiry_id'];
+        return $query->row['total'];
     }
 }

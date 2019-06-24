@@ -59,14 +59,25 @@ class ControllerCommonHeader extends PT_Controller
 
             $data['enquiries'] = array();
 
-            $results = $this->model_tool_notification->getEnquiries();
+            $filter_data = array(
+                'order' => 'DESC',
+                'start' => 0,
+                'limit' => 5
+            );
+
+            $results = $this->model_tool_notification->getEnquiries($filter_data);
 
             foreach ($results as $result) {
+                $time = strtotime($result['date_added']);
+
                 $data['enquiries'][] = array(
-                    'name'      => $result['name'],
-                    'message'   => $result['message']
+                    'name'          => $result['name'],
+                    'date_added'    => timeLapse($time),
+                    'status'        => $result['status']
                 );
             }
+
+            $data['count'] = $this->model_tool_notification->getTotalUnreadEnquiries();
         }
 
         return $this->load->view('common/header', $data);

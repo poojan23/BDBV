@@ -1,5 +1,7 @@
 <?php
-function token($length = 32) {
+
+function token($length = 32)
+{
 	if (!isset($length) || intval($length) <= 8) {
 		$length = 32;
 	}
@@ -26,7 +28,8 @@ function token($length = 32) {
  */
 
 if (!function_exists('hash_equals')) {
-	function hash_equals($known_string, $user_string) {
+	function hash_equals($known_string, $user_string)
+	{
 		$known_string = (string)$known_string;
 		$user_string = (string)$user_string;
 
@@ -40,5 +43,28 @@ if (!function_exists('hash_equals')) {
 
 			return !$ret;
 		}
+	}
+}
+
+function timeLapse($time)
+{
+	$time = time() - $time;
+	$time = ($time < 1) ? 1 : $time;
+
+	$tokens = array(
+		'year'      => 31536000,
+		'month'     => 2592000,
+		'week'      => 604800,
+		'day'       => 86400,
+		'hour'      => 3600,
+		'minute'    => 60,
+		'second'    => 1
+	);
+
+	foreach ($tokens as $text => $unit) {
+		if ($time < $unit) continue;
+		$numberOfUnits = floor($time / $unit);
+
+		return $numberOfUnits . ' ' . $text . (($numberOfUnits > 1) ? 's' : '');
 	}
 }

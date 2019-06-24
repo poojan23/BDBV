@@ -155,8 +155,7 @@ class ControllerCommonDashboard extends PT_Controller
         header('Content-Type: text/event-stream');
         header('Cache-Control: no-cache');
 
-        $start = 0;
-        $limit = 1;
+        $limit = 5;
 
         $this->load->model('tool/notification');
 
@@ -164,34 +163,57 @@ class ControllerCommonDashboard extends PT_Controller
 
         $filter_data = array(
             'order' => 'DESC',
-            'start' => $start,
-            'limit' => $limit
+            'start' => 0,
+            'limit' => 1
         );
 
         $total = $this->model_tool_notification->getTotalEnquiries();
 
-        $last_record = $this->model_tool_notification->getMaxEnquiry();
+        $json['count'][] = $this->model_tool_notification->getTotalUnreadEnquiries();
 
         $results = $this->model_tool_notification->getEnquiries($filter_data);
 
-        foreach ($results as $result) {
-            $json[] = array(
-                'enquiry_id'    => $result['enquiry_id'],
-                'name'          => $result['name'],
-                'message'       => $result['message'],
-                'status'        => $result['status'],
-                'count'         => $total,
-                'limit'         => $limit
-            );
+        if (isset($this->session->data['enquiry_id']) && ($this->session->data['enquiry_id'] != '')) {
+            if ($results && ($results[0]['status'] == 'unread')) {
+                if ($this->session->data['enquiry_id'] != $results[0]['enquiry_id']) {
+                    foreach ($results as $result) {
+                        $time = strtotime($result['date_added']);
+
+                        $json['data'] = array(
+                            'name'          => $result['name'],
+                            'date_added'    => timeLapse($time),
+                            'status'        => $result['status'],
+                            'total'         => $total,
+                            'limit'         => $limit
+                        );
+                    }
+
+                    $this->session->data['enquiry_id'] = $results[0]['enquiry_id'];
+                }
+            } else {
+                unset($this->session->data['enquiry_id']);
+            }
+        } else {
+            if ($results && ($results[0]['status'] == 'unread')) {
+                foreach ($results as $result) {
+                    $time = strtotime($result['date_added']);
+
+                    $json['data'] = array(
+                        'name'          => $result['name'],
+                        'date_added'    => timeLapse($time),
+                        'status'        => $result['status'],
+                        'total'         => $total,
+                        'limit'         => $limit
+                    );
+                }
+
+                $this->session->data['enquiry_id'] = $results[0]['enquiry_id'];
+            }
         }
 
-        $end = end($json);
+        $data = json_encode($json);
 
-        if ($last_record != $end) {
-            $data = json_encode($json);
-
-            echo "data: {$data}\n\n";
-        }
+        echo "data: {$data}\n\n";
 
         ob_flush();
         flush();

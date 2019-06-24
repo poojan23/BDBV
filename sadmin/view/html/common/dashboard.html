@@ -249,56 +249,81 @@
 <!-- /.content-wrapper -->
 <?php echo $footer; ?>
 <script type="text/javascript">
-    var count = 0;
     var source = new EventSource('index.php?url=common/dashboard/enquiries&user_token=' + getURLVar(
         'user_token'));
 
     source.onmessage = function (event) {
         var json = JSON.parse(event.data);
+        var data = json.data;
 
-        for (var i = 0; i < json.length; i++) {
-            if (json.length > count) {
-                if (json[i].limit >= json[i].count) {
-                    console.log(json[i]);
-                    count = json.length;
-                } else {
-                    console.log(json[i].name);
-                    count = json.length - 1;
+        if (data) {
+            //for (var i = 0; i < json.data.length; i++) {
+            console.log(data);
+            // html = '<a href="#" class="dropdown-item enquiry">';
+            // html += ' <!-- Message Start --> ';
+            // html += ' <div class="media">';
+            // html +=
+            //     ' <img src="../image/profile.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">';
+            // html += ' <div class="media-body">';
+            // html += ' <h3 class="dropdown-item-title">';
+            // html += ' ' + json[i].name;
+            // html +=
+            //     ' <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>';
+            // html += ' </h3>';
+            // html += ' <p class="text-sm">Call me whenever you can...</p>';
+            // html +=
+            //     ' <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>';
+            // html += ' </div>';
+            // html += ' </div>';
+            // html += '</a>';
+            // if (json.length > 1) {
+            //     html += '<div class="dropdown-divider"></div>';
+            // }
+
+            html = '<a href="#" class="dropdown-item enquiry">';
+            if (data.status == 'unread') {
+                html += '   <i class="fa fa-envelope mr-2"></i> <b>' + data.name + '</b>';
+                html += '   <span class="float-right text-muted text-sm"><b>' + data.date_added + '</b></span>';
+            } else {
+                html += ' <i class="fa fa-envelope mr-2"></i> ' + data.name;
+                html += ' <span class="float-right text-muted text-sm">' + data.date_added + '</span>';
+            }
+            html += '</a>';
+            if (data.length > 1) {
+                html += '<div class="dropdown-divider"></div>';
+            }
+
+            if (data.limit >= data.total) {
+                if ($('#enquiries > .dropdown-menu .enquiry').length > data.limit) {
+                    $('#enquiries > .dropdown-menu .enquiry:last').fadeOut(300, function () {
+                        $(this).remove();
+                    });
                 }
 
-                console.log(count);
-            }
-        }
-
-        if (json.count > count) {
-            html = '<a href="#" class="dropdown-item">';
-            html += '   <!-- Message Start -->';
-            html += '   <div class="media">';
-            html +=
-                '       <img src="../image/profile.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">';
-            html += '       <div class="media-body">';
-            html += '           <h3 class="dropdown-item-title">';
-            html += '             ' + json.name;
-            html +=
-                '               <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>';
-            html += '           </h3>';
-            html += '           <p class="text-sm">Call me whenever you can...</p>';
-            html +=
-                '           <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>';
-            html += '       </div>';
-            html += '   </div>';
-            html += '</a>';
-            html += '<div class="dropdown-divider"></div>';
-
-            $('#enquiries > .dropdown-menu').prepend(html);
-
-            if (json.status == 'unread') {
-                console.log(json.name);
-                count = json.count;
+                $('#enquiries > .dropdown-menu').prepend(html);
             } else {
-                console.log('NO DATA');
+                $('#enquiries > .dropdown-menu .enquiry:last').fadeOut(300, function () {
+                    $(this).remove();
+                });
+
+                $('#enquiries > .dropdown-menu').prepend(html);
             }
         }
+
+        if (json.count > 0 && $('#enquiries .nav-link span.badge').text()) {
+            $('#enquiries .nav-link span.badge').text(json.count);
+        } else {
+            if (data) {
+                $('#enquiries .nav-link span.badge').text(json.count);
+            }
+        }
+    }
+
+    if ($('#enquiries .nav-link span.badge').text()) {
+        $('#enquiries a.nav-link').on('click', function () {
+            $('#enquiries .nav-link span.badge').text('');
+        });
+        console.log($('#enquiries .nav-link span.badge').text());
     }
 
     $(function () {
@@ -379,29 +404,29 @@
             //labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
             labels: dateRange,
             datasets: [{
-                type: 'line',
-                //data: [100, 120, 170, 167, 180, 177, 160],
-                data: current_week,
-                backgroundColor: 'transparent',
-                borderColor: '#007bff',
-                pointBorderColor: '#007bff',
-                pointBackgroundColor: '#007bff',
-                fill: false
-                // pointHoverBackgroundColor: '#007bff',
-                // pointHoverBorderColor : '#007bff'
-            },
-            {
-                type: 'line',
-                //data: [60, 80, 70, 67, 80, 77, 100],
-                data: last_week,
-                backgroundColor: 'tansparent',
-                borderColor: '#ced4da',
-                pointBorderColor: '#ced4da',
-                pointBackgroundColor: '#ced4da',
-                fill: false
-                // pointHoverBackgroundColor: '#ced4da',
-                // pointHoverBorderColor : '#ced4da'
-            }
+                    type: 'line',
+                    //data: [100, 120, 170, 167, 180, 177, 160],
+                    data: current_week,
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    pointBorderColor: '#007bff',
+                    pointBackgroundColor: '#007bff',
+                    fill: false
+                    // pointHoverBackgroundColor: '#007bff',
+                    // pointHoverBorderColor : '#007bff'
+                },
+                {
+                    type: 'line',
+                    //data: [60, 80, 70, 67, 80, 77, 100],
+                    data: last_week,
+                    backgroundColor: 'tansparent',
+                    borderColor: '#ced4da',
+                    pointBorderColor: '#ced4da',
+                    pointBackgroundColor: '#ced4da',
+                    fill: false
+                    // pointHoverBackgroundColor: '#ced4da',
+                    // pointHoverBorderColor : '#ced4da'
+                }
             ]
         },
         options: {
