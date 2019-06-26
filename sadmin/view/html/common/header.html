@@ -84,11 +84,13 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Messages Dropdown Menu -->
                 <li id="enquiries" class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link" data-toggle="dropdown" href="javascript:void(0);">
                         <i class="far fa-comments"></i>
                         <span class="badge badge-danger navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header"><?php echo $count; ?> Notifications</span>
+                        <div class="dropdown-divider"></div>
                         <?php foreach($enquiries as $enquiry) : ?>
                         <a href="#" class="dropdown-item enquiry">
                             <?php if($enquiry['status'] == 'unread') : ?>
@@ -100,35 +102,46 @@
                             <span class="float-right text-muted text-sm"><?php echo $enquiry['date_added']; ?></span>
                             <?php endif; ?>
                         </a>
-                        <?php endforeach; ?>
                         <div class="dropdown-divider"></div>
+                        <?php endforeach; ?>
+                        <?php if(count($enquiries) <= 1) : ?>
+                        <div class="dropdown-divider"></div>
+                        <?php endif; ?>
                         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                     </div>
                 </li>
                 <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                <li id="testimonials" class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="javascript:void(0);">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <span class="badge badge-warning navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fa fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
+                        <?php foreach($testimonials as $testimonial) : ?>
+                        <a href="#" class="dropdown-item testimonial">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="../image/profile.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        <?php echo $testimonial['name']; ?>
+                                        <?php if(!$testimonial['status']) : ?>
+                                        <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
+                                        <?php else : ?>
+                                        <span class="float-right text-sm"><i class="far fa-star"></i></span>
+                                        <?php endif; ?>
+                                    </h3>
+                                    <p class="text-sm"><?php echo $testimonial['message']; ?></p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>
+                                        <?php echo ucwords($testimonial['date_added']); ?> Ago</p>
+                                </div>
+                            </div>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fa fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
+                        <?php endforeach; ?>
+                        <?php if(count($testimonials) <= 1) : ?>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fa fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
+                        <?php endif; ?>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>

@@ -78,6 +78,35 @@ class ControllerCommonHeader extends PT_Controller
             }
 
             $data['count'] = $this->model_tool_notification->getTotalUnreadEnquiries();
+
+            # Testimonials
+            $this->load->model('tool/notification');
+
+            $data['testimonials'] = array();
+
+            $filter_data = array(
+                'order' => 'DESC',
+                'start' => 0,
+                'limit' => 5
+            );
+
+            $results = $this->model_tool_notification->getTestimonials($filter_data);
+
+            foreach ($results as $result) {
+                $time = strtotime($result['date_added']);
+
+                $data['testimonials'][] = array(
+                    'name'          => $result['name'],
+                    'message'       => (utf8_strlen($result['description']) > 24 ? utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, 24) . '...' : $result['description']),
+                    'date_added'    => timeLapse($time),
+                    'status'        => $result['status']
+                );
+            }
+
+            $data['count'] = $this->model_tool_notification->getTotalUnreadEnquiries();
+
+            // print_r(end($data['testimonials']));
+            // exit;
         }
 
         return $this->load->view('common/header', $data);
