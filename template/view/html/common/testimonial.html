@@ -69,44 +69,61 @@
                             <h4>
                                 Leave a Comment
                             </h4>
-                            <form action="#" method="post">
+                            <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input placeholder="Name" class="form-control" type="text" required />
+                                            <input placeholder="Name" name="name" class="form-control" type="text" />
+                                            <?php if($error_name) : ?>
+                                            <div class="mt_error"><?php echo $error_name; ?></div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input placeholder="Company" class="form-control" type="text" required />
+                                            <input placeholder="Company" name="company" class="form-control"
+                                                type="text" />
+                                            <?php if($error_company) : ?>
+                                            <div class="mt_error"><?php echo $error_company; ?></div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input placeholder="Designation" class="form-control" type="text"
-                                                required />
+                                            <input placeholder="Designation" name="designation" class="form-control"
+                                                type="text" />
+                                            <?php if($error_designation) : ?>
+                                            <div class="mt_error"><?php echo $error_designation; ?></div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <textarea placeholder="Message" class="form-control" required></textarea>
+                                        <textarea placeholder="Message" name="description"
+                                            class="form-control"></textarea>
+                                        <?php if($error_description) : ?>
+                                        <div class="mt_error"><?php echo $error_description; ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="panel panel-default" style="display: flex;">
-                                            <div class="panel-heading" style="align-items:center; min-width: 130px;">
-                                                <a href="" id="testimonial-image" data-toggle="image">
-                                                    <img src="image/default-image.png" alt=""
-                                                        data-placeholder="image/default-image.png"
-                                                        style="max-height: 100px; max-width: 100px; display: block; margin: 0 auto;" />
-                                                </a>
-                                                <input type="hidden" name="file" value="" />
+                                            <div class="panel-heading"
+                                                style="min-width: 130px; display: flex; align-items: center;">
+                                                <div class="panel-image">
+                                                    <a href="" id="testimonial-image" data-toggle="image">
+                                                        <img src="<?php echo $placeholder; ?>" alt=""
+                                                            data-placeholder="<?php echo $placeholder; ?>"
+                                                            style="max-height: 100px; max-width: 100px; display: block; margin: 0 auto;" />
+                                                    </a>
+                                                    <input type="hidden" name="image" value="" />
+                                                </div>
                                             </div>
                                             <div class="panel-body" style="flex: 1;">
                                                 <p> Please Note:
@@ -156,7 +173,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
             </div>
             <div class="modal-body">
                 <div class="input-group">
@@ -165,7 +182,6 @@
                         <button type="button" class="btn btn-default" id="button-browse">Browse</button>
                     </span>
                 </div>
-                <small id="filepath"></small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -235,7 +251,6 @@
                 $('#form-upload').remove();
 
                 $('#input-filename').val('');
-                $('#filepath').html('');
             });
 
             $('#modal-image').modal('show');
@@ -259,7 +274,6 @@
                         var filename = e.target.files[0].name;
                         var filepath = $(this).val();
                         $('#input-filename').val(filename);
-                        $('#filepath').html(filepath);
                     });
                 });
 
@@ -296,6 +310,9 @@
 
                                         $element.find('img').attr('src',
                                             json['thumb']);
+
+                                        $element.next('input').val(json[
+                                            'target']);
                                     }
                                 },
                                 error: function (xhr, ajaxOptions,

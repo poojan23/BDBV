@@ -192,7 +192,17 @@ function db_schema()
 				'not_null' => true
 			),
 			array(
+				'name' => 'status',
+				'type' => 'varchar(96)',
+				'not_null' => true
+			),
+			array(
 				'name' => 'date_added',
+				'type' => 'datetime',
+				'not_null' => true
+			),
+			array(
+				'name' => 'date_modified',
 				'type' => 'datetime',
 				'not_null' => true
 			)
@@ -701,7 +711,7 @@ function db_schema()
 				'not_null' => true
 			),
 			array(
-				'name' => 'image',
+				'name' => 'company',
 				'type' => 'varchar(255)',
 				'not_null' => true
 			),
@@ -713,6 +723,11 @@ function db_schema()
 			array(
 				'name' => 'description',
 				'type' => 'mediumtext',
+				'not_null' => true
+			),
+			array(
+				'name' => 'image',
+				'type' => 'varchar(255)',
 				'not_null' => true
 			),
 			array(
