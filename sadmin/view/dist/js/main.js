@@ -176,6 +176,25 @@ $(document).on('click', 'a[data-toggle=\'image\']', function (e) {
 // Event Source - Enquiries
 var clicked = localStorage.getItem('clicked') == 'true';
 
+$(document).on('click', '#enquiries a.nav-link', function () {
+	// var $this = $(this);
+
+	// if (!$this.data('clicked')) {
+	// 	if (!clicked) {
+	// 		clicked = true;
+	// 	}
+	// } else {
+	// 	clicked = true;
+	// }
+
+	// $this.data('clicked', true);
+	$('#enquiries .nav-link i').replaceWith('<i class="far fa-comments"></i>');
+	$('#enquiries .nav-link span.badge').text('');
+
+	clicked = true;
+	localStorage.setItem('clicked', clicked);
+});
+
 if (typeof EventSource != 'undefined') {
 	var source = new EventSource('index.php?url=common/notification/sseEnquiries&user_token=' + getURLVar(
 		'user_token'));
@@ -207,42 +226,23 @@ if (typeof EventSource != 'undefined') {
 					});
 				}
 
-				$('#enquiries > .dropdown-menu').prepend(html);
+				$('#enquiries > .dropdown-menu > .dropdown-divider:first').after(html);
 			} else {
 				$('#enquiries > .dropdown-menu .enquiry:last').fadeOut(300, function () {
 					$(this).remove();
 				});
 
-				$('#enquiries > .dropdown-menu').prepend(html);
+				$('#enquiries > .dropdown-menu > .dropdown-divider:first').after(html);
 			}
-		}
 
-		$('#enquiries a.nav-link').on('click', function () {
-			// var $this = $(this);
+			$('#enquiries .nav-link i').replaceWith('<i class="fas fa-comments faa-tada animated"></i>');
+			$('#enquiries .nav-link span.badge').text(json.count);
 
-			// if (!$this.data('clicked')) {
-			// 	if (!clicked) {
-			// 		clicked = true;
-			// 	}
-			// } else {
-			// 	clicked = true;
-			// }
-
-			// $this.data('clicked', true);
-			clicked = true;
-
-			localStorage.setItem('clicked', clicked);
-		});
-
-		if (data) {
 			clicked = false;
 			localStorage.setItem('clicked', clicked);
 		}
 
-		if (clicked) {
-			$('#enquiries .nav-link i').replaceWith('<i class="far fa-comments"></i>');
-			$('#enquiries .nav-link span.badge').text('');
-		} else {
+		if (!clicked) {
 			$('#enquiries .nav-link i').replaceWith('<i class="fas fa-comments faa-tada animated"></i>');
 			$('#enquiries .nav-link span.badge').text(json.count);
 		}
@@ -291,42 +291,23 @@ if (typeof EventSource != 'undefined') {
 							});
 						}
 
-						$('#enquiries > .dropdown-menu').prepend(html);
+						$('#enquiries > .dropdown-menu > .dropdown-divider:first').after(html);
 					} else {
 						$('#enquiries > .dropdown-menu .enquiry:last').fadeOut(300, function () {
 							$(this).remove();
 						});
 
-						$('#enquiries > .dropdown-menu').prepend(html);
+						$('#enquiries > .dropdown-menu > .dropdown-divider:first').after(html);
 					}
-				}
 
-				$('#enquiries a.nav-link').on('click', function () {
-					// var $this = $(this);
+					$('#enquiries .nav-link i').replaceWith('<i class="fas fa-comments faa-tada animated"></i>');
+					$('#enquiries .nav-link span.badge').text(json.count);
 
-					// if (!$this.data('clicked')) {
-					// 	if (!clicked) {
-					// 		clicked = true;
-					// 	}
-					// } else {
-					// 	clicked = true;
-					// }
-
-					// $this.data('clicked', true);
-					clicked = true;
-
-					localStorage.setItem('clicked', clicked);
-				});
-
-				if (data) {
 					clicked = false;
 					localStorage.setItem('clicked', clicked);
 				}
 
-				if (clicked) {
-					$('#enquiries .nav-link i').replaceWith('<i class="far fa-comments"></i>');
-					$('#enquiries .nav-link span.badge').text('');
-				} else {
+				if (!clicked) {
 					$('#enquiries .nav-link i').replaceWith('<i class="fas fa-comments faa-tada animated"></i>');
 					$('#enquiries .nav-link span.badge').text(json.count);
 				}
@@ -347,6 +328,14 @@ if (typeof EventSource != 'undefined') {
 
 // Event Source - Testimonials
 var tclicked = localStorage.getItem('tclicked') == 'true';
+
+$(document).on('click', '#testimonials a.nav-link', function () {
+	$('#testimonials .nav-link i').replaceWith('<i class="far fa-bell"></i>');
+	$('#testimonials .nav-link span.badge').text('');
+
+	tclicked = true;
+	localStorage.setItem('tclicked', tclicked);
+});
 
 if (typeof EventSource != 'undefined') {
 	var source = new EventSource('index.php?url=common/notification/sseTestimonials&user_token=' + getURLVar(
@@ -398,22 +387,15 @@ if (typeof EventSource != 'undefined') {
 
 				$('#testimonials > .dropdown-menu').prepend(html);
 			}
-		}
 
-		$('#testimonials a.nav-link').on('click', function () {
-			tclicked = true;
-			localStorage.setItem('tclicked', tclicked);
-		});
+			$('#testimonials .nav-link i').replaceWith('<i class="fas fa-bell faa-ring animated"></i>');
+			$('#testimonials .nav-link span.badge').text(json.count);
 
-		if (data) {
 			tclicked = false;
 			localStorage.setItem('tclicked', tclicked);
 		}
 
-		if (tclicked) {
-			$('#testimonials .nav-link i').replaceWith('<i class="far fa-bell"></i>');
-			$('#testimonials .nav-link span.badge').text('');
-		} else {
+		if (!tclicked) {
 			$('#testimonials .nav-link i').replaceWith('<i class="fas fa-bell faa-ring animated"></i>');
 			$('#testimonials .nav-link span.badge').text(json.count);
 		}
@@ -481,22 +463,15 @@ if (typeof EventSource != 'undefined') {
 
 						$('#testimonials > .dropdown-menu').prepend(html);
 					}
-				}
 
-				$('#testimonials a.nav-link').on('click', function () {
-					tclicked = true;
-					localStorage.setItem('tclicked', tclicked);
-				});
+					$('#testimonials .nav-link i').replaceWith('<i class="fas fa-bell faa-ring animated"></i>');
+					$('#testimonials .nav-link span.badge').text(json.count);
 
-				if (data) {
 					tclicked = false;
 					localStorage.setItem('tclicked', tclicked);
 				}
 
-				if (tclicked) {
-					$('#testimonials .nav-link i').replaceWith('<i class="far fa-bell"></i>');
-					$('#testimonials .nav-link span.badge').text('');
-				} else {
+				if (!tclicked) {
 					$('#testimonials .nav-link i').replaceWith('<i class="fas fa-bell faa-ring animated"></i>');
 					$('#testimonials .nav-link span.badge').text(json.count);
 				}
@@ -524,11 +499,6 @@ if (typeof EventSource != 'undefined') {
 // } else {
 // 	console.info("This page is not reloaded");
 // }
-
-// $('#enquiries a.nav-link').on('click', function () {
-// 	$('#enquiries .nav-link i').replaceWith('<i class="far fa-comments"></i>');
-// 	$('#enquiries .nav-link span.badge').text('');
-// });
 
 // Image Manager
 /*$(document).on('click', '[data-toggle=\'image\']', function (e) {
