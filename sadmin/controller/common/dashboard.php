@@ -137,6 +137,9 @@ class ControllerCommonDashboard extends PT_Controller
         $data['website'] = $this->config->get('config_website');
         $data['website_icon'] = $this->config->get('config_website_icon');
 
+        $data['ecommerce'] = $this->config->get('config_ecommerce');
+        $data['ecommerce_icon'] = $this->config->get('config_ecommerce_icon');
+
         $data['software'] = $this->config->get('config_software');
         $data['software_icon'] = $this->config->get('config_software_icon');
 

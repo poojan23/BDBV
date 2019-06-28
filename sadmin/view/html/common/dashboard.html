@@ -122,6 +122,18 @@
                         </div>
                         <!-- /.d-flex -->
                         <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-info text-xl">
+                                <i class="<?php echo $ecommerce_icon; ?>"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <?php echo $ecommerce; ?>
+                                </span>
+                                <span class="text-muted"><?php echo $text_ecommerce; ?></span>
+                            </p>
+                        </div>
+                        <!-- /.d-flex -->
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
                             <p class="text-warning text-xl">
                                 <i class="<?php echo $software_icon; ?>"></i>
                             </p>
@@ -248,27 +260,6 @@
 </div>
 <!-- /.content-wrapper -->
 <?php echo $footer; ?>
-<script type="text/javascript">
-    $(function () {
-        // if (typeof timer !== 'undefined') {
-        //     clearInterval(timer);
-        // }
-
-        // timer = setInterval(function () {
-        //     clearInterval(timer);
-
-        //     $.ajax({
-        //         url: 'index.php?url=common/dashboard/enquiries&user_token=' + getURLVar(
-        //             'user_token'),
-        //         type: 'GET',
-        //         dataType: 'json',
-        //         success: function (json) {
-        //             console.log(json);
-        //         }
-        //     });
-        // }, 500);
-    });
-</script>
 <script type="text/javascript">
     var now = new Date(),
         start = now.getDate() - now.getDay(),
