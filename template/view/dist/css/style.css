@@ -4431,3 +4431,12 @@ aside .widget_tag_cloud ul li a:focus {
 /* =========================== */
 
 /*# sourceMappingURL=style.css.map */
+#comments #counter {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 23px;
+  font-size: 12px;
+  color: #666;
+  z-index: 0;
+}

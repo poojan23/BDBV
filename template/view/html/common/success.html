@@ -51,7 +51,7 @@
                         </ul> -->
                     </div>
                     <div class="author_bio">
-                        <h5>Be Digital Be Visible - A Popaya Technologies</h5>
+                        <h5>Success</h5>
                         <p>Duis a enim vel mauris ultrices. Nullam aliquet velit ac velit tempus in semper an neque
                             auctor. Aenean ligula mi, auctor sed tempus.Duis a enim vel mauris ultrices. Nullam
                             aliquet
@@ -59,98 +59,6 @@
                             tempus.</p>
                     </div>
                 </div>
-                <!--=========================*
-                          Comment Sec
-                *===========================-->
-                <div id="comments">
-                    <div class="comments-wrap">
-
-                        <div class="leave_comment">
-                            <h4>
-                                <?php echo $text_title; ?>
-                            </h4>
-                            <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input placeholder="<?php echo $entry_name; ?>" name="name"
-                                                class="form-control" type="text" />
-                                            <?php if($error_name) : ?>
-                                            <div class="mt_error"><?php echo $error_name; ?></div>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input placeholder="<?php echo $entry_company; ?>" name="company"
-                                                class="form-control" type="text" />
-                                            <?php if($error_company) : ?>
-                                            <div class="mt_error"><?php echo $error_company; ?></div>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input placeholder="<?php echo $entry_designation; ?>" name="designation"
-                                                class="form-control" type="text" />
-                                            <?php if($error_designation) : ?>
-                                            <div class="mt_error"><?php echo $error_designation; ?></div>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <textarea placeholder="<?php echo $entry_description; ?>" name="description"
-                                            class="form-control" maxlength="250"></textarea>
-                                        <span id="counter"></span>
-                                        <?php if($error_description) : ?>
-                                        <div class="mt_error"><?php echo $error_description; ?></div>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="panel panel-default" style="display: flex;">
-                                            <div class="panel-heading"
-                                                style="min-width: 130px; display: flex; align-items: center;">
-                                                <div class="panel-image">
-                                                    <a href="" id="testimonial-image" data-toggle="image">
-                                                        <img src="<?php echo $placeholder; ?>" alt=""
-                                                            data-placeholder="<?php echo $placeholder; ?>"
-                                                            style="max-height: 100px; max-width: 100px; display: block; margin: 0 auto;" />
-                                                    </a>
-                                                    <input type="hidden" name="image" value="" />
-                                                </div>
-                                            </div>
-                                            <div class="panel-body" style="flex: 1;">
-                                                <?php echo $text_image_requirement; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <button type="submit" class="rt_btn_color">
-                                            Submit
-                                        </button>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p><?php echo $text_condition; ?></p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-                <!--=========================*
-                        End Comment Sec
-                *===========================-->
             </div>
             <!--=========================*
                   End Blog Content Sec
