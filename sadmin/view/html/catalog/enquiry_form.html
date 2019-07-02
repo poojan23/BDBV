@@ -1,0 +1,177 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><?php echo $heading_title; ?></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                        <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                        <?php if($i == 0) : ?>
+                        <li class="breadcrumb-item">
+                            <i class="nav-icon fa fa-home"></i>
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>">
+                                <?php echo $breadcrumbs[$i]['text']; ?>
+                            </a>
+                        </li>
+                        <?php else : ?>
+                        <li class="breadcrumb-item">
+                            <a href="<?php echo $breadcrumbs[$i]['href']; ?>">
+                                <?php echo $breadcrumbs[$i]['text']; ?>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        <?php else : ?>
+                        <li class="breadcrumb-item active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <?php if ($warning_err) : ?>
+                <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i>
+                    <?php echo $warning_err; ?>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                <?php endif; ?>
+
+                <div class="clearfix">
+                    <div class="float-right tableTools-container">
+                        <button type="submit" form="form-team" data-toggle="tooltip" title="<?php echo $button_save; ?>"
+                            class="btn btn-primary btn-bold"><i class="fa fa-save"></i></button>
+                        <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>"
+                            class="btn btn-default btn-bold"><i class="fa fa-reply"></i></a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- right column -->
+            <div class="col-12">
+                <!-- Horizontal Form -->
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fa fa-pencil"></i>
+                            <?php echo $text_form; ?>
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data" id="form-team"
+                        class="form-horizontal">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group row col-6">
+                                    <label for="input-name" class="col-sm-2 col-form-label">
+                                        <?php echo $entry_name; ?></label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" value="<?php echo $name; ?>"
+                                            placeholder="<?php echo $entry_name; ?>" class="form-control"
+                                            id="input-name" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group row col-6" style="padding-top: 0; border-top: 0;">
+                                    <label for="input-email"
+                                        class="col-sm-2 col-form-label"><?php echo $entry_email; ?></label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" value="<?php echo $email; ?>"
+                                            placeholder="<?php echo $entry_email; ?>" class="form-control"
+                                            id="input-email" readonly="readonly" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="padding-top: 1rem; border-top: 1px solid #d6d6d6;">
+                                <label for="input-message" class="col-sm-2 col-form-label">
+                                    <?php echo $entry_message; ?></label>
+
+                                <div class="col-sm-10">
+                                    <textarea placeholder="<?php echo $entry_message; ?>" class="form-control"
+                                        id="input-message" rows="5"
+                                        readonly="readonly"><?php echo $message; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="input-status" class="col-sm-2 col-form-label">
+                                    <?php echo $entry_status; ?></label>
+
+                                <div class="col-sm-10">
+                                    <select name="status" class="form-control" id="input-status">
+                                        <option value="read"
+                                            <?php echo $status == 'read' ? 'selected="selected"' : '' ?>>
+                                            Select an Option</option>
+                                        <option value="Attempted to Contact"
+                                            <?php echo $status == 'Attempted to Contact' ? 'selected="selected"' : '' ?>>
+                                            Attempted
+                                            to Contact
+                                        </option>
+                                        <option value="Cold"
+                                            <?php echo $status == 'Cold' ? 'selected="selected"' : '' ?>>Cold
+                                        </option>
+                                        <option value="Contact in Future"
+                                            <?php echo $status == 'Contact in Future' ? 'selected="selected"' : '' ?>>
+                                            Contact
+                                            in Future
+                                        </option>
+                                        <option value="Contacted"
+                                            <?php echo $status == 'Contacted' ? 'selected="selected"' : '' ?>>
+                                            Contacted</option>
+                                        <option value="Hot" <?php echo $status == 'Hot' ? 'selected="selected"' : '' ?>>
+                                            Hot
+                                        </option>
+                                        <option value="Junk Lead"
+                                            <?php echo $status == 'Junk Lead' ? 'selected="selected"' : '' ?>>
+                                            Junk Lead</option>
+                                        <option value="Lost Lead"
+                                            <?php echo $status == 'Lost Lead' ? 'selected="selected"' : '' ?>>
+                                            Lost Lead</option>
+                                        <option value="Not Contacted"
+                                            <?php echo $status == 'Not Contacted' ? 'selected="selected"' : '' ?>>Not
+                                            Contacted</option>
+                                        <option value="Pre Qualified"
+                                            <?php echo $status == 'Pre Qualified' ? 'selected="selected"' : '' ?>>Pre
+                                            Qualified</option>
+                                        <option value="Qualified"
+                                            <?php echo $status == 'Qualified' ? 'selected="selected"' : '' ?>>
+                                            Qualified</option>
+                                        <option value="Warm"
+                                            <?php echo $status == 'Warm' ? 'selected="selected"' : '' ?>>Warm
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </form>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<?php echo $footer; ?>
+<script type="text/javascript">
+    $('textarea[data-toggle=\'ckeditor\']').ckeditor();
+
+    $('input[name=\'icon\']').iCheck({
+        radioClass: 'iradio_square-blue'
+    });
+</script>

@@ -56,7 +56,7 @@
 
                 <div class="clearfix">
                     <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>"
-                            class="btn btn-danger btn-bold" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-enquiry-group').submit() :
+                        class="btn btn-danger btn-bold" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-enquiry-group').submit() :
                                         false;"><i class="fa fa-trash-alt"></i></button>
                     <div class="float-right tableTools-container"></div>
                 </div>
@@ -72,16 +72,24 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <form action="<?php echo $delete; ?>" method="POST" enctype="multipart/form-data"
-                              id="form-enquiry-group">
+                            id="form-enquiry-group">
                             <div class="table-responsive">
                                 <table id="table_enquiry" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th style="width: 1px;" class="text-center no-sort"><input type="checkbox"
+                                                    onclick="$('input[name*=\'selected\']').trigger('click');" /></th>
                                             <th>
                                                 <?php echo $column_name; ?>
                                             </th>
                                             <th>
                                                 <?php echo $column_email; ?>
+                                            </th>
+                                            <th>
+                                                <?php echo $column_status; ?>
+                                            </th>
+                                            <th>
+                                                <?php echo $column_action; ?>
                                             </th>
                                         </tr>
                                     </thead>
@@ -89,12 +97,28 @@
                                         <?php if($enquiries) : ?>
                                         <?php foreach($enquiries as $enquiry) : ?>
                                         <tr>
+                                            <td class="text-center">
+                                                <?php if(in_array($enquiry['enquiry_id'], $selected)) : ?>
+                                                <input type="checkbox" name="selected[]"
+                                                    value="<?php echo $enquiry['enquiry_id']; ?>" checked="checked" />
+                                                <?php else : ?>
+                                                <input type="checkbox" name="selected[]"
+                                                    value="<?php echo $enquiry['enquiry_id']; ?>" />
+                                                <?php endif; ?>
+                                            </td>
                                             <td class="text-left">
                                                 <?php echo $enquiry['name']; ?>
                                             </td>
                                             <td class="text-left">
                                                 <?php echo $enquiry['email']; ?>
                                             </td>
+                                            <td class="text-left">
+                                                <?php echo $enquiry['status']; ?>
+                                            </td>
+                                            <td class="text-left"><a id="button-edit"
+                                                    href="<?php echo $enquiry['edit']; ?>" data-toggle="tooltip"
+                                                    title="<?php echo $button_edit; ?>" class="btn btn-primary"><i
+                                                        class="fa fa-pencil-alt"></i></a></td>
                                         </tr>
                                         <?php endforeach; ?>
                                         <?php else : ?>
@@ -122,6 +146,11 @@
 <!-- /.content-wrapper -->
 <?php echo $footer; ?>
 <script type="text/javascript">
+    $('#button-edit').on('click', function () {
+        alert('CLICKED');
+    });
+</script>
+<script type="text/javascript">
     $(function () {
         var table = $('#table_enquiry').DataTable({
             "order": [
@@ -134,13 +163,13 @@
                 }
             },
             "columnDefs": [{
-                    "targets": "no-sort",
-                    "orderable": false,
-                }],
+                "targets": "no-sort",
+                "orderable": false,
+            }],
         });
 
         $.fn.dataTable.Buttons.defaults.dom.container.className =
-                'dt-buttons btn-overlap btn-group btn-overlap';
+            'dt-buttons btn-overlap btn-group btn-overlap';
 
         new $.fn.dataTable.Buttons(table, {
             buttons: [{

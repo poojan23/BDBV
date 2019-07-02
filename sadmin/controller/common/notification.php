@@ -27,8 +27,8 @@ class ControllerCommonNotification extends PT_Controller
         $results = $this->model_tool_notification->getEnquiries($filter_data);
 
         if (isset($this->session->data['enquiry_id']) && ($this->session->data['enquiry_id'] != '')) {
-            if ($results && ($results[0]['status'] == 'unread')) {
-                if ($this->session->data['enquiry_id'] != $results[0]['enquiry_id']) {
+            if ($results) {
+                if (($this->session->data['enquiry_id'] != $results[0]['enquiry_id'])) {
                     foreach ($results as $result) {
                         $time = strtotime($result['date_added']);
 
@@ -44,10 +44,10 @@ class ControllerCommonNotification extends PT_Controller
                     $this->session->data['enquiry_id'] = $results[0]['enquiry_id'];
                 }
             } else {
-                //unset($this->session->data['enquiry_id']);
+                unset($this->session->data['enquiry_id']);
             }
         } else {
-            if ($results && ($results[0]['status'] == 'unread')) {
+            if ($results) {
                 foreach ($results as $result) {
                     $time = strtotime($result['date_added']);
 
@@ -110,7 +110,7 @@ class ControllerCommonNotification extends PT_Controller
                     $this->session->data['enquiry_id'] = $results[0]['enquiry_id'];
                 }
             } else {
-                //unset($this->session->data['enquiry_id']);
+                unset($this->session->data['enquiry_id']);
             }
         } else {
             if ($results && ($results[0]['status'] == 'unread')) {
@@ -177,7 +177,7 @@ class ControllerCommonNotification extends PT_Controller
                     $this->session->data['testimonial_id'] = $results[0]['testimonial_id'];
                 }
             } else {
-                //unset($this->session->data['testimonial_id']);
+                unset($this->session->data['testimonial_id']);
             }
         } else {
             if ($results) {
@@ -197,8 +197,6 @@ class ControllerCommonNotification extends PT_Controller
                 $this->session->data['testimonial_id'] = $results[0]['testimonial_id'];
             }
         }
-
-        print_r($json);
 
         $data = json_encode($json);
 
@@ -247,7 +245,7 @@ class ControllerCommonNotification extends PT_Controller
                     $this->session->data['testimonial_id'] = $results[0]['testimonial_id'];
                 }
             } else {
-                //unset($this->session->data['testimonial_id']);
+                unset($this->session->data['testimonial_id']);
             }
         } else {
             if ($results && ($results[0]['status'] == '0')) {

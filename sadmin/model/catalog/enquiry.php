@@ -2,6 +2,17 @@
 
 class ModelCatalogEnquiry extends PT_Model
 {
+    public function deleteEnquiry($enquiry_id)
+    {
+        $this->db->query("DELETE FROM " . DB_PREFIX . "enquiry WHERE enquiry_id = '" . (int) $enquiry_id . "'");
+    }
+
+    public function getEnquiry($enquiry_id)
+    {
+        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "enquiry WHERE enquiry_id = '" . (int) $enquiry_id . "'");
+
+        return $query->row;
+    }
 
     public function getEnquiries($data = array())
     {
@@ -33,11 +44,23 @@ class ModelCatalogEnquiry extends PT_Model
                 $data['limit'] = 20;
             }
 
-            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+            $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
 
         $query = $this->db->query($sql);
 
         return $query->rows;
+    }
+
+    public function getTotalEnquiries()
+    {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "enquiry");
+
+        return $query->row['total'];
+    }
+
+    public function updateStatus($enquiry_id, $data)
+    {
+        $this->db->query("UPDATE " . DB_PREFIX . "enquiry SET status = '" . $this->db->escape((string) $data['status']) . "', date_modified = NOW() WHERE enquiry_id = '" . (int) $enquiry_id . "'");
     }
 }

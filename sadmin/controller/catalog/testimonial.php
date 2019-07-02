@@ -120,7 +120,7 @@ class ControllerCatalogTestimonial extends PT_Controller
                 'name'      => $result['name'],
                 'designation'   => $result['designation'],
                 'sort_order'    => $result['sort_order'],
-                'status'        => $result['status'],
+                'status'        => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
                 'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
                 'edit'          => $this->url->link('catalog/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $result['testimonial_id'])
             );
@@ -141,7 +141,7 @@ class ControllerCatalogTestimonial extends PT_Controller
         }
 
         if (isset($this->request->post['selected'])) {
-            $data['selected'] = (array)$this->request->post['selected'];
+            $data['selected'] = (array) $this->request->post['selected'];
         } else {
             $data['selected'] = array();
         }

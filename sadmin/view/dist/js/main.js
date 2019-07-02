@@ -219,8 +219,8 @@ if (typeof EventSource != 'undefined') {
 				html += '<div class="dropdown-divider"></div>';
 			}
 
-			if (data.limit >= data.total) {
-				if ($('#enquiries > .dropdown-menu .enquiry').length > data.limit) {
+			if (json.limit >= json.total) {
+				if ($('#enquiries > .dropdown-menu .enquiry').length > json.limit) {
 					$('#enquiries > .dropdown-menu .enquiry:last').fadeOut(300, function () {
 						$(this).remove();
 					});
