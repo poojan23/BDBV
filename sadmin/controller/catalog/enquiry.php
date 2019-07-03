@@ -180,8 +180,6 @@ class ControllerCatalogEnquiry extends PT_Controller
             $data['status'] = $this->request->post['status'];
         } elseif (!empty($enquiry_info)) {
             $data['status'] = $enquiry_info['status'];
-        } else {
-            $data['status'] = '';
         }
 
         $data['header'] = $this->load->controller('common/header');
@@ -189,12 +187,5 @@ class ControllerCatalogEnquiry extends PT_Controller
         $data['footer'] = $this->load->controller('common/footer');
 
         $this->response->setOutput($this->load->view('catalog/enquiry_form', $data));
-    }
-
-    public function readStatus()
-    {
-        $this->load->language('catalog/enquiry');
-
-        $json = array();
     }
 }
