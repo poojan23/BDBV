@@ -480,11 +480,6 @@ function db_schema()
 				'not_null' => true
 			),
 			array(
-				'name' => 'lastname',
-				'type' => 'varchar(32)',
-				'not_null' => true
-			),
-			array(
 				'name' => 'password',
 				'type' => 'varchar(255)',
 				'not_null' => true
@@ -498,13 +493,13 @@ function db_schema()
 				'name' => 'newsletter',
 				'type' => 'tinyint(1)',
 				'not_null' => true,
-				'default' => 0
+				'default' => '0'
 			),
 			array(
 				'name' => 'address_id',
 				'type' => 'int(11)',
 				'not_null' => true,
-				'default' => 0
+				'default' => '0'
 			),
 			array(
 				'name' => 'ip',
@@ -540,7 +535,7 @@ function db_schema()
 				'name' => 'date_modified',
 				'type' => 'datetime',
 				'not_null' => true
-			),
+			)
 		),
 		'primary' => array(
 			'member_id'

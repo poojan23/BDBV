@@ -399,6 +399,15 @@ INSERT INTO `pt_language` (`language_id`, `name`, `code`, `locale`, `image`, `so
 -----------------------------------------------------------
 
 --
+-- Dumping data for table `pt_member_group`
+--
+
+INSERT INTO `pt_member_group` (`member_group_id`, `name`, `description`, `permission`) VALUES
+(1, 'Administrator', 'Administrator', '{\"access\":[\"catalog\\/enquiry\",\"catalog\\/information\",\"catalog\\/service\",\"catalog\\/team\",\"catalog\\/testimonial\",\"common\\/filemanager\",\"common\\/nav\",\"common\\/pagination\",\"design\\/banner\",\"design\\/seo_url\",\"design\\/translation\",\"event\\/language\",\"localisation\\/country\",\"localisation\\/language\",\"localisation\\/zone\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"catalog\\/enquiry\",\"catalog\\/information\",\"catalog\\/service\",\"catalog\\/team\",\"catalog\\/testimonial\",\"common\\/filemanager\",\"common\\/nav\",\"common\\/pagination\",\"design\\/banner\",\"design\\/seo_url\",\"design\\/translation\",\"event\\/language\",\"localisation\\/country\",\"localisation\\/language\",\"localisation\\/zone\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\"],\"delete\":[\"catalog\\/enquiry\",\"catalog\\/information\",\"catalog\\/service\",\"catalog\\/team\",\"catalog\\/testimonial\",\"common\\/filemanager\",\"common\\/nav\",\"common\\/pagination\",\"design\\/banner\",\"design\\/seo_url\",\"design\\/translation\",\"event\\/language\",\"localisation\\/country\",\"localisation\\/language\",\"localisation\\/zone\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"user\\/profile\",\"user\\/user\",\"user\\/user_permission\"]}');
+
+-----------------------------------------------------------
+
+--
 -- Dumping data for table `pt_seo_url`
 --
 
