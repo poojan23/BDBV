@@ -19,24 +19,23 @@ class ControllerCommonHeader extends PT_Controller
 
         $data['text_logged'] = sprintf($this->language->get('text_logged'), $this->user->getUserName());
 
-        if (!isset($this->request->get['user_token']) || !isset($this->session->data['user_token']) || ($this->request->get['user_token'] != $this->session->data['user_token'])) {
+        if (!isset($this->request->get['member_token']) || !isset($this->session->data['member_token']) || ($this->request->get['member_token'] != $this->session->data['member_token'])) {
             $data['logged'] = '';
 
             $data['home'] = $this->url->link('user/login');
         } else {
             $data['logged'] = true;
 
-            $data['home'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token']);
-            $data['logout'] = $this->url->link('user/logout', 'user_token=' . $this->session->data['user_token']);
-            $data['profile'] = $this->url->link('user/profile', 'user_token=' . $this->session->data['user_token']);
+            $data['home'] = $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token']);
+            $data['logout'] = $this->url->link('user/logout', 'member_token=' . $this->session->data['member_token']);
+            $data['profile'] = $this->url->link('user/profile', 'member_token=' . $this->session->data['member_token']);
 
             $this->load->model('tool/image');
 
-            $data['username'] = '';
+            $data['firstname'] = '';
             $data['email'] = '';
             $data['user_group'] = '';
-            $data['image'] = $this->model_tool_image->resize('profile.png', 25, 25);
-            $data['thumb'] = $this->model_tool_image->resize('profile.png', 128, 128);
+            $data['image'] = $this->model_tool_image->resize('profile.png', 36, 36);
 
             # User
             $this->load->model('user/user');
@@ -44,7 +43,7 @@ class ControllerCommonHeader extends PT_Controller
             $user_info = $this->model_user_user->getUser($this->user->getId());
 
             if ($user_info) {
-                $data['username'] = $user_info['name'];
+                $data['firstname'] = $user_info['firstname'];
                 $data['email'] = $user_info['email'];
                 $data['user_group'] = $user_info['user_group'];
 
@@ -103,10 +102,7 @@ class ControllerCommonHeader extends PT_Controller
                 );
             }
 
-            $data['count'] = $this->model_tool_notification->getTotalUnreadEnquiries();
-
-            // print_r(end($data['testimonials']));
-            // exit;
+            $data['count'] = $this->model_tool_notification->getTotalUnreadTestimonials();
         }
 
         return $this->load->view('common/header', $data);

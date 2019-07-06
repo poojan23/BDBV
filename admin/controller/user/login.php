@@ -10,21 +10,21 @@ class ControllerUserLogin extends PT_Controller
 
         $this->document->setTitle($this->language->get('heading_title'));
 
-        if ($this->user->isLogged() && isset($this->request->get['user_token']) && ($this->request->get['user_token'] == $this->session->data['user_token'])) {
-            $this->response->redirect($this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token']));
+        if ($this->user->isLogged() && isset($this->request->get['member_token']) && ($this->request->get['member_token'] == $this->session->data['member_token'])) {
+            $this->response->redirect($this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token']));
         }
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-            $this->session->data['user_token'] = token(32);
+            $this->session->data['member_token'] = token(32);
 
             if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0)) {
-                $this->response->redirect($this->request->post['redirect'] . '&user_token=' . $this->session->data['user_token']);
+                $this->response->redirect($this->request->post['redirect'] . '&member_token=' . $this->session->data['member_token']);
             } else {
-                $this->response->redirect($this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token']));
+                $this->response->redirect($this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token']));
             }
         }
 
-        if ((isset($this->session->data['user_token']) && !isset($this->request->get['user_token'])) || ((isset($this->request->get['user_token']) && (isset($this->session->data['user_token']) && ($this->request->get['user_token'] != $this->session->data['user_token']))))) {
+        if ((isset($this->session->data['member_token']) && !isset($this->request->get['member_token'])) || ((isset($this->request->get['member_token']) && (isset($this->session->data['member_token']) && ($this->request->get['member_token'] != $this->session->data['member_token']))))) {
             $this->error['warning'] = $this->language->get('error_token');
         } elseif (isset($this->error['warning'])) {
             $data['warning_err'] = $this->error['warning'];
@@ -62,7 +62,7 @@ class ControllerUserLogin extends PT_Controller
             $route = $this->request->get['url'];
 
             unset($this->request->get['url']);
-            unset($this->request->get['user_token']);
+            unset($this->request->get['member_token']);
 
             $url = '';
 

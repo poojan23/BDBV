@@ -8,7 +8,11 @@ class ControllerCommonDashboard extends PT_Controller
 
         $this->document->setTitle($this->language->get('heading_title'));
 
-        $this->document->addScript('view/dist/plugins/chart.js/Chart.min.js');
+        $this->document->addScript('view/dist/js/jquery.easypiechart.min.js');
+        $this->document->addScript('view/dist/js/jquery.sparkline.index.min.js');
+        $this->document->addScript('view/dist/js/jquery.flot.min.js');
+        $this->document->addScript('view/dist/js/jquery.flot.pie.min.js');
+        $this->document->addScript('view/dist/js/jquery.flot.resize.min.js');
 
         $data['breadcrumbs'] = array();
 
@@ -29,9 +33,11 @@ class ControllerCommonDashboard extends PT_Controller
 
         # Current Week Count
         $current_total_visitors = $this->model_tool_online->getTotalOnlineByCurrentWeek();
+        $data['current_total_visitors'] = $current_total_visitors;
 
         # Last Week Count
         $last_total_visitors = $this->model_tool_online->getTotalOnlineByLastWeek();
+        $data['last_total_visitors'] = $last_total_visitors;
 
         # Get percentage between last and current week visitors count
         if ($current_total_visitors > 0 && $last_total_visitors > 0) {
@@ -109,28 +115,63 @@ class ControllerCommonDashboard extends PT_Controller
             'limit' => 5
         );
 
-        $result_enquiries = $this->model_catalog_enquiry->getEnquiries($filter_data);
+        $results = $this->model_catalog_enquiry->getEnquiries($filter_data);
 
-        foreach ($result_enquiries as $result) {
+        foreach ($results as $result) {
             $data['enquiries'][] = array(
                 'enquiry_id'    => $result['enquiry_id'],
                 'name'          => $result['name'],
                 'email'         => $result['email'],
+                'status'        => $result['status'],
                 'date_added'    => date("d-m-Y", strtotime($result['date_added']))
             );
         }
 
+        # Services
         $this->load->model('catalog/service');
 
         $data['services'] = array();
 
-        $result_services = $this->model_catalog_service->getServices();
+        $results = $this->model_catalog_service->getServices();
 
-        foreach ($result_services as $result) {
+        foreach ($results as $result) {
             $data['services'][] = array(
                 'service_id'  => $result['service_id'],
                 'name'        => $result['name'],
                 'sort_order'  => $result['sort_order']
+            );
+        }
+
+        # Testimonials
+        $this->load->model('catalog/testimonial');
+
+        $this->load->model('tool/image');
+
+        $data['testimonials'] = array();
+
+        $filter_data = array(
+            'sort'  => 'date_added',
+            'order' => 'DESC',
+            'start' => 0,
+            'limit' => 5
+        );
+
+        $results = $this->model_catalog_testimonial->getTestimonials($filter_data);
+
+        foreach ($results as $result) {
+            if (html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8')) {
+                $thumb = $this->model_tool_image->resize(html_entity_decode($result['image'], ENT_QUOTES, 'UTF-8'), 36, 36);
+            } else {
+                $thumb = $this->model_tool_image->resize(html_entity_decode('default-image.png', ENT_QUOTES, 'UTF-8'), 36, 36);
+            }
+
+            $time = strtotime($result['date_added']);
+
+            $data['testimonials'][] = array(
+                'name'          => $result['name'],
+                'description'   => (utf8_strlen($result['description'], ENT_QUOTES, 'UTF-8') > 145 ? utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, 145) . ' ...' : trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')))),
+                'thumb'         => $thumb,
+                'date_added'    => timeLapse($time)
             );
         }
 
@@ -145,6 +186,12 @@ class ControllerCommonDashboard extends PT_Controller
 
         $data['client'] = $this->config->get('config_client');
         $data['client_icon'] = $this->config->get('config_client_icon');
+
+        $this->load->model('user/user');
+
+        $user_info = $this->model_user_user->getUser($this->user->getId());
+
+        $data['welcome'] = sprintf($this->language->get('text_welcome'), $user_info['firstname'] . ' ' . $user_info['lastname'], $user_info['user_group']);
 
         $data['header'] = $this->load->controller('common/header');
         $data['nav'] = $this->load->controller('common/nav');
