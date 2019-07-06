@@ -24,7 +24,7 @@ class ControllerCatalogEnquiry extends PT_Controller
 
         $this->load->model('catalog/enquiry');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_catalog_enquiry->updateStatus($this->request->get['enquiry_id'], $this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -43,7 +43,7 @@ class ControllerCatalogEnquiry extends PT_Controller
 
         $this->load->model('catalog/enquiry');
 
-        if (isset($this->request->post['selected'])) {
+        if (isset($this->request->post['selected']) && $this->validateDelete()) {
             foreach ($this->request->post['selected'] as $enquiry_id) {
                 $this->model_catalog_enquiry->deleteEnquiry($enquiry_id);
             }
@@ -187,5 +187,23 @@ class ControllerCatalogEnquiry extends PT_Controller
         $data['footer'] = $this->load->controller('common/footer');
 
         $this->response->setOutput($this->load->view('catalog/enquiry_form', $data));
+    }
+
+    protected function validateForm()
+    {
+        if (!$this->user->hasPermission('modify', 'catalog/enquiry')) {
+            $this->error['warning'] = $this->language->get('error_permission');
+        }
+
+        return !$this->error;
+    }
+
+    protected function validateDelete()
+    {
+        if (!$this->user->hasPermission('delete', 'catalog/enquiry')) {
+            $this->error['warning'] = $this->language->get('error_delete');
+        }
+
+        return !$this->error;
     }
 }

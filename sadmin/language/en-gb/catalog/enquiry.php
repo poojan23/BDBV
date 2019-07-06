@@ -26,3 +26,8 @@ $_['entry_status']              = 'Status';
 
 # Help
 $_['help_bottom']               = 'Display in the bottom footer.';
+
+# Error
+$_['error_warning']             = 'Warning: Please check the form carefully for errors!';
+$_['error_permission']          = 'Warning: You do not have permission to modify enquiry!';
+$_['error_delete']              = 'Warning: You do not have permission to delete enquiries!';
