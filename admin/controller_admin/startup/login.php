@@ -14,7 +14,7 @@ class ControllerStartupLogin extends PT_Controller
         );
 
         # User
-        $this->registry->set('user', new Account\User($this->registry));
+        $this->registry->set('user', new Account\Member($this->registry));
 
         if (!$this->user->isLogged() && !in_array($route, $ignore)) {
             return new Action('user/login');
@@ -31,11 +31,11 @@ class ControllerStartupLogin extends PT_Controller
                 'error/permission'
             );
 
-            if (!in_array($route, $ignore) && (!isset($this->request->get['user_token']) || !isset($this->session->data['user_token']) || ($this->request->get['user_token'] != $this->session->data['user_token']))) {
+            if (!in_array($route, $ignore) && (!isset($this->request->get['member_token']) || !isset($this->session->data['member_token']) || ($this->request->get['member_token'] != $this->session->data['member_token']))) {
                 return new Action('user/login');
             }
         } else {
-            if (!isset($this->request->get['user_token']) || !isset($this->session->data['user_token']) || ($this->request->get['user_token'] != $this->session->data['user_token'])) {
+            if (!isset($this->request->get['member_token']) || !isset($this->session->data['member_token']) || ($this->request->get['member_token'] != $this->session->data['member_token'])) {
                 return new Action('user/login');
             }
         }

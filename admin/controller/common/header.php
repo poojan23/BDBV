@@ -35,8 +35,10 @@ class ControllerCommonHeader extends PT_Controller
             $data['username'] = '';
             $data['email'] = '';
             $data['user_group'] = '';
-            $data['image'] = $this->model_tool_image->resize('profile.png', 45, 45);
+            $data['image'] = $this->model_tool_image->resize('profile.png', 25, 25);
+            $data['thumb'] = $this->model_tool_image->resize('profile.png', 128, 128);
 
+            # User
             $this->load->model('user/user');
 
             $user_info = $this->model_user_user->getUser($this->user->getId());
@@ -47,9 +49,64 @@ class ControllerCommonHeader extends PT_Controller
                 $data['user_group'] = $user_info['user_group'];
 
                 if (is_file(DIR_IMAGE . html_entity_decode($user_info['image'], ENT_QUOTES, 'UTF-8'))) {
-                    $data['image'] = $this->model_tool_image->resize(html_entity_decode($user_info['image'], ENT_QUOTES, 'UTF-8'), 45, 45);
+                    $data['image'] = $this->model_tool_image->resize(html_entity_decode($user_info['image'], ENT_QUOTES, 'UTF-8'), 25, 25);
+                    $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($user_info['image'], ENT_QUOTES, 'UTF-8'), 128, 128);
                 }
             }
+
+            # Enquiries
+            $this->load->model('tool/notification');
+
+            $data['enquiries'] = array();
+
+            $filter_data = array(
+                'order' => 'DESC',
+                'start' => 0,
+                'limit' => 5
+            );
+
+            $results = $this->model_tool_notification->getEnquiries($filter_data);
+
+            foreach ($results as $result) {
+                $time = strtotime($result['date_added']);
+
+                $data['enquiries'][] = array(
+                    'name'          => $result['name'],
+                    'date_added'    => timeLapse($time),
+                    'status'        => $result['status']
+                );
+            }
+
+            $data['count'] = $this->model_tool_notification->getTotalUnreadEnquiries();
+
+            # Testimonials
+            $this->load->model('tool/notification');
+
+            $data['testimonials'] = array();
+
+            $filter_data = array(
+                'order' => 'DESC',
+                'start' => 0,
+                'limit' => 5
+            );
+
+            $results = $this->model_tool_notification->getTestimonials($filter_data);
+
+            foreach ($results as $result) {
+                $time = strtotime($result['date_added']);
+
+                $data['testimonials'][] = array(
+                    'name'          => $result['name'],
+                    'message'       => (utf8_strlen($result['description']) > 24 ? utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, 24) . '...' : $result['description']),
+                    'date_added'    => timeLapse($time),
+                    'status'        => $result['status']
+                );
+            }
+
+            $data['count'] = $this->model_tool_notification->getTotalUnreadEnquiries();
+
+            // print_r(end($data['testimonials']));
+            // exit;
         }
 
         return $this->load->view('common/header', $data);
