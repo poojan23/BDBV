@@ -18,12 +18,12 @@ class ControllerCommonDashboard extends PT_Controller
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('text_home'),
-            'href'  => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token'])
         );
 
         $this->load->model('tool/online');

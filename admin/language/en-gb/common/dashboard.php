@@ -3,6 +3,7 @@
 $_['heading_title']             = 'Dashboard';
 
 # Text
+$_['text_title']                = 'Panel';
 $_['text_welcome']              = 'Welcome <b>%s</b>, you are logged in as <b>%s</b>';
 $_['text_enquiry']              = 'Enquiry';
 $_['text_service']              = 'Services';
