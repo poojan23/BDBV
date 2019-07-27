@@ -1,5 +1,5 @@
 <?php
- # Heading
+# Heading
 $_['heading_title']         = 'User Groups';
 
 # Text
@@ -15,6 +15,7 @@ $_['column_action']         = 'Action';
 
 # Entry
 $_['entry_name']            = 'User Group Name';
+$_['entry_description']     = 'Description';
 $_['entry_access']          = 'Access Permission';
 $_['entry_modify']          = 'Modify Permission';
 $_['entry_delete']          = 'Delete Permission';

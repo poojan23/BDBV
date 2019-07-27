@@ -83,19 +83,12 @@
 
             <div class="navbar-header pull-left">
                 <a href="index.html" class="navbar-brand">
-                    <small><i class="fa fa-leaf"></i>Popaya Technologies</small>
+                    <small><i class="py py-popaya"></i> <?php echo $heading_title; ?></small>
                 </a>
             </div>
 
             <div class="navbar-buttons navbar-header pull-right" role="navigation">
                 <ul class="nav ace-nav">
-                    <li class="grey dropdown-modal">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="ace-icon fa fa-tasks"></i>
-                            <span class="badge badge-grey">4</span>
-                        </a>
-                    </li>
-
                     <li class="purple dropdown-modal">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="ace-icon fa fa-bell icon-animated-bell"></i>
@@ -114,7 +107,7 @@
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <img class="nav-user-photo" src="<?php echo $image; ?>" alt="Jason's Photo" />
                             <span class="user-info">
-                                <small>Welcome,</small>
+                                <small><?php echo $text_welcome; ?></small>
                                 <?php echo $firstname; ?>
                             </span>
 
@@ -123,13 +116,16 @@
 
                         <ul
                             class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li><a href="<?php echo $setting; ?>"><i class="ace-icon fa fa-cog"></i>Settings</a></li>
+                            <li><a href="<?php echo $setting; ?>"><i
+                                        class="ace-icon fa fa-cog"></i><?php echo $text_setting; ?></a></li>
 
-                            <li><a href="<?php echo $profile; ?>"><i class="ace-icon fa fa-user"></i>Profile</a></li>
+                            <li><a href="<?php echo $profile; ?>"><i
+                                        class="ace-icon fa fa-user"></i><?php echo $text_profile; ?></a></li>
 
                             <li class="divider"></li>
 
-                            <li><a href="<?php echo $logout; ?>"><i class="ace-icon fa fa-power-off"></i>Logout</a></li>
+                            <li><a href="<?php echo $logout; ?>"><i
+                                        class="ace-icon fa fa-power-off"></i><?php echo $text_logout; ?></a></li>
                         </ul>
                     </li>
                 </ul>

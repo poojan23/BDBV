@@ -3,14 +3,14 @@ class ModelUserUser extends PT_Model
 {
 	public function addUser($data)
 	{
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "member` SET username = '" . $this->db->escape((string) $data['username']) . "', member_group_id = '" . (int) $data['member_group_id'] . "', salt = '', password = '" . $this->db->escape(password_hash(html_entity_decode($data['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT)) . "', firstname = '" . $this->db->escape((string) $data['firstname']) . "', lastname = '" . $this->db->escape((string) $data['lastname']) . "', email = '" . $this->db->escape((string) $data['email']) . "', image = '" . $this->db->escape((string) $data['image']) . "', status = '" . (int) $data['status'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "member` SET member_group_id = '" . (int) $data['member_group_id'] . "', salt = '', password = '" . $this->db->escape(password_hash(html_entity_decode($data['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT)) . "', firstname = '" . $this->db->escape((string) $data['firstname']) . "', lastname = '" . $this->db->escape((string) $data['lastname']) . "', email = '" . $this->db->escape((string) $data['email']) . "', status = '" . (int) $data['status'] . "', date_modified = NOW(), date_added = NOW()");
 
-		return $this->db->getLastId();
+		return $this->db->lastInsertId();
 	}
 
 	public function editUser($member_id, $data)
 	{
-		$this->db->query("UPDATE `" . DB_PREFIX . "member` SET username = '" . $this->db->escape((string) $data['username']) . "',designation = '" . $this->db->escape((string) $data['designation']) . "', name = '" . $this->db->escape((string) $data['name']) . "', email = '" . $this->db->escape((string) $data['email']) . "', image = '" . $this->db->escape((string) $data['image']) . "', status = '" . (int) $data['status'] . "' WHERE member_id = '" . (int) $member_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "member` SET member_group_id = '" . (int) $data['member_group_id'] . "', firstname = '" . $this->db->escape((string) $data['firstname']) . "', lastname = '" . $this->db->escape((string) $data['lastname']) . "', email = '" . $this->db->escape((string) $data['email']) . "', status = '" . (int) $data['status'] . "', date_modified = NOW() WHERE member_id = '" . (int) $member_id . "'");
 
 		if ($data['password']) {
 			$this->db->query("UPDATE `" . DB_PREFIX . "member` SET salt = '', password = '" . $this->db->escape(password_hash(html_entity_decode($data['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT)) . "' WHERE member_id = '" . (int) $member_id . "'");
@@ -62,18 +62,18 @@ class ModelUserUser extends PT_Model
 
 	public function getUsers($data = array())
 	{
-		$sql = "SELECT * FROM `" . DB_PREFIX . "member`";
+		$sql = "SELECT *, (SELECT mg.name FROM `" . DB_PREFIX . "member_group` mg WHERE m.member_group_id = mg.member_group_id) AS member_group FROM `" . DB_PREFIX . "member` m";
 
 		$sort_data = array(
-			'username',
-			'status',
-			'date_added'
+			'm.username',
+			'm.status',
+			'm.date_added'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY username";
+			$sql .= " ORDER BY m.date_added";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {

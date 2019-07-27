@@ -14,7 +14,6 @@ $_['text_icon_list']            = 'Icons List';
 
 # Column
 $_['column_title']              = 'Information Title';
-$_['column_information_group']  = 'Information Group';
 $_['column_sort_order']         = 'Sort Order';
 $_['column_status']             = 'Status';
 $_['column_action']             = 'Action';

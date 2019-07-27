@@ -28,7 +28,7 @@ class ControllerCatalogInformation extends PT_Controller
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getForm();
@@ -47,7 +47,7 @@ class ControllerCatalogInformation extends PT_Controller
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getForm();
@@ -68,7 +68,7 @@ class ControllerCatalogInformation extends PT_Controller
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getList();
@@ -76,39 +76,29 @@ class ControllerCatalogInformation extends PT_Controller
 
     protected function getList()
     {
-        $this->document->addStyle("view/dist/plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Responsive-2.2.2/css/responsive.bootstrap4.min.css");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/dataTables.buttons.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/JSZip-2.5.0/jszip.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.html5.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.print.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.colVis.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/fixedHeader.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/dataTables.responsive.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/responsive.bootstrap4.min.js");
+        $this->document->addScript("view/dist/js/jquery.dataTables.min.js");
+        $this->document->addScript("view/dist/js/jquery.dataTables.bootstrap.min.js");
+        $this->document->addScript("view/dist/js/dataTables.buttons.min.js");
+        $this->document->addScript("view/dist/js/buttons.flash.min.js");
+        $this->document->addScript("view/dist/js/buttons.html5.min.js");
+        $this->document->addScript("view/dist/js/buttons.print.min.js");
+        $this->document->addScript("view/dist/js/buttons.colVis.min.js");
+        $this->document->addScript("view/dist/js/dataTables.select.min.js");
 
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('text_home'),
-            'href'  => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token'])
         );
 
-        $data['add'] = $this->url->link('catalog/information/add', 'user_token=' . $this->session->data['user_token']);
-        $data['delete'] = $this->url->link('catalog/information/delete', 'user_token=' . $this->session->data['user_token']);
+        $data['add'] = $this->url->link('catalog/information/add', 'member_token=' . $this->session->data['member_token']);
+        $data['delete'] = $this->url->link('catalog/information/delete', 'member_token=' . $this->session->data['member_token']);
 
         $data['informations'] = array();
 
@@ -120,8 +110,8 @@ class ControllerCatalogInformation extends PT_Controller
                 'title'             => $result['title'],
                 'sort_order'        => $result['sort_order'],
                 'status'            => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-                'edit'              => $this->url->link('catalog/information/edit', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id']),
-                'delete'            => $this->url->link('catalog/information/delete', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $result['information_id'])
+                'edit'              => $this->url->link('catalog/information/edit', 'member_token=' . $this->session->data['member_token'] . '&information_id=' . $result['information_id']),
+                'delete'            => $this->url->link('catalog/information/delete', 'member_token=' . $this->session->data['member_token'] . '&information_id=' . $result['information_id'])
             );
         }
 
@@ -140,7 +130,7 @@ class ControllerCatalogInformation extends PT_Controller
         }
 
         if (isset($this->request->post['selected'])) {
-            $data['selected'] = (array)$this->request->post['selected'];
+            $data['selected'] = (array) $this->request->post['selected'];
         } else {
             $data['selected'] = array();
         }
@@ -195,35 +185,35 @@ class ControllerCatalogInformation extends PT_Controller
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('text_home'),
-            'href'  => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token'])
         );
 
         if (!isset($this->request->get['information_id'])) {
-            $data['action'] = $this->url->link('catalog/information/add', 'user_token=' . $this->session->data['user_token']);
+            $data['action'] = $this->url->link('catalog/information/add', 'member_token=' . $this->session->data['member_token']);
             $data['breadcrumbs'][] = array(
                 'text'  => $this->language->get('text_add'),
-                'href'  => $this->url->link('catalog/information/add', 'user_token=' . $this->session->data['user_token'])
+                'href'  => $this->url->link('catalog/information/add', 'member_token=' . $this->session->data['member_token'])
             );
         } else {
-            $data['action'] = $this->url->link('catalog/information/edit', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $this->request->get['information_id']);
+            $data['action'] = $this->url->link('catalog/information/edit', 'member_token=' . $this->session->data['member_token'] . '&information_id=' . $this->request->get['information_id']);
             $data['breadcrumbs'][] = array(
                 'text'  => $this->language->get('text_edit'),
-                'href'  => $this->url->link('catalog/information/edit', 'user_token=' . $this->session->data['user_token'] . '&information_id=' . $this->request->get['information_id'])
+                'href'  => $this->url->link('catalog/information/edit', 'member_token=' . $this->session->data['member_token'] . '&information_id=' . $this->request->get['information_id'])
             );
         }
 
-        $data['cancel'] = $this->url->link('catalog/information', 'user_token=' . $this->session->data['user_token']);
+        $data['cancel'] = $this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token']);
 
         if (isset($this->request->get['information_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $information_info = $this->model_catalog_information->getInformation($this->request->get['information_id']);
         }
 
-        $data['user_token'] = $this->session->data['user_token'];
+        $data['member_token'] = $this->session->data['member_token'];
 
         $this->load->model('localisation/language');
 
@@ -310,7 +300,7 @@ class ControllerCatalogInformation extends PT_Controller
                     $seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($keyword);
 
                     foreach ($seo_urls as $seo_url) {
-                        if (($seo_url['language_id'] == $language_id) && (!isset($this->request->get['information_id']) || ($seo_url['query'] != 'information_id=' . (int)$this->request->get['information_id']))) {
+                        if (($seo_url['language_id'] == $language_id) && (!isset($this->request->get['information_id']) || ($seo_url['query'] != 'information_id=' . (int) $this->request->get['information_id']))) {
                             $this->error['keyword'][$language_id] = $this->language->get('error_keyword');
 
                             break;

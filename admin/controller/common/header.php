@@ -29,6 +29,7 @@ class ControllerCommonHeader extends PT_Controller
             $data['home'] = $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token']);
             $data['logout'] = $this->url->link('user/logout', 'member_token=' . $this->session->data['member_token']);
             $data['profile'] = $this->url->link('user/profile', 'member_token=' . $this->session->data['member_token']);
+            $data['setting'] = $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']);
 
             $this->load->model('tool/image');
 

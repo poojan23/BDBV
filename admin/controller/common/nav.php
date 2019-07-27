@@ -138,14 +138,6 @@ class ControllerCommonNav extends PT_Controller
             # System
             $system = array();
 
-            if ($this->user->hasPermission('access', 'setting/store')) {
-                $system[] = array(
-                    'name'      => $this->language->get('text_store'),
-                    'href'      => $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']),
-                    'children'  => array()
-                );
-            }
-
             # Users
             $user = array();
 
@@ -307,7 +299,11 @@ class ControllerCommonNav extends PT_Controller
             );
 
             $data['home'] = $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token']);
-            $data['profile'] = $this->url->link('user/profile', 'member_token=' . $this->session->data['member_token']);
+
+            $data['service'] = $this->url->link('catalog/service', 'member_token=' . $this->session->data['member_token']);
+            $data['information'] = $this->url->link('catalog/information', 'member_token=' . $this->session->data['member_token']);
+            $data['user'] = $this->url->link('user/user', 'member_token=' . $this->session->data['member_token']);
+            $data['setting'] = $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']);
 
             return $this->load->view('common/nav', $data);
         }

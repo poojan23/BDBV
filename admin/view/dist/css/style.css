@@ -1,12 +1,15 @@
-table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+table.table-bordered.dataTable th,
+table.table-bordered.dataTable td {
   vertical-align: middle;
 }
 
-table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+table.table-bordered.dataTable th,
+table.table-bordered.dataTable td {
   vertical-align: middle !important;
 }
 
-.table thead td span[data-toggle="tooltip"]:after, label.control-label span[data-toggle="tooltip"]:after {
+.table thead td span[data-toggle="tooltip"]:after,
+label.control-label span[data-toggle="tooltip"]:after {
   font-family: FontAwesome;
   color: #3c8dbc;
   content: "\f059";
@@ -65,4 +68,45 @@ table.table-bordered.dataTable th, table.table-bordered.dataTable td {
   position: absolute;
   top: 40%;
   left: 40%;
+}
+
+/* Custom CSS */
+fieldset legend {
+  padding-bottom: 5px;
+}
+
+legend {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.control-label {
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .control-label {
+    text-align: right;
+  }
+}
+
+.form-group+.form-group {
+  padding-top: 1rem;
+  border-top: 1px solid #d6d6d6;
+}
+
+div.required .control-label:not(span)::after,
+td.required::after {
+  content: ' *';
+  color: #DD5A43;
+  font-weight: 700;
+}
+
+.table-icons {
+  height: 500px;
+  overflow: auto;
+  padding: 5px;
+}
+
+.table-icons .table td {
+  padding: 0.25rem;
 }

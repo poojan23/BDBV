@@ -14,6 +14,7 @@ $_['text_icon_list']            = 'Icons List';
 
 # Column
 $_['column_name']               = 'Name';
+$_['column_company']            = 'Company Name';
 $_['column_designation']        = 'Designation';
 $_['column_sort_order']         = 'Sort Order';
 $_['column_status']             = 'Status';

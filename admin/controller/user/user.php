@@ -28,7 +28,7 @@ class ControllerUserUser extends PT_Controller
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('user/user', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('user/user', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getForm();
@@ -43,11 +43,11 @@ class ControllerUserUser extends PT_Controller
         $this->load->model('user/user');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-            $this->model_user_user->editUser($this->request->get['user_id'], $this->request->post);
+            $this->model_user_user->editUser($this->request->get['member_id'], $this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('user/user', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('user/user', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getForm();
@@ -62,13 +62,13 @@ class ControllerUserUser extends PT_Controller
         $this->load->model('user/user');
 
         if (isset($this->request->post['selected']) && $this->validateDelete()) {
-            foreach ($this->request->post['selected'] as $user_id) {
-                $this->model_user_user->deleteUser($user_id);
+            foreach ($this->request->post['selected'] as $member_id) {
+                $this->model_user_user->deleteUser($member_id);
             }
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('user/user', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('user/user', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getList();
@@ -76,39 +76,29 @@ class ControllerUserUser extends PT_Controller
 
     protected function getList()
     {
-        $this->document->addStyle("view/dist/plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Responsive-2.2.2/css/responsive.bootstrap4.min.css");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/dataTables.buttons.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/JSZip-2.5.0/jszip.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.html5.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.print.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.colVis.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/fixedHeader.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/dataTables.responsive.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/responsive.bootstrap4.min.js");
+        $this->document->addScript("view/dist/js/jquery.dataTables.min.js");
+        $this->document->addScript("view/dist/js/jquery.dataTables.bootstrap.min.js");
+        $this->document->addScript("view/dist/js/dataTables.buttons.min.js");
+        $this->document->addScript("view/dist/js/buttons.flash.min.js");
+        $this->document->addScript("view/dist/js/buttons.html5.min.js");
+        $this->document->addScript("view/dist/js/buttons.print.min.js");
+        $this->document->addScript("view/dist/js/buttons.colVis.min.js");
+        $this->document->addScript("view/dist/js/dataTables.select.min.js");
 
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('text_home'),
-            'href'  => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('user/user', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('user/user', 'member_token=' . $this->session->data['member_token'])
         );
 
-        $data['add'] = $this->url->link('user/user/add', 'user_token=' . $this->session->data['user_token']);
-        $data['delete'] = $this->url->link('user/user/delete', 'user_token=' . $this->session->data['user_token']);
+        $data['add'] = $this->url->link('user/user/add', 'member_token=' . $this->session->data['member_token']);
+        $data['delete'] = $this->url->link('user/user/delete', 'member_token=' . $this->session->data['member_token']);
 
         $data['users'] = array();
 
@@ -116,12 +106,14 @@ class ControllerUserUser extends PT_Controller
 
         foreach ($results as $result) {
             $data['users'][] = array(
-                'user_id'       => $result['user_id'],
-                'username'      => $result['name'],
+                'member_id'     => $result['member_id'],
+                'name'          => $result['firstname'] . ' ' . $result['lastname'],
                 'email'         => $result['email'],
+                'member_group'  => $result['member_group'],
                 'status'        => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+                'ip'            => $result['ip'],
                 'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-                'edit'          => $this->url->link('user/user/edit', 'user_token=' . $this->session->data['user_token'] . '&user_id=' . $result['user_id'])
+                'edit'          => $this->url->link('user/user/edit', 'member_token=' . $this->session->data['member_token'] . '&member_id=' . $result['member_id'])
             );
         }
 
@@ -140,7 +132,7 @@ class ControllerUserUser extends PT_Controller
         }
 
         if (isset($this->request->post['selected'])) {
-            $data['selected'] = (array)$this->request->post['selected'];
+            $data['selected'] = (array) $this->request->post['selected'];
         } else {
             $data['selected'] = array();
         }
@@ -154,7 +146,7 @@ class ControllerUserUser extends PT_Controller
 
     protected function getForm()
     {
-        $data['text_form'] = !isset($this->request->get['user_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
+        $data['text_form'] = !isset($this->request->get['member_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
         if (isset($this->error['warning'])) {
             $data['warning_err'] = $this->error['warning'];
@@ -168,10 +160,16 @@ class ControllerUserUser extends PT_Controller
             $data['email_err'] = '';
         }
 
-        if (isset($this->error['name'])) {
-            $data['name_err'] = $this->error['name'];
+        if (isset($this->error['firstname'])) {
+            $data['firstname_err'] = $this->error['firstname'];
         } else {
-            $data['name_err'] = '';
+            $data['firstname_err'] = '';
+        }
+
+        if (isset($this->error['lastname'])) {
+            $data['lastname_err'] = $this->error['lastname'];
+        } else {
+            $data['lastname_err'] = '';
         }
 
         if (isset($this->error['password'])) {
@@ -190,32 +188,32 @@ class ControllerUserUser extends PT_Controller
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('text_home'),
-            'href'  => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text'  => $this->language->get('heading_title'),
-            'href'  => $this->url->link('user/user', 'user_token=' . $this->session->data['user_token'])
+            'href'  => $this->url->link('user/user', 'member_token=' . $this->session->data['member_token'])
         );
 
-        if (!isset($this->request->get['user_id'])) {
-            $data['action'] = $this->url->link('user/user/add', 'user_token=' . $this->session->data['user_token']);
+        if (!isset($this->request->get['member_id'])) {
+            $data['action'] = $this->url->link('user/user/add', 'member_token=' . $this->session->data['member_token']);
             $data['breadcrumbs'][] = array(
                 'text'  => $this->language->get('text_add'),
-                'href'  => $this->url->link('user/user/add', 'user_token=' . $this->session->data['user_token'])
+                'href'  => $this->url->link('user/user/add', 'member_token=' . $this->session->data['member_token'])
             );
         } else {
-            $data['action'] = $this->url->link('user/user/edit', 'user_token=' . $this->session->data['user_token'] . '&user_id=' . $this->request->get['user_id']);
+            $data['action'] = $this->url->link('user/user/edit', 'member_token=' . $this->session->data['member_token'] . '&member_id=' . $this->request->get['member_id']);
             $data['breadcrumbs'][] = array(
                 'text'  => $this->language->get('text_edit'),
-                'href'  => $this->url->link('user/user/edit', 'user_token=' . $this->session->data['user_token'])
+                'href'  => $this->url->link('user/user/edit', 'member_token=' . $this->session->data['member_token'])
             );
         }
 
-        $data['cancel'] = $this->url->link('user/user', 'user_token=' . $this->session->data['user_token']);
+        $data['cancel'] = $this->url->link('user/user', 'member_token=' . $this->session->data['member_token']);
 
-        if (isset($this->request->get['user_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-            $user_info = $this->model_user_user->getUser($this->request->get['user_id']);
+        if (isset($this->request->get['member_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+            $user_info = $this->model_user_user->getUser($this->request->get['member_id']);
         }
 
         if (isset($this->request->post['email'])) {
@@ -226,24 +224,32 @@ class ControllerUserUser extends PT_Controller
             $data['email'] = '';
         }
 
-        if (isset($this->request->post['user_group_id'])) {
-            $data['user_group_id'] = $this->request->post['user_group_id'];
+        if (isset($this->request->post['member_group_id'])) {
+            $data['member_group_id'] = $this->request->post['member_group_id'];
         } elseif (!empty($user_info)) {
-            $data['user_group_id'] = $user_info['user_group_id'];
+            $data['member_group_id'] = $user_info['member_group_id'];
         } else {
-            $data['user_group_id'] = '';
+            $data['member_group_id'] = '';
         }
 
         $this->load->model('user/user_group');
 
         $data['user_groups'] = $this->model_user_user_group->getUserGroups();
 
-        if (isset($this->request->post['name'])) {
-            $data['name'] = $this->request->post['name'];
+        if (isset($this->request->post['firstname'])) {
+            $data['firstname'] = $this->request->post['firstname'];
         } elseif (!empty($user_info)) {
-            $data['name'] = $user_info['name'];
+            $data['firstname'] = $user_info['firstname'];
         } else {
-            $data['name'] = '';
+            $data['firstname'] = '';
+        }
+
+        if (isset($this->request->post['lastname'])) {
+            $data['lastname'] = $this->request->post['lastname'];
+        } elseif (!empty($user_info)) {
+            $data['lastname'] = $user_info['lastname'];
+        } else {
+            $data['lastname'] = '';
         }
 
         if (isset($this->request->post['password'])) {
@@ -258,30 +264,12 @@ class ControllerUserUser extends PT_Controller
             $data['confirm'] = '';
         }
 
-        if (isset($this->request->post['image'])) {
-            $data['image'] = $this->request->post['image'];
-        } elseif (!empty($user_info)) {
-            $data['image'] = $user_info['image'];
-        } else {
-            $data['image'] = '';
-        }
-
-        $this->load->model('tool/image');
-
-        $data['placeholder'] = $this->model_tool_image->resize('no-image.png', 100, 100);
-
-        if (is_file(DIR_IMAGE . html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'))) {
-            $data['thumb'] = $this->model_tool_image->resize(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8'), 100, 100);
-        } else {
-            $data['thumb'] = $data['placeholder'];
-        }
-
         if (isset($this->request->post['status'])) {
             $data['status'] = $this->request->post['status'];
         } elseif (!empty($user_info)) {
             $data['status'] = $user_info['status'];
         } else {
-            $data['status'] = 0;
+            $data['status'] = true;
         }
 
         $data['header'] = $this->load->controller('common/header');
@@ -303,21 +291,25 @@ class ControllerUserUser extends PT_Controller
 
         $user_info = $this->model_user_user->getUserByEmail($this->request->post['email']);
 
-        if (!isset($this->request->get['user_id'])) {
+        if (!isset($this->request->get['member_id'])) {
             if ($user_info) {
                 $this->error['warning'] = $this->language->get('error_exists_email');
             }
         } else {
-            if ($user_info && ($this->request->get['user_id'] != $user_info['user_id'])) {
+            if ($user_info && ($this->request->get['member_id'] != $user_info['member_id'])) {
                 $this->error['warning'] = $this->language->get('error_exists_email');
             }
         }
 
-        if ((utf8_strlen(trim($this->request->post['name'])) < 1) || (utf8_strlen(trim($this->request->post['name'])) > 32)) {
-            $this->error['name'] = $this->language->get('error_name');
+        if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
+            $this->error['firstname'] = $this->language->get('error_firstname');
         }
 
-        if ($this->request->post['password'] || (!isset($this->request->get['user_id']))) {
+        if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
+            $this->error['lastname'] = $this->language->get('error_lastname');
+        }
+
+        if ($this->request->post['password'] || (!isset($this->request->get['member_id']))) {
             if ((utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) < 4) || (utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) > 40)) {
                 $this->error['password'] = $this->language->get('error_password');
             }
@@ -336,8 +328,8 @@ class ControllerUserUser extends PT_Controller
             $this->error['warning'] = $this->language->get('error_delete');
         }
 
-        foreach ($this->request->post['selected'] as $user_id) {
-            if ($this->user->getId() == $user_id) {
+        foreach ($this->request->post['selected'] as $member_id) {
+            if ($this->user->getId() == $member_id) {
                 $this->error['warning'] = $this->language->get('error_account');
             }
         }

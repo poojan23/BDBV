@@ -82,50 +82,53 @@
                                                             <?php foreach($languages as $language) : ?>
                                                             <div class="tab-pane" id="<?php echo $language['language_id']; ?>">
                                                                 <div class="box-body">
-                                                                    <div class="form-group <?php echo (!empty($name_err[$language['language_id']])) ? 'has-error' : ''; ?>">
-                                                                        <label for="input-name<?php echo $language['language_id']; ?>" class="col-sm-2 control-label"><?php echo $entry_name; ?> <span class="text-red">*</span></label>
+                                                                    <div class="form-group required">
+                                                                        <label for="input-name<?php echo $language['language_id']; ?>" class="col-sm-2 control-label"><?php echo $entry_name; ?></label>
 
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" class="form-control" name="category_description[<?php echo $language['language_id']; ?>][name]" placeholder="<?php echo $entry_name; ?>" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['name'] : ''; ?>" id="input-name<?php echo $language['language_id']; ?>">
+                                                                            <input type="text" class="form-control" name="service_description[<?php echo $language['language_id']; ?>][name]" placeholder="<?php echo $entry_name; ?>" value="<?php echo isset($service_description[$language['language_id']]) ? $service_description[$language['language_id']]['name'] : ''; ?>" id="input-name<?php echo $language['language_id']; ?>">
                                                                             <?php if(isset($name_err[$language['language_id']])) : ?>
                                                                             <span class="help-block"><?php echo $name_err[$language['language_id']]; ?></span>
                                                                             <?php endif; ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr >
+
                                                                     <div class="form-group" id="message">
                                                                         <label for="input-description<?php echo $language['language_id']; ?>" class="col-sm-2 control-label"><?php echo $entry_description; ?></label>
 
                                                                         <div class="col-sm-10">
-                                                                            <textarea class="form-control" name="category_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>" data-toggle="ckeditor" data-lang="<?php echo $ckeditor; ?>"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['description'] : ''; ?></textarea>
+                                                                            <textarea class="form-control" name="service_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>" data-toggle="ckeditor" data-lang="<?php echo $ckeditor; ?>"><?php echo isset($service_description[$language['language_id']]) ? $service_description[$language['language_id']]['description'] : ''; ?></textarea>
                                                                         </div>
                                                                     </div>
-                                                                    <hr >
-                                                                    <div class="form-group <?php echo (!empty($meta_title_err[$language['language_id']])) ? 'has-error' : ''; ?>">
-                                                                        <label for="input-meta-title<?php echo $language['language_id']; ?>" class="col-sm-2 control-label"><?php echo $entry_meta_title; ?> <span class="text-red">*</span></label>
+
+                                                                    <div class="form-group required">
+                                                                        <label for="input-meta-title<?php echo $language['language_id']; ?>" class="col-sm-2 control-label"><?php echo $entry_meta_title; ?></label>
 
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" class="form-control" name="category_description[<?php echo $language['language_id']; ?>][meta_title]" placeholder="<?php echo $entry_meta_title; ?>" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_title'] : ''; ?>" id="input-meta-title<?php echo $language['language_id']; ?>">
+                                                                            <input type="text" class="form-control" name="service_description[<?php echo $language['language_id']; ?>][meta_title]" placeholder="<?php echo $entry_meta_title; ?>" value="<?php echo isset($service_description[$language['language_id']]) ? $service_description[$language['language_id']]['meta_title'] : ''; ?>" id="input-meta-title<?php echo $language['language_id']; ?>">
                                                                             <?php if(isset($meta_title_err[$language['language_id']])) : ?>
                                                                             <span class="help-block"><?php echo $meta_title_err[$language['language_id']]; ?></span>
                                                                             <?php endif; ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr >
+
                                                                     <div class="form-group">
                                                                         <label for="input-meta-description<?php echo $language['language_id']; ?>" class="col-sm-2 control-label"><?php echo $entry_meta_description; ?></label>
 
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" class="form-control" name="category_description[<?php echo $language['language_id']; ?>][meta_description]" placeholder="<?php echo $entry_meta_description; ?>" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_description'] : ''; ?>" id="input-meta-description<?php echo $language['language_id']; ?>">
+                                                                            <input type="text" class="form-control" name="service_description[<?php echo $language['language_id']; ?>][meta_description]" placeholder="<?php echo $entry_meta_description; ?>" value="<?php echo isset($service_description[$language['language_id']]) ? $service_description[$language['language_id']]['meta_description'] : ''; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" />
                                                                         </div>
                                                                     </div>
-                                                                    <hr >
+
                                                                     <div class="form-group <?php echo (!empty($meta_keyword_err)) ? 'has-error' : ''; ?>">
                                                                         <label for="input-meta-keyword<?php echo $language['language_id']; ?>" class="col-sm-2 control-label"><?php echo $entry_meta_keyword; ?></label>
 
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" class="form-control" name="category_description[<?php echo $language['language_id']; ?>][meta_keyword]" placeholder="<?php echo $entry_meta_keyword; ?>" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_keyword'] : ''; ?>" id="input-meta-keyword<?php echo $language['language_id']; ?>">
-                                                                            <span class="help-block"><?php echo $meta_keyword_err; ?></span>
+                                                                            <input type="text" class="form-control" name="service_description[<?php echo $language['language_id']; ?>][meta_keyword]" placeholder="<?php echo $entry_meta_keyword; ?>" value="<?php echo isset($service_description[$language['language_id']]) ? $service_description[$language['language_id']]['meta_keyword'] : ''; ?>" id="input-meta-keyword<?php echo $language['language_id']; ?>" />
+                                                                            <?php if(isset($meta_keyword_err[$language['language_id']])) : ?>
+                                                                            <span
+                                                                                class="help-block"><?php echo $meta_keyword_err[$language['language_id']]; ?></span>
+                                                                            <?php endif; ?>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -135,16 +138,57 @@
                                                     </div>
                                                     <!-- /.tab-pane -->
                                                     <div class="tab-pane" id="tab-data">
-                                                        <div class="form-group <?php echo (!empty($parent_err)) ? 'has-error' : ''; ?>">
-                                                            <label for="input-parent" class="col-sm-2 control-label"><?php echo $entry_parent; ?></label>
+                                                        <div class="form-group">
+                                                            <label for="input-icon"
+                                                                class="col-sm-2 control-label"><?php echo $entry_icon; ?></label>
 
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="path" value="<?php echo $path; ?>" placeholder="<?php echo $entry_parent; ?>" class="form-control" id="input-parent">
-                                                                <input type="hidden" name="parent_id" value="<?php echo $parent_id; ?>">
-                                                                <span class="help-block"><?php echo $parent_err; ?></span>
+                                                                <button type="button"
+                                                                    class="btn btn-outline-secondary dropdown-toggle"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false" id="button-icon">
+                                                                    <i class="<?php echo $icon; ?>"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu table-icons">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered">
+                                                                            <tbody>
+                                                                                <?php if($icons) : ?>
+                                                                                <?php $a = 0; ?>
+                                                                                <?php foreach($icons as $icon) : ?>
+                                                                                <?php if($a == 0) : ?>
+                                                                                <tr>
+                                                                                    <?php endif; ?>
+                                                                                    <td>
+                                                                                        <a
+                                                                                            class="dropdown-item dropdown-icon">
+                                                                                            <i
+                                                                                                class="<?php echo $icon['icon']; ?>"></i>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    <?php if($a == 3) : ?>
+                                                                                </tr>
+                                                                                <?php $a = 0; ?>
+                                                                                <?php else : ?>
+                                                                                <?php $a++; ?>
+                                                                                <?php endif; ?>
+                                                                                <?php endforeach; ?>
+                                                                                <?php else : ?>
+                                                                                <tr>
+                                                                                    <td class="text-center" colspan="3">
+                                                                                        <?php echo $text_no_icons; ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <?php endif; ?>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="icon"
+                                                                    value="<?php echo $icon; ?>" />
                                                             </div>
                                                         </div>
-                                                        <hr >
+
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label"><?php echo $entry_image; ?></label>
 
@@ -155,23 +199,7 @@
                                                                 <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
                                                             </div>
                                                         </div>
-                                                        <hr >
-                                                        <div class="form-group">
-                                                            <label for="input-top" class="col-sm-2 control-label"><?php echo $entry_top; ?></label>
-
-                                                            <div class="col-sm-10">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <?php if($top) : ?>
-                                                                        <input type="checkbox" name="top" value="1" checked="checked" id="input-top" />
-                                                                        <?php else : ?>
-                                                                        <input type="checkbox" name="top" value="1" id="input-top" />
-                                                                        <?php endif; ?>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <hr >
+                                                        
                                                         <div class="form-group">
                                                             <label for="input-sort-order" class="col-sm-2 control-label"><?php echo $entry_sort_order; ?></label>
 
@@ -179,7 +207,7 @@
                                                                 <input type="text" class="form-control" name="sort_order" placeholder="<?php echo $entry_sort_order; ?>" value="<?php echo $sort_order; ?>" id="input-sort-order">
                                                             </div>
                                                         </div>
-                                                        <hr >
+
                                                         <div class="form-group">
                                                             <label for="input-status" class="col-sm-2 control-label"><?php echo $entry_status; ?></label>
 
@@ -197,14 +225,13 @@
                                                         </div>
                                                     </div>
                                                     <!-- /.tab-pane -->
-                                                    <!-- /.tab-pane -->
                                                     <div class="tab-pane" id="tab-seo">
                                                         <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_keyword; ?></div>
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered table-hover">
                                                                 <thead>
                                                                     <tr>
-                                                                        <td class="text-left"><?php echo $entry_store; ?></td>
+                                                                        <td class="text-left"><?php echo $entry_language; ?></td>
                                                                         <td class="text-left"><?php echo $entry_keyword; ?></td>
                                                                     </tr>
                                                                 </thead>
@@ -215,9 +242,9 @@
                                                                         <td class="text-left">
                                                                             <div class="input-group">
                                                                                 <span class="input-group-addon">
-                                                                                    <!--<img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />-->
+                                                                                    <img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" />
                                                                                 </span>
-                                                                                <input type="text" name="category_seo_url[<?php echo $language['language_id']; ?>]" value="<?php if(isset($category_seo_url[$language['language_id']])) : ?><?php echo $category_seo_url[$language['language_id']]; ?><?php endif; ?>" placeholder="<?php echo $entry_keyword ?>" class="form-control" />
+                                                                                <input type="text" name="service_seo_url[<?php echo $language['language_id']; ?>]" value="<?php if(isset($service_seo_url[$language['language_id']])) : ?><?php echo $service_seo_url[$language['language_id']]; ?><?php endif; ?>" placeholder="<?php echo $entry_keyword ?>" class="form-control" />
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -245,35 +272,18 @@
     </div>
 </div><!-- /.main-content -->
 <?php echo $footer; ?>
-<script type="text/javascript">
-    $('input[name=\'path\']').autocomplete({
-        'source': function (request, response) {
-            $.ajax({
-                url: 'index.php?url=catalog/category/autocomplete&member_token=' + getURLVar('member_token') + '&filter_name=' + encodeURIComponent(request),
-                dataType: 'json',
-                success: function (json) {
-                    json.unshift({
-                        category_id: 0,
-                        name: 'None'
-                    });
-
-                    response($.map(json, function (item) {
-                        return {
-                            label: item['name'],
-                            value: item['category_id']
-                        }
-                    }));
-                }
-            });
-        },
-        'select': function (item) {
-            $('input[name=\'path\']').val(item['label']);
-            $('input[name=\'parent_id\']').val(item['value']);
-        }
-    });
-</script>
 <script>
     $(function () {
+        $('.dropdown-icon').on('click', function (e) {
+        var element = $(this);
+
+        e.preventDefault();
+
+        element.parents('.dropdown-menu').prev().find('i').attr('class', element.find('i').attr('class'));
+
+        element.parents('.dropdown-menu').next().val(element.find('i').attr('class'));
+        });
+
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue'

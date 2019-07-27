@@ -1,30 +1,34 @@
 <div class="main-container ace-save-state" id="main-container">
     <script type="text/javascript">
-        try{ace.settings.loadState('main-container')}catch(e){}
+        try {
+            ace.settings.loadState('main-container')
+        } catch (e) {}
     </script>
 
     <div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed">
         <script type="text/javascript">
-            try{ace.settings.loadState('sidebar')}catch(e){}
+            try {
+                ace.settings.loadState('sidebar')
+            } catch (e) {}
         </script>
 
         <div class="sidebar-shortcuts" id="sidebar-shortcuts">
             <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                <button class="btn btn-success">
+                <a href="<?php echo $service; ?>" class="btn btn-success">
                     <i class="ace-icon fa fa-signal"></i>
-                </button>
+                </a>
 
-                <button class="btn btn-info">
+                <a href="<?php echo $information; ?>" class="btn btn-info">
                     <i class="ace-icon fa fa-pencil"></i>
-                </button>
+                </a>
 
-                <button class="btn btn-warning">
+                <a href="<?php echo $user; ?>" class="btn btn-warning">
                     <i class="ace-icon fa fa-users"></i>
-                </button>
+                </a>
 
-                <button class="btn btn-danger">
+                <a href="<?php echo $setting; ?>" class="btn btn-danger">
                     <i class="ace-icon fa fa-cogs"></i>
-                </button>
+                </a>
             </div>
 
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
@@ -39,7 +43,7 @@
         </div><!-- /.sidebar-shortcuts -->
 
         <ul id="menu" class="nav nav-list">
-            
+
             <?php foreach($menus as $menu) : ?>
             <li id="<?php echo $menu['id']; ?>">
                 <?php if($menu['href']) : ?>
@@ -108,7 +112,7 @@
                                         <i class="menu-icon fa fa-caret-right"></i>
                                         <?php echo $child3['name']; ?>
                                     </a>
-    
+
                                     <b class="arrow"></b>
                                     <?php endforeach; ?>
                                 </ul>
@@ -126,6 +130,7 @@
         </ul><!-- /.nav-list -->
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+                data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
         </div>
     </div>

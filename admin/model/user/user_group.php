@@ -4,36 +4,37 @@ class ModelUserUserGroup extends PT_Model
 {
     public function addUserGroup($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "user_group SET name = '" . $this->db->escape((string)$data['name']) . "', permission = '" . (isset($data['permission']) ? $this->db->escape(json_encode($data['permission'])) : '') . "'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "member_group SET name = '" . $this->db->escape((string) $data['name']) . "', description = '" . $this->db->escape((string) $data['description']) . "', permission = '" . (isset($data['permission']) ? $this->db->escape(json_encode($data['permission'])) : '') . "'");
 
         return $this->db->lastInsertId();
     }
 
-    public function editUserGroup($user_group_id, $data)
+    public function editUserGroup($member_group_id, $data)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "user_group SET name = '" . $this->db->escape((string)$data['name']) . "', permission = '" . (isset($data['permission']) ? $this->db->escape(json_encode($data['permission'])) : '') . "' WHERE user_group_id = '" . (int)$user_group_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "member_group SET name = '" . $this->db->escape((string) $data['name']) . "', description = '" . $this->db->escape((string) $data['description']) . "', permission = '" . (isset($data['permission']) ? $this->db->escape(json_encode($data['permission'])) : '') . "' WHERE member_group_id = '" . (int) $member_group_id . "'");
     }
 
-    public function deleteUserGroup($user_group_id)
+    public function deleteUserGroup($member_group_id)
     {
-        $this->db->query("DELETE FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_group_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int) $member_group_id . "'");
     }
 
-    public function getUserGroup($user_group_id)
+    public function getUserGroup($member_group_id)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_group_id . "'");
+        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int) $member_group_id . "'");
 
-        $user_group = array(
+        $member_group = array(
             'name'          => $query->row['name'],
+            'description'   => $query->row['description'],
             'permission'    => json_decode($query->row['permission'], true)
         );
 
-        return $user_group;
+        return $member_group;
     }
 
     public function getUserGroups($data = array())
     {
-        $sql = "SELECT * FROM " . DB_PREFIX . "user_group";
+        $sql = "SELECT * FROM " . DB_PREFIX . "member_group";
 
         $sql .= " ORDER BY name";
 
@@ -52,7 +53,7 @@ class ModelUserUserGroup extends PT_Model
                 $data['limit'] = 20;
             }
 
-            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+            $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
         }
 
         $query = $this->db->query($sql);
@@ -62,34 +63,34 @@ class ModelUserUserGroup extends PT_Model
 
     public function getTotalUserGroups()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user_group");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "member_group");
 
         return $query->row['total'];
     }
 
-    public function addPermission($user_group_id, $type, $route)
+    public function addPermission($member_group_id, $type, $route)
     {
-        $user_group_query = $this->db->query("SELECT DISTINT * FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_group_id . "'");
+        $member_group_query = $this->db->query("SELECT DISTINT * FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int) $member_group_id . "'");
 
-        if ($user_group_query->num_rows) {
-            $data = json_decode($user_group_id->row['permission'], true);
+        if ($member_group_query->num_rows) {
+            $data = json_decode($member_group_id->row['permission'], true);
 
             $data[$type][] = $route;
 
-            $this->db->query("UPDATE " . DB_PREFIX . "user_group SET permission = '" . $this->db->escape(json_encode($data)) . "' WHERE user_group_id = '" . (int)$user_group_id . "'");
+            $this->db->query("UPDATE " . DB_PREFIX . "member_group SET permission = '" . $this->db->escape(json_encode($data)) . "' WHERE member_group_id = '" . (int) $member_group_id . "'");
         }
     }
 
-    public function removePermission($user_group_id, $type, $route)
+    public function removePermission($member_group_id, $type, $route)
     {
-        $user_group_query = $this->db->query("SELECT DISTINT * FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_group_id . "'");
+        $member_group_query = $this->db->query("SELECT DISTINT * FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int) $member_group_id . "'");
 
-        if ($user_group_query->num_rows) {
-            $data = json_decode($user_group_id->row['permission'], true);
+        if ($member_group_query->num_rows) {
+            $data = json_decode($member_group_id->row['permission'], true);
 
             $data[$type][] = array_diff($data[$type], array($route));
 
-            $this->db->query("UPDATE " . DB_PREFIX . "user_group SET permission = '" . $this->db->escape(json_encode($data)) . "' WHERE user_group_id = '" . (int)$user_group_id . "'");
+            $this->db->query("UPDATE " . DB_PREFIX . "member_group SET permission = '" . $this->db->escape(json_encode($data)) . "' WHERE member_group_id = '" . (int) $member_group_id . "'");
         }
     }
 }
