@@ -1,10 +1,12 @@
 <?php
 
-class ControllerDesignTranslation extends PT_Controller {
+class ControllerDesignTranslation extends PT_Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('design/translation');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -14,26 +16,28 @@ class ControllerDesignTranslation extends PT_Controller {
         $this->getList();
     }
 
-    public function add() {
+    public function add()
+    {
         $this->load->language('design/translation');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
         $this->load->model('design/translation');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 
             $this->model_design_translation->addTranslation($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('design/translation', 'user_token=' . $this->session->data['user_token'], true));
+            $this->response->redirect($this->url->link('design/translation', 'member_token=' . $this->session->data['member_token'], true));
         }
 
         $this->getForm();
     }
 
-    public function edit() {
+    public function edit()
+    {
         $this->load->language('design/translation');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -46,13 +50,14 @@ class ControllerDesignTranslation extends PT_Controller {
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('design/translation', 'user_token=' . $this->session->data['user_token'], true));
+            $this->response->redirect($this->url->link('design/translation', 'member_token=' . $this->session->data['member_token'], true));
         }
 
         $this->getForm();
     }
 
-    public function delete() {
+    public function delete()
+    {
         $this->load->language('design/translation');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -66,62 +71,52 @@ class ControllerDesignTranslation extends PT_Controller {
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('design/translation', 'user_token=' . $this->session->data['user_token'], true));
+            $this->response->redirect($this->url->link('design/translation', 'member_token=' . $this->session->data['member_token'], true));
         }
 
         $this->getList();
     }
 
-    protected function getList() {
-        $this->document->addStyle("view/dist/plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Responsive-2.2.2/css/responsive.bootstrap4.min.css");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/dataTables.buttons.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/JSZip-2.5.0/jszip.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.html5.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.print.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.colVis.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/fixedHeader.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/dataTables.responsive.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/responsive.bootstrap4.min.js");
+    protected function getList()
+    {
+        $this->document->addScript("view/dist/js/jquery.dataTables.min.js");
+        $this->document->addScript("view/dist/js/jquery.dataTables.bootstrap.min.js");
+        $this->document->addScript("view/dist/js/dataTables.buttons.min.js");
+        $this->document->addScript("view/dist/js/buttons.flash.min.js");
+        $this->document->addScript("view/dist/js/buttons.html5.min.js");
+        $this->document->addScript("view/dist/js/buttons.print.min.js");
+        $this->document->addScript("view/dist/js/buttons.colVis.min.js");
+        $this->document->addScript("view/dist/js/dataTables.select.min.js");
 
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
-            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('design/translation', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('design/translation', 'member_token=' . $this->session->data['member_token'])
         );
 
         $this->load->model('localisation/language');
 
-        $data['add'] = $this->url->link('design/translation/add', 'user_token=' . $this->session->data['user_token']);
-        $data['delete'] = $this->url->link('design/translation/delete', 'user_token=' . $this->session->data['user_token']);
+        $data['add'] = $this->url->link('design/translation/add', 'member_token=' . $this->session->data['member_token']);
+        $data['delete'] = $this->url->link('design/translation/delete', 'member_token=' . $this->session->data['member_token']);
 
         $data['translations'] = array();
 
         $results = $this->model_design_translation->getTranslations();
-        
+
         foreach ($results as $result) {
             $data['translations'][] = array(
-                'translation_id' => $result['translation_id'],
-                'store' => ($result['store_id'] ? $result['store'] : $this->language->get('text_default')),
-                'route' => $result['route'],
-                'language' => $result['name'],
-                'key' => $result['key'],
-                'value' => $result['value'],
-                'edit' => $this->url->link('design/translation/edit', 'user_token=' . $this->session->data['user_token'] . '&translation_id=' . $result['translation_id']),
+                'translation_id'    => $result['translation_id'],
+                'route'             => $result['route'],
+                'language'          => $result['name'],
+                'key'               => $result['key'],
+                'value'             => $result['value'],
+                'edit'              => $this->url->link('design/translation/edit', 'member_token=' . $this->session->data['member_token'] . '&translation_id=' . $result['translation_id'])
             );
         }
 
@@ -148,15 +143,16 @@ class ControllerDesignTranslation extends PT_Controller {
         $data['header'] = $this->load->controller('common/header');
         $data['nav'] = $this->load->controller('common/nav');
         $data['footer'] = $this->load->controller('common/footer');
-        
+
         $this->response->setOutput($this->load->view('design/translation_list', $data));
     }
 
-    protected function getForm() {
-        $this->document->addStyle("view/dist/plugins/iCheck/all.css");
-        $this->document->addScript("view/dist/plugins/ckeditor/ckeditor.js");
-        $this->document->addScript("view/dist/plugins/ckeditor/adapters/jquery.js");
-        $this->document->addScript("view/dist/plugins/iCheck/icheck.min.js");
+    protected function getForm()
+    {
+        // $this->document->addStyle("view/dist/plugins/iCheck/all.css");
+        // $this->document->addScript("view/dist/plugins/ckeditor/ckeditor.js");
+        // $this->document->addScript("view/dist/plugins/ckeditor/adapters/jquery.js");
+        // $this->document->addScript("view/dist/plugins/iCheck/icheck.min.js");
 
         $data['text_form'] = !isset($this->request->get['translation_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
@@ -176,38 +172,34 @@ class ControllerDesignTranslation extends PT_Controller {
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
-            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('design/translation', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('design/translation', 'member_token=' . $this->session->data['member_token'])
         );
 
         if (!isset($this->request->get['translation_id'])) {
-            $data['action'] = $this->url->link('design/translation/add', 'user_token=' . $this->session->data['user_token']);
+            $data['action'] = $this->url->link('design/translation/add', 'member_token=' . $this->session->data['member_token']);
+            $data['breadcrumbs'][] = array(
+                'text' => $this->language->get('text_add'),
+                'href' => $this->url->link('design/translation', 'member_token=' . $this->session->data['member_token'])
+            );
         } else {
-            $data['action'] = $this->url->link('design/translation/edit', 'user_token=' . $this->session->data['user_token'] . '&translation_id=' . $this->request->get['translation_id']);
+            $data['action'] = $this->url->link('design/translation/edit', 'member_token=' . $this->session->data['member_token'] . '&translation_id=' . $this->request->get['translation_id']);
+            $data['breadcrumbs'][] = array(
+                'text' => $this->language->get('text_edit'),
+                'href' => $this->url->link('design/translation', 'member_token=' . $this->session->data['member_token'])
+            );
         }
 
-        $data['cancel'] = $this->url->link('design/translation', 'user_token=' . $this->session->data['user_token']);
+        $data['cancel'] = $this->url->link('design/translation', 'member_token=' . $this->session->data['member_token']);
 
-        $data['user_token'] = $this->session->data['user_token'];
+        $data['member_token'] = $this->session->data['member_token'];
 
         if (isset($this->request->get['translation_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $translation_info = $this->model_design_translation->getTranslation($this->request->get['translation_id']);
-        }
-
-        $this->load->model('setting/store');
-
-        $data['stores'] = $this->model_setting_store->getStores();
-
-        if (isset($this->request->post['store_id'])) {
-            $data['store_id'] = $this->request->post['store_id'];
-        } elseif (!empty($translation_info)) {
-            $data['store_id'] = $translation_info['store_id'];
-        } else {
-            $data['store_id'] = '';
         }
 
         $this->load->model('localisation/language');
@@ -253,7 +245,8 @@ class ControllerDesignTranslation extends PT_Controller {
         $this->response->setOutput($this->load->view('design/translation_form', $data));
     }
 
-    protected function validateForm() {
+    protected function validateForm()
+    {
         if (!$this->user->hasPermission('modify', 'design/translation')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -265,7 +258,8 @@ class ControllerDesignTranslation extends PT_Controller {
         return !$this->error;
     }
 
-    protected function validateDelete() {
+    protected function validateDelete()
+    {
         if (!$this->user->hasPermission('modify', 'design/translation')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -273,7 +267,8 @@ class ControllerDesignTranslation extends PT_Controller {
         return !$this->error;
     }
 
-    public function path() {
+    public function path()
+    {
         $this->load->language('design/translation');
 
         $json = array();
@@ -310,7 +305,8 @@ class ControllerDesignTranslation extends PT_Controller {
         $this->response->setOutput(json_encode($json));
     }
 
-    public function translation() {
+    public function translation()
+    {
         $this->load->language('design/translation');
 
         $json = array();
@@ -336,7 +332,7 @@ class ControllerDesignTranslation extends PT_Controller {
         $this->load->model('localisation/language');
 
         $language_info = $this->model_localisation_language->getLanguage($language_id);
-       
+
         $directory = DIR_CATALOG . 'language/';
 
         if ($language_info && is_file($directory . $language_info['code'] . '/' . $route . '.php') && substr(str_replace('\\', '/', realpath($directory . $language_info['code'] . '/' . $route . '.php')), 0, strlen($directory)) == str_replace('\\', '/', $directory)) {
@@ -355,5 +351,4 @@ class ControllerDesignTranslation extends PT_Controller {
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));
     }
-
 }

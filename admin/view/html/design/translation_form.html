@@ -1,0 +1,244 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                <?php if($i == 0) : ?>
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php else : ?>
+                <li>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php endif; ?>
+                <?php else : ?>
+                <li class="active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                <?php endif; ?>
+                <?php endfor; ?>
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input"
+                            autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1 class="pull-left">
+                    <?php echo $heading_title; ?>
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_form; ?>
+                    </small>
+                </h1>
+                <div class="text-right">
+                    <button type="submit" form="form-user-group" class="btn btn-white btn-info btn-bold"
+                        data-toggle="tooltip" title="<?php echo $button_save; ?>"><i
+                            class="ace-icon fa fa-floppy-o"></i></button>
+                    <a href="<?php echo $cancel; ?>" class="btn btn-white btn-light btn-bold" data-toggle="tooltip"
+                        title="<?php echo $button_cancel; ?>"><i class="ace-icon fa fa-reply"></i></a>
+                </div>
+            </div><!-- /.page-header -->
+            <?php if($warning_err) : ?>
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i>
+                <?php echo $warning_err; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form id="form-user-group" class="form-horizontal" action="<?php echo $action; ?>" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="widget-box">
+                                <div class="widget-header">
+                                    <h4 class="widget-title"><?php echo $text_form; ?></h4>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <div class="form-group">
+                                            <label for="input-language"
+                                                class="col-sm-2 control-label"><?php echo $entry_language; ?></label>
+
+                                            <div class="col-sm-10">
+                                                <select name="language_id" class="form-control" id="input-language">
+                                                    <?php foreach($languages as $language) : ?>
+                                                    <?php if($language['language_id'] == $language_id) : ?>
+                                                    <option value="<?php echo $language['language_id']; ?>"
+                                                        selected="selected"><?php echo $language['name']; ?></option>
+                                                    <?php else : ?>
+                                                    <option value="<?php echo $language['language_id']; ?>">
+                                                        <?php echo $language['name']; ?>
+                                                    </option>
+                                                    <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="input-route"
+                                                class="col-sm-2 control-label"><?php echo $entry_route; ?></label>
+
+                                            <div class="col-sm-10">
+                                                <select name="route" class="form-control" id="input-route"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="input-key"
+                                                class="col-sm-2 control-label"><?php echo $entry_key; ?></label>
+
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="input-key"></select>
+                                                <input type="text" class="form-control" name="key"
+                                                    placeholder="<?php echo $entry_key; ?>"
+                                                    value="<?php echo $key; ?>" />
+                                                <?php if(isset($error_key)) : ?>
+                                                <span class="help-block"><?php echo $error_key; ?></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="input-default"
+                                                class="col-sm-2 control-label"><?php echo $entry_default; ?></label>
+
+                                            <div class="col-sm-10">
+                                                <textarea name="default" placeholder="<?php echo $entry_default; ?>"
+                                                    rows="5" class="form-control" id="input-default"
+                                                    disabled="disabled"><?php if($default) : ?><?php echo $default; ?><?php endif; ?></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="input-value"
+                                                class="col-sm-2 control-label"><?php echo $entry_value; ?></label>
+
+                                            <div class="col-sm-10">
+                                                <textarea name="value" placeholder="<?php echo $entry_value; ?>"
+                                                    rows="5" class="form-control"
+                                                    id="input-value"><?php echo $value; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->
+<?php echo $footer; ?>
+<script type="text/javascript">
+    $('select[name=\'language_id\']').on('change', function () {
+        $.ajax({
+            url: 'index.php?url=design/translation/path&member_token=<?php echo $member_token; ?>&language_id=' +
+                $('select[name=\'language_id\']').val(),
+            dataType: 'json',
+            beforeSend: function () {
+                $('select[name=\'language_id\']').prop('disabled', true);
+                $('select[name=\'route\']').prop('disabled', true);
+                $('#input-key').prop('disabled', true);
+            },
+            complete: function () {
+                $('select[name=\'language_id\']').prop('disabled', false);
+                $('select[name=\'route\']').prop('disabled', false);
+                $('#input-key').prop('disabled', false);
+            },
+            success: function (json) {
+                html = '';
+
+                if (json) {
+                    for (i = 0; i < json.length; i++) {
+                        if (json[i] == '<?php echo $route; ?>') {
+                            html += '<option value="' + json[i] + '" selected="selected">' + json[
+                                i] + '</option>';
+                        } else {
+                            html += '<option value="' + json[i] + '">' + json[i] + '</option>';
+                        }
+                    }
+                }
+
+                $('select[name=\'route\']').html(html);
+
+                $('select[name=\'route\']').trigger('change');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    });
+
+    $('select[name=\'route\']').on('change', function () {
+        $.ajax({
+            url: 'index.php?url=design/translation/translation&member_token=<?php echo $member_token; ?>&language_id=' +
+                $('select[name=\'language_id\']').val() + '&path=' + $('select[name=\'route\']').val(),
+            dataType: 'json',
+            beforeSend: function () {
+                $('select[name=\'language_id\']').prop('disabled', true);
+                $('select[name=\'route\']').prop('disabled', true);
+                $('#input-key').prop('disabled', true);
+            },
+            complete: function () {
+                $('select[name=\'language_id\']').prop('disabled', false);
+                $('select[name=\'route\']').prop('disabled', false);
+                $('#input-key').prop('disabled', false);
+            },
+            success: function (json) {
+                translation = [];
+
+                html = '<option value=""></option>';
+
+                if (json) {
+                    for (i = 0; i < json.length; i++) {
+                        if (json[i]['key'] == $('input[name=\'key\']').val()) {
+                            html += '<option value="' + json[i]['key'] +
+                                '" selected="selected">' + json[i]['key'] + '</option>';
+                        } else {
+                            html += '<option value="' + json[i]['key'] + '">' +
+                                json[i]['key'] + '</option>';
+                        }
+
+                        translation[json[i]['key']] = json[i]['value'];
+                    }
+                }
+
+                $('#input-key').html(html);
+
+                $('#input-key').trigger('change');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    });
+
+    $('#input-key').on('change', function () {
+        if (translation[$('#input-key').val()]) {
+            $('textarea[name=\'default\']').val(translation[$('#input-key').val()]);
+
+            $('input[name=\'key\']').val($('#input-key').val());
+        } else {
+            $('textarea[name=\'default\']').val('');
+        }
+    });
+
+    $('select[name=\'language_id\']').trigger('change');
+</script>
