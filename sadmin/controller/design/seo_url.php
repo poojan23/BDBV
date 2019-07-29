@@ -1,10 +1,12 @@
 <?php
 
-class ControllerDesignSeoUrl extends PT_Controller {
+class ControllerDesignSeoUrl extends PT_Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('design/seo_url');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -14,7 +16,8 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->getList();
     }
 
-    public function add() {
+    public function add()
+    {
         $this->load->language('design/seo_url');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -22,7 +25,7 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->load->model('design/seo_url');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-          
+
             $this->model_design_seo_url->addSeoUrl($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -33,7 +36,8 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->getForm();
     }
 
-    public function edit() {
+    public function edit()
+    {
         $this->load->language('design/seo_url');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -51,7 +55,8 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->getForm();
     }
 
-    public function delete() {
+    public function delete()
+    {
         $this->load->language('design/seo_url');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -71,7 +76,8 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->getList();
     }
 
-    protected function getList() {
+    protected function getList()
+    {
         $this->document->addStyle("view/dist/plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css");
         $this->document->addStyle("view/dist/plugins/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css");
         $this->document->addStyle("view/dist/plugins/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css");
@@ -108,15 +114,21 @@ class ControllerDesignSeoUrl extends PT_Controller {
 
         $data['seo_urls'] = array();
 
-        $results = $this->model_design_seo_url->getSeoUrls();
-        
+        $filter_data = array(
+            'sort'  => 'query',
+            'order' => 'ASC'
+        );
+
+        $results = $this->model_design_seo_url->getSeoUrls($filter_data);
+
         foreach ($results as $result) {
             $data['seo_urls'][] = array(
-                'seo_url_id' => $result['seo_url_id'],
-                'query' => $result['query'],
-                'keyword' => $result['keyword'],
-                'edit' => $this->url->link('design/seo_url/edit', 'user_token=' . $this->session->data['user_token'] . '&seo_url_id=' . $result['seo_url_id']),
-                'delete' => $this->url->link('design/seo_url/delete', 'user_token=' . $this->session->data['user_token'] . '&seo_url_id=' . $result['seo_url_id'])
+                'seo_url_id'    => $result['seo_url_id'],
+                'query'         => $result['query'],
+                'keyword'       => $result['keyword'],
+                'language'      => $result['language'],
+                'edit'          => $this->url->link('design/seo_url/edit', 'user_token=' . $this->session->data['user_token'] . '&seo_url_id=' . $result['seo_url_id']),
+                'delete'        => $this->url->link('design/seo_url/delete', 'user_token=' . $this->session->data['user_token'] . '&seo_url_id=' . $result['seo_url_id'])
             );
         }
 
@@ -147,7 +159,8 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->response->setOutput($this->load->view('design/seo_url_list', $data));
     }
 
-    protected function getForm() {
+    protected function getForm()
+    {
         $this->document->addStyle("view/dist/plugins/iCheck/all.css");
         $this->document->addScript("view/dist/plugins/ckeditor/ckeditor.js");
         $this->document->addScript("view/dist/plugins/ckeditor/adapters/jquery.js");
@@ -210,7 +223,7 @@ class ControllerDesignSeoUrl extends PT_Controller {
         if (isset($this->request->get['seo_url_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $seo_url_info = $this->model_design_seo_url->getSeoUrl($this->request->get['seo_url_id']);
         }
-       
+
         $data['user_token'] = $this->session->data['user_token'];
 
         if (isset($this->request->post['query'])) {
@@ -248,7 +261,7 @@ class ControllerDesignSeoUrl extends PT_Controller {
         } else {
             $data['language_id'] = '';
         }
-       
+
         $data['header'] = $this->load->controller('common/header');
         $data['nav'] = $this->load->controller('common/nav');
         $data['footer'] = $this->load->controller('common/footer');
@@ -256,7 +269,8 @@ class ControllerDesignSeoUrl extends PT_Controller {
         $this->response->setOutput($this->load->view('design/seo_url_form', $data));
     }
 
-    protected function validateForm() {
+    protected function validateForm()
+    {
         if (!$this->member->hasPermission('modify', 'design/seo_url')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -298,12 +312,12 @@ class ControllerDesignSeoUrl extends PT_Controller {
         return !$this->error;
     }
 
-    protected function validateDelete() {
+    protected function validateDelete()
+    {
         if (!$this->member->hasPermission('modify', 'design/seo_url')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
         return !$this->error;
     }
-
 }
