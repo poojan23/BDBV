@@ -14,14 +14,15 @@ $_['text_icon_list']            = 'Icons List';
 
 # Column
 $_['column_name']               = 'Name';
+$_['column_company']            = 'Company Name';
 $_['column_designation']        = 'Designation';
 $_['column_sort_order']         = 'Sort Order';
 $_['column_status']             = 'Status';
 $_['column_action']             = 'Action';
 
 # Entry
-$_['entry_name']               = 'Name';
-$_['entry_title_footer']        = 'Footer Title';
+$_['entry_name']                = 'Name';
+$_['entry_company']             = 'Company Name';
 $_['entry_description']         = 'Description';
 $_['entry_designation']         = 'Designation';
 $_['entry_meta_description']    = 'Meta Description';
