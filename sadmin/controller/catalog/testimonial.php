@@ -116,13 +116,14 @@ class ControllerCatalogTestimonial extends PT_Controller
 
         foreach ($results as $result) {
             $data['testimonials'][] = array(
-                'testimonial_id'       => $result['testimonial_id'],
-                'name'      => $result['name'],
-                'designation'   => $result['designation'],
-                'sort_order'    => $result['sort_order'],
-                'status'        => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-                'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-                'edit'          => $this->url->link('catalog/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $result['testimonial_id'])
+                'testimonial_id'    => $result['testimonial_id'],
+                'name'              => $result['name'],
+                'company'           => $result['company'],
+                'designation'       => $result['designation'],
+                'sort_order'        => $result['sort_order'],
+                'status'            => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+                'date_added'        => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+                'edit'              => $this->url->link('catalog/testimonial/edit', 'user_token=' . $this->session->data['user_token'] . '&testimonial_id=' . $result['testimonial_id'])
             );
         }
 
@@ -166,6 +167,12 @@ class ControllerCatalogTestimonial extends PT_Controller
             $data['warning_err'] = $this->error['warning'];
         } else {
             $data['warning_err'] = '';
+        }
+
+        if (isset($this->error['company'])) {
+            $data['company_err'] = $this->error['company'];
+        } else {
+            $data['company_err'] = '';
         }
 
         if (isset($this->error['designation'])) {
@@ -224,6 +231,14 @@ class ControllerCatalogTestimonial extends PT_Controller
             $data['name'] = $testimonial_info['name'];
         } else {
             $data['name'] = '';
+        }
+
+        if (isset($this->request->post['company'])) {
+            $data['company'] = $this->request->post['company'];
+        } elseif (!empty($testimonial_info)) {
+            $data['company'] = $testimonial_info['company'];
+        } else {
+            $data['company'] = '';
         }
 
         if (isset($this->request->post['designation'])) {
@@ -292,6 +307,10 @@ class ControllerCatalogTestimonial extends PT_Controller
 
         if ((utf8_strlen(trim($this->request->post['name'])) < 1) || (utf8_strlen(trim($this->request->post['name'])) > 32)) {
             $this->error['name'] = $this->language->get('error_name');
+        }
+
+        if ((utf8_strlen(trim($this->request->post['company'])) < 1) || (utf8_strlen(trim($this->request->post['company'])) > 255)) {
+            $this->error['company'] = $this->language->get('error_company');
         }
 
         if ((utf8_strlen(trim($this->request->post['description'])) < 10) || (utf8_strlen(trim($this->request->post['description'])) > 1000)) {

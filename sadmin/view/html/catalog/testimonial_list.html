@@ -81,21 +81,12 @@
                                         <tr>
                                             <th style="width: 1px;" class="text-center no-sort"><input type="checkbox"
                                                     onclick="$('input[name*=\'selected\']').trigger('click');" /></th>
-                                            <th>
-                                                <?php echo $column_name; ?>
-                                            </th>
-                                            <th>
-                                                <?php echo $column_designation; ?>
-                                            </th>
-                                            <th>
-                                                <?php echo $column_sort_order; ?>
-                                            </th>
-                                            <th>
-                                                <?php echo $column_status; ?>
-                                            </th>
-                                            <th class="no-sort">
-                                                <?php echo $column_action; ?>
-                                            </th>
+                                            <th><?php echo $column_name; ?></th>
+                                            <th><?php echo $column_company; ?></th>
+                                            <th><?php echo $column_designation; ?></th>
+                                            <th><?php echo $column_sort_order; ?></th>
+                                            <th><?php echo $column_status; ?></th>
+                                            <th class="no-sort"><?php echo $column_action; ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -112,18 +103,11 @@
                                                     value="<?php echo $testimonial['testimonial_id']; ?>" />
                                                 <?php endif; ?>
                                             </td>
-                                            <td class="text-left">
-                                                <?php echo $testimonial['name']; ?>
-                                            </td>
-                                            <td class="text-left">
-                                                <?php echo $testimonial['designation']; ?>
-                                            </td>
-                                            <td class="text-left">
-                                                <?php echo $testimonial['sort_order']; ?>
-                                            </td>
-                                            <td class="text-left">
-                                                <?php echo $testimonial['status']; ?>
-                                            </td>
+                                            <td class="text-left"><?php echo $testimonial['name']; ?></td>
+                                            <td class="text-left"><?php echo $testimonial['company']; ?></td>
+                                            <td class="text-left"><?php echo $testimonial['designation']; ?></td>
+                                            <td class="text-left"><?php echo $testimonial['sort_order']; ?></td>
+                                            <td class="text-left"><?php echo $testimonial['status']; ?></td>
                                             <td class="text-left"><a href="<?php echo $testimonial['edit']; ?>"
                                                     data-toggle="tooltip" title="<?php echo $button_edit; ?>"
                                                     class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></td>
