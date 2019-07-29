@@ -6,7 +6,7 @@ class ControllerUserLogout extends PT_Controller
     {
         $this->user->logout();
 
-        unset($this->session->data['user_token']);
+        unset($this->session->data['member_token']);
 
         $this->response->redirect($this->url->link('user/login'));
     }

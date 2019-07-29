@@ -14,7 +14,8 @@
             <div class="nav-search" id="nav-search">
                 <form class="form-search">
                     <span class="input-icon">
-                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input"
+                            autocomplete="off" />
                         <i class="ace-icon fa fa-search nav-search-icon"></i>
                     </span>
                 </form>
@@ -25,7 +26,8 @@
 
             <div class="page-header">
                 <h1>
-                    <?php echo $heading_title; ?><small><i class="ace-icon fa fa-angle-double-right"></i> <?php echo $text_title; ?></small>
+                    <?php echo $heading_title; ?><small><i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_title; ?></small>
                 </h1>
             </div><!-- /.page-header -->
 
@@ -46,53 +48,45 @@
                         <div class="col-sm-7 infobox-container">
                             <div class="infobox infobox-green">
                                 <div class="infobox-icon">
-                                    <i class="ace-icon fa fa-comments"></i>
+                                    <i class="ace-icon <?php echo $website_icon; ?>"></i>
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">32</span>
-                                    <div class="infobox-content">comments + 2 reviews</div>
+                                    <span class="infobox-data-number"><?php echo $website; ?></span>
+                                    <div class="infobox-content"><?php echo $text_website; ?></div>
                                 </div>
-
-                                <div class="stat stat-success">8%</div>
                             </div>
 
                             <div class="infobox infobox-blue">
                                 <div class="infobox-icon">
-                                    <i class="ace-icon fa fa-twitter"></i>
+                                    <i class="ace-icon <?php echo $ecommerce_icon; ?>"></i>
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">11</span>
-                                    <div class="infobox-content">new followers</div>
-                                </div>
-
-                                <div class="badge badge-success">
-                                    +32%
-                                    <i class="ace-icon fa fa-arrow-up"></i>
+                                    <span class="infobox-data-number"><?php echo $ecommerce; ?></span>
+                                    <div class="infobox-content"><?php echo $text_ecommerce; ?></div>
                                 </div>
                             </div>
 
                             <div class="infobox infobox-pink">
                                 <div class="infobox-icon">
-                                    <i class="ace-icon fa fa-shopping-cart"></i>
+                                    <i class="ace-icon <?php echo $software_icon; ?>"></i>
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">8</span>
-                                    <div class="infobox-content">new orders</div>
+                                    <span class="infobox-data-number"><?php echo $software; ?></span>
+                                    <div class="infobox-content"><?php echo $text_software; ?></div>
                                 </div>
-                                <div class="stat stat-important">4%</div>
                             </div>
 
                             <div class="infobox infobox-red">
                                 <div class="infobox-icon">
-                                    <i class="ace-icon fa fa-flask"></i>
+                                    <i class="ace-icon <?php echo $client_icon; ?>"></i>
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">7</span>
-                                    <div class="infobox-content">experiments</div>
+                                    <span class="infobox-data-number"><?php echo $client; ?></span>
+                                    <div class="infobox-content"><?php echo $text_client; ?></div>
                                 </div>
                             </div>
 
@@ -150,8 +144,8 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                    <div class="infobox-content">Earnings</div>
-                                    <div class="infobox-content">$32,000</div>
+                                    <div class="infobox-content"><?php echo $text_service; ?></div>
+                                    <div class="infobox-content"><?php echo count($services); ?></div>
                                 </div>
                             </div>
 
@@ -174,17 +168,34 @@
                                 <div class="widget-header widget-header-flat widget-header-small">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
-                                        <?php echo $text_mail_stats; ?>
+                                        <?php echo $text_visitor; ?>
                                     </h5>
 
-                                    <!--<div class="widget-toolbar no-border">
-                                        <div class="inline dropdown-hover">
+                                    <div class="widget-toolbar no-border">
+                                        <?php if($percentage > 0) : ?>
+                                        <span class="text-success">
+                                            <i class="fa fa-arrow-up"></i>
+                                            <?php echo number_format(abs($percentage), 2); ?>%
+                                        </span>
+                                        <?php elseif($percentage < 0) : ?>
+                                        <span class="text-danger">
+                                            <i class="fa fa-arrow-down"></i>
+                                            <?php echo number_format(abs($percentage), 2); ?>%
+                                        </span>
+                                        <?php else : ?>
+                                        <span class="text-info">
+                                            <i class="fa fa-dot-circle-o"></i>
+                                            <?php echo number_format(abs($percentage), 2); ?>%
+                                        </span>
+                                        <?php endif; ?>
+                                        <!-- <div class="inline dropdown-hover">
                                             <button class="btn btn-minier btn-primary">
                                                 This Week
                                                 <i class="ace-icon fa fa-angle-down icon-on-right bigger-110"></i>
                                             </button>
 
-                                            <ul class="dropdown-menu dropdown-menu-right dropdown-125 dropdown-lighter dropdown-close dropdown-caret">
+                                            <ul
+                                                class="dropdown-menu dropdown-menu-right dropdown-125 dropdown-lighter dropdown-close dropdown-caret">
                                                 <li class="active">
                                                     <a href="#" class="blue">
                                                         <i class="ace-icon fa fa-caret-right bigger-110">&nbsp;</i>
@@ -194,27 +205,30 @@
 
                                                 <li>
                                                     <a href="#">
-                                                        <i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
+                                                        <i
+                                                            class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
                                                         Last Week
                                                     </a>
                                                 </li>
 
                                                 <li>
                                                     <a href="#">
-                                                        <i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
+                                                        <i
+                                                            class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
                                                         This Month
                                                     </a>
                                                 </li>
 
                                                 <li>
                                                     <a href="#">
-                                                        <i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
+                                                        <i
+                                                            class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
                                                         Last Month
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>-->
+                                        </div> -->
+                                    </div>
                                 </div>
 
                                 <div class="widget-body">
@@ -225,26 +239,31 @@
                                         <div class="clearfix">
                                             <div class="grid3">
                                                 <span class="grey">
-                                                    <i class="ace-icon fa fa-paper-plane-o fa-2x blue"></i>
-                                                    &nbsp; <?php echo $text_mail_sent; ?>
+                                                    <i class="ace-icon fa fa-users fa-2x blue"></i>
+                                                    &nbsp; <?php echo $text_total_visitor; ?>
                                                 </span>
-                                                <h4 class="bigger pull-right"><?php echo $total_mails; ?></h4>
+                                                <h4 class="bigger pull-right">
+                                                    <?php echo ($total_visitors ? $total_visitors : 0); ?></h4>
                                             </div>
 
                                             <div class="grid3">
                                                 <span class="grey">
-                                                    <i class="ace-icon fa fa-envelope fa-2x purple"></i>
-                                                    &nbsp; <?php echo $text_mail_unread; ?>
+                                                    <i class="ace-icon fa fa-user-plus fa-2x purple"></i>
+                                                    &nbsp; <?php echo $text_visitor_current_week; ?>
                                                 </span>
-                                                <h4 class="bigger pull-right"><?php echo $total_unread_mails; ?></h4>
+                                                <h4 class="bigger pull-right">
+                                                    <?php echo ($current_total_visitors ? $current_total_visitors : 0); ?>
+                                                </h4>
                                             </div>
 
                                             <div class="grid3">
                                                 <span class="grey">
-                                                    <i class="ace-icon fa fa-envelope-o fa-2x red"></i>
-                                                    &nbsp; <?php echo $text_mail_read; ?>
+                                                    <i class="ace-icon fa fa-user fa-2x red"></i>
+                                                    &nbsp; <?php echo $text_visitor_last_week; ?>
                                                 </span>
-                                                <h4 class="bigger pull-right"><?php echo $total_read_mails; ?></h4>
+                                                <h4 class="bigger pull-right">
+                                                    <?php echo ($last_total_visitors ? $last_total_visitors : 0); ?>
+                                                </h4>
                                             </div>
                                         </div>
                                     </div><!-- /.widget-main -->
@@ -256,122 +275,145 @@
                     <div class="hr hr32 hr-dotted"></div>
 
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="widget-box transparent" id="recent-box">
-                                <div class="widget-header">
-                                    <h4 class="widget-title lighter smaller">
-                                        <i class="ace-icon fa fa-rss orange"></i><?php echo $text_recent; ?>
+                        <div class="col-sm-5">
+                            <div class="widget-box transparent">
+                                <div class="widget-header widget-header-flat">
+                                    <h4 class="widget-title lighter">
+                                        <i class="ace-icon fa fa-envelope orange"></i>
+                                        <?php echo $text_enquiry; ?>
                                     </h4>
 
-                                    <div class="widget-toolbar no-border">
-                                        <ul class="nav nav-tabs" id="recent-tab">
-                                            <li class="active">
-                                                <a data-toggle="tab" href="#customers-tab"><?php echo $tab_customer ?></a>
-                                            </li>
-
-                                            <li>
-                                                <a data-toggle="tab" href="#history-tab"><?php echo $tab_history ?></a>
-                                            </li>
-
-                                        </ul>
+                                    <div class="widget-toolbar">
+                                        <a href="#" data-action="collapse">
+                                            <i class="ace-icon fa fa-chevron-up"></i>
+                                        </a>
                                     </div>
                                 </div>
 
                                 <div class="widget-body">
-                                    <div class="widget-main padding-4">
-                                        <div class="tab-content padding-8">
-                                            <div id="customers-tab" class="tab-pane active">
-                                                <div class="table table-responsive">
-                                                    <table class="table table-bordered table-striped" style="overflow: auto;">
-                                                        <thead class="thin-border-bottom">
-                                                            <tr>
-                                                                <th>
-                                                                    <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_name; ?>
-                                                                </th>
+                                    <div class="widget-main no-padding">
+                                        <table class="table table-bordered table-striped">
+                                            <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>
+                                                        <i
+                                                            class="ace-icon fa fa-caret-right blue"></i><?php echo $column_name; ?>
+                                                    </th>
 
-                                                                <th>
-                                                                    <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_email; ?>
-                                                                </th>
+                                                    <th>
+                                                        <i
+                                                            class="ace-icon fa fa-caret-right blue"></i><?php echo $column_email; ?>
+                                                    </th>
 
-                                                                <th class="hidden-480">
-                                                                    <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_telephone; ?>
-                                                                </th>
+                                                    <th>
+                                                        <i
+                                                            class="ace-icon fa fa-caret-right blue"></i><?php echo $column_date; ?>
+                                                    </th>
+                                                    <th class="hidden-480">
+                                                        <i
+                                                            class="ace-icon fa fa-caret-right blue"></i><?php echo $column_status; ?>
+                                                    </th>
+                                                </tr>
+                                            </thead>
 
-                                                                <th class="hidden-480">
-                                                                    <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_mobile; ?>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
+                                            <tbody>
+                                                <?php if($enquiries) : ?>
+                                                <?php foreach($enquiries as $enquiry) : ?>
+                                                <tr>
+                                                    <td><?php echo $enquiry['name']; ?></td>
 
-                                                        <tbody>
-                                                            <?php foreach ($customers as $customer) : ?>
-                                                            <tr>
-                                                                <td> <?php echo $customer['firstname']. " ". $customer['lastname'];  ?> </td>
+                                                    <td>
+                                                        <?php echo $enquiry['email']; ?>
+                                                    </td>
 
-                                                                <td> <?php echo $customer['email']; ?> </td>
+                                                    <td class="hidden-480">
+                                                        <?php echo $enquiry['date_added']; ?>
+                                                    </td>
 
-                                                                <td> <?php echo $customer['telephone']; ?> </td>
+                                                    <td class="hidden-480">
+                                                        <?php if($enquiry['status'] == 'unread' || $enquiry['status'] == 'Not Contacted' || $enquiry['status'] == 'Hot') : ?>
+                                                        <span
+                                                            class="label label-danger arrowed"><?php echo $enquiry['status']; ?></span>
+                                                        <?php elseif($enquiry['status'] == 'Qualified' || $enquiry['status'] == 'Pre Qualified') : ?>
+                                                        <span
+                                                            class="label label-success arrowed-in arrowed-in-right"><?php echo $enquiry['status']; ?></span>
+                                                        <?php elseif($enquiry['status'] == 'Warm' || $enquiry['status'] == 'Contact in Future' || $enquiry['status'] == 'Contacted') : ?>
+                                                        <span
+                                                            class="label label-warning arrowed arrowed-right"><?php echo $enquiry['status']; ?></span>
+                                                        <?php elseif($enquiry['status'] == 'Cold' || $enquiry['status'] == 'Attempted to Contact') : ?>
+                                                        <span
+                                                            class="label label-info arrowed-right arrowed-in"><?php echo $enquiry['status']; ?></span>
 
-                                                                <td> <?php echo $customer['fax']; ?> </td>
+                                                        <?php else : ?>
+                                                        <span class="label arrowed">
+                                                            <s><?php echo $enquiry['status']; ?></s>
+                                                        </span>
 
-                                                            </tr>
-                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
 
-                                                        </tbody>
-                                                    </table>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                                <?php else : ?>
+                                                <tr>
+                                                    <td class="text-center" colspan="4">No Enquiries</td>
+                                                </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.widget-main -->
+                                </div><!-- /.widget-body -->
+                            </div><!-- /.widget-box -->
+                        </div><!-- /.col -->
+
+                        <div class="col-sm-7">
+                            <div class="widget-box">
+                                <div class="widget-header">
+                                    <h4 class="widget-title lighter smaller">
+                                        <i class="ace-icon fa fa-comment blue"></i>
+                                        <?php echo $text_testimonial; ?>
+                                    </h4>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main no-padding">
+                                        <div class="dialogs">
+                                            <?php if($testimonials) : ?>
+                                            <?php foreach($testimonials as $testimonial) : ?>
+                                            <div class="itemdiv dialogdiv">
+                                                <div class="user">
+                                                    <img alt="<?php echo $testimonial['name']; ?>'s Avatar"
+                                                        src="<?php echo $testimonial['thumb']; ?>" />
+                                                </div>
+
+                                                <div class="body">
+                                                    <div class="time">
+                                                        <i class="ace-icon fa fa-clock-o"></i>
+                                                        <span
+                                                            class="green"><?php echo $testimonial['date_added']; ?></span>
+                                                    </div>
+
+                                                    <div class="name">
+                                                        <a href="#"><?php echo $testimonial['name']; ?></a>
+                                                    </div>
+                                                    <div class="text"><?php echo $testimonial['description']; ?></div>
+
+                                                    <div class="tools">
+                                                        <a href="#" class="btn btn-minier btn-info">
+                                                            <i class="icon-only ace-icon fa fa-share"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div id="history-tab" class="tab-pane">
-                                                <table class="table table-bordered table-striped">
-                                                    <thead class="thin-border-bottom">
-                                                        <tr>
-                                                            <th>
-                                                                <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_name; ?>
-                                                            </th>
-
-                                                            <th>
-                                                                <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_email; ?>
-                                                            </th>
-
-                                                            <th class="hidden-480">
-                                                                <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_telephone; ?>
-                                                            </th>
-
-                                                            <th class="hidden-480">
-                                                                <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_mobile; ?>
-                                                            </th>
-
-                                                            <th class="hidden-480">
-                                                                <i class="ace-icon fa fa-caret-right blue"></i><?php echo $column_communication; ?>
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <?php foreach ($customers_history as $history) : ?>
-                                                        <tr>
-
-                                                            <td> <?php echo $history['firstname']. " ". $history['lastname'];  ?> </td>
-
-                                                            <td> <?php echo $history['email']; ?> </td>
-
-                                                            <td> <?php echo $history['telephone']; ?> </td>
-
-                                                            <td> <?php echo $history['fax']; ?> </td>
-
-                                                            <td> <?php echo substr($history['comment'], 0, 60); ?> </td>
-                                                        </tr>
-                                                        <?php endforeach; ?>
-                                                    </tbody>
-                                                </table>
-                                            </div><!-- /.#member-tab -->
+                                            <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </div>
                                     </div><!-- /.widget-main -->
                                 </div><!-- /.widget-body -->
                             </div><!-- /.widget-box -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
+
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -393,8 +435,10 @@
     jQuery(function ($) {
         $('.easy-pie-chart.percentage').each(function () {
             var $box = $(this).closest('.infobox');
-            var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
-            var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+            var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css(
+                'color') : 'rgba(255,255,255,0.95)');
+            var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' :
+                '#E2E2E2';
             var size = parseInt($(this).data('size')) || 50;
             $(this).easyPieChart({
                 barColor: barColor,
@@ -410,13 +454,12 @@
         $('.sparkline').each(function () {
             var $box = $(this).closest('.infobox');
             var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
-            $(this).sparkline('html',
-                    {
-                        tagValuesAttribute: 'data-values',
-                        type: 'bar',
-                        barColor: barColor,
-                        chartRangeMin: $(this).data('min') || 0
-                    });
+            $(this).sparkline('html', {
+                tagValuesAttribute: 'data-values',
+                type: 'bar',
+                barColor: barColor,
+                chartRangeMin: $(this).data('min') || 0
+            });
         });
 
 
@@ -424,13 +467,25 @@
         //but sometimes it brings up errors with normal resize event handlers
         $.resize.throttleWindow = false;
 
-        var placeholder = $('#piechart-placeholder').css({'width': '90%', 'min-height': '150px'});
+        var placeholder = $('#piechart-placeholder').css({
+            'width': '90%',
+            'min-height': '150px'
+        });
         var data = [
 
-            {label: "<?php echo $text_mail_read; ?>", data: '<?php echo $total_read_mails; ?>', color: "#DD5A43"},
-            {label: "<?php echo $text_mail_unread; ?>", data: '<?php echo $total_unread_mails; ?>', color: "#AF4E96"}
+            {
+                label: "<?php echo $text_visitor_current_week; ?>",
+                data: '<?php echo ($current_total_visitors ? $current_total_visitors : 50); ?>',
+                color: "#DD5A43"
+            },
+            {
+                label: "<?php echo $text_visitor_last_week; ?>",
+                data: '<?php echo ($last_total_visitors ? $last_total_visitors : 50); ?>',
+                color: "#AF4E96"
+            }
 
         ]
+
         function drawPieChart(placeholder, data, position) {
             $.plot(placeholder, data, {
                 series: {
@@ -452,8 +507,7 @@
                     position: position || "ne",
                     labelBoxBorderColor: null,
                     margin: [-30, 15]
-                }
-                ,
+                },
                 grid: {
                     hoverable: true,
                     clickable: true
@@ -471,7 +525,8 @@
 
 
         //pie chart tooltip example
-        var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+        var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo(
+            'body');
         var previousPoint = null;
 
         placeholder.on('plothover', function (event, pos, item) {
@@ -481,7 +536,10 @@
                     var tip = item.series['label'] + " : " + item.series['percent'].toFixed(2) + '%';
                     $tooltip.show().children(0).text(tip);
                 }
-                $tooltip.css({top: pos.pageY + 10, left: pos.pageX + 10});
+                $tooltip.css({
+                    top: pos.pageY + 10,
+                    left: pos.pageX + 10
+                });
             } else {
                 $tooltip.hide();
                 previousPoint = null;
@@ -509,28 +567,6 @@
             });
         }
 
-        $('#tasks').sortable({
-            opacity: 0.8,
-            revert: true,
-            forceHelperSize: true,
-            placeholder: 'draggable-placeholder',
-            forcePlaceholderSize: true,
-            tolerance: 'pointer',
-            stop: function (event, ui) {
-                //just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
-                $(ui.item).css('z-index', 'auto');
-            }
-        }
-        );
-        $('#tasks').disableSelection();
-        $('#tasks input:checkbox').removeAttr('checked').on('click', function () {
-            if (this.checked)
-                $(this).closest('li').addClass('selected');
-            else
-                $(this).closest('li').removeClass('selected');
-        });
-
-
         //show the dropdowns on top or bottom depending on window height and menu position
         $('#task-tab .dropdown-hover').on('mouseenter', function (e) {
             var offset = $(this).offset();
@@ -543,5 +579,4 @@
         });
 
     })
-
 </script>

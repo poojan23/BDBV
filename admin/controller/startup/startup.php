@@ -43,6 +43,9 @@ class ControllerStartupStartup extends PT_Controller
         # Customer
         $this->registry->set('customer', new Account\Customer($this->registry));
 
+        # Member
+        $this->registry->set('member', new Account\Member($this->registry));
+
         # Currency
         $this->registry->set('currency', new Cart\Currency($this->registry));
 

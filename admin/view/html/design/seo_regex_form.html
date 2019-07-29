@@ -1,0 +1,124 @@
+<?php echo $header; ?>
+<?php echo $nav; ?>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <?php for($i = 0; $i < count($breadcrumbs); $i++) : ?>
+                <?php if($i != (count($breadcrumbs) - 1)) : ?>
+                <?php if($i == 0) : ?>
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php else : ?>
+                <li>
+                    <a href="<?php echo $breadcrumbs[$i]['href']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+                </li>
+                <?php endif; ?>
+                <?php else : ?>
+                <li class="active"><?php echo $breadcrumbs[$i]['text']; ?></li>
+                <?php endif; ?>
+                <?php endfor; ?>
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input"
+                            autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1 class="pull-left">
+                    <?php echo $heading_title; ?>
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        <?php echo $text_form; ?>
+                    </small>
+                </h1>
+                <div class="text-right">
+                    <button type="submit" form="form-user-group" class="btn btn-white btn-info btn-bold"
+                        data-toggle="tooltip" title="<?php echo $button_save; ?>"><i
+                            class="ace-icon fa fa-floppy-o"></i></button>
+                    <a href="<?php echo $cancel; ?>" class="btn btn-white btn-light btn-bold" data-toggle="tooltip"
+                        title="<?php echo $button_cancel; ?>"><i class="ace-icon fa fa-reply"></i></a>
+                </div>
+            </div><!-- /.page-header -->
+            <?php if($warning_err) : ?>
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i>
+                <?php echo $warning_err; ?>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form id="form-user-group" class="form-horizontal" action="<?php echo $action; ?>" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="widget-box">
+                                <div class="widget-header">
+                                    <h4 class="widget-title"><?php echo $text_form; ?></h4>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <fieldset>
+
+                                            <div class="form-group required">
+                                                <label for="input-name"
+                                                    class="col-sm-2 control-label"><?php echo $entry_name; ?></label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="name"
+                                                        placeholder="<?php echo $entry_name; ?>"
+                                                        value="<?php echo $name; ?>" id="input-name" />
+                                                    <?php if(isset($error_name)) : ?>
+                                                    <span class="help-block"><?php echo $error_name; ?></span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group required">
+                                                <label for="input-regex"
+                                                    class="col-sm-2 control-label"><?php echo $entry_regex; ?></label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="regex"
+                                                        placeholder="<?php echo $entry_regex; ?>"
+                                                        value="<?php echo $regex; ?>" id="input-regex" />
+                                                    <?php if(isset($error_regex)) : ?>
+                                                    <span class="help-block"><?php echo $error_regex; ?></span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="input-sort-order"
+                                                    class="col-sm-2 control-label"><?php echo $entry_sort_order; ?></label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="sort_order"
+                                                        placeholder="<?php echo $entry_sort_order; ?>"
+                                                        value="<?php echo $sort_order; ?>" id="input-sort-order" />
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->
+<?php echo $footer; ?>
