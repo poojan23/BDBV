@@ -24,6 +24,8 @@ class ControllerCatalogEnquiry extends PT_Controller
 
         $this->load->model('catalog/enquiry');
 
+        $this->model_catalog_enquiry->readStatus($this->request->get['enquiry_id']);
+
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_catalog_enquiry->updateStatus($this->request->get['enquiry_id'], $this->request->post);
 

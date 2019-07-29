@@ -59,6 +59,11 @@ class ModelCatalogEnquiry extends PT_Model
         return $query->row['total'];
     }
 
+    public function readStatus($enquiry_id)
+    {
+        $this->db->query("UPDATE " . DB_PREFIX . "enquiry SET status = 'read', date_modified = NOW() WHERE enquiry_id = '" . (int) $enquiry_id . "'");
+    }
+
     public function updateStatus($enquiry_id, $data)
     {
         $this->db->query("UPDATE " . DB_PREFIX . "enquiry SET status = '" . $this->db->escape((string) $data['status']) . "', date_modified = NOW() WHERE enquiry_id = '" . (int) $enquiry_id . "'");
