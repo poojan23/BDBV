@@ -327,14 +327,14 @@
                                                     </td>
 
                                                     <td class="hidden-480">
-                                                        <?php echo $enquiry['date']; ?>
+                                                        <?php echo $enquiry['date_added']; ?>
                                                     </td>
 
                                                     <td class="hidden-480">
                                                         <?php if($enquiry['status'] == 'unread' || $enquiry['status'] == 'Not Contacted' || $enquiry['status'] == 'Hot') : ?>
                                                         <span
                                                             class="label label-danger arrowed"><?php echo $enquiry['status']; ?></span>
-                                                        <?php elseif($enquiry['status'] == 'Qualified' || $enquiry['status'] = 'Pre Qualified') : ?>
+                                                        <?php elseif($enquiry['status'] == 'Qualified' || $enquiry['status'] == 'Pre Qualified') : ?>
                                                         <span
                                                             class="label label-success arrowed-in arrowed-in-right"><?php echo $enquiry['status']; ?></span>
                                                         <?php elseif($enquiry['status'] == 'Warm' || $enquiry['status'] == 'Contact in Future' || $enquiry['status'] == 'Contacted') : ?>
