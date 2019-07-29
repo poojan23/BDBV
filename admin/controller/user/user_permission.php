@@ -42,7 +42,7 @@ class ControllerUserUserPermission extends PT_Controller
 
         $this->load->model('user/user_group');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->model_user_user_group->editUserGroup($this->request->get['member_group_id'], $this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');
