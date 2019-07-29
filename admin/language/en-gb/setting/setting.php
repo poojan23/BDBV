@@ -1,8 +1,8 @@
 <?php
-// Heading
+# Heading
 $_['heading_title']                  = 'Settings';
 
-// Text
+# Text
 $_['text_stores']                    = 'Stores';
 $_['text_success']                   = 'Success: You have modified settings!';
 $_['text_edit']                      = 'Edit Setting';
@@ -26,7 +26,7 @@ $_['text_upload']                    = 'Uploads';
 $_['text_error']                     = 'Error Handling';
 $_['text_no_icons']                  = 'No Icons Available';
 
-// Entry
+# Entry
 $_['entry_url']                      = 'Store URL';
 $_['entry_ssl']                      = 'SSL URL';
 $_['entry_meta_title']               = 'Meta Title';
@@ -129,7 +129,7 @@ $_['entry_software']                 = 'Softwares';
 $_['entry_clients']                  = 'Clients';
 $_['entry_visitors']                 = 'Visitors';
 
-// Tab
+# Tab
 $_['tab_product']                    = 'Products';
 $_['tab_review']                     = 'Reviews';
 $_['tab_voucher']                    = 'Vouchers';
@@ -142,7 +142,7 @@ $_['tab_affiliate']                  = 'Affiliates';
 $_['tab_return']                     = 'Returns';
 $_['tab_captcha']                    = 'Captcha';
 
-// Help
+# Help
 $_['help_geocode']                   = 'Please enter your store location geocode manually.';
 $_['help_open']                      = 'Fill in your store\'s opening times.';
 $_['help_comment']                   = 'This field is for any special notes you would like to tell the customer i.e. Store does not accept cheques.';
@@ -191,8 +191,8 @@ $_['help_captcha']                   = 'Captcha to use for registration, login, 
 $_['help_icon']                      = 'The icon should be a PNG that is 16px x 16px.';
 $_['help_mail_engine']               = 'Only choose \'Mail\' unless your host has disabled the php mail function.';
 $_['help_mail_parameter']            = 'When using \'Mail\', additional mail parameters can be added here (e.g. -f email@storeaddress.com).';
-$_['help_mail_smtp_hostname']        = 'Add \'tls://\' or \'ssl://\' prefix if security connection is required. (e.g. tls://smtp.gmail.com, ssl://smtp.gmail.com).';
-$_['help_mail_smtp_password']        = 'For Gmail you might need to setup an application specific password here: <a href="https://security.google.com/settings/security/apppasswords">https://security.google.com/settings/security/apppasswords</a>.';
+$_['help_mail_smtp_hostname']        = 'Add \'tls:#\' or \'ssl:#\' prefix if security connection is required. (e.g. tls:#smtp.gmail.com, ssl:#smtp.gmail.com).';
+$_['help_mail_smtp_password']        = 'For Gmail you might need to setup an application specific password here: <a href="https:#security.google.com/settings/security/apppasswords">https:#security.google.com/settings/security/apppasswords</a>.';
 $_['help_mail_alert']                = 'Select which features you would like to receive an alert email on when a customer uses them.';
 $_['help_mail_alert_email']          = 'Any additional emails you want to receive the alert email, in addition to the main store email. (comma separated).';
 $_['help_shared']                    = 'Try to share the session cookie between stores so the cart can be passed between different domains.';
@@ -206,7 +206,7 @@ $_['help_password']                  = 'Allow forgotten password to be used for 
 $_['help_encryption']                = 'Please provide a secret key that will be used to encrypt private information when processing orders.';
 $_['help_compression']               = 'GZIP for more efficient transfer to requesting clients. Compression level must be between 0 - 9.';
 
-// Error
+# Error
 $_['error_warning']                  = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']               = 'Warning: You do not have permission to modify settings!';
 $_['error_meta_title']               = 'Title must be between 3 and 32 characters!';

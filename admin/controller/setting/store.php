@@ -1,10 +1,12 @@
 <?php
 
-class ControllerSettingStore extends PT_Controller {
+class ControllerSettingStore extends PT_Controller
+{
 
     private $error = array();
 
-    public function index() {
+    public function index()
+    {
         $this->load->language('setting/store');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -16,7 +18,8 @@ class ControllerSettingStore extends PT_Controller {
         $this->getList();
     }
 
-    public function add() {
+    public function add()
+    {
         $this->load->language('setting/store');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -32,13 +35,14 @@ class ControllerSettingStore extends PT_Controller {
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getForm();
     }
 
-    public function edit() {
+    public function edit()
+    {
         $this->load->language('setting/store');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -54,13 +58,14 @@ class ControllerSettingStore extends PT_Controller {
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('setting/store', 'user_token=' . $this->session->data['user_token'] . '&store_id=' . $this->request->get['store_id']));
+            $this->response->redirect($this->url->link('setting/store', 'member_token=' . $this->session->data['member_token'] . '&store_id=' . $this->request->get['store_id']));
         }
 
         $this->getForm();
     }
 
-    public function delete() {
+    public function delete()
+    {
         $this->load->language('setting/store');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -78,32 +83,23 @@ class ControllerSettingStore extends PT_Controller {
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']));
         }
 
         $this->getList();
     }
 
-    protected function getList() {
-        $this->document->addStyle("view/dist/plugins/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css");
-        $this->document->addStyle("view/dist/plugins/DataTables/Responsive-2.2.2/css/responsive.bootstrap4.min.css");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/dataTables.buttons.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/JSZip-2.5.0/jszip.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.html5.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.print.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Buttons-1.5.6/js/buttons.colVis.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/dataTables.fixedHeader.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/FixedHeader-3.1.4/js/fixedHeader.bootstrap4.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/dataTables.responsive.min.js");
-        $this->document->addScript("view/dist/plugins/DataTables/Responsive-2.2.2/js/responsive.bootstrap4.min.js");
-        
+    protected function getList()
+    {
+        $this->document->addScript("view/dist/js/jquery.dataTables.min.js");
+        $this->document->addScript("view/dist/js/jquery.dataTables.bootstrap.min.js");
+        $this->document->addScript("view/dist/js/dataTables.buttons.min.js");
+        $this->document->addScript("view/dist/js/buttons.flash.min.js");
+        $this->document->addScript("view/dist/js/buttons.html5.min.js");
+        $this->document->addScript("view/dist/js/buttons.print.min.js");
+        $this->document->addScript("view/dist/js/buttons.colVis.min.js");
+        $this->document->addScript("view/dist/js/dataTables.select.min.js");
+
         if (isset($this->request->get['page'])) {
             $page = $this->request->get['page'];
         } else {
@@ -114,16 +110,16 @@ class ControllerSettingStore extends PT_Controller {
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
-            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token'])
         );
 
-        $data['add'] = $this->url->link('setting/store/add', 'user_token=' . $this->session->data['user_token']);
-        $data['delete'] = $this->url->link('setting/store/delete', 'user_token=' . $this->session->data['user_token']);
+        $data['add'] = $this->url->link('setting/store/add', 'member_token=' . $this->session->data['member_token']);
+        $data['delete'] = $this->url->link('setting/store/delete', 'member_token=' . $this->session->data['member_token']);
 
         $data['stores'] = array();
 
@@ -132,7 +128,7 @@ class ControllerSettingStore extends PT_Controller {
                 'store_id' => 0,
                 'name' => $this->config->get('config_name') . $this->language->get('text_default'),
                 'url' => HTTP_CATALOG,
-                'edit' => $this->url->link('setting/setting', 'user_token=' . $this->session->data['user_token'])
+                'edit' => $this->url->link('setting/setting', 'member_token=' . $this->session->data['member_token'])
             );
         }
 
@@ -143,7 +139,7 @@ class ControllerSettingStore extends PT_Controller {
                 'store_id' => $result['store_id'],
                 'name' => $result['name'],
                 'url' => $result['url'],
-                'edit' => $this->url->link('setting/store/edit', 'user_token=' . $this->session->data['user_token'] . '&store_id=' . $result['store_id'])
+                'edit' => $this->url->link('setting/store/edit', 'member_token=' . $this->session->data['member_token'] . '&store_id=' . $result['store_id'])
             );
         }
 
@@ -175,7 +171,8 @@ class ControllerSettingStore extends PT_Controller {
         $this->response->setOutput($this->load->view('setting/store_list', $data));
     }
 
-    protected function getForm() {
+    protected function getForm()
+    {
         $data['text_form'] = !isset($this->request->get['store_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
         if (isset($this->error['warning'])) {
@@ -236,23 +233,23 @@ class ControllerSettingStore extends PT_Controller {
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
-            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token'])
         );
 
         if (!isset($this->request->get['store_id'])) {
             $data['breadcrumbs'][] = array(
                 'text' => $this->language->get('text_settings'),
-                'href' => $this->url->link('setting/store/add', 'user_token=' . $this->session->data['user_token'])
+                'href' => $this->url->link('setting/store/add', 'member_token=' . $this->session->data['member_token'])
             );
         } else {
             $data['breadcrumbs'][] = array(
                 'text' => $this->language->get('text_settings'),
-                'href' => $this->url->link('setting/store/edit', 'user_token=' . $this->session->data['user_token'] . '&store_id=' . $this->request->get['store_id'])
+                'href' => $this->url->link('setting/store/edit', 'member_token=' . $this->session->data['member_token'] . '&store_id=' . $this->request->get['store_id'])
             );
         }
 
@@ -265,12 +262,12 @@ class ControllerSettingStore extends PT_Controller {
         }
 
         if (!isset($this->request->get['store_id'])) {
-            $data['action'] = $this->url->link('setting/store/add', 'user_token=' . $this->session->data['user_token']);
+            $data['action'] = $this->url->link('setting/store/add', 'member_token=' . $this->session->data['member_token']);
         } else {
-            $data['action'] = $this->url->link('setting/store/edit', 'user_token=' . $this->session->data['user_token'] . '&store_id=' . $this->request->get['store_id']);
+            $data['action'] = $this->url->link('setting/store/edit', 'member_token=' . $this->session->data['member_token'] . '&store_id=' . $this->request->get['store_id']);
         }
 
-        $data['cancel'] = $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']);
+        $data['cancel'] = $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']);
 
         if (isset($this->request->get['store_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $this->load->model('setting/setting');
@@ -278,7 +275,7 @@ class ControllerSettingStore extends PT_Controller {
             $store_info = $this->model_setting_setting->getSetting('config', $this->request->get['store_id']);
         }
 
-        $data['user_token'] = $this->session->data['user_token'];
+        $data['member_token'] = $this->session->data['member_token'];
 
         if (isset($this->request->post['config_url'])) {
             $data['config_url'] = $this->request->post['config_url'];
@@ -320,25 +317,25 @@ class ControllerSettingStore extends PT_Controller {
             $data['config_theme'] = '';
         }
 
-//        $data['themes'] = array();
-//
-//        // Create a new language container so we don't pollute the current one
-//        $language = new Language($this->config->get('config_language'));
-//
-//        $this->load->model('setting/extension');
-//
-//        $extensions = $this->model_setting_extension->getInstalled('theme');
-//
-//        foreach ($extensions as $code) {
-//            if ($this->config->get('theme_' . $code . '_status')) {
-//                $this->load->language('extension/theme/' . $code, 'extension');
-//
-//                $data['themes'][] = array(
-//                    'text' => $this->language->get('extension')->get('heading_title'),
-//                    'value' => $code
-//                );
-//            }
-//        }
+        //        $data['themes'] = array();
+        //
+        //        // Create a new language container so we don't pollute the current one
+        //        $language = new Language($this->config->get('config_language'));
+        //
+        //        $this->load->model('setting/extension');
+        //
+        //        $extensions = $this->model_setting_extension->getInstalled('theme');
+        //
+        //        foreach ($extensions as $code) {
+        //            if ($this->config->get('theme_' . $code . '_status')) {
+        //                $this->load->language('extension/theme/' . $code, 'extension');
+        //
+        //                $data['themes'][] = array(
+        //                    'text' => $this->language->get('extension')->get('heading_title'),
+        //                    'value' => $code
+        //                );
+        //            }
+        //        }
 
         if (isset($this->request->post['config_layout_id'])) {
             $data['config_layout_id'] = $this->request->post['config_layout_id'];
@@ -348,9 +345,9 @@ class ControllerSettingStore extends PT_Controller {
             $data['config_layout_id'] = '';
         }
 
-//        $this->load->model('design/layout');
-//
-//        $data['layouts'] = $this->model_design_layout->getLayouts();
+        //        $this->load->model('design/layout');
+        //
+        //        $data['layouts'] = $this->model_design_layout->getLayouts();
 
         if (isset($this->request->post['config_name'])) {
             $data['config_name'] = $this->request->post['config_name'];
@@ -442,17 +439,17 @@ class ControllerSettingStore extends PT_Controller {
             $data['config_comment'] = '';
         }
 
-//        $this->load->model('localisation/location');
-//
-//        $data['locations'] = $this->model_localisation_location->getLocations();
-//
-//        if (isset($this->request->post['config_location'])) {
-//            $data['config_location'] = $this->request->post['config_location'];
-//        } elseif (isset($store_info['config_location'])) {
-//            $data['config_location'] = $this->config->get('config_location');
-//        } else {
-//            $data['config_location'] = array();
-//        }
+        //        $this->load->model('localisation/location');
+        //
+        //        $data['locations'] = $this->model_localisation_location->getLocations();
+        //
+        //        if (isset($this->request->post['config_location'])) {
+        //            $data['config_location'] = $this->request->post['config_location'];
+        //        } elseif (isset($store_info['config_location'])) {
+        //            $data['config_location'] = $this->config->get('config_location');
+        //        } else {
+        //            $data['config_location'] = array();
+        //        }
 
         if (isset($this->request->post['config_country_id'])) {
             $data['config_country_id'] = $this->request->post['config_country_id'];
@@ -494,9 +491,9 @@ class ControllerSettingStore extends PT_Controller {
             $data['config_currency'] = $this->config->get('config_currency');
         }
 
-//        $this->load->model('localisation/currency');
-//
-//        $data['currencies'] = $this->model_localisation_currency->getCurrencies();
+        //        $this->load->model('localisation/currency');
+        //
+        //        $data['currencies'] = $this->model_localisation_currency->getCurrencies();
 
         if (isset($this->request->post['config_cookie_id'])) {
             $data['config_cookie_id'] = $this->request->post['config_cookie_id'];
@@ -542,25 +539,25 @@ class ControllerSettingStore extends PT_Controller {
             $data['config_customer_group_id'] = '';
         }
 
-//        $this->load->model('customer/customer_group');
-//
-//        $data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
-//
-//        if (isset($this->request->post['config_customer_group_display'])) {
-//            $data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
-//        } elseif (isset($store_info['config_customer_group_display'])) {
-//            $data['config_customer_group_display'] = $store_info['config_customer_group_display'];
-//        } else {
-//            $data['config_customer_group_display'] = array();
-//        }
-//
-//        if (isset($this->request->post['config_customer_price'])) {
-//            $data['config_customer_price'] = $this->request->post['config_customer_price'];
-//        } elseif (isset($store_info['config_customer_price'])) {
-//            $data['config_customer_price'] = $store_info['config_customer_price'];
-//        } else {
-//            $data['config_customer_price'] = '';
-//        }
+        //        $this->load->model('customer/customer_group');
+        //
+        //        $data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
+        //
+        //        if (isset($this->request->post['config_customer_group_display'])) {
+        //            $data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
+        //        } elseif (isset($store_info['config_customer_group_display'])) {
+        //            $data['config_customer_group_display'] = $store_info['config_customer_group_display'];
+        //        } else {
+        //            $data['config_customer_group_display'] = array();
+        //        }
+        //
+        //        if (isset($this->request->post['config_customer_price'])) {
+        //            $data['config_customer_price'] = $this->request->post['config_customer_price'];
+        //        } elseif (isset($store_info['config_customer_price'])) {
+        //            $data['config_customer_price'] = $store_info['config_customer_price'];
+        //        } else {
+        //            $data['config_customer_price'] = '';
+        //        }
 
         if (isset($this->request->post['config_account_id'])) {
             $data['config_account_id'] = $this->request->post['config_account_id'];
@@ -606,9 +603,9 @@ class ControllerSettingStore extends PT_Controller {
             $data['config_order_status_id'] = '';
         }
 
-//        $this->load->model('localisation/order_status');
-//
-//        $data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+        //        $this->load->model('localisation/order_status');
+        //
+        //        $data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 
         if (isset($this->request->post['config_stock_display'])) {
             $data['config_stock_display'] = $this->request->post['config_stock_display'];
@@ -665,7 +662,8 @@ class ControllerSettingStore extends PT_Controller {
         $this->response->setOutput($this->load->view('setting/store_form', $data));
     }
 
-    protected function validateForm() {
+    protected function validateForm()
+    {
         if (!$this->user->hasPermission('modify', 'setting/store')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -709,7 +707,8 @@ class ControllerSettingStore extends PT_Controller {
         return !$this->error;
     }
 
-    protected function validateDelete() {
+    protected function validateDelete()
+    {
         if (!$this->user->hasPermission('modify', 'setting/store')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -730,5 +729,4 @@ class ControllerSettingStore extends PT_Controller {
 
         return !$this->error;
     }
-
 }

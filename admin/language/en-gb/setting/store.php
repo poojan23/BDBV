@@ -1,23 +1,23 @@
 <?php
-// Heading
+# Heading
 $_['heading_title']                = 'Stores';
 
-// Text
+# Text
 $_['text_settings']                = 'Settings';
 $_['text_success']                 = 'Success: You have modified Stores!';
-$_['text_list']                    = 'Store List';
+$_['text_title']                   = 'Store List';
 $_['text_add']                     = 'Add Store';
 $_['text_edit']                    = 'Edit Store';
 $_['text_items']                   = 'Items';
 $_['text_shipping']                = 'Shipping Address';
 $_['text_payment']                 = 'Payment Address';
 
-// Column
+# Column
 $_['column_name']                  = 'Store Name';
-$_['column_url']	               = 'Store URL';
+$_['column_url']                   = 'Store URL';
 $_['column_action']                = 'Action';
 
-// Entry
+# Entry
 $_['entry_url']                    = 'Store URL';
 $_['entry_meta_title']             = 'Meta Title';
 $_['entry_meta_description']       = 'Meta Tag Description';
@@ -57,15 +57,15 @@ $_['entry_stock_checkout']         = 'Stock Checkout';
 $_['entry_logo']                   = 'Store Logo';
 $_['entry_icon']                   = 'Icon';
 
-// Tab
+# Tab
 $_['tab_legal']                      = 'Legal';
 $_['tab_tax']                        = 'Taxes';
 $_['tab_account']                    = 'Account';
 $_['tab_checkout']                   = 'Checkout';
 $_['tab_stock']                      = 'Stock';
 
-// Help
-$_['help_url']                     = 'Include the full URL to your store. Make sure to add \'/\' at the end. Example: http://www.yourdomain.com/path/<br /><br />Don\'t use directories to create a new store. You should always point another domain or sub domain to your hosting.';
+# Help
+$_['help_url']                     = 'Include the full URL to your store. Make sure to add \'/\' at the end. Example: http:#www.yourdomain.com/path/<br /><br />Don\'t use directories to create a new store. You should always point another domain or sub domain to your hosting.';
 $_['help_geocode']                 = 'Please enter your store location geocode manually.';
 $_['help_open']                    = 'Fill in your stores opening times.';
 $_['help_comment']                 = 'This field is for any special notes you would like to tell the customer i.e. Store does not accept cheques.';
@@ -86,7 +86,7 @@ $_['help_stock_display']           = 'Display stock quantity on the product page
 $_['help_stock_checkout']          = 'Allow customers to still checkout if the products they are ordering are not in stock.';
 $_['help_icon']                    = 'The icon should be a PNG that is 16px x 16px.';
 
-// Error
+# Error
 $_['error_warning']                = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']             = 'Warning: You do not have permission to modify stores!';
 $_['error_url']                    = 'Store URL required!';

@@ -18,7 +18,7 @@ class ControllerSettingSetting extends PT_Controller
 
             $this->session->data['success'] = $this->language->get('text_success');
 
-            $this->response->redirect($this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']));
+            $this->response->redirect($this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']));
         }
 
         if (isset($this->error['warning'])) {
@@ -151,17 +151,17 @@ class ControllerSettingSetting extends PT_Controller
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
-            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('common/dashboard', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_stores'),
-            'href' => $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token'])
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('setting/setting', 'user_token=' . $this->session->data['user_token'])
+            'href' => $this->url->link('setting/setting', 'member_token=' . $this->session->data['member_token'])
         );
 
         if (isset($this->session->data['success'])) {
@@ -172,11 +172,11 @@ class ControllerSettingSetting extends PT_Controller
             $data['success'] = '';
         }
 
-        $data['action'] = $this->url->link('setting/setting', 'user_token=' . $this->session->data['user_token']);
+        $data['action'] = $this->url->link('setting/setting', 'member_token=' . $this->session->data['member_token']);
 
-        $data['cancel'] = $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']);
+        $data['cancel'] = $this->url->link('setting/store', 'member_token=' . $this->session->data['member_token']);
 
-        $data['user_token'] = $this->session->data['user_token'];
+        $data['member_token'] = $this->session->data['member_token'];
 
         /*if (isset($this->request->post['config_url'])) {
             $data['config_url'] = $this->request->post['config_url'];
