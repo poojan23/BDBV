@@ -1,4 +1,5 @@
 <?php
+
 namespace Account;
 
 class Member
@@ -21,7 +22,7 @@ class Member
 		$this->session = $registry->get('session');
 
 		if (isset($this->session->data['member_id'])) {
-			$member_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "member WHERE member_id = '" . (int)$this->session->data['member_id'] . "' AND status = '1'");
+			$member_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "member WHERE member_id = '" . (int) $this->session->data['member_id'] . "' AND status = '1'");
 
 			if ($member_query->num_rows) {
 				$this->member_id = $member_query->row['member_id'];
@@ -33,9 +34,9 @@ class Member
 				$this->newsletter = $member_query->row['newsletter'];
 				$this->address_id = $member_query->row['address_id'];
 
-				$this->db->query("UPDATE " . DB_PREFIX . "member SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE member_id = '" . (int)$this->member_id . "'");
+				$this->db->query("UPDATE " . DB_PREFIX . "member SET language_id = '" . (int) $this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE member_id = '" . (int) $this->member_id . "'");
 
-				$member_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int)$member_query->row['member_group_id'] . "'");
+				$member_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int) $member_query->row['member_group_id'] . "'");
 
 				$permissions = json_decode($member_group_query->row['permission'], true);
 
@@ -67,10 +68,10 @@ class Member
 				}
 
 				if ($rehash) {
-					$this->db->query("UPDATE " . DB_PREFIX . "member SET salt = '', password = '" . $this->db->escape(password_hash($password, PASSWORD_DEFAULT)) . "' WHERE member_id = '" . (int)$member_query->row['member_id'] . "'");
+					$this->db->query("UPDATE " . DB_PREFIX . "member SET salt = '', password = '" . $this->db->escape(password_hash($password, PASSWORD_DEFAULT)) . "' WHERE member_id = '" . (int) $member_query->row['member_id'] . "'");
 				}
 
-				$member_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int)$member_query->row['member_group_id'] . "'");
+				$member_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "member_group WHERE member_group_id = '" . (int) $member_query->row['member_group_id'] . "'");
 
 				$permissions = json_decode($member_group_query->row['permission'], true);
 
@@ -92,7 +93,7 @@ class Member
 			$this->newsletter = $member_query->row['newsletter'];
 			$this->address_id = $member_query->row['address_id'];
 
-			$this->db->query("UPDATE " . DB_PREFIX . "member SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE member_id = '" . (int)$this->member_id . "'");
+			$this->db->query("UPDATE " . DB_PREFIX . "member SET language_id = '" . (int) $this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE member_id = '" . (int) $this->member_id . "'");
 
 			return true;
 		} else {

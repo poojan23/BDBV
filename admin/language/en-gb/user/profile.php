@@ -3,8 +3,8 @@
 $_['heading_title']         = 'Profile';
 
 # Text
-$_['text_title']            = 'User Profile';
-$_['text_success']          = 'Success: You have modified your user profile!';
+$_['text_title']            = 'Member Profile';
+$_['text_success']          = 'Success: You have modified your member profile!';
 $_['text_general']          = 'General';
 $_['text_contact']          = 'Contact';
 $_['text_clear']            = 'Clear Image';
@@ -33,7 +33,7 @@ $_['entry_confirm']         = 'Confirm Password';
 
 # Error
 $_['error_warning']         = 'Warning: Please check the form carefully for errors!';
-$_['error_permission']      = 'Warning: You do not have permission to modify user profile!';
+$_['error_permission']      = 'Warning: You do not have permission to modify member profile!';
 $_['error_email_exists']    = 'Warning: E-Mail Address is already registered!';
 $_['error_firstname']       = 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']        = 'Last Name must be between 1 and 32 characters!';

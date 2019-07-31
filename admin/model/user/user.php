@@ -10,10 +10,26 @@ class ModelUserUser extends PT_Model
 
 	public function editUser($member_id, $data)
 	{
-		$this->db->query("UPDATE `" . DB_PREFIX . "member` SET member_group_id = '" . (int) $data['member_group_id'] . "', firstname = '" . $this->db->escape((string) $data['firstname']) . "', lastname = '" . $this->db->escape((string) $data['lastname']) . "', email = '" . $this->db->escape((string) $data['email']) . "', status = '" . (int) $data['status'] . "', date_modified = NOW() WHERE member_id = '" . (int) $member_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "member` SET member_group_id = '" . (int) $data['member_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', gender = '" . (isset($data['gender']) ? $this->db->escape($data['gender']) : 'm') . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', status = '" . (int) $data['status'] . "', WHERE member_id = '" . (int) $member_id . "'");
+
+		if (isset($data['avatar'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "member` SET image = '" . $this->db->escape($data['avatar']) . "' WHERE member_id = '" . (int) $member_id . "'");
+		}
+
+		if (isset($data['designation'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "member` SET designation = '" . $this->db->escape($data['designation']) . "' WHERE member_id = '" . (int) $member_id . "'");
+		}
+
+		if (isset($data['birthdate'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "member` SET birthdate = '" . $this->db->escape($data['birthdate']) . "' WHERE member_id = '" . (int) $member_id . "'");
+		}
+
+		if (isset($data['anniversary'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "member` SET anniversary = '" . $this->db->escape($data['anniversary']) . "' WHERE member_id = '" . (int) $member_id . "'");
+		}
 
 		if ($data['password']) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "member` SET salt = '', password = '" . $this->db->escape(password_hash(html_entity_decode($data['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT)) . "' WHERE member_id = '" . (int) $member_id . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "member` SET salt = '', password = '" . $this->db->escape(password_hash(html_entity_decode($data['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT)) . "', date_modified = NOW() WHERE member_id = '" . (int) $member_id . "'");
 		}
 	}
 

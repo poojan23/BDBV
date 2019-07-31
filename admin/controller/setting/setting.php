@@ -677,7 +677,7 @@ class ControllerSettingSetting extends PT_Controller
 
         foreach ($mergers as $key => $match) {
             $data['icons'][$key] = array(
-                'icon'  => $match[1],
+                'icon'  => ($match[1] == 'py-popaya' ? 'py ' . $match[1] : $match[1]),
                 'name' => str_replace(array('icon-', '-'), ' ', $match[1])
             );
         }
@@ -764,9 +764,9 @@ class ControllerSettingSetting extends PT_Controller
         }
 
         if (is_file(DIR_IMAGE . html_entity_decode($data['config_icon'], ENT_QUOTES, 'UTF-8'))) {
-            $data['icon'] = $this->model_tool_image->resize(html_entity_decode($data['config_icon'], ENT_QUOTES, 'UTF-8'), 100, 100);
+            $data['favicon'] = $this->model_tool_image->resize(html_entity_decode($data['config_icon'], ENT_QUOTES, 'UTF-8'), 100, 100);
         } else {
-            $data['icon'] = $data['placeholder'];
+            $data['favicon'] = $data['placeholder'];
         }
 
         if (isset($this->request->post['config_logo_colour'])) {

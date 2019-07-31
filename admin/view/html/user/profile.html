@@ -442,13 +442,13 @@
                 $('#avatar').hide();
                 $element.parent().children('#button-clear').hide();
                 
-                $('form.editableForm .editable-buttons button[type=\'submit\']').on('click', function() {
-                    if($('.editableForm input[name=\'file\']').val() != '') {
+                $('form.editableform .editable-buttons button[type=\'submit\']').on('click', function() {
+                    if($('.editableform input[name=\'avatar\']').val() != '') {
                         $.ajax({
-                            url: 'index.php?url=user/profile/upload&member_token=' + getURLVar('member_token') + '&dir=' + dir,
+                            url: 'index.php?url=user/profile/upload&member_token=' + getURLVar('member_token'),
                             type: 'POST',
                             dataType: 'json',
-                            data: new FormData($('.editableForm')[0]),
+                            data: new FormData($('.editableform')[0]),
                             cache: false,
                             contentType: false,
                             processData: false,
@@ -461,6 +461,7 @@
                                 $('#img-loader').hide();
                             },
                             success: function(json) {
+                                console.log(json);
                                 if(json['error']) {
                                     alert(json['error']);
                                 }

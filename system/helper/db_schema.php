@@ -411,7 +411,6 @@ function db_schema()
 	);
 
 	$tables[] = array(
-<<<<<<< Updated upstream
 		'name' => 'member',
 		'field' => array(
 			array(
@@ -471,7 +470,7 @@ function db_schema()
 				'not_null' => true
 			),
 			array(
-				'name' => 'birthday',
+				'name' => 'birthdate',
 				'type' => 'date',
 				'not_null' => true
 			),
@@ -672,12 +671,6 @@ function db_schema()
 		'field' => array(
 			array(
 				'name' => 'member_group_id',
-=======
-		'name' => 'seo_regex',
-		'field' => array(
-			array(
-				'name' => 'seo_regex_id',
->>>>>>> Stashed changes
 				'type' => 'int(11)',
 				'not_null' => true,
 				'auto_increment' => true
@@ -688,7 +681,6 @@ function db_schema()
 				'not_null' => true
 			),
 			array(
-<<<<<<< Updated upstream
 				'name' => 'description',
 				'type' => 'text',
 				'not_null' => true
@@ -818,20 +810,10 @@ function db_schema()
 			array(
 				'name' => 'date_modified',
 				'type' => 'datetime',
-=======
-				'name' => 'regex',
-				'type' => 'varchar(255)',
-				'not_null' => true
-			),
-			array(
-				'name' => 'sort_order',
-				'type' => 'int(3)',
->>>>>>> Stashed changes
 				'not_null' => true
 			)
 		),
 		'primary' => array(
-<<<<<<< Updated upstream
 			'member_login_id'
 		),
 		'index' => array(
@@ -845,15 +827,6 @@ function db_schema()
 				'name' => 'ip',
 				'key' => array(
 					'ip'
-=======
-			'seo_regex_id'
-		),
-		'index' => array(
-			array(
-				'name' => 'regex',
-				'key' => array(
-					'regex'
->>>>>>> Stashed changes
 				)
 			)
 		),
@@ -863,7 +836,6 @@ function db_schema()
 	);
 
 	$tables[] = array(
-<<<<<<< Updated upstream
 		'name' => 'member_online',
 		'field' => array(
 			array(
@@ -901,8 +873,6 @@ function db_schema()
 	);
 
 	$tables[] = array(
-=======
->>>>>>> Stashed changes
 		'name' => 'seo_url',
 		'field' => array(
 			array(
