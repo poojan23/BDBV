@@ -1,0 +1,23 @@
+<div>
+  <ul class="pagination">
+    <?php if($prev) : ?>
+    <li><a href="<?php echo $prev; ?>"><i class="ace-icon fa fa-angle-double-left"></i></a></li>
+    <?php else : ?>
+    <li class="disabled"><a href="#"><i class="ace-icon fa fa-angle-double-left"></i></a></li>
+    <?php endif; ?>
+
+    <?php foreach($links as $link) : ?>
+    <?php if($link['page'] == $page) : ?>
+    <li class="active"><a href="#"><?php echo $link['page']; ?></a></li>
+    <?php else : ?>
+    <li><a href="<?php echo $link['href']; ?>"><?php echo $link['page']; ?></a></li>
+    <?php endif; ?>
+    <?php endforeach; ?>
+
+    <?php if($next) : ?>
+    <li><a href="<?php echo $next; ?>"><i class="ace-icon fa fa-angle-double-right"></i></a></li>
+    <?php else : ?>
+    <li class="disabled"><a href="#"><i class="ace-icon fa fa-angle-double-right"></i></a></li>
+    <?php endif; ?>
+  </ul>
+</div>

@@ -2,7 +2,8 @@
 
 class ControllerCommonPagination extends PT_Controller
 {
-	public function index($setting) {
+	public function index($setting)
+	{
 		if (isset($setting['total'])) {
 			$total = $setting['total'];
 		} else {
@@ -10,19 +11,19 @@ class ControllerCommonPagination extends PT_Controller
 		}
 
 		if (isset($setting['page']) && $setting['page'] > 0) {
-			$page = (int)$setting['page'];
+			$page = (int) $setting['page'];
 		} else {
 			$page = 1;
 		}
 
 		if (isset($setting['limit'])) {
-			$limit = (int)$setting['limit'];
+			$limit = (int) $setting['limit'];
 		} else {
 			$limit = 10;
 		}
 
 		if (isset($setting['url'])) {
-			$url = str_replace('%7Bpage%7D', '{page}', (string)$setting['url']);
+			$url = str_replace('%7Bpage%7D', '{page}', (string) $setting['url']);
 		} else {
 			$url = '';
 		}
@@ -30,7 +31,7 @@ class ControllerCommonPagination extends PT_Controller
 		$num_links = 8;
 		$num_pages = ceil($total / $limit);
 
-        $data['page'] = $page;
+		$data['page'] = $page;
 
 		if ($page > 1) {
 			if ($page - 1 === 1) {

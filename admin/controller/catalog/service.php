@@ -252,11 +252,11 @@ class ControllerCatalogService extends PT_Controller
         }
 
         if (isset($this->request->post['icon'])) {
-            $data['icon'] = $this->request->post['icon'];
+            $data['iconn'] = $this->request->post['icon'];
         } elseif (!empty($service_info)) {
-            $data['icon'] = $service_info['icon'];
+            $data['iconn'] = $service_info['icon'];
         } else {
-            $data['icon'] = 'py py-popaya';
+            $data['iconn'] = 'py py-popaya';
         }
 
         if (isset($this->request->post['image'])) {
