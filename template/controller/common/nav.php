@@ -22,49 +22,49 @@ class ControllerCommonNav extends PT_Controller
 
         $data['menus'] = array();
 
-        if ($results[0]['status']) {
+        if ($results[1]['status']) {
             $data['menus'][] = array(
                 'title' => $this->language->get('text_service'),
                 'href'  => 'rt_services'
             );
         }
 
-        if ($results[2]['status']) {
+        if ($results[3]['status']) {
             $data['menus'][] = array(
                 'title' => $this->language->get('text_about'),
                 'href'  => 'rt_features'
             );
         }
 
-        if ($results[3]['status']) {
+        if ($results[4]['status']) {
             $data['menus'][] = array(
                 'title' => $this->language->get('text_project'),
                 'href'  => 'rt_screenshots'
             );
         }
 
-        if ($results[4]['status']) {
+        if ($results[5]['status']) {
             $data['menus'][] = array(
                 'title' => $this->language->get('text_team'),
                 'href'  => 'rt_team'
             );
         }
 
-        if ($results[6]['status']) {
+        if ($results[7]['status']) {
             $data['menus'][] = array(
                 'title' => $this->language->get('text_testimonial'),
                 'href'  => 'rt_testimonial'
             );
         }
 
-        if ($results[8]['status']) {
+        if ($results[9]['status']) {
             $data['menus'][] = array(
                 'title' => $this->language->get('text_blog'),
                 'href'  => 'rt_blog'
             );
         }
 
-        if ($results[9]['status']) {
+        if ($results[10]['status']) {
             $data['menus'][] = array(
                 'title' => $this->language->get('text_contact'),
                 'href'  => 'rt_contact'

@@ -264,8 +264,10 @@
     var now = new Date(),
         start = now.getDate() - now.getDay(),
         end = start + 6,
-        current = new Date(now.setDate(start)),
-        last = new Date(now.setDate(end)),
+        // current = new Date(now.setDate(start)),
+        // last = new Date(now.setDate(end)),
+        current = new Date(now.getFullYear(), now.getMonth(), start),
+        last = new Date(now.getFullYear(), now.getMonth(), end),
         range = [];
 
     while (current <= last) {
